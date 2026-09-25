@@ -611,6 +611,368 @@ button {
 }
 
 /* ==========================================================================
+   Hero Top Split (2-Column Grid: Copy on Left, Sequential Illustration on Right)
+   ========================================================================== */
+.hero-enterprise-top-split {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.hero-content-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 18px;
+}
+
+.hero-content-left .hero-enterprise-headline {
+  text-align: left;
+  margin: 4px 0 0;
+  font-size: 54px;
+}
+
+.hero-content-left .hero-enterprise-subhead {
+  text-align: left;
+  margin: 0;
+}
+
+.hero-content-left .hero-enterprise-actions {
+  justify-content: flex-start;
+  margin-top: 6px;
+}
+
+.hero-content-left .hero-enterprise-perks {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Right Column: Animated Conversation & Transaction Illustration Stage */
+.hero-illustration-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.animated-flow-stage {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px 20px;
+  border-radius: 28px;
+  background: radial-gradient(circle at 80% 20%, rgba(6, 148, 148, 0.12) 0%, rgba(13, 40, 84, 0.4) 60%, rgba(3, 10, 23, 0.6) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Slanted diagonal green/teal ray lines */
+.illustration-ray-container {
+  position: absolute;
+  top: -30px;
+  left: -40px;
+  width: 380px;
+  height: 380px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+.illustration-ray-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Animated Sequential Cards Stack */
+.animated-cards-stack {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: stretch;
+}
+
+/* Base Card Transitions */
+.flow-card {
+  opacity: 0;
+  transform: translateY(24px) scale(0.95);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  will-change: transform, opacity;
+  box-sizing: border-box;
+}
+
+.flow-card.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.flow-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+}
+
+/* Card 1: User Request Pill */
+.flow-card-1 {
+  background: #f8fafc;
+  color: #1e293b;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 500;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  align-self: flex-start;
+  max-width: 95%;
+}
+
+/* Card 2: AI Assistant Response */
+.flow-card-2 {
+  background: #ffffff;
+  color: #0f172a;
+  padding: 16px 20px;
+  border-radius: 20px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.flow-ai-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.flow-ai-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e0f2fe;
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.flow-ai-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.flow-ai-msg {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.4;
+}
+
+/* Card 3: Transaction Card */
+.flow-card-3 {
+  background: #ffffff;
+  color: #0f172a;
+  padding: 18px 20px;
+  border-radius: 22px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.flow-txn-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.flow-txn-id {
+  font-size: 13.5px;
+  color: #64748b;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.flow-txn-amount {
+  font-size: 21px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.flow-pills-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.flow-pill {
+  background: #f1f5f9;
+  color: #475569;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 500;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.flow-pill.flow-pill-sent {
+  background: #069494;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(6, 148, 148, 0.4);
+}
+
+.flow-pill.flow-pill-confirmed {
+  background: #f1f5f9;
+  color: #334155;
+  font-weight: 500;
+}
+
+/* Card 4: Transfer Confirmed Pill */
+.flow-card-4 {
+  background: #ffffff;
+  color: #0f172a;
+  padding: 14px 22px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.flow-status-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  position: relative;
+  display: inline-block;
+}
+
+.flow-status-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #10b981;
+  opacity: 0.6;
+  animation: greenPulseRadar 2s infinite ease-out;
+}
+
+@keyframes greenPulseRadar {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Flow Stage Footer & Replay Bar */
+.flow-indicator-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 11.5px;
+  color: #94a3b8;
+  z-index: 2;
+}
+
+.flow-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(6, 148, 148, 0.16);
+  border: 1px solid rgba(6, 148, 148, 0.4);
+  color: #2dd4bf;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.flow-live-dot {
+  width: 6px;
+  height: 6px;
+  background: #2dd4bf;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #2dd4bf;
+}
+
+.btn-flow-replay {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #cbd5e1;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-flow-replay:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Responsive adjustments for 2-column hero */
+@media (max-width: 1024px) {
+  .hero-enterprise-top-split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero-content-left {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-content-left .hero-enterprise-headline {
+    text-align: center;
+    font-size: 44px;
+  }
+
+  .hero-content-left .hero-enterprise-subhead {
+    text-align: center;
+  }
+
+  .hero-content-left .hero-enterprise-actions {
+    justify-content: center;
+  }
+
+  .hero-content-left .hero-enterprise-perks {
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
    Large Enterprise Dashboard Mockup (Intercom / Respond.io Quality)
    ========================================================================== */
 .hero-mockup-wrapper {

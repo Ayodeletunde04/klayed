@@ -445,9 +445,14 @@ button {
 .hero-enterprise-section {
   position: relative;
   width: 100%;
+  min-height: calc(100vh - 72px);
+  min-height: calc(100dvh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: radial-gradient(circle at 50% -10%, #0d2854 0%, #07152b 55%, #030a17 100%);
   color: #ffffff;
-  padding: 70px 24px 80px;
+  padding: 60px 32px 70px;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -468,11 +473,12 @@ button {
 .hero-enterprise-container {
   position: relative;
   z-index: 3;
-  max-width: var(--page-max-width);
+  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 
 .hero-content-center {
@@ -615,9 +621,9 @@ button {
    ========================================================================== */
 .hero-enterprise-top-split {
   display: grid;
-  grid-template-columns: 1.12fr 0.88fr;
+  grid-template-columns: 1.15fr 0.85fr;
   align-items: center;
-  gap: 48px;
+  gap: 64px;
   width: 100%;
   margin-bottom: 0;
 }
@@ -627,28 +633,37 @@ button {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  gap: 18px;
+  gap: 22px;
 }
 
 .hero-content-left .hero-enterprise-headline {
   text-align: left;
-  margin: 4px 0 0;
-  font-size: 54px;
+  margin: 6px 0 0;
+  font-size: 60px;
+  line-height: 1.08;
+  letter-spacing: -2px;
 }
 
 .hero-content-left .hero-enterprise-subhead {
   text-align: left;
   margin: 0;
+  font-size: 20px;
+  line-height: 1.55;
+  color: #cbd5e1;
+  max-width: 640px;
 }
 
 .hero-content-left .hero-enterprise-actions {
   justify-content: flex-start;
-  margin-top: 6px;
+  margin-top: 10px;
+  gap: 16px;
 }
 
 .hero-content-left .hero-enterprise-perks {
   justify-content: flex-start;
   flex-wrap: wrap;
+  gap: 18px;
+  font-size: 13.5px;
 }
 
 /* Right Column: Animated Conversation & Transaction Illustration Stage */
@@ -663,13 +678,13 @@ button {
 .animated-flow-stage {
   position: relative;
   width: 100%;
-  max-width: 440px;
-  min-height: 460px;
+  max-width: 460px;
+  min-height: 480px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px 20px 20px;
+  padding: 28px 24px 22px;
   border-radius: 28px;
   background: radial-gradient(circle at 80% 20%, rgba(6, 148, 148, 0.12) 0%, rgba(13, 40, 84, 0.4) 60%, rgba(3, 10, 23, 0.6) 100%);
   border: 1px solid rgba(255, 255, 255, 0.12);

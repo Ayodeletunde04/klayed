@@ -420,23 +420,25 @@ button {
 }
 
 .btn-get-started {
-  background-color: #0c2b22;
+  background: #1d63ff;
+  background: linear-gradient(135deg, #2563eb 0%, #1d63ff 100%);
   color: #ffffff;
   border-radius: 8px;
   padding: 9px 20px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 10px rgba(29, 99, 255, 0.35);
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .btn-get-started:hover {
-  background-color: #133d31;
+  background: linear-gradient(135deg, #1d4ed8 0%, #1751d8 100%);
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(12, 43, 34, 0.25);
+  box-shadow: 0 4px 16px rgba(29, 99, 255, 0.5);
 }
 
 /* ==========================================================================

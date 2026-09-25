@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Klayed — The WhatsApp Communications & Broadcast Suite for Modern Merchants</title>
+  <meta name="description" content="Klayed gives high-growth commerce brands editorial precision over WhatsApp broadcasts, conversational AI triage, audience segmentation, and multi-currency merchant settlements.">
+
+  <!-- OpenGraph Metadata -->
+  <meta property="og:title" content="Klayed — WhatsApp Communications Suite for Modern Merchants">
+  <meta property="og:description" content="Meta-verified high-throughput WhatsApp broadcasting, audience segmentation, multi-agent inbox, and wallet settlements.">
+  <meta property="og:type" content="website">
+
+  <!-- Typography: Inter (Sole editorial sans VF substitute) & Caveat (Handwritten script) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@400;460;500;540;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="landing.css?v=20260924_01">
+</head>
+<body>
+
+  <!-- ====================================================================
+       1. Top Announcement Pill Banner
+       ==================================================================== -->
+  <aside class="announcement-wrapper" role="region" aria-label="Product Announcement">
+    <div class="announcement-content">
+      <span class="announcement-badge">New Release</span>
+      <span class="announcement-text">Klayed Flow Engine 3.0 is live with Meta Cloud API v21 — 4x broadcast throughput.</span>
+      <a href="#broadcasts" class="announcement-link">
+        Read announcement
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ====================================================================
+       2. Navigation Header (Termii Reference Style)
+       ==================================================================== -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <!-- Brand Logo (Blue Squircle with White 'k') -->
+      <a href="index.html" class="header-brand" aria-label="Klayed Home">
+        <div class="brand-k-squircle">k</div>
+        <span class="brand-title">klayed</span>
+      </a>
+
+      <!-- Center Navigation with Dropdown Carets -->
+      <nav class="header-nav" aria-label="Main Navigation">
+        <!-- 1. Product ⌵ -->
+        <div class="nav-item-dropdown">
+          <button type="button" class="nav-link-item" aria-haspopup="true" aria-expanded="false">
+            <span>Product</span>
+            <svg class="chevron-icon" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1L5 5L9 1"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="#broadcasts" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">WhatsApp Broadcasts</span>
+              <span class="dropdown-item-desc">High-throughput Meta Cloud API v21 campaigns</span>
+            </a>
+            <a href="#audience" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Audience CRM</span>
+              <span class="dropdown-item-desc">RFM cohorts, customer groups & dynamic tagging</span>
+            </a>
+            <a href="#suite" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Conversational Desk</span>
+              <span class="dropdown-item-desc">Multi-agent team routing & checkout links</span>
+            </a>
+            <a href="#suite" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Merchant Wallets</span>
+              <span class="dropdown-item-desc">Multi-currency messaging ledgers & auto top-up</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Industries ⌵ -->
+        <div class="nav-item-dropdown">
+          <button type="button" class="nav-link-item" aria-haspopup="true" aria-expanded="false">
+            <span>Industries</span>
+            <svg class="chevron-icon" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1L5 5L9 1"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="#suite" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Retail & Fashion</span>
+              <span class="dropdown-item-desc">VIP preview drops & automated re-engagement</span>
+            </a>
+            <a href="#suite" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Food & Delivery</span>
+              <span class="dropdown-item-desc">Real-time status updates & instant reordering</span>
+            </a>
+            <a href="#suite" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Fintech & Payments</span>
+              <span class="dropdown-item-desc">Instant transaction receipts & 2FA codes</span>
+            </a>
+            <a href="#suite" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Direct-to-Consumer</span>
+              <span class="dropdown-item-desc">Cart recovery flows with 98% open rates</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. Devs ⌵ -->
+        <div class="nav-item-dropdown">
+          <button type="button" class="nav-link-item" aria-haspopup="true" aria-expanded="false">
+            <span>Devs</span>
+            <svg class="chevron-icon" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1L5 5L9 1"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="#developers" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Cloud API v21 Docs</span>
+              <span class="dropdown-item-desc">Endpoints, schemas & rate limit specs</span>
+            </a>
+            <a href="#developers" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Webhooks Reference</span>
+              <span class="dropdown-item-desc">Real-time delivery receipts & reply streams</span>
+            </a>
+            <a href="#developers" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">SDKs & Postman</span>
+              <span class="dropdown-item-desc">Node.js, Python, PHP & curl starter kits</span>
+            </a>
+            <a href="#architecture" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Uptime & Status</span>
+              <span class="dropdown-item-desc">99.98% SLA and incident history</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. Pricing (Standalone Link) -->
+        <a href="#calculator" class="nav-link-item">Pricing</a>
+
+        <!-- 5. Company ⌵ -->
+        <div class="nav-item-dropdown">
+          <button type="button" class="nav-link-item" aria-haspopup="true" aria-expanded="false">
+            <span>Company</span>
+            <svg class="chevron-icon" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1L5 5L9 1"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="#hero" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">About Klayed</span>
+              <span class="dropdown-item-desc">Our journey building conversational commerce</span>
+            </a>
+            <a href="#stories" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Merchant Stories</span>
+              <span class="dropdown-item-desc">Real revenue growth numbers from founders</span>
+            </a>
+            <a href="#calculator" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Contact Sales</span>
+              <span class="dropdown-item-desc">Custom enterprise volume pricing & onboarding</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 6. Resources ⌵ -->
+        <div class="nav-item-dropdown">
+          <button type="button" class="nav-link-item" aria-haspopup="true" aria-expanded="false">
+            <span>Resources</span>
+            <svg class="chevron-icon" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1L5 5L9 1"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="#calculator" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">ROI Calculator</span>
+              <span class="dropdown-item-desc">Compare WhatsApp read rate vs email marketing</span>
+            </a>
+            <a href="#suite" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Meta Template Guide</span>
+              <span class="dropdown-item-desc">Rules for instant WhatsApp template approvals</span>
+            </a>
+            <a href="#stories" class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Playbooks & Case Studies</span>
+              <span class="dropdown-item-desc">High-converting campaign strategies</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Right Action Controls (Theme Toggle, Sign in, Get started) -->
+      <div class="header-actions">
+        <!-- Sun/Theme Icon Toggle -->
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" title="Toggle theme mode" aria-label="Toggle theme mode">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- Sign in Ghost Link -->
+        <a href="../index.html" class="nav-signin-link">Sign in</a>
+
+        <!-- Dark Pill "Get started" CTA Button -->
+        <a href="../index.html" class="btn-get-started">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ====================================================================
+         3. Golden Hour Hero Section
+         ==================================================================== -->
+    <section class="hero-editorial-section" id="hero">
+      <!-- Full-bleed cinematic photography backdrop -->
+      <div class="hero-backdrop" aria-hidden="true">
+        <img src="assets/hero-blue-hour.jpg" alt="Blue hour editorial portrait reflecting calm and confidence" loading="eager" fetchpriority="high">
+      </div>
+      <div class="hero-vignette-overlay" aria-hidden="true"></div>
+
+      <div class="hero-container">
+        <!-- Hero Content Center -->
+        <div class="hero-content-center">
+          <div class="hero-tag">
+            <span>Official Meta Cloud API Partner</span>
+            <span class="hero-tag-accent">v21.0 Tier 4</span>
+          </div>
+
+          <h1 class="hero-headline">The communication system for modern commerce.</h1>
+
+          <p class="hero-subhead">
+            Broadcast personalized WhatsApp campaigns at massive scale, convert customer conversations into automated revenue, and settle merchant wallets with editorial precision.
+          </p>
+
+          <div class="hero-actions-group">
+            <a href="../index.html" class="btn-primary-wine">
+              <span>Enter Merchant Portal</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#suite" class="btn-outline-lilac">Explore Platform Suite</a>
+          </div>
+
+          <span class="hero-social-note">Zero setup friction • Meta-verified templates • Transparent pay-as-you-send credits</span>
+        </div>
+
+        <!-- Floating Glass Cards composited over photography -->
+        <div class="hero-floating-cards-row">
+          <!-- Glass Card 1: Live Broadcast Pulse -->
+          <div class="glass-product-card">
+            <div class="glass-card-header">
+              <div class="glass-card-identity">
+                <div class="glass-card-icon wine">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                </div>
+                <div>
+                  <div class="glass-card-title">Live Broadcast Pulse</div>
+                  <div style="font-size: 11px; color: var(--color-stone-gray);">Private VIP Drop #04</div>
+                </div>
+              </div>
+              <span class="glass-card-badge">Delivering Live</span>
+            </div>
+
+            <div class="glass-metrics-grid">
+              <div class="metric-item">
+                <span class="metric-label">Recipients</span>
+                <span class="metric-value">24,180</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-label">Delivery</span>
+                <span class="metric-value highlight">99.4%</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-label">Tracked GMV</span>
+                <span class="metric-value highlight">$38,940</span>
+              </div>
+            </div>
+
+            <div class="glass-chat-snippet">
+              <div class="chat-bubble-top">
+                <span>Template: VIP_EARLY_ACCESS_OCT</span>
+                <span>2.4k msg/min</span>
+              </div>
+              <p class="chat-bubble-msg">
+                "Hello Aisha, your reserved archival trench in sand is ready with an exclusive 15% preview privilege."
+              </p>
+              <div class="chat-bubble-status">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Read by recipient 4 seconds after dispatch</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Glass Card 2: Multi-Agent WhatsApp Hub -->
+          <div class="glass-product-card">
+            <div class="glass-card-header">
+              <div class="glass-card-identity">
+                <div class="glass-card-icon lilac">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                </div>
+                <div>
+                  <div class="glass-card-title">Multi-Agent Commerce Desk</div>
+                  <div style="font-size: 11px; color: var(--color-stone-gray);">Agent: Fadekemi (Senior Support)</div>
+                </div>
+              </div>
+              <span class="glass-card-badge" style="background: rgba(66, 29, 36, 0.08); color: var(--color-midnight-wine);">Instant Checkout</span>
+            </div>
+
+            <div class="glass-chat-snippet" style="background: rgba(255, 255, 255, 0.7);">
+              <div class="chat-bubble-top">
+                <span>Customer: Michael Adeleke (+234 803 291...)</span>
+                <span>12:41 PM</span>
+              </div>
+              <p class="chat-bubble-msg">
+                "Order #84920 has been verified. Settle directly through WhatsApp link or instant debit transfer."
+              </p>
+              <div class="chat-bubble-status" style="color: var(--color-midnight-wine);">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+                <span>Payment captured via Klayed Wallet • Auto-dispatched</span>
+              </div>
+            </div>
+
+            <div class="glass-metrics-grid" style="border-top: 1px dashed var(--color-soft-mist); padding-top: 8px;">
+              <div class="metric-item">
+                <span class="metric-label">Avg Reply Time</span>
+                <span class="metric-value">18 sec</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-label">Resolution SLA</span>
+                <span class="metric-value">99.8%</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-label">Triage Route</span>
+                <span class="metric-value">Automated</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         4. Trust & Social Proof Logo Strip
+         ==================================================================== -->
+    <section class="trust-strip-section" aria-label="Trusted Merchants and Ecosystem Partners">
+      <div class="trust-strip-container">
+        <p class="trust-strip-label">Trusted by high-volume commerce leaders across the ecosystem</p>
+        <div class="trust-logo-grid">
+          <div class="trust-logo-cell">
+            <span class="trust-logo-text">Paystack</span>
+          </div>
+          <div class="trust-logo-cell">
+            <span class="trust-logo-text">Moniepoint</span>
+          </div>
+          <div class="trust-logo-cell">
+            <span class="trust-logo-text">Flutterwave</span>
+          </div>
+          <div class="trust-logo-cell">
+            <span class="trust-logo-text">Chowdeck</span>
+          </div>
+          <div class="trust-logo-cell">
+            <span class="trust-logo-text">Kuda Bank</span>
+          </div>
+          <div class="trust-logo-cell">
+            <span class="trust-logo-text">PiggyVest</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         5. "Your Klayed Merchant Suite" — Interactive Tab Strip & Cards
+         ==================================================================== -->
+    <section class="suite-section" id="suite">
+      <header class="section-editorial-header">
+        <div class="editorial-kicker">Unified Architecture</div>
+        <h2 class="editorial-heading-lg">Your Klayed Merchant Suite</h2>
+        <p class="editorial-subheading-lead">
+          Four foundational pillars engineered to convert WhatsApp from a simple chat channel into a disciplined commerce operating system.
+        </p>
+      </header>
+
+      <!-- Suite Navigation Tabs -->
+      <nav class="suite-tabs-nav" role="tablist" aria-label="Merchant Suite Tabs">
+        <button class="suite-tab-btn active" role="tab" aria-selected="true" data-tab="broadcasts" id="tab-broadcasts">
+          <span class="suite-tab-icon">✦</span>
+          <span>Broadcast Engine</span>
+        </button>
+        <button class="suite-tab-btn" role="tab" aria-selected="false" data-tab="audience" id="tab-audience">
+          <span class="suite-tab-icon">◈</span>
+          <span>Audience CRM</span>
+        </button>
+        <button class="suite-tab-btn" role="tab" aria-selected="false" data-tab="inbox" id="tab-inbox">
+          <span class="suite-tab-icon">◉</span>
+          <span>Conversational Desk</span>
+        </button>
+        <button class="suite-tab-btn" role="tab" aria-selected="false" data-tab="wallets" id="tab-wallets">
+          <span class="suite-tab-icon">❖</span>
+          <span>Financial Wallets</span>
+        </button>
+      </nav>
+
+      <!-- Suite Panels -->
+
+      <!-- Panel 1: Broadcast Engine -->
+      <div class="suite-panel active" id="panel-broadcasts" role="tabpanel" aria-labelledby="tab-broadcasts">
+        <div class="suite-preview-frame">
+          <div>
+            <div class="suite-preview-card-header">
+              <span class="suite-preview-tag">Meta Cloud API Tier 4</span>
+              <span style="font-size: 13px; color: var(--color-stone-gray);">v21.0 Certified</span>
+            </div>
+            <h3 style="font-size: 22px; font-weight: var(--font-weight-bold); margin-bottom: 8px;">Automated Broadcast Nexus</h3>
+            <p style="font-size: var(--text-body); color: var(--color-stone-gray); margin-bottom: 20px;">
+              Compose dynamic media campaigns with approved WhatsApp business templates, zero throttle rate limits, and sub-second delivery.
+            </p>
+            <div class="suite-preview-mockup">
+              <div class="mockup-row">
+                <span>Template Status</span>
+                <span style="color: #2b8a3e; font-weight: 600;">APPROVED (Meta Instant)</span>
+              </div>
+              <div class="mockup-row">
+                <span>Audience Target</span>
+                <span>Active VIP Tier (18,400 numbers)</span>
+              </div>
+              <div class="mockup-row">
+                <span>Personalization Tokens</span>
+                <code>{{1:first_name}} {{2:reward_code}}</code>
+              </div>
+              <div class="mockup-row">
+                <span>Throughput Velocity</span>
+                <span>500 messages / second</span>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 24px;">
+            <a href="../index.html#messaging" class="link-royal-violet">
+              Open campaign composer in dashboard
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="suite-cards-grid">
+          <article class="suite-product-card">
+            <div class="product-card-top">
+              <div class="product-card-icon">01</div>
+              <h4 class="product-card-name">Meta-Approved Template Manager</h4>
+            </div>
+            <p class="product-card-desc">
+              Create, test, and synchronize WhatsApp interactive templates with instant Meta validation and automated opt-out handling.
+            </p>
+            <a href="../index.html#messaging" class="link-royal-violet">Learn more</a>
+          </article>
+
+          <article class="suite-product-card">
+            <div class="product-card-top">
+              <div class="product-card-icon">02</div>
+              <h4 class="product-card-name">Dynamic Audience Variables</h4>
+            </div>
+            <p class="product-card-desc">
+              Inject custom variables, product images, dynamic CTA buttons, and tailored discount links into each broadcast without manual work.
+            </p>
+            <a href="../index.html#messaging" class="link-royal-violet">Learn more</a>
+          </article>
+
+          <article class="suite-product-card">
+            <div class="product-card-top">
+              <div class="product-card-icon">03</div>
+              <h4 class="product-card-name">Real-Time Delivery Attribution</h4>
+            </div>
+            <p class="product-card-desc">
+              Monitor delivered, read, clicked, and converted states second-by-second with full audit logging and transaction linkage.
+            </p>
+            <a href="../index.html#reports" class="link-royal-violet">Learn more</a>
+          </article>
+        </div>
+      </div>
+
+      <!-- Panel 2: Audience CRM -->
+      <div class="suite-panel" id="panel-audience" role="tabpanel" aria-labelledby="tab-audience">
+        <div class="suite-preview-frame">
+          <div>
+            <div class="suite-preview-card-header">
+              <span class="suite-preview-tag">RFM Cohort Intelligence</span>
+              <span style="font-size: 13px; color: var(--color-stone-gray);">Live Sync</span>
+            </div>
+            <h3 style="font-size: 22px; font-weight: var(--font-weight-bold); margin-bottom: 8px;">Precision Audience Segments</h3>
+            <p style="font-size: var(--text-body); color: var(--color-stone-gray); margin-bottom: 20px;">
+              Segment your customers by Recency, Frequency, and Monetary metrics so every WhatsApp message lands with maximum relevance.
+            </p>
+            <div class="suite-preview-mockup">
+              <div class="mockup-row">
+                <span>Segment Name</span>
+                <span>Champions (3+ Orders, $500+)</span>
+              </div>
+              <div class="mockup-row">
+                <span>Total Active Contacts</span>
+                <span>4,892 verified mobile numbers</span>
+              </div>
+              <div class="mockup-row">
+                <span>Engagement Rate</span>
+                <span>88.2% 30-day response</span>
+              </div>
+              <div class="mockup-row">
+                <span>Compliance Health</span>
+                <span style="color: #2b8a3e;">0.01% Opt-out Rate (Optimum)</span>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 24px;">
+            <a href="../index.html#customer-groups" class="link-royal-violet">
+              Manage customer groups in dashboard
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="suite-cards-grid">
+          <article class="suite-product-card">
+            <div class="product-card-top">
+              <div class="product-card-icon">01</div>
+              <h4 class="product-card-name">Dynamic Tagging & Filters</h4>
+            </div>
+            <p class="product-card-desc">
+              Automatically tag customers based on past purchases, average spend, geography, and response latency across campaigns.
+            </p>
+            <a href="../index.html#customer-groups" class="link-royal-violet">Learn more</a>
+          </article>
+
+          <article class="suite-product-card">
+            <div class="product-card-top">
+              <div class="product-card-icon">02</div>
+              <h4 class="product-card-name">CSV & Storefront Ingestion</h4>
+            </div>
+            <p class="product-card-desc">
+              Import phone records from Shopify, WooCommerce, or custom CSV databases with automated deduplication and phone format sanitation.
+            </p>
+            <a href="../index.html#customer-groups" class="link-royal-violet">Learn more</a>
+          </article>
+
+          <article class="suite-product-card">
+            <div class="product-card-top">
+              <div class="product-card-icon">03</div>
+              <h4 class="product-card-name">Customer Lifetime Value (LTV)</h4>
+            </div>
+            <p class="product-card-desc">
+              Identify your top 5% revenue generating buyers and schedule personalized high-touch VIP broadcasts with zero spam penalty.
+            </p>
+            <a href="../index.html#reports" class="link-royal-violet">Learn more</a>
+          </article>
+        </div>
+      </div>
+
+      <!-- Panel 3: Conversational Desk -->
+      <div class="suite-panel" id="panel-inbox" role="tabpanel" aria-labelledby="tab-inbox">
+        <div class="suite-preview-frame">
+          <div>
+            <div class="suite-preview-card-header">
+              <span class="suite-preview-tag">Multi-Agent WhatsApp Routing</span>
+              <span style="font-size: 13px; color: var(--color-stone-gray);">Shared Number</span>
+            </div>
+            <h3 style="font-size: 22px; font-weight: var(--font-weight-bold); margin-bottom: 8px;">Unified Team Inbox</h3>
+            <p style="font-size: var(--text-body); color: var(--color-stone-gray); margin-bottom: 20px;">
+              Route incoming replies from broadcasts to human agents or AI triage bots without ever losing conversation context.
+            </p>
+            <div class="suite-preview-mockup">
+              <div class="mockup-row">
+                <span>Active Agents Online</span>
+                <span>8 Agents across Sales & Support</span>
+              </div>
+              <div class="mockup-row">
+                <span>First Response Time</span>
+                <span>14 seconds median</span>
+              </div>
+              <div class="mockup-row">
+                <span>Order Link Generation</span>
+                <span>Native WhatsApp Payment Links</span>
+              </div>
+              <div class="mockup-row">
+                <span>Agent Collision Prevention</span>
+                <span>Real-time typing & lock indicators</span>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 24px;">
+            <a href="../index.html#team-member" class="link-royal-violet">
+              View team permissions in dashboard
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="suite-cards-grid">
+          <article class="suite-product-card">
+            <div class="product-card-top">
+              <div class="product-card-icon">01</div>
+              <h4 class="product-card-name">Intelligent Ticket Triage</h4>
+            </div>
+            <p class="product-card-desc">
+              Automatically categorize inquiries into billing, delivery status, returns, or wholesale quotes with customizable routing rules.
+            </p>
+            <a href="../index.html#team-member" class="link-royal-violet">Learn more</a>
+          </article>
+
+          <article class="suite-product-card">
+            <div class="product-card-top">
+              <div class="product-card-icon">02</div>
+              <h4 class="product-card-name">Canned Macro Responses</h4>
+            </div>
+            <p class="product-card-desc">
+              Empower agents with keyboard shortcuts for vetted responses, dynamic stock lookups, and instant order tracking links.
+            </p>
+            <a href="../index.html#team-member" class="link-royal-violet">Learn more</a>
+          </article>
+
+          <article class="suite-product-card">
+            <div class="product-card-top">
+              <div class="product-card-icon">03</div>
+              <h4 class="product-card-name">Conversational Commerce Checkout</h4>
+            </div>
+            <p class="product-card-desc">
+              Generate payment links inside chat and capture customer delivery addresses with instant receipts delivered directly in WhatsApp.
+            </p>
+            <a href="../index.html#wallets" class="link-royal-violet">Learn more</a>
+          </article>
+        </div>
+      </div>
+
+      <!-- Panel 4: Financial Wallets -->
+      <div class="suite-panel" id="panel-wallets" role="tabpanel" aria-labelledby="tab-wallets">
+        <div class="suite-preview-frame">
+          <div>
+            <div class="suite-preview-card-header">
+              <span class="suite-preview-tag">Multi-Currency Settlement</span>
+              <span style="font-size: 13px; color: var(--color-stone-gray);">NGN / USD / GHS / KES</span>
+            </div>
+            <h3 style="font-size: 22px; font-weight: var(--font-weight-bold); margin-bottom: 8px;">Transparent Credit Ledgers</h3>
+            <p style="font-size: var(--text-body); color: var(--color-stone-gray); margin-bottom: 20px;">
+              Complete financial transparency. Top up your messaging balance via bank transfer or card, and see exact per-message unit costs.
+            </p>
+            <div class="suite-preview-mockup">
+              <div class="mockup-row">
+                <span>Current Ledger Balance</span>
+                <span style="font-weight: 700; color: var(--color-midnight-wine);">₦2,450,000.00</span>
+              </div>
+              <div class="mockup-row">
+                <span>Per-Broadcast Cost</span>
+                <span>Flat Meta fee + Transparent Klayed rate</span>
+              </div>
+              <div class="mockup-row">
+                <span>Automated Top-up Threshold</span>
+                <span>Configurable low-balance auto reload</span>
+              </div>
+              <div class="mockup-row">
+                <span>Settlement Accounting</span>
+                <span>Downloadable CSV / PDF monthly receipts</span>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 24px;">
+            <a href="../index.html#wallets" class="link-royal-violet">
+              Access wallet portal in dashboard
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="suite-cards-grid">
+          <article class="suite-product-card">
+            <div class="product-card-top">
+              <div class="product-card-icon">01</div>
+              <h4 class="product-card-name">Multi-Currency Messaging Wallets</h4>
+            </div>
+            <p class="product-card-desc">
+              Manage accounts in Naira, US Dollars, or regional African currencies without foreign exchange markups or hidden bank conversion cuts.
+            </p>
+            <a href="../index.html#wallets" class="link-royal-violet">Learn more</a>
+          </article>
+
+          <article class="suite-product-card">
+            <div class="product-card-top">
+              <div class="product-card-icon">02</div>
+              <h4 class="product-card-name">Instant Ledger Reconciliation</h4>
+            </div>
+            <p class="product-card-desc">
+              Every dispatched message is logged against your ledger balance in real time with transaction reference and recipient verification.
+            </p>
+            <a href="../index.html#wallets" class="link-royal-violet">Learn more</a>
+          </article>
+
+          <article class="suite-product-card">
+            <div class="product-card-top">
+              <div class="product-card-icon">03</div>
+              <h4 class="product-card-name">Enterprise Invoicing & Credit Lines</h4>
+            </div>
+            <p class="product-card-desc">
+              High-volume merchants with over 100k monthly broadcasts qualify for net-30 terms, dedicated technical account managers, and custom SLAs.
+            </p>
+            <a href="../index.html#wallets" class="link-royal-violet">Learn more</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         6. Dark Feature Band (Deep Lagoon #0c4243)
+         ==================================================================== -->
+    <section class="dark-band-section" id="architecture">
+      <div class="dark-band-container">
+        <!-- Collage Left -->
+        <div class="dark-band-collage">
+          <div class="collage-photo-frame">
+            <img src="assets/dark-editorial.jpg" alt="Commerce executive reflecting on enterprise communication architecture">
+          </div>
+
+          <!-- Layered Translucent Geometric Boxes -->
+          <div class="collage-geom-box box-lavender">
+            <div style="font-size: 11px; color: var(--color-midnight-wine); font-weight: 700; padding: 10px 14px;">
+              META CLOUD API v21
+              <div style="font-size: 13px; font-weight: 500; margin-top: 2px;">Tier 4 Unlimited Throughput</div>
+            </div>
+          </div>
+
+          <div class="collage-geom-box box-cyan">
+            <div style="font-size: 11px; color: #004b57; font-weight: 700; padding: 10px 14px;">
+              SLA GUARANTEE
+              <div style="font-size: 14px; font-weight: 600; margin-top: 2px;">99.98% Deliverability</div>
+              <div style="font-size: 11px; opacity: 0.8;">Zero throttled queue drops</div>
+            </div>
+          </div>
+
+          <div class="collage-geom-box box-rose">
+            <span class="script-text">End-to-end encrypted</span>
+          </div>
+
+          <span class="script-overlay-annotation">Sub-second delivery</span>
+        </div>
+
+        <!-- Text Right -->
+        <div class="dark-band-text">
+          <span class="dark-band-kicker">Enterprise Grade Infrastructure</span>
+          <h2 class="dark-band-headline">Engineered for zero dropped conversations.</h2>
+          <p class="dark-band-body">
+            High-volume campaigns during promotional peaks or flash drops cannot afford API throttling or queue bottlenecks. Klayed is architected directly on Meta's highest tier Cloud API infrastructure with redundant message queue dispatchers, ensuring your broadcast lands in customer pockets within seconds of your launch.
+          </p>
+          <a href="../index.html" class="btn-white-ghost">Explore Enterprise Architecture</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         7. Atmospheric Gradient Banner (Developer Webhooks & API)
+         ==================================================================== -->
+    <section class="atmospheric-gradient-section" id="developers">
+      <div class="gradient-banner-card">
+        <div class="gradient-glow-layers" aria-hidden="true"></div>
+
+        <div class="gradient-banner-inner">
+          <div class="gradient-content-left">
+            <span class="editorial-kicker">Developer First</span>
+            <h2 class="gradient-headline">Clean webhooks & instant commerce APIs</h2>
+            <p class="gradient-body">
+              Integrate Klayed WhatsApp broadcast triggers into your existing checkout pipelines, custom CRM, or backend services with simple REST endpoints and signature-verified webhook events.
+            </p>
+            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+              <a href="../index.html" class="btn-white-fill">
+                <span>View API Documentation</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <button type="button" class="btn-ghost" id="btn-copy-code">Copy payload sample</button>
+            </div>
+          </div>
+
+          <div class="gradient-code-card">
+            <div class="code-header">
+              <div class="code-dots">
+                <span class="code-dot"></span>
+                <span class="code-dot"></span>
+                <span class="code-dot"></span>
+              </div>
+              <span>POST /v1/broadcasts/dispatch</span>
+            </div>
+            <pre id="code-snippet-body"><code><span class="token-punct">{</span>
+  <span class="token-key">"campaign"</span><span class="token-punct">:</span> <span class="token-str">"OCTOBER_VIP_REWARD"</span><span class="token-punct">,</span>
+  <span class="token-key">"channel"</span><span class="token-punct">:</span> <span class="token-str">"whatsapp"</span><span class="token-punct">,</span>
+  <span class="token-key">"recipients_count"</span><span class="token-punct">:</span> <span class="token-num">24180</span><span class="token-punct">,</span>
+  <span class="token-key">"template"</span><span class="token-punct">:</span> <span class="token-punct">{</span>
+    <span class="token-key">"name"</span><span class="token-punct">:</span> <span class="token-str">"vip_exclusive_offer"</span><span class="token-punct">,</span>
+    <span class="token-key">"language"</span><span class="token-punct">:</span> <span class="token-str">"en"</span><span class="token-punct">,</span>
+    <span class="token-key">"components"</span><span class="token-punct">:</span> <span class="token-punct">[</span>
+      <span class="token-punct">{</span> <span class="token-key">"type"</span><span class="token-punct">:</span> <span class="token-str">"header"</span><span class="token-punct">,</span> <span class="token-key">"media_url"</span><span class="token-punct">:</span> <span class="token-str">"https://assets.klayed.com/lookbook.jpg"</span> <span class="token-punct">}</span>
+    <span class="token-punct">]</span>
+  <span class="token-punct">}</span><span class="token-punct">,</span>
+  <span class="token-key">"fallback_strategy"</span><span class="token-punct">:</span> <span class="token-str">"instant_reschedule"</span>
+<span class="token-punct">}</span></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         8. Interactive Merchant ROI & Broadcast Calculator
+         ==================================================================== -->
+    <section class="roi-calculator-section" id="calculator">
+      <div class="calculator-card">
+        <div class="calculator-controls">
+          <div>
+            <div class="editorial-kicker">Interactive Estimation</div>
+            <h2 class="editorial-heading-lg" style="font-size: 32px;">Calculate Your WhatsApp Advantage</h2>
+            <p style="font-size: var(--text-body); color: var(--color-stone-gray); margin-top: 8px;">
+              Adjust your active customer base size to see projected read rates and revenue impact compared to traditional email marketing.
+            </p>
+          </div>
+
+          <div class="calc-slider-group">
+            <div class="calc-slider-header">
+              <span class="calc-label">Total Customer Contacts</span>
+              <span class="calc-number-display" id="contacts-count-display">25,000 customers</span>
+            </div>
+            <input type="range" min="5000" max="250000" step="5000" value="25000" class="range-slider" id="contacts-range" aria-label="Customer Contacts Slider">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--color-stone-gray);">
+              <span>5,000</span>
+              <span>100,000</span>
+              <span>250,000</span>
+            </div>
+          </div>
+
+          <div style="font-size: 13px; color: var(--color-stone-gray); line-height: 1.4;">
+            Based on aggregated benchmarks: WhatsApp delivers 98% read rate within 4 minutes vs 21% industry average email open rate.
+          </div>
+        </div>
+
+        <div class="calculator-results">
+          <div class="roi-metric-box">
+            <span class="roi-metric-title">WhatsApp Reads</span>
+            <span class="roi-metric-num" id="roi-wa-opens">24,500</span>
+            <span class="roi-metric-comparison">98% verified opens</span>
+          </div>
+
+          <div class="roi-metric-box">
+            <span class="roi-metric-title">Email Opens</span>
+            <span class="roi-metric-num" style="color: var(--color-stone-gray);" id="roi-email-opens">5,250</span>
+            <span class="roi-metric-comparison">21% industry standard</span>
+          </div>
+
+          <div class="roi-metric-box">
+            <span class="roi-metric-title">Broadcast Speed</span>
+            <span class="roi-metric-num" id="roi-delivery-time">53 seconds</span>
+            <span class="roi-metric-comparison">Meta Tier 4 Pipeline</span>
+          </div>
+
+          <div class="roi-metric-box">
+            <span class="roi-metric-title">Projected Extra Lift</span>
+            <span class="roi-metric-num" id="roi-revenue-lift">+$41,625</span>
+            <span class="roi-metric-comparison">Estimated GMV delta</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         9. Editorial Merchant Testimonials
+         ==================================================================== -->
+    <section class="testimonials-section" id="stories">
+      <header class="section-editorial-header">
+        <div class="editorial-kicker">Merchant Voices</div>
+        <h2 class="editorial-heading-lg">Praise from high-growth founders</h2>
+      </header>
+
+      <div class="testimonials-grid">
+        <article class="testimonial-card">
+          <p class="testimonial-quote">
+            "Switching from fragmented bulk SMS to Klayed’s verified WhatsApp broadcasts shifted our weekend revenue by 320%. Customers reply directly with their delivery notes and pay within minutes."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">TA</div>
+            <div class="author-info">
+              <span class="author-name">Tola Alabi</span>
+              <span class="author-role">Founder, L'Atelier Modern Apparel</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <p class="testimonial-quote">
+            "The RFM audience segmentation in Klayed prevents customer fatigue. We don't blast everyone; we target cohorts based on exact buying patterns and maintain an astonishing 0.02% unsubscribe rate."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">BO</div>
+            <div class="author-info">
+              <span class="author-name">Bukky Olumide</span>
+              <span class="author-role">Head of Growth, Savanna Gourmet Goods</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <p class="testimonial-quote">
+            "The transparent per-message wallet ledger eliminates the surprise invoices we used to suffer with traditional legacy aggregators. Klayed is the gold standard for commerce in Africa."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">EE</div>
+            <div class="author-info">
+              <span class="author-name">Emeka Eze</span>
+              <span class="author-role">COO, Nexa Commerce Logistics</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================================================================
+       10. Editorial Site Footer (Midnight Wine #421d24)
+       ==================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top-row">
+        <!-- Brand Info Column -->
+        <div class="footer-brand-col">
+          <div class="footer-brand-title">
+            <div class="brand-k-squircle" style="width: 28px; height: 28px; font-size: 19px; border-radius: 8px;">k</div>
+            <span>klayed</span>
+          </div>
+          <p class="footer-brand-desc">
+            The editorial-grade WhatsApp broadcast portal and conversational commerce infrastructure for modern high-volume merchants.
+          </p>
+          <div style="margin-top: 8px;">
+            <a href="../index.html" class="btn-outline-lilac" style="padding: 6px 14px; font-size: 13px;">Launch App</a>
+          </div>
+        </div>
+
+        <!-- Links Column 1: Products -->
+        <div>
+          <h4 class="footer-col-heading">Platform</h4>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a href="../index.html#dashboard">Merchant Dashboard</a></li>
+            <li class="footer-link-item"><a href="../index.html#messaging">Broadcast Nexus</a></li>
+            <li class="footer-link-item"><a href="../index.html#customer-groups">Audience Segments</a></li>
+            <li class="footer-link-item"><a href="../index.html#wallets">Wallets & Settlements</a></li>
+            <li class="footer-link-item"><a href="../index.html#reports">Performance Insights</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Column 2: Solutions -->
+        <div>
+          <h4 class="footer-col-heading">Solutions</h4>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a href="#suite">Fashion & Apparel</a></li>
+            <li class="footer-link-item"><a href="#suite">Luxury & Specialty</a></li>
+            <li class="footer-link-item"><a href="#suite">Direct-to-Consumer</a></li>
+            <li class="footer-link-item"><a href="#suite">High-Volume Retail</a></li>
+            <li class="footer-link-item"><a href="#architecture">Enterprise Volume SLA</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Column 3: Developers -->
+        <div>
+          <h4 class="footer-col-heading">Developers</h4>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a href="#developers">Cloud API v21 Docs</a></li>
+            <li class="footer-link-item"><a href="#developers">Webhook Reference</a></li>
+            <li class="footer-link-item"><a href="#developers">SDKs & Client Libraries</a></li>
+            <li class="footer-link-item"><a href="#developers">Uptime Status (99.98%)</a></li>
+            <li class="footer-link-item"><a href="#developers">Security Architecture</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Column 4: Company & Legal -->
+        <div>
+          <h4 class="footer-col-heading">Company</h4>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a href="#hero">About Klayed</a></li>
+            <li class="footer-link-item"><a href="#stories">Merchant Stories</a></li>
+            <li class="footer-link-item"><a href="#">Privacy Policy</a></li>
+            <li class="footer-link-item"><a href="#">Terms of Service</a></li>
+            <li class="footer-link-item"><a href="#">GDPR & NDPR Compliance</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div>
+          © 2026 Klayed Technologies Inc. All rights reserved.
+        </div>
+        <div class="footer-bottom-meta">
+          <span class="meta-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Meta Verified Business Partner
+          </span>
+          <span class="meta-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            SOC 2 Type II Certified
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="landing.js"></script>
+</body>
+</html>

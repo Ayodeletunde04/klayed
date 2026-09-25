@@ -683,125 +683,55 @@ button {
 }
 
 /* ==========================================================================
-   Campaign Workflow Showcase (Setup Form -> Phone Preview -> Success Popup)
+   Containerless Campaign Story Showcase (Setup -> Preview Pop-up Click -> Success)
    ========================================================================== */
+.campaign-story-stage,
 .campaign-workflow-stage {
   position: relative;
   width: 100%;
-  max-width: 470px;
-  min-height: 570px;
+  max-width: 460px;
+  min-height: 520px;
   display: flex;
-  flex-direction: column;
-  border-radius: 28px;
-  background: radial-gradient(circle at 80% 10%, rgba(29, 99, 255, 0.25) 0%, rgba(13, 40, 84, 0.55) 60%, rgba(3, 10, 23, 0.75) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(29, 99, 255, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  padding: 16px 18px 14px;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  overflow: visible;
   box-sizing: border-box;
 }
 
-/* Stepper Header Bar */
-.workflow-stepper-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 2px 4px 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-  z-index: 5;
-}
-
-.step-nav-btn {
-  background: transparent;
-  border: 1px solid transparent;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  cursor: pointer;
-  padding: 5px 12px;
-  border-radius: 999px;
-  transition: all 0.25s ease;
-  color: #94a3b8;
-}
-
-.step-nav-btn:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.step-nav-btn.active {
-  background: rgba(29, 99, 255, 0.25);
-  color: #ffffff;
-  border: 1px solid rgba(59, 130, 246, 0.6);
-  box-shadow: 0 0 14px rgba(29, 99, 255, 0.4);
-}
-
-.step-num {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  color: #cbd5e1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 700;
-  transition: all 0.2s ease;
-}
-
-.step-nav-btn.active .step-num {
-  background: #1d63ff;
-  color: #ffffff;
-}
-
-.step-label {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.step-connector {
-  flex: 1;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.12);
-  margin: 0 4px;
-  border-radius: 1px;
-}
-
-/* Viewport for the 3 slides */
-.workflow-cards-viewport {
-  position: relative;
-  width: 100%;
-  flex: 1;
-  min-height: 490px;
-  margin-top: 12px;
-  display: flex;
-}
-
+/* Slides Container and Individual Slide */
+.story-slide,
 .workflow-slide {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  transform: translateY(14px) scale(0.98);
-  pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
 }
 
+.story-slide.is-active,
 .workflow-slide.active {
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: auto;
   position: relative;
+  z-index: 2;
+}
+
+.story-slide.is-leaving {
+  opacity: 0;
+  transform: translateY(-16px) scale(0.97);
+  pointer-events: none;
 }
 
 /* ==========================================================================
@@ -810,13 +740,24 @@ button {
 .cs-card {
   background: #ffffff;
   color: #0f172a;
-  border-radius: 18px;
-  padding: 15px 18px;
+  border-radius: 20px;
+  padding: 16px 18px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
+  animation: cardFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes cardFloat {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-4px); }
 }
 
 .cs-card-header {
@@ -840,9 +781,10 @@ button {
   font-weight: 700;
   color: #1d63ff;
   background: #eff6ff;
-  padding: 2px 9px;
+  padding: 3px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(29, 99, 255, 0.2);
+  border: 1px solid rgba(29, 99, 255, 0.25);
+  box-shadow: 0 1px 3px rgba(29, 99, 255, 0.1);
 }
 
 .cs-field-group {
@@ -1071,8 +1013,9 @@ button {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.btn-step-next:hover {
-  transform: translateY(-1px);
+.btn-step-next:hover,
+.btn-step-next.is-clicked {
+  transform: translateY(-1px) scale(0.99);
   box-shadow: 0 6px 18px rgba(29, 99, 255, 0.55);
 }
 
@@ -1081,18 +1024,19 @@ button {
    ========================================================================== */
 .wa-phone-mockup {
   width: 100%;
-  max-width: 360px;
+  max-width: 350px;
   margin: 0 auto;
-  border-radius: 32px;
+  border-radius: 34px;
   border: 5px solid #1e293b;
   background: #efeae2;
   box-shadow: 
-    0 22px 50px rgba(0, 0, 0, 0.5),
+    0 24px 60px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(255, 255, 255, 0.15);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
+  box-sizing: border-box;
 }
 
 .phone-dynamic-island {
@@ -1203,7 +1147,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 7px;
-  min-height: 280px;
+  min-height: 270px;
 }
 
 .wa-date-pill {
@@ -1237,7 +1181,7 @@ button {
 .wa-bubble-img-placeholder {
   background: linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%);
   color: #ffffff;
-  padding: 18px 12px;
+  padding: 16px 12px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -1246,14 +1190,14 @@ button {
 }
 
 .wa-img-tag {
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 800;
   letter-spacing: 0.05em;
   color: #93c5fd;
 }
 
 .wa-img-price {
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 800;
   color: #ffffff;
 }
@@ -1337,41 +1281,137 @@ button {
   border: 1px solid #e9edef;
 }
 
-.phone-launch-overlay {
-  padding: 9px 12px;
-  background: rgba(15, 23, 42, 0.9);
-  backdrop-filter: blur(8px);
+/* ==========================================================================
+   POP-UP BUTTON ON PREVIEW SCREEN (Matches User's Image 2)
+   ========================================================================== */
+.phone-launch-float {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(45px) scale(0.65);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+  width: calc(100% - 28px);
+  max-width: 310px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
 }
 
-.btn-launch-now {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+.phone-launch-float.is-popped {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+  pointer-events: auto;
 }
-.btn-launch-now:hover {
-  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.55);
+
+.btn-launch-campaign-now {
+  width: 100%;
+  background: #00a884;
+  background: linear-gradient(135deg, #00a884 0%, #009374 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 13px 18px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 
+    0 10px 28px rgba(0, 168, 132, 0.5),
+    0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease, filter 0.15s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-launch-campaign-now:hover {
+  filter: brightness(1.05);
+}
+
+.btn-launch-campaign-now.is-clicked {
+  transform: translateY(2px) scale(0.94);
+  filter: brightness(0.9);
+  box-shadow: 0 4px 12px rgba(0, 168, 132, 0.4);
+}
+
+/* Simulated Cursor for Automated Demonstration */
+.simulated-click-cursor {
+  position: absolute;
+  bottom: -6px;
+  right: 28px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(25px, 25px) scale(0.8);
+  transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.simulated-click-cursor.cursor-arrived {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+.simulated-click-cursor.cursor-clicking {
+  transform: translate(-3px, -3px) scale(0.88);
+}
+
+.click-pulse-wave {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 168, 132, 0.9);
+  background: rgba(0, 168, 132, 0.3);
+  opacity: 0;
+  transform: scale(0.2);
+  pointer-events: none;
+}
+
+.simulated-click-cursor.cursor-clicking .click-pulse-wave {
+  animation: clickPulseWave 0.55s ease-out forwards;
+}
+
+@keyframes clickPulseWave {
+  0% { opacity: 1; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(2.2); }
 }
 
 /* ==========================================================================
-   SLIDE 3: Campaign Successful Popup (Matches Request)
+   SLIDE 3: Campaign Successful Modal (Comes Last)
    ========================================================================== */
 .success-popup-card {
   background: #ffffff;
   color: #0f172a;
   border-radius: 20px;
-  padding: 24px 20px;
+  padding: 24px 22px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 13px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.9);
-  margin: auto 0;
+  box-sizing: border-box;
 }
 
 .success-icon-badge {
-  width: 54px;
-  height: 54px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: #eff6ff;
   color: #1d63ff;
@@ -1384,7 +1424,7 @@ button {
 }
 
 @keyframes badgePop {
-  0% { transform: scale(0.6); opacity: 0; }
+  0% { transform: scale(0.5); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
 
@@ -1412,7 +1452,7 @@ button {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 11px;
-  padding: 9px 12px;
+  padding: 10px 12px;
 }
 
 .success-stat-item {
@@ -1527,56 +1567,6 @@ button {
 .btn-success-restart:hover {
   background: #e2e8f0;
   color: #0f172a;
-}
-
-/* ==========================================================================
-   Bottom Flow Timeline & Pause Controls
-   ========================================================================== */
-.workflow-bottom-bar {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  width: 100%;
-  margin-top: 12px;
-  padding-top: 9px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-  z-index: 5;
-}
-
-.workflow-loop-status {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 10.5px;
-  color: #93c5fd;
-  font-weight: 500;
-}
-
-.workflow-pulse-dot {
-  width: 6px;
-  height: 6px;
-  background: #3b82f6;
-  border-radius: 50%;
-  box-shadow: 0 0 6px #3b82f6;
-  animation: pulseDot 2s infinite ease-in-out;
-}
-
-.workflow-timeline-track {
-  width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.workflow-timeline-progress {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #3b82f6, #60a5fa);
-  border-radius: 2px;
-  transition: width 0.1s linear;
 }
 
 /* Responsive adjustments for 2-column hero */

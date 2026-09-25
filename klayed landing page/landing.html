@@ -247,264 +247,237 @@
             </div>
           </div>
 
-          <!-- Right Column: Interactive 3-Step Campaign Workflow (Setup -> Phone Preview -> Success) -->
+          <!-- Right Column: Containerless Animated Campaign Journey -->
           <div class="hero-illustration-wrapper">
-            <div class="campaign-workflow-stage" id="campaignWorkflowStage">
+            <div class="campaign-story-stage" id="campaignStoryStage">
               
-              <!-- Top Step Navigation Stepper -->
-              <div class="workflow-stepper-header">
-                <button type="button" class="step-nav-btn active" data-step="1" title="Step 1: Campaign Setup">
-                  <span class="step-num">1</span>
-                  <span class="step-label">Setup</span>
-                </button>
-                <div class="step-connector"></div>
-                <button type="button" class="step-nav-btn" data-step="2" title="Step 2: WhatsApp Preview">
-                  <span class="step-num">2</span>
-                  <span class="step-label">Preview</span>
-                </button>
-                <div class="step-connector"></div>
-                <button type="button" class="step-nav-btn" data-step="3" title="Step 3: Launch Success">
-                  <span class="step-num">3</span>
-                  <span class="step-label">Success</span>
-                </button>
-              </div>
+              <!-- STEP 1: Campaign Setup Card (Matches Image 1) -->
+              <div class="story-slide story-slide-setup is-active" id="storySlide1">
+                <div class="cs-card">
+                  <div class="cs-card-header">
+                    <h3 class="cs-main-title">Campaign Setup</h3>
+                    <span class="cs-badge-live">Klayed Broadcast</span>
+                  </div>
 
-              <!-- Workflow Cards Viewport -->
-              <div class="workflow-cards-viewport">
-                
-                <!-- STEP 1: Campaign Setup Card (Matches Image 1) -->
-                <div class="workflow-slide slide-setup active" id="workflowSlide1">
-                  <div class="cs-card">
-                    <div class="cs-card-header">
-                      <h3 class="cs-main-title">Campaign Setup</h3>
-                      <span class="cs-badge-live">Klayed Broadcast</span>
+                  <div class="cs-field-group">
+                    <label class="cs-label">Campaign Name</label>
+                    <div class="cs-input-box">
+                      <span class="cs-input-val">VIP Spring Drop 2026</span>
                     </div>
+                    <span class="cs-hint">This campaign name is for internal reference and will not be sent to recipients</span>
+                  </div>
 
-                    <div class="cs-field-group">
-                      <label class="cs-label">Campaign Name</label>
-                      <div class="cs-input-box">
-                        <span class="cs-input-val">VIP Spring Drop 2026</span>
-                      </div>
-                      <span class="cs-hint">This campaign name is for internal reference and will not be sent to recipients</span>
+                  <div class="cs-field-group">
+                    <div class="cs-label-row">
+                      <label class="cs-label">Message Content <span class="cs-sub">( WhatsApp Text )</span></label>
+                      <span class="cs-chars-count">142 chars / 1 SMS Parts</span>
                     </div>
-
-                    <div class="cs-field-group">
-                      <div class="cs-label-row">
-                        <label class="cs-label">Message Content <span class="cs-sub">( WhatsApp Text )</span></label>
-                        <span class="cs-chars-count">142 chars / 1 SMS Parts</span>
+                    <div class="cs-textarea-box">
+                      <div class="cs-textarea-content">
+                        <p>🔥 <strong>VIP EXCLUSIVE:</strong> The 2026 Trench Collection is live!</p>
+                        <p>Get 20% off with code <em>KLAYEDVIP</em> + free delivery today. Tap below to claim yours 👇</p>
                       </div>
-                      <div class="cs-textarea-box">
-                        <div class="cs-textarea-content">
-                          <p>🔥 <strong>VIP EXCLUSIVE:</strong> The 2026 Trench Collection is live!</p>
-                          <p>Get 20% off with code <em>KLAYEDVIP</em> + free delivery today. Tap below to claim yours 👇</p>
-                        </div>
-                        <div class="cs-editor-toolbar">
-                          <span class="cs-tool-btn">😊 Emoji</span>
-                          <span class="cs-tool-btn cs-tool-magic">✨ Generate with Klayed AI</span>
-                        </div>
+                      <div class="cs-editor-toolbar">
+                        <span class="cs-tool-btn">😊 Emoji</span>
+                        <span class="cs-tool-btn cs-tool-magic">✨ Generate with Klayed AI</span>
                       </div>
-                    </div>
-
-                    <div class="cs-field-group">
-                      <label class="cs-label">Attach image <span class="cs-sub">( Optional, max 5mb )</span></label>
-                      <div class="cs-upload-box">
-                        <svg class="cs-upload-cloud" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4 4-4 4 4"/>
-                        </svg>
-                        <span class="cs-upload-text"><strong>autumn_trench_lookbook.jpg</strong> (2.4 MB attached ✓)</span>
-                      </div>
-                    </div>
-
-                    <!-- Broadcasting Schedule Section -->
-                    <div class="cs-schedule-card">
-                      <div class="cs-schedule-header">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <h4>Broadcasting Schedule</h4>
-                      </div>
-                      <div class="cs-timing-options">
-                        <div class="cs-timing-opt selected">
-                          <div class="cs-radio-checked"></div>
-                          <div class="cs-timing-meta">
-                            <span class="cs-opt-title">Send Immediately</span>
-                            <span class="cs-opt-sub">Broadcast to all 18,450 numbers now</span>
-                          </div>
-                        </div>
-                        <div class="cs-timing-opt">
-                          <div class="cs-radio-unchecked"></div>
-                          <div class="cs-timing-meta">
-                            <span class="cs-opt-title">Schedule for later</span>
-                            <span class="cs-opt-sub">Send at future date & time</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Next Action Button -->
-                    <div class="cs-card-footer">
-                      <button type="button" class="btn-step-next" data-goto="2">
-                        <span>View WhatsApp Preview</span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                      </button>
                     </div>
                   </div>
-                </div>
 
-                <!-- STEP 2: WhatsApp Phone Mockup (Matches Image 2) -->
-                <div class="workflow-slide slide-preview" id="workflowSlide2">
-                  <div class="wa-phone-mockup">
-                    <!-- Phone Speaker & Camera Island -->
-                    <div class="phone-dynamic-island"></div>
-
-                    <!-- Phone Status Bar -->
-                    <div class="phone-status-bar">
-                      <span class="phone-time">10:27</span>
-                      <div class="phone-status-icons">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 21l3.52-.61C9.36 20.73 10.64 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/></svg>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
-                        <div class="phone-battery"><div class="phone-battery-level"></div></div>
-                      </div>
-                    </div>
-
-                    <!-- WhatsApp Chat Header Bar -->
-                    <div class="wa-chat-header">
-                      <div class="wa-header-left">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
-                        <div class="wa-avatar">
-                          <span>W</span>
-                        </div>
-                        <div class="wa-header-meta">
-                          <span class="wa-header-title">WhatsApp Broadcast</span>
-                          <span class="wa-header-status">online</span>
-                        </div>
-                      </div>
-                      <div class="wa-header-actions">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                      </div>
-                    </div>
-
-                    <!-- WhatsApp Chat Scroll Area -->
-                    <div class="wa-chat-body">
-                      <div class="wa-date-pill">TODAY</div>
-
-                      <!-- WhatsApp Message Bubble -->
-                      <div class="wa-message-bubble">
-                        <!-- Attached Lookbook Card -->
-                        <div class="wa-bubble-img-wrap">
-                          <div class="wa-bubble-img-placeholder">
-                            <span class="wa-img-tag">KLAYED ARCHIVAL TRENCH</span>
-                            <span class="wa-img-price">₦145,000</span>
-                          </div>
-                        </div>
-
-                        <!-- Message Body matching Step 1 -->
-                        <div class="wa-bubble-text">
-                          <p>🔥 <strong>VIP EXCLUSIVE:</strong> The 2026 Trench Collection is live!</p>
-                          <p>Get 20% off with code <strong>KLAYEDVIP</strong> + free delivery today. Tap below to claim yours 👇</p>
-                        </div>
-
-                        <!-- WhatsApp Action CTA Buttons -->
-                        <div class="wa-bubble-actions">
-                          <div class="wa-bubble-btn">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                            <span>View Catalog (3 Items)</span>
-                          </div>
-                          <div class="wa-bubble-btn wa-btn-highlight">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-                            <span>Instant WhatsApp Checkout</span>
-                          </div>
-                        </div>
-
-                        <!-- Bubble Timestamp & Double Blue Ticks -->
-                        <div class="wa-bubble-footer">
-                          <span class="wa-time">12:00</span>
-                          <span class="wa-ticks">✓✓</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- WhatsApp Bottom Bar -->
-                    <div class="wa-chat-input-bar">
-                      <div class="wa-preview-pill">Read-only preview</div>
-                    </div>
-
-                    <!-- Phone Launch CTA Bar -->
-                    <div class="phone-launch-overlay">
-                      <button type="button" class="btn-step-next btn-launch-now" data-goto="3">
-                        <span>🚀 Launch Campaign Now</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- STEP 3: Campaign Successful Popup Message (Matches Request) -->
-                <div class="workflow-slide slide-success" id="workflowSlide3">
-                  <div class="success-popup-card">
-                    <div class="success-icon-badge">
-                      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                        <polyline points="22 4 12 14.01 9 11.01"/>
+                  <div class="cs-field-group">
+                    <label class="cs-label">Attach image <span class="cs-sub">( Optional, max 5mb )</span></label>
+                    <div class="cs-upload-box">
+                      <svg class="cs-upload-cloud" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4 4-4 4 4"/>
                       </svg>
+                      <span class="cs-upload-text"><strong>autumn_trench_lookbook.jpg</strong> (2.4 MB attached ✓)</span>
                     </div>
+                  </div>
 
-                    <h3 class="success-title">Campaign Launched Successfully!</h3>
-                    <p class="success-subtitle">
-                      Your WhatsApp broadcast <strong>VIP Spring Drop 2026</strong> is actively delivering to your audience via Meta Cloud API.
-                    </p>
-
-                    <!-- Real-Time Delivery Metrics -->
-                    <div class="success-stats-box">
-                      <div class="success-stat-item">
-                        <span class="success-stat-val">18,450</span>
-                        <span class="success-stat-lbl">Target Buyers</span>
-                      </div>
-                      <div class="success-stat-divider"></div>
-                      <div class="success-stat-item">
-                        <span class="success-stat-val highlight">99.8%</span>
-                        <span class="success-stat-lbl">Delivered</span>
-                      </div>
-                      <div class="success-stat-divider"></div>
-                      <div class="success-stat-item">
-                        <span class="success-stat-val">Instant</span>
-                        <span class="success-stat-lbl">Settlement</span>
-                      </div>
+                  <!-- Broadcasting Schedule Section -->
+                  <div class="cs-schedule-card">
+                    <div class="cs-schedule-header">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <h4>Broadcasting Schedule</h4>
                     </div>
-
-                    <!-- Real-Time Delivery Progress Bar -->
-                    <div class="success-progress-wrap">
-                      <div class="success-progress-top">
-                        <span>Sending via Meta Cloud API</span>
-                        <span class="progress-pct">100% Completed</span>
+                    <div class="cs-timing-options">
+                      <div class="cs-timing-opt selected">
+                        <div class="cs-radio-checked"></div>
+                        <div class="cs-timing-meta">
+                          <span class="cs-opt-title">Send Immediately</span>
+                          <span class="cs-opt-sub">Broadcast to all 18,450 numbers now</span>
+                        </div>
                       </div>
-                      <div class="success-progress-bar">
-                        <div class="success-progress-fill"></div>
+                      <div class="cs-timing-opt">
+                        <div class="cs-radio-unchecked"></div>
+                        <div class="cs-timing-meta">
+                          <span class="cs-opt-title">Schedule for later</span>
+                          <span class="cs-opt-sub">Send at future date & time</span>
+                        </div>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- Action Buttons -->
-                    <div class="success-actions-row">
-                      <a href="../index.html" class="btn-success-dashboard">
-                        <span>Go to Live Analytics</span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                      </a>
-                      <button type="button" class="btn-success-restart" data-goto="1">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-                        <span>Restart Flow</span>
-                      </button>
+                  <!-- Action Button -->
+                  <div class="cs-card-footer">
+                    <div class="btn-step-next" id="btnPreviewTrigger">
+                      <span>View WhatsApp Preview</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </div>
                   </div>
                 </div>
-
               </div>
 
-              <!-- Bottom Flow Timeline & Pause Controls -->
-              <div class="workflow-bottom-bar">
-                <span class="workflow-loop-status">
-                  <span class="workflow-pulse-dot"></span>
-                  <span id="workflowStatusText">Auto-cycling workflow • Hover to pause</span>
-                </span>
-                <div class="workflow-timeline-track">
-                  <div class="workflow-timeline-progress" id="workflowTimelineBar"></div>
+              <!-- STEP 2: WhatsApp Phone Mockup (Matches Image 2) -->
+              <div class="story-slide story-slide-preview" id="storySlide2">
+                <div class="wa-phone-mockup" id="waPhoneMockup">
+                  <!-- Phone Speaker & Camera Island -->
+                  <div class="phone-dynamic-island"></div>
+
+                  <!-- Phone Status Bar -->
+                  <div class="phone-status-bar">
+                    <span class="phone-time">10:27</span>
+                    <div class="phone-status-icons">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 21l3.52-.61C9.36 20.73 10.64 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/></svg>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+                      <div class="phone-battery"><div class="phone-battery-level"></div></div>
+                    </div>
+                  </div>
+
+                  <!-- WhatsApp Chat Header Bar -->
+                  <div class="wa-chat-header">
+                    <div class="wa-header-left">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+                      <div class="wa-avatar">
+                        <span>W</span>
+                      </div>
+                      <div class="wa-header-meta">
+                        <span class="wa-header-title">WhatsApp Broadcast</span>
+                        <span class="wa-header-status">online</span>
+                      </div>
+                    </div>
+                    <div class="wa-header-actions">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                  </div>
+
+                  <!-- WhatsApp Chat Scroll Area -->
+                  <div class="wa-chat-body">
+                    <div class="wa-date-pill">TODAY</div>
+
+                    <!-- WhatsApp Message Bubble -->
+                    <div class="wa-message-bubble">
+                      <!-- Attached Lookbook Card -->
+                      <div class="wa-bubble-img-wrap">
+                        <div class="wa-bubble-img-placeholder">
+                          <span class="wa-img-tag">KLAYED ARCHIVAL TRENCH</span>
+                          <span class="wa-img-price">₦145,000</span>
+                        </div>
+                      </div>
+
+                      <!-- Message Body matching Step 1 -->
+                      <div class="wa-bubble-text">
+                        <p>🔥 <strong>VIP EXCLUSIVE:</strong> The 2026 Trench Collection is live!</p>
+                        <p>Get 20% off with code <strong>KLAYEDVIP</strong> + free delivery today. Tap below to claim yours 👇</p>
+                      </div>
+
+                      <!-- WhatsApp Action CTA Buttons -->
+                      <div class="wa-bubble-actions">
+                        <div class="wa-bubble-btn">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                          <span>View Catalog (3 Items)</span>
+                        </div>
+                        <div class="wa-bubble-btn wa-btn-highlight">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                          <span>Instant WhatsApp Checkout</span>
+                        </div>
+                      </div>
+
+                      <!-- Bubble Timestamp & Double Blue Ticks -->
+                      <div class="wa-bubble-footer">
+                        <span class="wa-time">12:00</span>
+                        <span class="wa-ticks">✓✓</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- WhatsApp Bottom Bar -->
+                  <div class="wa-chat-input-bar">
+                    <div class="wa-preview-pill">Read-only preview</div>
+                  </div>
+
+                  <!-- Floating Pop-up Button (Matches User's 2nd Image) -->
+                  <div class="phone-launch-float" id="phoneLaunchFloat">
+                    <button type="button" class="btn-launch-campaign-now" id="btnLaunchCampaignNow">
+                      <span>🚀 Launch Campaign Now</span>
+                    </button>
+                    <!-- Simulated Click Cursor -->
+                    <div class="simulated-click-cursor" id="clickCursor" aria-hidden="true">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z" fill="#0f172a" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+                      </svg>
+                      <span class="click-pulse-wave"></span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- STEP 3: Campaign Successful Modal (Comes Last) -->
+              <div class="story-slide story-slide-success" id="storySlide3">
+                <div class="success-popup-card">
+                  <div class="success-icon-badge">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                      <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                  </div>
+
+                  <h3 class="success-title">Campaign Launched Successfully!</h3>
+                  <p class="success-subtitle">
+                    Your WhatsApp broadcast <strong>VIP Spring Drop 2026</strong> is actively delivering to your audience via Meta Cloud API.
+                  </p>
+
+                  <!-- Real-Time Delivery Metrics -->
+                  <div class="success-stats-box">
+                    <div class="success-stat-item">
+                      <span class="success-stat-val">18,450</span>
+                      <span class="success-stat-lbl">Target Buyers</span>
+                    </div>
+                    <div class="success-stat-divider"></div>
+                    <div class="success-stat-item">
+                      <span class="success-stat-val highlight">99.8%</span>
+                      <span class="success-stat-lbl">Delivered</span>
+                    </div>
+                    <div class="success-stat-divider"></div>
+                    <div class="success-stat-item">
+                      <span class="success-stat-val">Instant</span>
+                      <span class="success-stat-lbl">Settlement</span>
+                    </div>
+                  </div>
+
+                  <!-- Real-Time Delivery Progress Bar -->
+                  <div class="success-progress-wrap">
+                    <div class="success-progress-top">
+                      <span>Sending via Meta Cloud API</span>
+                      <span class="progress-pct">100% Completed</span>
+                    </div>
+                    <div class="success-progress-bar">
+                      <div class="success-progress-fill"></div>
+                    </div>
+                  </div>
+
+                  <!-- Action Buttons -->
+                  <div class="success-actions-row">
+                    <a href="../index.html" class="btn-success-dashboard">
+                      <span>Go to Live Analytics</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <button type="button" class="btn-success-restart" id="btnSuccessRestart">
+                      <span>Restart Demo ↺</span>
+                    </button>
+                  </div>
                 </div>
               </div>
 

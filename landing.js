@@ -119,78 +119,182 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. Interactive Campaign Workflow Showcase (Setup -> Preview -> Success)
-  const workflowStage = document.getElementById('campaignWorkflowStage');
-  if (workflowStage) {
-    const stepBtns = workflowStage.querySelectorAll('.step-nav-btn');
-    const slides = workflowStage.querySelectorAll('.workflow-slide');
-    const timelineBar = document.getElementById('workflowTimelineBar');
-    const statusText = document.getElementById('workflowStatusText');
-    const nextBtns = workflowStage.querySelectorAll('[data-goto]');
+  // 6. Containerless Animated Campaign Story (Setup -> Preview Pop-up Click -> Success Modal)
+  const storyStage = document.getElementById('campaignStoryStage') || document.getElementById('campaignWorkflowStage');
+  if (storyStage) {
+    const slide1 = document.getElementById('storySlide1') || storyStage.querySelector('.story-slide-setup') || storyStage.querySelector('[data-step="1"]');
+    const slide2 = document.getElementById('storySlide2') || storyStage.querySelector('.story-slide-preview') || storyStage.querySelector('[data-step="2"]');
+    const slide3 = document.getElementById('storySlide3') || storyStage.querySelector('.story-slide-success') || storyStage.querySelector('[data-step="3"]');
+    
+    const previewTriggerBtn = document.getElementById('btnPreviewTrigger');
+    const phoneLaunchFloat = document.getElementById('phoneLaunchFloat');
+    const launchNowBtn = document.getElementById('btnLaunchCampaignNow');
+    const clickCursor = document.getElementById('clickCursor');
+    const restartBtn = document.getElementById('btnSuccessRestart');
 
-    let currentStep = 1;
     let isPaused = false;
-    let stepDuration = 5200; // 5.2s per step
-    let stepElapsed = 0;
+    let currentPhase = 1; // 1: Setup, 2: Preview, 3: Success
+    let timelineTimer = null;
 
-    function goToStep(stepNum) {
-      currentStep = stepNum;
-      stepElapsed = 0;
-      if (timelineBar) timelineBar.style.width = '0%';
+    function clearAnimationClasses() {
+      if (slide1) {
+        slide1.classList.remove('is-active', 'is-leaving', 'active');
+      }
+      if (slide2) {
+        slide2.classList.remove('is-active', 'is-leaving', 'active');
+      }
+      if (slide3) {
+        slide3.classList.remove('is-active', 'is-leaving', 'active');
+      }
+      if (phoneLaunchFloat) {
+        phoneLaunchFloat.classList.remove('is-popped');
+      }
+      if (launchNowBtn) {
+        launchNowBtn.classList.remove('is-clicked');
+      }
+      if (clickCursor) {
+        clickCursor.classList.remove('cursor-arrived', 'cursor-clicking');
+      }
+    }
 
-      // Update active nav buttons
-      stepBtns.forEach(btn => {
-        const btnStep = parseInt(btn.getAttribute('data-step'), 10);
-        btn.classList.toggle('active', btnStep === currentStep);
-      });
+    function runPhase1() {
+      currentPhase = 1;
+      clearAnimationClasses();
+      if (slide1) slide1.classList.add('is-active');
 
-      // Update active slide
-      slides.forEach((slide, idx) => {
-        slide.classList.toggle('active', idx + 1 === currentStep);
+      // Schedule transition to Phase 2
+      timelineTimer = setTimeout(() => {
+        if (isPaused) return;
+
+        // Button click effect on preview trigger
+        if (previewTriggerBtn) {
+          previewTriggerBtn.classList.add('is-clicked');
+          setTimeout(() => previewTriggerBtn.classList.remove('is-clicked'), 220);
+        }
+
+        // Fade slide 1 out
+        timelineTimer = setTimeout(() => {
+          if (isPaused) return;
+          if (slide1) slide1.classList.add('is-leaving');
+
+          timelineTimer = setTimeout(() => {
+            if (isPaused) return;
+            runPhase2();
+          }, 450);
+        }, 350);
+      }, 2400);
+    }
+
+    function runPhase2() {
+      currentPhase = 2;
+      clearAnimationClasses();
+      if (slide2) slide2.classList.add('is-active');
+
+      // 1. WhatsApp preview shown, then Green Launch Button POPS UP on the preview screen
+      timelineTimer = setTimeout(() => {
+        if (isPaused) return;
+        if (phoneLaunchFloat) phoneLaunchFloat.classList.add('is-popped');
+
+        // 2. Simulated cursor glides onto the button
+        timelineTimer = setTimeout(() => {
+          if (isPaused) return;
+          if (clickCursor) clickCursor.classList.add('cursor-arrived');
+
+          // 3. Cursor clicks the launch button with ripple animation
+          timelineTimer = setTimeout(() => {
+            if (isPaused) return;
+            if (clickCursor) clickCursor.classList.add('cursor-clicking');
+            if (launchNowBtn) launchNowBtn.classList.add('is-clicked');
+
+            // 4. Slide 2 fades out, transition to Success Modal
+            timelineTimer = setTimeout(() => {
+              if (isPaused) return;
+              if (slide2) slide2.classList.add('is-leaving');
+
+              timelineTimer = setTimeout(() => {
+                if (isPaused) return;
+                runPhase3();
+              }, 450);
+            }, 750);
+          }, 650);
+        }, 750);
+      }, 700);
+    }
+
+    function runPhase3() {
+      currentPhase = 3;
+      clearAnimationClasses();
+      if (slide3) slide3.classList.add('is-active');
+
+      // Progress bar fill re-trigger
+      const fillBar = slide3 ? slide3.querySelector('.success-progress-fill') : null;
+      if (fillBar) {
+        fillBar.style.animation = 'none';
+        void fillBar.offsetHeight; // trigger reflow
+        fillBar.style.animation = 'progressFill 1.8s ease-out both';
+      }
+
+      // Success modal stays visible for celebration, then loops back to Phase 1
+      timelineTimer = setTimeout(() => {
+        if (isPaused) return;
+        if (slide3) slide3.classList.add('is-leaving');
+
+        timelineTimer = setTimeout(() => {
+          if (isPaused) return;
+          runPhase1();
+        }, 500);
+      }, 5200);
+    }
+
+    // Interactive overrides:
+    if (previewTriggerBtn) {
+      previewTriggerBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        clearTimeout(timelineTimer);
+        runPhase2();
       });
     }
 
-    stepBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    if (launchNowBtn) {
+      launchNowBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const target = parseInt(btn.getAttribute('data-step'), 10);
-        goToStep(target);
+        clearTimeout(timelineTimer);
+        launchNowBtn.classList.add('is-clicked');
+        setTimeout(() => {
+          runPhase3();
+        }, 250);
       });
-    });
+    }
 
-    nextBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    if (restartBtn) {
+      restartBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const target = parseInt(btn.getAttribute('data-goto'), 10);
-        goToStep(target);
+        clearTimeout(timelineTimer);
+        runPhase1();
       });
-    });
+    }
 
-    workflowStage.addEventListener('mouseenter', () => {
+    // Hover to pause, mouseleave to resume
+    storyStage.addEventListener('mouseenter', () => {
       isPaused = true;
-      if (statusText) statusText.innerText = 'Paused • Move cursor away to resume';
     });
 
-    workflowStage.addEventListener('mouseleave', () => {
-      isPaused = false;
-      if (statusText) statusText.innerText = 'Auto-cycling workflow • Hover to pause';
-    });
-
-    // Auto-advance loop ticker
-    setInterval(() => {
-      if (isPaused) return;
-
-      stepElapsed += 100;
-      const pct = Math.min((stepElapsed / stepDuration) * 100, 100);
-      if (timelineBar) timelineBar.style.width = `${pct}%`;
-
-      if (stepElapsed >= stepDuration) {
-        stepElapsed = 0;
-        let nextStep = currentStep + 1;
-        if (nextStep > 3) nextStep = 1;
-        goToStep(nextStep);
+    storyStage.addEventListener('mouseleave', () => {
+      if (isPaused) {
+        isPaused = false;
+        // Resume next step after short pause
+        clearTimeout(timelineTimer);
+        if (currentPhase === 1) {
+          runPhase1();
+        } else if (currentPhase === 2) {
+          runPhase2();
+        } else {
+          timelineTimer = setTimeout(runPhase1, 1800);
+        }
       }
-    }, 100);
-  }
+    });
 
+    // Start the story animation loop
+    runPhase1();
+  }
 });

@@ -690,7 +690,7 @@ button {
   position: relative;
   width: 100%;
   max-width: 460px;
-  min-height: 520px;
+  min-height: 560px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1036,14 +1036,15 @@ button {
    ========================================================================== */
 .wa-phone-mockup {
   width: 100%;
-  max-width: 330px;
+  max-width: 275px;
+  min-height: 550px;
   margin: 0 auto;
-  border-radius: 36px;
-  border: 6px solid #1e293b;
+  border-radius: 40px;
+  border: 7px solid #0f172a;
   background: #efeae2;
   box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(255, 255, 255, 0.12);
+    0 28px 65px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.14);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1062,8 +1063,8 @@ button {
   top: 8px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 18px;
+  width: 76px;
+  height: 16px;
   background: #000000;
   border-radius: 12px;
   z-index: 10;
@@ -1073,10 +1074,10 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 18px 4px;
+  padding: 8px 16px 4px;
   background: #005d4b;
   color: #ffffff;
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 600;
   z-index: 5;
 }
@@ -1106,7 +1107,7 @@ button {
 .wa-chat-header {
   background: #005d4b;
   color: #ffffff;
-  padding: 5px 12px 9px;
+  padding: 5px 10px 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1116,12 +1117,12 @@ button {
 .wa-header-left {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
 }
 
 .wa-avatar {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: #ffffff;
   color: #005d4b;
@@ -1129,7 +1130,7 @@ button {
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .wa-header-meta {
@@ -1138,13 +1139,13 @@ button {
 }
 
 .wa-header-title {
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 1.2;
 }
 
 .wa-header-status {
-  font-size: 9.5px;
+  font-size: 9px;
   color: #a7f3d0;
   line-height: 1;
 }
@@ -1152,29 +1153,30 @@ button {
 .wa-header-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   opacity: 0.9;
 }
 
 /* WhatsApp Chat Body */
 .wa-chat-body {
-  padding: 12px 10px;
+  padding: 10px 8px;
   background-color: #efeae2;
   background-image: radial-gradient(#d5cbbe 0.75px, transparent 0.75px);
   background-size: 12px 12px;
   display: flex;
   flex-direction: column;
   gap: 7px;
-  min-height: 310px;
+  flex: 1;
+  min-height: 400px;
 }
 
 .wa-date-pill {
   align-self: center;
   background: #e1dad2;
   color: #54656f;
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 600;
-  padding: 2px 9px;
+  padding: 2px 8px;
   border-radius: 6px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
@@ -1184,7 +1186,7 @@ button {
   color: #111b21;
   border-radius: 10px;
   padding: 6px 7px;
-  max-width: 94%;
+  max-width: 96%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.13);
   position: relative;
   align-self: flex-start;
@@ -1199,7 +1201,7 @@ button {
 .wa-bubble-img-placeholder {
   background: linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%);
   color: #ffffff;
-  padding: 16px 12px;
+  padding: 14px 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -1208,23 +1210,23 @@ button {
 }
 
 .wa-img-tag {
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 800;
   letter-spacing: 0.05em;
   color: #93c5fd;
 }
 
 .wa-img-price {
-  font-size: 14.5px;
+  font-size: 13.5px;
   font-weight: 800;
   color: #ffffff;
 }
 
 .wa-bubble-text {
-  font-size: 11px;
-  line-height: 1.45;
+  font-size: 10.5px;
+  line-height: 1.42;
   color: #111b21;
-  padding: 0 3px;
+  padding: 0 2px;
 }
 
 .wa-bubble-text p {
@@ -1238,7 +1240,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-top: 7px;
+  margin-top: 6px;
   border-top: 1px solid #f1f5f9;
   padding-top: 5px;
 }
@@ -1247,8 +1249,8 @@ button {
   background: #f8fafc;
   color: #005d4b;
   border-radius: 6px;
-  padding: 5px 8px;
-  font-size: 11px;
+  padding: 5px 7px;
+  font-size: 10.5px;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -1294,24 +1296,24 @@ button {
   background: #ffffff;
   border-radius: 18px;
   padding: 6px 12px;
-  font-size: 11px;
+  font-size: 10.5px;
   color: #8696a0;
   border: 1px solid #e9edef;
 }
 
 /* ==========================================================================
-   POP-UP BUTTON ON PREVIEW SCREEN (Matches User's Image 2)
+   POP-UP BUTTON ON PREVIEW SCREEN (Centered in the Middle of Mockup)
    ========================================================================== */
 .phone-launch-float {
   position: absolute;
-  bottom: 64px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(40px) scale(0.65);
+  transform: translate(-50%, -50%) scale(0.65);
   opacity: 0;
   pointer-events: none;
   z-index: 50;
-  width: calc(100% - 32px);
-  max-width: 250px;
+  width: calc(100% - 24px);
+  max-width: 236px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1320,20 +1322,19 @@ button {
 
 .phone-launch-float.is-popped {
   opacity: 1;
-  transform: translateX(-50%) translateY(0) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   pointer-events: auto;
 }
 
 .btn-launch-campaign-now {
   width: 100%;
-  background: #00a884;
-  background: linear-gradient(135deg, #00a884 0%, #009374 100%);
+  background: linear-gradient(135deg, #00a884 0%, #008f70 100%);
   color: #ffffff;
   border: none;
-  border-radius: 12px;
+  border-radius: 13px;
   padding: 12px 14px;
   font-family: 'Work Sans', sans-serif;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: -0.01em;
   display: flex;
@@ -1342,8 +1343,8 @@ button {
   gap: 8px;
   cursor: pointer;
   box-shadow: 
-    0 12px 28px rgba(0, 168, 132, 0.55),
-    0 2px 6px rgba(0, 0, 0, 0.3);
+    0 16px 36px rgba(0, 168, 132, 0.65),
+    0 4px 14px rgba(0, 0, 0, 0.45);
   transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease, filter 0.15s ease;
   outline: none;
   position: relative;
@@ -1394,7 +1395,7 @@ button {
 /* Cursor for Launch Button */
 .cursor-launch {
   bottom: -6px;
-  right: 22px;
+  right: 18px;
   transform: translate(28px, 28px) scale(0.85);
   transition: opacity 0.35s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }

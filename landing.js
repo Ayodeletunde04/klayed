@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const previewTriggerBtn = document.getElementById('btnPreviewTrigger');
     const setupCursor = document.getElementById('setupClickCursor');
+    const phoneOverlay = document.getElementById('waPhoneOverlay');
     const phoneLaunchFloat = document.getElementById('phoneLaunchFloat');
     const launchNowBtn = document.getElementById('btnLaunchCampaignNow');
     const launchCursor = document.getElementById('launchClickCursor') || document.getElementById('clickCursor');
@@ -152,6 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (previewTriggerBtn) {
         previewTriggerBtn.classList.remove('is-clicked');
+      }
+      if (phoneOverlay) {
+        phoneOverlay.classList.remove('is-popped');
       }
       if (phoneLaunchFloat) {
         phoneLaunchFloat.classList.remove('is-popped');
@@ -199,23 +203,26 @@ document.addEventListener('DOMContentLoaded', () => {
       clearAnimationClasses();
       if (slide2) slide2.classList.add('is-active');
 
-      // 1. WhatsApp mockup displayed, then Launch Campaign Now button POPS UP on mockup
+      // 1. Show the WhatsApp preview first so the user sees what was configured
       timelineTimer = setTimeout(() => {
         if (isPaused) return;
+
+        // 2. Then an overlay pops up over the preview with the Launch Campaign Now button in the middle
+        if (phoneOverlay) phoneOverlay.classList.add('is-popped');
         if (phoneLaunchFloat) phoneLaunchFloat.classList.add('is-popped');
 
-        // 2. Launch cursor glides onto "🚀 Launch Campaign Now" button
+        // 3. Launch cursor glides onto "🚀 Launch Campaign Now" button
         timelineTimer = setTimeout(() => {
           if (isPaused) return;
           if (launchCursor) launchCursor.classList.add('cursor-arrived');
 
-          // 3. Cursor clicks the launch button with pulse ripple
+          // 4. Cursor clicks the launch button with pulse ripple
           timelineTimer = setTimeout(() => {
             if (isPaused) return;
             if (launchCursor) launchCursor.classList.add('cursor-clicking');
             if (launchNowBtn) launchNowBtn.classList.add('is-clicked');
 
-            // 4. Slide 2 smoothly transitions out
+            // 5. Slide 2 smoothly transitions out to Success Modal
             timelineTimer = setTimeout(() => {
               if (isPaused) return;
               if (slide2) slide2.classList.add('is-leaving');
@@ -227,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 700);
           }, 700);
         }, 800);
-      }, 700);
+      }, 1500); // 1.5s delay: displays preview clearly first before overlay appears
     }
 
     function runPhase3() {

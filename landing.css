@@ -711,23 +711,77 @@ button {
   align-items: stretch;
 }
 
-/* Base Card Transitions */
-.flow-card {
-  opacity: 0;
-  transform: translateY(24px) scale(0.95);
-  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-  will-change: transform, opacity;
-  box-sizing: border-box;
+/* Sequential Animation Keyframes (10s Infinite Loop) */
+@keyframes cardReveal1 {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.96);
+  }
+  3%, 91% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  95%, 100% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
 }
 
-.flow-card.is-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+@keyframes cardReveal2 {
+  0%, 12% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.96);
+  }
+  16%, 91% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  95%, 100% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+}
+
+@keyframes cardReveal3 {
+  0%, 25% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.96);
+  }
+  29%, 91% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  95%, 100% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+}
+
+@keyframes cardReveal4 {
+  0%, 38% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.96);
+  }
+  42%, 91% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  95%, 100% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+}
+
+/* Base Card Styling */
+.flow-card {
+  will-change: transform, opacity;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease;
 }
 
 .flow-card:hover {
   transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
 }
 
 /* Card 1: User Request Pill */
@@ -742,6 +796,7 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.8);
   align-self: flex-start;
   max-width: 95%;
+  animation: cardReveal1 10s infinite cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Card 2: AI Assistant Response */
@@ -752,6 +807,7 @@ button {
   border-radius: 20px;
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.9);
+  animation: cardReveal2 10s infinite cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .flow-ai-header {
@@ -794,6 +850,7 @@ button {
   border-radius: 22px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
   border: 1px solid rgba(255, 255, 255, 0.9);
+  animation: cardReveal3 10s infinite cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .flow-txn-header {
@@ -860,6 +917,12 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.9);
   font-size: 15px;
   font-weight: 600;
+  animation: cardReveal4 10s infinite cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Pause animation on hover */
+.animated-flow-stage:hover .flow-card {
+  animation-play-state: paused;
 }
 
 .flow-status-pulse {

@@ -119,89 +119,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. Sequential Conversation & Transaction Flow Animation
-  const flowCards = [
-    document.getElementById('flowCard1'),
-    document.getElementById('flowCard2'),
-    document.getElementById('flowCard3'),
-    document.getElementById('flowCard4')
-  ];
+  // 6. Sequential Flow Animation Replay Control
+  const replayBtn = document.getElementById('btnFlowReplay');
+  const stage = document.getElementById('animatedFlowStage');
 
-  if (flowCards[0]) {
-    let currentStep = 0;
-    let sequenceTimer = null;
-    let loopTimeout = null;
-    let isPaused = false;
-
-    function resetFlowAnimation() {
-      if (sequenceTimer) clearTimeout(sequenceTimer);
-      if (loopTimeout) clearTimeout(loopTimeout);
-      flowCards.forEach(card => {
-        if (card) {
-          card.classList.remove('is-visible');
-        }
+  if (replayBtn && stage) {
+    replayBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const cards = stage.querySelectorAll('.flow-card');
+      cards.forEach(card => {
+        card.style.animation = 'none';
       });
-      currentStep = 0;
-    }
-
-    function revealStep() {
-      if (isPaused) return;
-
-      if (currentStep < flowCards.length) {
-        const card = flowCards[currentStep];
-        if (card) {
-          card.classList.add('is-visible');
-        }
-        currentStep++;
-
-        // Stagger timing between steps
-        const nextDelay = currentStep === 2 ? 1200 : 1100;
-        sequenceTimer = setTimeout(revealStep, nextDelay);
-      } else {
-        // All 4 cards visible. Hold for 4.5 seconds for complete readability, then seamlessly restart
-        loopTimeout = setTimeout(() => {
-          if (!isPaused) {
-            resetFlowAnimation();
-            sequenceTimer = setTimeout(revealStep, 400);
-          }
-        }, 4500);
-      }
-    }
-
-    // Start initial sequence
-    resetFlowAnimation();
-    sequenceTimer = setTimeout(revealStep, 500);
-
-    // Pause on hover over stage
-    const stage = document.getElementById('animatedFlowStage');
-    if (stage) {
-      stage.addEventListener('mouseenter', () => {
-        isPaused = true;
+      // Force DOM reflow to re-trigger CSS keyframe animations immediately
+      void stage.offsetHeight;
+      cards.forEach(card => {
+        card.style.animation = '';
       });
-      stage.addEventListener('mouseleave', () => {
-        if (isPaused) {
-          isPaused = false;
-          if (currentStep < flowCards.length) {
-            revealStep();
-          } else {
-            loopTimeout = setTimeout(() => {
-              resetFlowAnimation();
-              sequenceTimer = setTimeout(revealStep, 400);
-            }, 2500);
-          }
-        }
-      });
-    }
-
-    // Replay button listener
-    const replayBtn = document.getElementById('btnFlowReplay');
-    if (replayBtn) {
-      replayBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        isPaused = false;
-        resetFlowAnimation();
-        revealStep();
-      });
-    }
+    });
   }
 });

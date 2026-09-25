@@ -318,109 +318,41 @@
                     </div>
                   </div>
 
-                  <!-- Action Button -->
+                  <!-- Action Button with Simulated Cursor -->
                   <div class="cs-card-footer">
                     <div class="btn-step-next" id="btnPreviewTrigger">
                       <span>View WhatsApp Preview</span>
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </div>
+                    <!-- Simulated Click Cursor for Setup Button -->
+                    <div class="simulated-click-cursor cursor-setup" id="setupClickCursor" aria-hidden="true">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z" fill="#0f172a" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+                      </svg>
+                      <span class="click-pulse-wave pulse-blue"></span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <!-- STEP 2: WhatsApp Phone Mockup (Matches Image 2) -->
+              <!-- STEP 2: WhatsApp Phone Mockup (User's Exact Mockup) -->
               <div class="story-slide story-slide-preview" id="storySlide2">
-                <div class="wa-phone-mockup" id="waPhoneMockup">
-                  <!-- Phone Speaker & Camera Island -->
-                  <div class="phone-dynamic-island"></div>
+                <div class="wa-mockup-wrapper" id="waMockupWrapper">
+                  <img src="assets/whatsapp-phone-mockup.png" alt="WhatsApp Campaign Preview Mockup" class="wa-mockup-img" width="544" height="1024" />
 
-                  <!-- Phone Status Bar -->
-                  <div class="phone-status-bar">
-                    <span class="phone-time">10:27</span>
-                    <div class="phone-status-icons">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 21l3.52-.61C9.36 20.73 10.64 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/></svg>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
-                      <div class="phone-battery"><div class="phone-battery-level"></div></div>
-                    </div>
-                  </div>
-
-                  <!-- WhatsApp Chat Header Bar -->
-                  <div class="wa-chat-header">
-                    <div class="wa-header-left">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
-                      <div class="wa-avatar">
-                        <span>W</span>
-                      </div>
-                      <div class="wa-header-meta">
-                        <span class="wa-header-title">WhatsApp Broadcast</span>
-                        <span class="wa-header-status">online</span>
-                      </div>
-                    </div>
-                    <div class="wa-header-actions">
-                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    </div>
-                  </div>
-
-                  <!-- WhatsApp Chat Scroll Area -->
-                  <div class="wa-chat-body">
-                    <div class="wa-date-pill">TODAY</div>
-
-                    <!-- WhatsApp Message Bubble -->
-                    <div class="wa-message-bubble">
-                      <!-- Attached Lookbook Card -->
-                      <div class="wa-bubble-img-wrap">
-                        <div class="wa-bubble-img-placeholder">
-                          <span class="wa-img-tag">KLAYED ARCHIVAL TRENCH</span>
-                          <span class="wa-img-price">₦145,000</span>
-                        </div>
-                      </div>
-
-                      <!-- Message Body matching Step 1 -->
-                      <div class="wa-bubble-text">
-                        <p>🔥 <strong>VIP EXCLUSIVE:</strong> The 2026 Trench Collection is live!</p>
-                        <p>Get 20% off with code <strong>KLAYEDVIP</strong> + free delivery today. Tap below to claim yours 👇</p>
-                      </div>
-
-                      <!-- WhatsApp Action CTA Buttons -->
-                      <div class="wa-bubble-actions">
-                        <div class="wa-bubble-btn">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                          <span>View Catalog (3 Items)</span>
-                        </div>
-                        <div class="wa-bubble-btn wa-btn-highlight">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-                          <span>Instant WhatsApp Checkout</span>
-                        </div>
-                      </div>
-
-                      <!-- Bubble Timestamp & Double Blue Ticks -->
-                      <div class="wa-bubble-footer">
-                        <span class="wa-time">12:00</span>
-                        <span class="wa-ticks">✓✓</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- WhatsApp Bottom Bar -->
-                  <div class="wa-chat-input-bar">
-                    <div class="wa-preview-pill">Read-only preview</div>
-                  </div>
-
-                  <!-- Floating Pop-up Button (Matches User's 2nd Image) -->
+                  <!-- Floating Pop-up Button (Matches User's Image) -->
                   <div class="phone-launch-float" id="phoneLaunchFloat">
                     <button type="button" class="btn-launch-campaign-now" id="btnLaunchCampaignNow">
                       <span>🚀 Launch Campaign Now</span>
                     </button>
-                    <!-- Simulated Click Cursor -->
-                    <div class="simulated-click-cursor" id="clickCursor" aria-hidden="true">
+                    <!-- Simulated Click Cursor for Launch Button -->
+                    <div class="simulated-click-cursor cursor-launch" id="launchClickCursor" aria-hidden="true">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z" fill="#0f172a" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
                       </svg>
-                      <span class="click-pulse-wave"></span>
+                      <span class="click-pulse-wave pulse-green"></span>
                     </div>
                   </div>
-
                 </div>
               </div>
 

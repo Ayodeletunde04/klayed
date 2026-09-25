@@ -1084,201 +1084,72 @@ button {
   border-radius: 1px;
 }
 
-/* WhatsApp Chat App Bar */
-.wa-chat-header {
-  background: #005d4b;
-  color: #ffffff;
-  padding: 5px 12px 9px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-}
-
-.wa-header-left {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.wa-avatar {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #ffffff;
-  color: #005d4b;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 14px;
-}
-
-.wa-header-meta {
-  display: flex;
-  flex-direction: column;
-}
-
-.wa-header-title {
-  font-size: 12.5px;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.wa-header-status {
-  font-size: 9.5px;
-  color: #a7f3d0;
-  line-height: 1;
-}
-
-.wa-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  opacity: 0.9;
-}
-
-/* WhatsApp Chat Body */
-.wa-chat-body {
-  padding: 12px 10px;
-  background-color: #efeae2;
-  background-image: radial-gradient(#d5cbbe 0.75px, transparent 0.75px);
-  background-size: 12px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  min-height: 270px;
-}
-
-.wa-date-pill {
-  align-self: center;
-  background: #e1dad2;
-  color: #54656f;
-  font-size: 9.5px;
-  font-weight: 600;
-  padding: 2px 9px;
-  border-radius: 6px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-}
-
-.wa-message-bubble {
-  background: #ffffff;
-  color: #111b21;
-  border-radius: 10px;
-  padding: 6px 7px;
-  max-width: 92%;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.13);
+.cs-card-footer {
+  margin-top: 2px;
   position: relative;
-  align-self: flex-start;
+  overflow: visible;
 }
 
-.wa-bubble-img-wrap {
-  border-radius: 7px;
-  overflow: hidden;
-  margin-bottom: 5px;
-}
-
-.wa-bubble-img-placeholder {
-  background: linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%);
-  color: #ffffff;
-  padding: 16px 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  border-radius: 6px;
-  position: relative;
-}
-
-.wa-img-tag {
-  font-size: 9.5px;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  color: #93c5fd;
-}
-
-.wa-img-price {
-  font-size: 14.5px;
-  font-weight: 800;
-  color: #ffffff;
-}
-
-.wa-bubble-text {
-  font-size: 11px;
-  line-height: 1.45;
-  color: #111b21;
-  padding: 0 3px;
-}
-
-.wa-bubble-text p {
-  margin: 0 0 3px;
-}
-.wa-bubble-text p:last-child {
-  margin-bottom: 0;
-}
-
-.wa-bubble-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-top: 7px;
-  border-top: 1px solid #f1f5f9;
-  padding-top: 5px;
-}
-
-.wa-bubble-btn {
-  background: #f8fafc;
-  color: #005d4b;
-  border-radius: 6px;
-  padding: 5px 8px;
-  font-size: 11px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  border: 1px solid #e2e8f0;
-}
-
-.wa-bubble-btn.wa-btn-highlight {
-  background: #005d4b;
-  color: #ffffff;
-  border-color: #005d4b;
-}
-
-.wa-bubble-footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 4px;
-  margin-top: 3px;
-}
-
-.wa-time {
-  font-size: 9.5px;
-  color: #667781;
-}
-
-.wa-ticks {
-  color: #53bdeb;
-  font-size: 10.5px;
-  font-weight: 700;
-}
-
-.wa-chat-input-bar {
-  background: #f0f2f5;
-  padding: 7px 10px;
-  display: flex;
-  align-items: center;
-}
-
-.wa-preview-pill {
+.btn-step-next {
   width: 100%;
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 6px 12px;
-  font-size: 11px;
-  color: #8696a0;
-  border: 1px solid #e9edef;
+  background: linear-gradient(135deg, #2563eb 0%, #1d63ff 100%);
+  color: #ffffff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 9px;
+  font-size: 12.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(29, 99, 255, 0.4);
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.16s ease, filter 0.16s ease;
+  position: relative;
+}
+
+.btn-step-next:hover {
+  filter: brightness(1.05);
+}
+
+.btn-step-next.is-clicked {
+  transform: translateY(2px) scale(0.96);
+  filter: brightness(0.92);
+  box-shadow: 0 2px 8px rgba(29, 99, 255, 0.3);
+}
+
+/* ==========================================================================
+   SLIDE 2: User's Exact WhatsApp Phone Mockup & Floating Launch Button
+   ========================================================================== */
+.wa-mockup-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 295px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: 
+    drop-shadow(0 26px 65px rgba(0, 0, 0, 0.55)) 
+    drop-shadow(0 4px 14px rgba(0, 0, 0, 0.3));
+  transition: transform 0.4s ease;
+  box-sizing: border-box;
+  animation: phoneHover 6s ease-in-out infinite alternate;
+}
+
+@keyframes phoneHover {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-4px); }
+}
+
+.wa-mockup-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 40px;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* ==========================================================================
@@ -1286,18 +1157,18 @@ button {
    ========================================================================== */
 .phone-launch-float {
   position: absolute;
-  bottom: 20px;
+  bottom: 64px;
   left: 50%;
-  transform: translateX(-50%) translateY(45px) scale(0.65);
+  transform: translateX(-50%) translateY(40px) scale(0.65);
   opacity: 0;
   pointer-events: none;
   z-index: 50;
-  width: calc(100% - 28px);
-  max-width: 310px;
+  width: calc(100% - 32px);
+  max-width: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .phone-launch-float.is-popped {
@@ -1313,9 +1184,9 @@ button {
   color: #ffffff;
   border: none;
   border-radius: 12px;
-  padding: 13px 18px;
+  padding: 12px 14px;
   font-family: 'Work Sans', sans-serif;
-  font-size: 14.5px;
+  font-size: 13.5px;
   font-weight: 700;
   letter-spacing: -0.01em;
   display: flex;
@@ -1324,8 +1195,8 @@ button {
   gap: 8px;
   cursor: pointer;
   box-shadow: 
-    0 10px 28px rgba(0, 168, 132, 0.5),
-    0 2px 6px rgba(0, 0, 0, 0.25);
+    0 12px 28px rgba(0, 168, 132, 0.55),
+    0 2px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease, filter 0.15s ease;
   outline: none;
   position: relative;
@@ -1342,27 +1213,51 @@ button {
   box-shadow: 0 4px 12px rgba(0, 168, 132, 0.4);
 }
 
-/* Simulated Cursor for Automated Demonstration */
+/* ==========================================================================
+   Simulated Cursors (Setup Click & Launch Click)
+   ========================================================================== */
 .simulated-click-cursor {
   position: absolute;
-  bottom: -6px;
-  right: 28px;
   pointer-events: none;
   opacity: 0;
-  transform: translate(25px, 25px) scale(0.8);
-  transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 60;
   display: flex;
   align-items: center;
   justify-content: center;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.4));
 }
 
-.simulated-click-cursor.cursor-arrived {
+/* Cursor for Setup Button */
+.cursor-setup {
+  top: 50%;
+  right: 28%;
+  transform: translate(32px, 32px) scale(0.85);
+  transition: opacity 0.35s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cursor-setup.cursor-arrived {
+  opacity: 1;
+  transform: translate(0, -50%) scale(1);
+}
+
+.cursor-setup.cursor-clicking {
+  transform: translate(-3px, calc(-50% - 3px)) scale(0.9);
+}
+
+/* Cursor for Launch Button */
+.cursor-launch {
+  bottom: -6px;
+  right: 22px;
+  transform: translate(28px, 28px) scale(0.85);
+  transition: opacity 0.35s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cursor-launch.cursor-arrived {
   opacity: 1;
   transform: translate(0, 0) scale(1);
 }
 
-.simulated-click-cursor.cursor-clicking {
+.cursor-launch.cursor-clicking {
   transform: translate(-3px, -3px) scale(0.88);
 }
 
@@ -1371,11 +1266,21 @@ button {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 2px solid rgba(0, 168, 132, 0.9);
+  border: 2.5px solid rgba(0, 168, 132, 0.9);
   background: rgba(0, 168, 132, 0.3);
   opacity: 0;
   transform: scale(0.2);
   pointer-events: none;
+}
+
+.click-pulse-wave.pulse-blue {
+  border-color: rgba(29, 99, 255, 0.95);
+  background: rgba(29, 99, 255, 0.32);
+}
+
+.click-pulse-wave.pulse-green {
+  border-color: rgba(0, 168, 132, 0.95);
+  background: rgba(0, 168, 132, 0.32);
 }
 
 .simulated-click-cursor.cursor-clicking .click-pulse-wave {
@@ -1384,7 +1289,7 @@ button {
 
 @keyframes clickPulseWave {
   0% { opacity: 1; transform: scale(0.3); }
-  100% { opacity: 0; transform: scale(2.2); }
+  100% { opacity: 0; transform: scale(2.3); }
 }
 
 /* ==========================================================================

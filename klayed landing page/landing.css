@@ -708,19 +708,23 @@ button {
   position: absolute;
   inset: 0;
   width: 100%;
-  display: flex;
+  display: none !important;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transform: translateY(18px) scale(0.97);
+  transform: translateY(16px) scale(0.97);
   pointer-events: none;
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   box-sizing: border-box;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .story-slide.is-active,
 .workflow-slide.active {
+  display: flex !important;
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: auto;
@@ -729,8 +733,9 @@ button {
 }
 
 .story-slide.is-leaving {
+  display: flex !important;
   opacity: 0;
-  transform: translateY(-16px) scale(0.97);
+  transform: translateY(-14px) scale(0.97);
   pointer-events: none;
 }
 
@@ -993,6 +998,8 @@ button {
 
 .cs-card-footer {
   margin-top: 2px;
+  position: relative;
+  overflow: visible;
 }
 
 .btn-step-next {
@@ -1000,8 +1007,8 @@ button {
   background: linear-gradient(135deg, #2563eb 0%, #1d63ff 100%);
   color: #ffffff;
   border: none;
-  padding: 9px 14px;
-  border-radius: 8px;
+  padding: 10px 14px;
+  border-radius: 9px;
   font-size: 12.5px;
   font-weight: 600;
   display: flex;
@@ -1010,33 +1017,44 @@ button {
   gap: 7px;
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(29, 99, 255, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.16s ease, filter 0.16s ease;
+  position: relative;
 }
 
-.btn-step-next:hover,
+.btn-step-next:hover {
+  filter: brightness(1.05);
+}
+
 .btn-step-next.is-clicked {
-  transform: translateY(-1px) scale(0.99);
-  box-shadow: 0 6px 18px rgba(29, 99, 255, 0.55);
+  transform: translateY(2px) scale(0.96);
+  filter: brightness(0.92);
+  box-shadow: 0 2px 8px rgba(29, 99, 255, 0.3);
 }
 
 /* ==========================================================================
-   SLIDE 2: WhatsApp Phone Mockup (Matches Image 2)
+   SLIDE 2: WhatsApp Phone Mockup (Showing Step 1 Campaign Preview)
    ========================================================================== */
 .wa-phone-mockup {
   width: 100%;
-  max-width: 350px;
+  max-width: 330px;
   margin: 0 auto;
-  border-radius: 34px;
-  border: 5px solid #1e293b;
+  border-radius: 36px;
+  border: 6px solid #1e293b;
   background: #efeae2;
   box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.15);
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
   box-sizing: border-box;
+  animation: phoneHover 6s ease-in-out infinite alternate;
+}
+
+@keyframes phoneHover {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-4px); }
 }
 
 .phone-dynamic-island {
@@ -1084,72 +1102,201 @@ button {
   border-radius: 1px;
 }
 
-.cs-card-footer {
-  margin-top: 2px;
-  position: relative;
-  overflow: visible;
+/* WhatsApp Chat App Bar */
+.wa-chat-header {
+  background: #005d4b;
+  color: #ffffff;
+  padding: 5px 12px 9px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
-.btn-step-next {
-  width: 100%;
-  background: linear-gradient(135deg, #2563eb 0%, #1d63ff 100%);
-  color: #ffffff;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 9px;
+.wa-header-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.wa-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #005d4b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.wa-header-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.wa-header-title {
   font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.wa-header-status {
+  font-size: 9.5px;
+  color: #a7f3d0;
+  line-height: 1;
+}
+
+.wa-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.9;
+}
+
+/* WhatsApp Chat Body */
+.wa-chat-body {
+  padding: 12px 10px;
+  background-color: #efeae2;
+  background-image: radial-gradient(#d5cbbe 0.75px, transparent 0.75px);
+  background-size: 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-height: 310px;
+}
+
+.wa-date-pill {
+  align-self: center;
+  background: #e1dad2;
+  color: #54656f;
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.wa-message-bubble {
+  background: #ffffff;
+  color: #111b21;
+  border-radius: 10px;
+  padding: 6px 7px;
+  max-width: 94%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.13);
+  position: relative;
+  align-self: flex-start;
+}
+
+.wa-bubble-img-wrap {
+  border-radius: 7px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.wa-bubble-img-placeholder {
+  background: linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%);
+  color: #ffffff;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 6px;
+  position: relative;
+}
+
+.wa-img-tag {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #93c5fd;
+}
+
+.wa-img-price {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.wa-bubble-text {
+  font-size: 11px;
+  line-height: 1.45;
+  color: #111b21;
+  padding: 0 3px;
+}
+
+.wa-bubble-text p {
+  margin: 0 0 3px;
+}
+.wa-bubble-text p:last-child {
+  margin-bottom: 0;
+}
+
+.wa-bubble-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 7px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 5px;
+}
+
+.wa-bubble-btn {
+  background: #f8fafc;
+  color: #005d4b;
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 11px;
   font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(29, 99, 255, 0.4);
-  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.16s ease, filter 0.16s ease;
-  position: relative;
+  gap: 5px;
+  border: 1px solid #e2e8f0;
 }
 
-.btn-step-next:hover {
-  filter: brightness(1.05);
+.wa-bubble-btn.wa-btn-highlight {
+  background: #005d4b;
+  color: #ffffff;
+  border-color: #005d4b;
 }
 
-.btn-step-next.is-clicked {
-  transform: translateY(2px) scale(0.96);
-  filter: brightness(0.92);
-  box-shadow: 0 2px 8px rgba(29, 99, 255, 0.3);
-}
-
-/* ==========================================================================
-   SLIDE 2: User's Exact WhatsApp Phone Mockup & Floating Launch Button
-   ========================================================================== */
-.wa-mockup-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 295px;
-  margin: 0 auto;
+.wa-bubble-footer {
   display: flex;
-  justify-content: center;
   align-items: center;
-  filter: 
-    drop-shadow(0 26px 65px rgba(0, 0, 0, 0.55)) 
-    drop-shadow(0 4px 14px rgba(0, 0, 0, 0.3));
-  transition: transform 0.4s ease;
-  box-sizing: border-box;
-  animation: phoneHover 6s ease-in-out infinite alternate;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 3px;
 }
 
-@keyframes phoneHover {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-4px); }
+.wa-time {
+  font-size: 9.5px;
+  color: #667781;
 }
 
-.wa-mockup-img {
+.wa-ticks {
+  color: #53bdeb;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.wa-chat-input-bar {
+  background: #f0f2f5;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.wa-preview-pill {
   width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 40px;
-  pointer-events: none;
-  user-select: none;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 6px 12px;
+  font-size: 11px;
+  color: #8696a0;
+  border: 1px solid #e9edef;
 }
 
 /* ==========================================================================

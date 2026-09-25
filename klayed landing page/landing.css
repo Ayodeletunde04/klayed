@@ -682,18 +682,18 @@ button {
   position: relative;
 }
 
-.animated-flow-stage {
+/* ==========================================================================
+   Campaign Workflow Showcase (Setup Form -> Phone Preview -> Success Popup)
+   ========================================================================== */
+.campaign-workflow-stage {
   position: relative;
   width: 100%;
-  max-width: 460px;
-  min-height: 480px;
+  max-width: 470px;
+  min-height: 570px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 28px 24px 22px;
   border-radius: 28px;
-  background: radial-gradient(circle at 80% 20%, rgba(29, 99, 255, 0.22) 0%, rgba(13, 40, 84, 0.5) 60%, rgba(3, 10, 23, 0.7) 100%);
+  background: radial-gradient(circle at 80% 10%, rgba(29, 99, 255, 0.25) 0%, rgba(13, 40, 84, 0.55) 60%, rgba(3, 10, 23, 0.75) 100%);
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 
     0 24px 60px rgba(0, 0, 0, 0.5),
@@ -701,322 +701,882 @@ button {
     inset 0 1px 0 rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  padding: 16px 18px 14px;
   overflow: hidden;
   box-sizing: border-box;
 }
 
-/* Slanted diagonal blue ray lines */
-.illustration-ray-container {
-  position: absolute;
-  top: -30px;
-  left: -40px;
-  width: 380px;
-  height: 380px;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.95;
-}
-
-.illustration-ray-svg {
-  width: 100%;
-  height: 100%;
-}
-
-/* Animated Sequential Cards Stack */
-.animated-cards-stack {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  align-items: stretch;
-}
-
-/* Sequential Animation Keyframes (10s Infinite Loop) */
-@keyframes cardReveal1 {
-  0% {
-    opacity: 0;
-    transform: translateY(22px) scale(0.96);
-  }
-  3%, 91% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  95%, 100% {
-    opacity: 0;
-    transform: translateY(-6px) scale(0.98);
-  }
-}
-
-@keyframes cardReveal2 {
-  0%, 12% {
-    opacity: 0;
-    transform: translateY(22px) scale(0.96);
-  }
-  16%, 91% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  95%, 100% {
-    opacity: 0;
-    transform: translateY(-6px) scale(0.98);
-  }
-}
-
-@keyframes cardReveal3 {
-  0%, 25% {
-    opacity: 0;
-    transform: translateY(22px) scale(0.96);
-  }
-  29%, 91% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  95%, 100% {
-    opacity: 0;
-    transform: translateY(-6px) scale(0.98);
-  }
-}
-
-@keyframes cardReveal4 {
-  0%, 38% {
-    opacity: 0;
-    transform: translateY(22px) scale(0.96);
-  }
-  42%, 91% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  95%, 100% {
-    opacity: 0;
-    transform: translateY(-6px) scale(0.98);
-  }
-}
-
-/* Base Card Styling */
-.flow-card {
-  will-change: transform, opacity;
-  box-sizing: border-box;
-  transition: box-shadow 0.3s ease;
-}
-
-.flow-card:hover {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
-}
-
-/* Card 1: Broadcast Command Pill */
-.flow-card-1 {
-  background: #f8fafc;
-  color: #1e293b;
-  padding: 14px 22px;
-  border-radius: 999px;
-  font-size: 14.5px;
-  font-weight: 500;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  align-self: flex-start;
-  max-width: 95%;
-  animation: cardReveal1 10s infinite cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-/* Card 2: AI Assistant Response */
-.flow-card-2 {
-  background: #ffffff;
-  color: #0f172a;
-  padding: 16px 20px;
-  border-radius: 20px;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  animation: cardReveal2 10s infinite cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.flow-ai-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.flow-ai-avatar {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background: #1d63ff;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(29, 99, 255, 0.35);
-}
-
-.flow-ai-k {
-  font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 800;
-  font-size: 15px;
-  line-height: 1;
-  color: #ffffff;
-}
-
-.flow-ai-title {
-  font-size: 13.5px;
-  font-weight: 600;
-  color: #334155;
-  letter-spacing: -0.01em;
-}
-
-.flow-ai-msg {
-  font-size: 14.5px;
-  font-weight: 600;
-  color: #0f172a;
-  line-height: 1.4;
-}
-
-/* Card 3: Transaction Card */
-.flow-card-3 {
-  background: #ffffff;
-  color: #0f172a;
-  padding: 18px 20px;
-  border-radius: 22px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  animation: cardReveal3 10s infinite cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.flow-txn-header {
+/* Stepper Header Bar */
+.workflow-stepper-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  width: 100%;
+  padding: 2px 4px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 5;
 }
 
-.flow-txn-id {
-  font-size: 13.5px;
-  color: #475569;
+.step-nav-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  padding: 5px 12px;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+  color: #94a3b8;
+}
+
+.step-nav-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.step-nav-btn.active {
+  background: rgba(29, 99, 255, 0.25);
+  color: #ffffff;
+  border: 1px solid rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 14px rgba(29, 99, 255, 0.4);
+}
+
+.step-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  transition: all 0.2s ease;
 }
 
-.flow-txn-amount {
-  font-size: 21px;
-  font-weight: 800;
+.step-nav-btn.active .step-num {
+  background: #1d63ff;
+  color: #ffffff;
+}
+
+.step-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.step-connector {
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 0 4px;
+  border-radius: 1px;
+}
+
+/* Viewport for the 3 slides */
+.workflow-cards-viewport {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 490px;
+  margin-top: 12px;
+  display: flex;
+}
+
+.workflow-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(14px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.workflow-slide.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  position: relative;
+}
+
+/* ==========================================================================
+   SLIDE 1: Campaign Setup Card (Matches Image 1)
+   ========================================================================== */
+.cs-card {
+  background: #ffffff;
   color: #0f172a;
+  border-radius: 18px;
+  padding: 15px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.cs-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.cs-main-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
   letter-spacing: -0.02em;
 }
 
-.flow-pills-row {
+.cs-badge-live {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1d63ff;
+  background: #eff6ff;
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(29, 99, 255, 0.2);
+}
+
+.cs-field-group {
   display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
+  gap: 3px;
 }
 
-.flow-pill {
-  background: #f1f5f9;
-  color: #475569;
-  padding: 5px 11px;
-  border-radius: 999px;
-  font-size: 11.5px;
-  font-weight: 500;
-  white-space: nowrap;
-  letter-spacing: -0.01em;
-  transition: transform 0.25s ease, background 0.25s ease;
-}
-
-.flow-pill.flow-pill-sent {
-  background: #1d63ff;
-  color: #ffffff;
-  font-weight: 600;
-  box-shadow: 0 2px 10px rgba(29, 99, 255, 0.45);
-}
-
-.flow-pill.flow-pill-confirmed {
-  background: #f1f5f9;
+.cs-label {
+  font-size: 12px;
+  font-weight: 700;
   color: #0f172a;
-  font-weight: 600;
 }
 
-/* Card 4: Order Confirmed Pill */
-.flow-card-4 {
-  background: #ffffff;
-  color: #0f172a;
-  padding: 14px 22px;
-  border-radius: 999px;
+.cs-sub {
+  font-size: 11px;
+  font-weight: 400;
+  color: #64748b;
+}
+
+.cs-label-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  font-size: 15px;
+}
+
+.cs-chars-count {
+  font-size: 10.5px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.cs-input-box {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 7px 11px;
+  font-size: 12px;
+  color: #0f172a;
   font-weight: 600;
-  animation: cardReveal4 10s infinite cubic-bezier(0.16, 1, 0.3, 1) both;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
-/* Pause animation on hover */
-.animated-flow-stage:hover .flow-card {
-  animation-play-state: paused;
+.cs-hint {
+  font-size: 9.5px;
+  color: #94a3b8;
+  line-height: 1.25;
 }
 
-.flow-status-pulse {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #0284c7;
-  box-shadow: 0 0 10px #38bdf8;
+.cs-textarea-box {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.cs-textarea-content {
+  padding: 7px 11px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #1e293b;
+}
+
+.cs-textarea-content p {
+  margin: 0 0 2px;
+}
+.cs-textarea-content p:last-child {
+  margin-bottom: 0;
+}
+
+.cs-editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 11px;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  font-size: 10.5px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.cs-tool-btn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cs-tool-magic {
+  color: #1d63ff;
+  font-weight: 600;
+}
+
+.cs-upload-box {
+  border: 1.5px dashed #3b82f6;
+  background: #f0f7ff;
+  border-radius: 8px;
+  padding: 8px 11px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #1e40af;
+  font-size: 11px;
+}
+
+.cs-upload-cloud {
+  color: #1d63ff;
+  flex-shrink: 0;
+}
+
+.cs-schedule-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  padding: 8px 11px;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cs-schedule-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #1d63ff;
+}
+
+.cs-schedule-header h4 {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.cs-timing-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.cs-timing-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 6px 7px;
+  border-radius: 7px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.cs-timing-opt.selected {
+  border-color: #1d63ff;
+  background: #eff6ff;
+}
+
+.cs-radio-checked {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #1d63ff;
   position: relative;
-  display: inline-block;
+  flex-shrink: 0;
+  margin-top: 1px;
 }
-
-.flow-status-pulse::after {
-  content: "";
+.cs-radio-checked::after {
+  content: "✓";
+  color: #fff;
+  font-size: 9.5px;
   position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  border: 2px solid #38bdf8;
-  opacity: 0.7;
-  animation: bluePulseRadar 2s infinite ease-out;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 800;
 }
 
-@keyframes bluePulseRadar {
-  0% { transform: scale(0.8); opacity: 0.85; }
-  100% { transform: scale(2.2); opacity: 0; }
+.cs-radio-unchecked {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1.5px solid #cbd5e1;
+  background: #fff;
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 
-/* Flow Stage Footer Indicator */
-.flow-indicator-bar {
+.cs-timing-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-opt-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.cs-opt-sub {
+  font-size: 9px;
+  color: #64748b;
+  line-height: 1.15;
+}
+
+.cs-card-footer {
+  margin-top: 2px;
+}
+
+.btn-step-next {
+  width: 100%;
+  background: linear-gradient(135deg, #2563eb 0%, #1d63ff 100%);
+  color: #ffffff;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 11.5px;
-  color: #94a3b8;
-  z-index: 2;
+  gap: 7px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(29, 99, 255, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.flow-live-pill {
-  display: inline-flex;
+.btn-step-next:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(29, 99, 255, 0.55);
+}
+
+/* ==========================================================================
+   SLIDE 2: WhatsApp Phone Mockup (Matches Image 2)
+   ========================================================================== */
+.wa-phone-mockup {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  border-radius: 32px;
+  border: 5px solid #1e293b;
+  background: #efeae2;
+  box-shadow: 
+    0 22px 50px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.phone-dynamic-island {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 18px;
+  background: #000000;
+  border-radius: 12px;
+  z-index: 10;
+}
+
+.phone-status-bar {
+  display: flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(29, 99, 255, 0.16);
-  border: 1px solid rgba(29, 99, 255, 0.4);
+  justify-content: space-between;
+  padding: 8px 18px 4px;
+  background: #005d4b;
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 600;
+  z-index: 5;
+}
+
+.phone-status-icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.phone-battery {
+  width: 16px;
+  height: 8px;
+  border: 1px solid #ffffff;
+  border-radius: 3px;
+  padding: 1px;
+}
+
+.phone-battery-level {
+  width: 75%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 1px;
+}
+
+/* WhatsApp Chat App Bar */
+.wa-chat-header {
+  background: #005d4b;
+  color: #ffffff;
+  padding: 5px 12px 9px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.wa-header-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.wa-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #005d4b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.wa-header-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.wa-header-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.wa-header-status {
+  font-size: 9.5px;
+  color: #a7f3d0;
+  line-height: 1;
+}
+
+.wa-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.9;
+}
+
+/* WhatsApp Chat Body */
+.wa-chat-body {
+  padding: 12px 10px;
+  background-color: #efeae2;
+  background-image: radial-gradient(#d5cbbe 0.75px, transparent 0.75px);
+  background-size: 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-height: 280px;
+}
+
+.wa-date-pill {
+  align-self: center;
+  background: #e1dad2;
+  color: #54656f;
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.wa-message-bubble {
+  background: #ffffff;
+  color: #111b21;
+  border-radius: 10px;
+  padding: 6px 7px;
+  max-width: 92%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.13);
+  position: relative;
+  align-self: flex-start;
+}
+
+.wa-bubble-img-wrap {
+  border-radius: 7px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.wa-bubble-img-placeholder {
+  background: linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%);
+  color: #ffffff;
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 6px;
+  position: relative;
+}
+
+.wa-img-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   color: #93c5fd;
-  padding: 4px 12px;
-  border-radius: 999px;
+}
+
+.wa-img-price {
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.wa-bubble-text {
   font-size: 11px;
+  line-height: 1.45;
+  color: #111b21;
+  padding: 0 3px;
+}
+
+.wa-bubble-text p {
+  margin: 0 0 3px;
+}
+.wa-bubble-text p:last-child {
+  margin-bottom: 0;
+}
+
+.wa-bubble-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 7px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 5px;
+}
+
+.wa-bubble-btn {
+  background: #f8fafc;
+  color: #005d4b;
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid #e2e8f0;
+}
+
+.wa-bubble-btn.wa-btn-highlight {
+  background: #005d4b;
+  color: #ffffff;
+  border-color: #005d4b;
+}
+
+.wa-bubble-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 3px;
+}
+
+.wa-time {
+  font-size: 9.5px;
+  color: #667781;
+}
+
+.wa-ticks {
+  color: #53bdeb;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.wa-chat-input-bar {
+  background: #f0f2f5;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.wa-preview-pill {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 6px 12px;
+  font-size: 11px;
+  color: #8696a0;
+  border: 1px solid #e9edef;
+}
+
+.phone-launch-overlay {
+  padding: 9px 12px;
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(8px);
+}
+
+.btn-launch-now {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+.btn-launch-now:hover {
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.55);
+}
+
+/* ==========================================================================
+   SLIDE 3: Campaign Successful Popup (Matches Request)
+   ========================================================================== */
+.success-popup-card {
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 20px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 13px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  margin: auto 0;
+}
+
+.success-icon-badge {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #eff6ff;
+  color: #1d63ff;
+  border: 2px solid #bfdbfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 24px rgba(29, 99, 255, 0.25);
+  animation: badgePop 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes badgePop {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.success-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.success-subtitle {
+  font-size: 12.5px;
+  color: #475569;
+  line-height: 1.45;
+  margin: 0;
+  max-width: 320px;
+}
+
+.success-stats-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
+  padding: 9px 12px;
+}
+
+.success-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.success-stat-val {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.success-stat-val.highlight {
+  color: #10b981;
+}
+
+.success-stat-lbl {
+  font-size: 10px;
+  color: #64748b;
   font-weight: 600;
 }
 
-.flow-live-dot {
+.success-stat-divider {
+  width: 1px;
+  height: 22px;
+  background: #e2e8f0;
+}
+
+.success-progress-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.success-progress-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.progress-pct {
+  color: #10b981;
+}
+
+.success-progress-bar {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.success-progress-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #1d63ff, #10b981);
+  border-radius: 3px;
+  animation: progressFill 1.8s ease-out both;
+}
+
+@keyframes progressFill {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+.success-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  margin-top: 3px;
+}
+
+.btn-success-dashboard {
+  flex: 1.4;
+  background: linear-gradient(135deg, #2563eb 0%, #1d63ff 100%);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 4px 14px rgba(29, 99, 255, 0.4);
+}
+
+.btn-success-restart {
+  flex: 1;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 9px 11px;
+  font-size: 11.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-success-restart:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* ==========================================================================
+   Bottom Flow Timeline & Pause Controls
+   ========================================================================== */
+.workflow-bottom-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  margin-top: 12px;
+  padding-top: 9px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 5;
+}
+
+.workflow-loop-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: #93c5fd;
+  font-weight: 500;
+}
+
+.workflow-pulse-dot {
   width: 6px;
   height: 6px;
   background: #3b82f6;
   border-radius: 50%;
   box-shadow: 0 0 6px #3b82f6;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+.workflow-timeline-track {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.workflow-timeline-progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 2px;
+  transition: width 0.1s linear;
 }
 
 /* Responsive adjustments for 2-column hero */

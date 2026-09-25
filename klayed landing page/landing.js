@@ -119,4 +119,78 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 6. Interactive Campaign Workflow Showcase (Setup -> Preview -> Success)
+  const workflowStage = document.getElementById('campaignWorkflowStage');
+  if (workflowStage) {
+    const stepBtns = workflowStage.querySelectorAll('.step-nav-btn');
+    const slides = workflowStage.querySelectorAll('.workflow-slide');
+    const timelineBar = document.getElementById('workflowTimelineBar');
+    const statusText = document.getElementById('workflowStatusText');
+    const nextBtns = workflowStage.querySelectorAll('[data-goto]');
+
+    let currentStep = 1;
+    let isPaused = false;
+    let stepDuration = 5200; // 5.2s per step
+    let stepElapsed = 0;
+
+    function goToStep(stepNum) {
+      currentStep = stepNum;
+      stepElapsed = 0;
+      if (timelineBar) timelineBar.style.width = '0%';
+
+      // Update active nav buttons
+      stepBtns.forEach(btn => {
+        const btnStep = parseInt(btn.getAttribute('data-step'), 10);
+        btn.classList.toggle('active', btnStep === currentStep);
+      });
+
+      // Update active slide
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx + 1 === currentStep);
+      });
+    }
+
+    stepBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = parseInt(btn.getAttribute('data-step'), 10);
+        goToStep(target);
+      });
+    });
+
+    nextBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = parseInt(btn.getAttribute('data-goto'), 10);
+        goToStep(target);
+      });
+    });
+
+    workflowStage.addEventListener('mouseenter', () => {
+      isPaused = true;
+      if (statusText) statusText.innerText = 'Paused • Move cursor away to resume';
+    });
+
+    workflowStage.addEventListener('mouseleave', () => {
+      isPaused = false;
+      if (statusText) statusText.innerText = 'Auto-cycling workflow • Hover to pause';
+    });
+
+    // Auto-advance loop ticker
+    setInterval(() => {
+      if (isPaused) return;
+
+      stepElapsed += 100;
+      const pct = Math.min((stepElapsed / stepDuration) * 100, 100);
+      if (timelineBar) timelineBar.style.width = `${pct}%`;
+
+      if (stepElapsed >= stepDuration) {
+        stepElapsed = 0;
+        let nextStep = currentStep + 1;
+        if (nextStep > 3) nextStep = 1;
+        goToStep(nextStep);
+      }
+    }, 100);
+  }
+
 });

@@ -127,9 +127,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const slide3 = document.getElementById('storySlide3') || storyStage.querySelector('.story-slide-success') || storyStage.querySelector('[data-step="3"]');
     
     const previewTriggerBtn = document.getElementById('btnPreviewTrigger');
+    const setupCursor = document.getElementById('setupClickCursor');
     const phoneLaunchFloat = document.getElementById('phoneLaunchFloat');
     const launchNowBtn = document.getElementById('btnLaunchCampaignNow');
-    const clickCursor = document.getElementById('clickCursor');
+    const launchCursor = document.getElementById('launchClickCursor') || document.getElementById('clickCursor');
     const restartBtn = document.getElementById('btnSuccessRestart');
 
     let isPaused = false;
@@ -146,14 +147,20 @@ document.addEventListener('DOMContentLoaded', () => {
       if (slide3) {
         slide3.classList.remove('is-active', 'is-leaving', 'active');
       }
+      if (setupCursor) {
+        setupCursor.classList.remove('cursor-arrived', 'cursor-clicking');
+      }
+      if (previewTriggerBtn) {
+        previewTriggerBtn.classList.remove('is-clicked');
+      }
       if (phoneLaunchFloat) {
         phoneLaunchFloat.classList.remove('is-popped');
       }
       if (launchNowBtn) {
         launchNowBtn.classList.remove('is-clicked');
       }
-      if (clickCursor) {
-        clickCursor.classList.remove('cursor-arrived', 'cursor-clicking');
+      if (launchCursor) {
+        launchCursor.classList.remove('cursor-arrived', 'cursor-clicking');
       }
     }
 
@@ -162,27 +169,29 @@ document.addEventListener('DOMContentLoaded', () => {
       clearAnimationClasses();
       if (slide1) slide1.classList.add('is-active');
 
-      // Schedule transition to Phase 2
+      // 1. Cursor glides onto "View WhatsApp Preview" button
       timelineTimer = setTimeout(() => {
         if (isPaused) return;
+        if (setupCursor) setupCursor.classList.add('cursor-arrived');
 
-        // Button click effect on preview trigger
-        if (previewTriggerBtn) {
-          previewTriggerBtn.classList.add('is-clicked');
-          setTimeout(() => previewTriggerBtn.classList.remove('is-clicked'), 220);
-        }
-
-        // Fade slide 1 out
+        // 2. Cursor clicks the setup button
         timelineTimer = setTimeout(() => {
           if (isPaused) return;
-          if (slide1) slide1.classList.add('is-leaving');
+          if (setupCursor) setupCursor.classList.add('cursor-clicking');
+          if (previewTriggerBtn) previewTriggerBtn.classList.add('is-clicked');
 
+          // 3. Smooth fade out of Setup card
           timelineTimer = setTimeout(() => {
             if (isPaused) return;
-            runPhase2();
-          }, 450);
-        }, 350);
-      }, 2400);
+            if (slide1) slide1.classList.add('is-leaving');
+
+            timelineTimer = setTimeout(() => {
+              if (isPaused) return;
+              runPhase2();
+            }, 450);
+          }, 550);
+        }, 800);
+      }, 1100);
     }
 
     function runPhase2() {
@@ -190,23 +199,23 @@ document.addEventListener('DOMContentLoaded', () => {
       clearAnimationClasses();
       if (slide2) slide2.classList.add('is-active');
 
-      // 1. WhatsApp preview shown, then Green Launch Button POPS UP on the preview screen
+      // 1. WhatsApp mockup displayed, then Launch Campaign Now button POPS UP on mockup
       timelineTimer = setTimeout(() => {
         if (isPaused) return;
         if (phoneLaunchFloat) phoneLaunchFloat.classList.add('is-popped');
 
-        // 2. Simulated cursor glides onto the button
+        // 2. Launch cursor glides onto "🚀 Launch Campaign Now" button
         timelineTimer = setTimeout(() => {
           if (isPaused) return;
-          if (clickCursor) clickCursor.classList.add('cursor-arrived');
+          if (launchCursor) launchCursor.classList.add('cursor-arrived');
 
-          // 3. Cursor clicks the launch button with ripple animation
+          // 3. Cursor clicks the launch button with pulse ripple
           timelineTimer = setTimeout(() => {
             if (isPaused) return;
-            if (clickCursor) clickCursor.classList.add('cursor-clicking');
+            if (launchCursor) launchCursor.classList.add('cursor-clicking');
             if (launchNowBtn) launchNowBtn.classList.add('is-clicked');
 
-            // 4. Slide 2 fades out, transition to Success Modal
+            // 4. Slide 2 smoothly transitions out
             timelineTimer = setTimeout(() => {
               if (isPaused) return;
               if (slide2) slide2.classList.add('is-leaving');
@@ -215,9 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isPaused) return;
                 runPhase3();
               }, 450);
-            }, 750);
-          }, 650);
-        }, 750);
+            }, 700);
+          }, 700);
+        }, 800);
       }, 700);
     }
 
@@ -234,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fillBar.style.animation = 'progressFill 1.8s ease-out both';
       }
 
-      // Success modal stays visible for celebration, then loops back to Phase 1
+      // Success modal stays visible for celebration, then smoothly loops back to Phase 1
       timelineTimer = setTimeout(() => {
         if (isPaused) return;
         if (slide3) slide3.classList.add('is-leaving');
@@ -243,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (isPaused) return;
           runPhase1();
         }, 500);
-      }, 5200);
+      }, 5000);
     }
 
     // Interactive overrides:

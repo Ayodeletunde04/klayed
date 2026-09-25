@@ -984,11 +984,11 @@ button {
   100% { transform: scale(2.2); opacity: 0; }
 }
 
-/* Flow Stage Footer & Replay Bar */
+/* Flow Stage Footer Indicator */
 .flow-indicator-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   margin-top: 16px;
   padding-top: 12px;
@@ -1005,7 +1005,7 @@ button {
   background: rgba(29, 99, 255, 0.16);
   border: 1px solid rgba(29, 99, 255, 0.4);
   color: #93c5fd;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: 999px;
   font-size: 11px;
   font-weight: 600;
@@ -1017,26 +1017,6 @@ button {
   background: #3b82f6;
   border-radius: 50%;
   box-shadow: 0 0 6px #3b82f6;
-}
-
-.btn-flow-replay {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #cbd5e1;
-  border-radius: 6px;
-  padding: 4px 10px;
-  font-size: 11px;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-flow-replay:hover {
-  background: rgba(255, 255, 255, 0.18);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.35);
 }
 
 /* Responsive adjustments for 2-column hero */

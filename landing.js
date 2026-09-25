@@ -119,22 +119,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. Sequential Flow Animation Replay Control
-  const replayBtn = document.getElementById('btnFlowReplay');
-  const stage = document.getElementById('animatedFlowStage');
-
-  if (replayBtn && stage) {
-    replayBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const cards = stage.querySelectorAll('.flow-card');
-      cards.forEach(card => {
-        card.style.animation = 'none';
-      });
-      // Force DOM reflow to re-trigger CSS keyframe animations immediately
-      void stage.offsetHeight;
-      cards.forEach(card => {
-        card.style.animation = '';
-      });
-    });
-  }
 });

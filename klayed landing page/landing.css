@@ -447,7 +447,7 @@ button {
   width: 100%;
   background: radial-gradient(circle at 50% -10%, #0d2854 0%, #07152b 55%, #030a17 100%);
   color: #ffffff;
-  padding: 80px 24px 100px;
+  padding: 70px 24px 80px;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -619,7 +619,7 @@ button {
   align-items: center;
   gap: 48px;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 0;
 }
 
 .hero-content-left {

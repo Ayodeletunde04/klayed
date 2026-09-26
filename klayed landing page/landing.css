@@ -2248,6 +2248,918 @@ button {
 }
 
 /* ==========================================================================
+   All-in-One WhatsApp Platform (Everything You Need) — 6 Feature Cards
+   Klaviyo-Inspired Visual Architecture (Soft Ground + Floating Elevated UI)
+   ========================================================================== */
+.whatsapp-platform-section {
+  width: 100%;
+  padding: 104px 24px 112px;
+  background-color: var(--color-cool-porcelain);
+  border-bottom: 1px solid var(--color-soft-slate);
+  position: relative;
+}
+
+.whatsapp-platform-container {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+}
+
+.whatsapp-platform-header {
+  text-align: center;
+  max-width: 880px;
+  margin: 0 auto 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.platform-headline {
+  font-size: 42px;
+  line-height: 1.14;
+  letter-spacing: -1.2px;
+  font-weight: 700;
+  color: var(--color-ink-navy);
+  text-wrap: balance;
+  margin: 0;
+}
+
+.platform-subtext {
+  font-size: 17.5px;
+  line-height: 1.58;
+  color: var(--color-slate-gray);
+  max-width: 780px;
+  font-weight: 400;
+  text-wrap: pretty;
+  margin: 0;
+}
+
+.platform-action-wrap {
+  margin-top: 10px;
+}
+
+.btn-platform-cta {
+  background: linear-gradient(135deg, #2563eb 0%, #1d63ff 100%);
+  color: #ffffff;
+  padding: 14px 34px;
+  border-radius: 12px;
+  font-size: 15.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(29, 99, 255, 0.4);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-platform-cta:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1751d8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(29, 99, 255, 0.55);
+}
+
+.btn-platform-cta svg {
+  transition: transform 0.2s ease;
+}
+
+.btn-platform-cta:hover svg {
+  transform: translateX(3px);
+}
+
+/* 6-Card Grid Layout */
+.platform-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 52px 36px;
+  width: 100%;
+}
+
+.platform-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.platform-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-ink-navy);
+  letter-spacing: -0.4px;
+  margin: 0 0 18px;
+}
+
+/* The Soft Neutral Container Ground (Klaviyo Style) */
+.platform-card-visual {
+  background: #f4f3f0;
+  border-radius: 14px;
+  height: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Elevated Floating UI Surface Card */
+.mockup-surface {
+  background: #ffffff;
+  border-radius: 13px;
+  width: 100%;
+  max-width: 275px;
+  box-shadow: 
+    0 14px 34px rgba(0, 0, 0, 0.07),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.platform-card:hover .mockup-surface {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 20px 42px rgba(0, 0, 0, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.platform-card-desc {
+  font-size: 14.5px;
+  line-height: 1.58;
+  color: var(--color-slate-gray);
+  margin: 18px 0 14px;
+  flex-grow: 1;
+}
+
+.platform-card-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-ink-navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--color-ink-navy);
+  padding-bottom: 2px;
+  align-self: flex-start;
+  transition: color 0.2s ease, border-color 0.2s ease, gap 0.2s ease;
+}
+
+.platform-card-link:hover {
+  color: var(--color-royal-blue);
+  border-color: var(--color-royal-blue);
+  gap: 9px;
+}
+
+.platform-card-link .link-arrow {
+  font-size: 15px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.platform-card-link:hover .link-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* ==========================================================================
+   Specific Mockup Internals
+   ========================================================================== */
+
+/* Shared Elements */
+.badge-dot-green {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+}
+
+/* Card 1: Broadcast */
+.mockup-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10.5px;
+}
+
+.mockup-badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 700;
+  color: #065f46;
+  background: #d1fae5;
+  padding: 2.5px 7px;
+  border-radius: 5px;
+}
+
+.mockup-meta-tag {
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.mockup-campaign-banner {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.mockup-thumb-trench {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.thumb-label {
+  font-size: 7.5px;
+  font-weight: 800;
+  color: #93c5fd;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+}
+
+.mockup-banner-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.banner-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.banner-code {
+  font-size: 10px;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.mockup-delivery-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.delivery-stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.delivery-bar-track {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.delivery-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+  border-radius: 3px;
+}
+
+.mockup-actions-row {
+  display: flex;
+  gap: 6px;
+}
+
+.mockup-action-pill {
+  flex: 1;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 6px 4px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+}
+
+.mockup-action-pill.highlight {
+  background: #005d4b;
+  color: #ffffff;
+  border-color: #005d4b;
+}
+
+/* Card 2: Marketing Automation */
+.mockup-automation {
+  gap: 8px;
+}
+
+.flow-node {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.flow-node-trigger {
+  border-left: 3px solid #3b82f6;
+}
+
+.flow-node-action {
+  border-left: 3px solid #10b981;
+}
+
+.flow-node-icon {
+  font-size: 16px;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.flow-node-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.node-type {
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #64748b;
+}
+
+.node-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.flow-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.flow-line {
+  flex: 1;
+  height: 1px;
+  background: #cbd5e1;
+}
+
+.flow-delay-badge {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #475569;
+  background: #e2e8f0;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+
+.flow-result-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  border-radius: 6px;
+  padding: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.flow-result-chip .chip-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #ffffff;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card 3: Shared Team Inbox */
+.inbox-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.inbox-user-info {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.inbox-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inbox-user-name {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #0f172a;
+  display: block;
+}
+
+.inbox-user-status {
+  font-size: 9px;
+  color: #10b981;
+  display: block;
+}
+
+.inbox-assignee-badge {
+  font-size: 9px;
+  font-weight: 600;
+  color: #1e40af;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+.inbox-internal-note {
+  background: #fefce8;
+  border: 1px solid #fef08a;
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+.note-label {
+  font-size: 8.5px;
+  font-weight: 800;
+  color: #854d0e;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.note-text {
+  font-size: 10px;
+  color: #713f12;
+  margin: 2px 0 0;
+  line-height: 1.35;
+}
+
+.inbox-chat-bubble {
+  padding: 6px 9px;
+  border-radius: 7px;
+  font-size: 10.5px;
+  line-height: 1.35;
+}
+
+.inbox-chat-bubble p {
+  margin: 0;
+}
+
+.inbox-chat-bubble.customer {
+  background: #f1f5f9;
+  color: #1e293b;
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+
+.inbox-chat-bubble.agent {
+  background: #dcf8c6;
+  color: #064e3b;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+/* Card 4: Customer Segmentation (CDP) */
+.cdp-profile-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cdp-avatar-wrap {
+  position: relative;
+}
+
+.cdp-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cdp-vip-pill {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e1b4b;
+  color: #fef08a;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 1px 4px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.cdp-name-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.cdp-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.cdp-email {
+  font-size: 10px;
+  color: #64748b;
+}
+
+.cdp-metric-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cdp-metric-val {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.cdp-metric-title {
+  font-size: 9.5px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.cdp-gradient-bar {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #2563eb 0%, #8b5cf6 65%, #f43f5e 100%);
+  margin-top: 4px;
+}
+
+.cdp-clv-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8.5px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 3px;
+}
+
+.legend-dot.blue { background: #2563eb; }
+.legend-dot.purple { background: #8b5cf6; }
+
+.cdp-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 6px 8px;
+  text-align: center;
+}
+
+.stat-col-val {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0f172a;
+  display: block;
+}
+
+.stat-col-label {
+  font-size: 8px;
+  color: #64748b;
+  display: block;
+}
+
+/* Card 5: Analytics & Reporting */
+.analytics-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.analytics-header-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.analytics-filter-pills {
+  display: flex;
+  gap: 4px;
+}
+
+.filter-pill {
+  font-size: 8.5px;
+  font-weight: 600;
+  color: #475569;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 1.5px 5px;
+  border-radius: 4px;
+}
+
+.analytics-chart-sub {
+  font-size: 9.5px;
+  color: #64748b;
+  margin-top: -3px;
+}
+
+.analytics-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 92px;
+  padding-top: 6px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.chart-bar-col {
+  width: 14%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2px;
+  height: 100%;
+}
+
+.bar-segment {
+  width: 100%;
+  border-radius: 2px;
+}
+
+.bar-klayed { background: #1d63ff; }
+.bar-meta { background: #60a5fa; }
+.bar-google { background: #93c5fd; }
+
+.chart-bar-col.highlight .bar-klayed {
+  background: #1e40af;
+  box-shadow: 0 0 8px rgba(30, 64, 175, 0.4);
+}
+
+.analytics-legend-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: #64748b;
+  padding-top: 2px;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  margin-right: 3px;
+}
+
+.swatch-klayed { background: #1d63ff; }
+.swatch-meta { background: #60a5fa; }
+.swatch-google { background: #93c5fd; }
+
+/* Card 6: AI-Powered Chatbot */
+.ai-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ai-bot-identity {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ai-spark-icon {
+  font-size: 14px;
+}
+
+.ai-bot-name {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.ai-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #047857;
+  background: #d1fae5;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.ai-chat-bubble {
+  padding: 6px 9px;
+  border-radius: 7px;
+  font-size: 10.5px;
+  line-height: 1.35;
+}
+
+.ai-chat-bubble p {
+  margin: 0;
+}
+
+.ai-chat-bubble.user {
+  background: #f1f5f9;
+  color: #0f172a;
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+
+.ai-chat-bubble.bot {
+  background: #eff6ff;
+  color: #1e3a8a;
+  border: 1px solid #bfdbfe;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+.ai-actions-wrap {
+  display: flex;
+  gap: 6px;
+}
+
+.ai-btn-pill {
+  flex: 1;
+  text-align: center;
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 5px 6px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+}
+
+.ai-btn-pill.primary {
+  background: #1d63ff;
+  color: #ffffff;
+  border-color: #1d63ff;
+}
+
+.ai-metric-footer {
+  text-align: center;
+  font-size: 9px;
+  font-weight: 600;
+  color: #059669;
+  padding-top: 2px;
+}
+
+/* ==========================================================================
+   Responsive Rules for 6 Feature Cards Grid
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .platform-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 28px;
+  }
+  
+  .platform-headline {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 680px) {
+  .whatsapp-platform-section {
+    padding: 64px 18px 72px;
+  }
+
+  .platform-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .platform-headline {
+    font-size: 28px;
+    letter-spacing: -0.6px;
+  }
+
+  .platform-subtext {
+    font-size: 15.5px;
+  }
+
+  .platform-card-visual {
+    height: 280px;
+  }
+}
+
+/* Dark Preview Mode Support */
+body.dark-preview .whatsapp-platform-section {
+  background-color: #071224;
+  border-bottom-color: #1e293b;
+}
+
+body.dark-preview .platform-headline,
+body.dark-preview .platform-card-title {
+  color: #ffffff;
+}
+
+body.dark-preview .platform-subtext,
+body.dark-preview .platform-card-desc {
+  color: #94a3b8;
+}
+
+body.dark-preview .platform-card-visual {
+  background: #0d1e38;
+  border-color: #1e293b;
+}
+
+body.dark-preview .mockup-surface {
+  background: #0f223f;
+  border-color: #1e3a8a;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-preview .platform-card-link {
+  color: #60a5fa;
+  border-bottom-color: #60a5fa;
+}
+
+body.dark-preview .mockup-campaign-banner,
+body.dark-preview .cdp-metric-card,
+body.dark-preview .cdp-stats-grid,
+body.dark-preview .flow-node {
+  background: #162c4e;
+  border-color: #1e3a8a;
+}
+
+body.dark-preview .banner-title,
+body.dark-preview .node-title,
+body.dark-preview .inbox-user-name,
+body.dark-preview .cdp-name,
+body.dark-preview .cdp-metric-val,
+body.dark-preview .stat-col-val,
+body.dark-preview .analytics-header-title,
+body.dark-preview .ai-bot-name {
+  color: #f1f5f9;
+}
+
+/* ==========================================================================
    Merchant Suite Tabs & Detail Showcase
    ========================================================================== */
 .suite-section {

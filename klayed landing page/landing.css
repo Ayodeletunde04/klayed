@@ -3494,17 +3494,17 @@ body.dark-preview .wf-feature-banner {
   transform: scale(1.02);
 }
 
-/* Mockup Window Top Header Bar (Dark Forest Green like reference) */
+/* Mockup Window Top Header Bar (Sleek Slate/Charcoal Grey) */
 .wf-mockup-top-bar {
-  background: #0e2919;
-  color: #e2f5e8;
+  background: #202226;
+  color: #f1f5f9;
   padding: 14px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-top-left-radius: 18px;
   border-top-right-radius: 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .wf-top-title {
@@ -3889,9 +3889,9 @@ body.dark-preview .wf-feature-banner {
 
 .wf-btn-primary {
   font-family: var(--font-work-sans);
-  background: #ffffff;
-  color: #121411;
-  border: 1px solid #ffffff;
+  background: var(--color-primary-gold);
+  color: #ffffff;
+  border: 1px solid var(--color-primary-gold);
   border-radius: var(--radius-full);
   padding: 13px 28px;
   font-size: 15px;
@@ -3900,17 +3900,19 @@ body.dark-preview .wf-feature-banner {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 4px 18px rgba(212, 147, 17, 0.35);
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.2s ease,
-              background-color 0.2s ease;
+              background-color 0.2s ease,
+              border-color 0.2s ease;
 }
 
 .wf-btn-primary:hover {
-  background: #fbfbfb;
+  background: #c3840b;
+  border-color: #c3840b;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25);
-  color: #000000;
+  box-shadow: 0 8px 24px rgba(212, 147, 17, 0.45);
+  color: #ffffff;
 }
 
 .wf-btn-secondary {

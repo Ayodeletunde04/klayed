@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
-  <link rel="stylesheet" href="landing.css?v=20261005_48">
+  <link rel="stylesheet" href="landing.css?v=20261005_49">
   <script>
     (function() {
       try {
@@ -3086,65 +3086,47 @@
     </section>
 
     <!-- ====================================================================
-         7. Final Call to Action (Banner)
+         7. Final Call to Action (Banner) - Dark Grid Dub Style
          ==================================================================== -->
     <section class="cta-banner-section" aria-label="Get Started with Klayed">
       <div class="cta-banner-container">
-        <div class="cta-banner-card">
-          <!-- Animated Ambient Aurora Glow Orbs -->
-          <div class="cta-aurora-glow" aria-hidden="true">
-            <div class="cta-orb cta-orb-amber"></div>
-            <div class="cta-orb cta-orb-blue"></div>
-            <div class="cta-orb cta-orb-emerald"></div>
-          </div>
-
-          <!-- Background Architectural Blueprint & Orbit Pattern -->
-          <div class="cta-pattern-mesh" aria-hidden="true">
-            <svg class="cta-pattern-svg" width="100%" height="100%" viewBox="0 0 1000 440" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="cta-dot-grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                  <circle cx="2" cy="2" r="1.1" fill="currentColor" class="cta-grid-dot"/>
-                </pattern>
-                <radialGradient id="cta-center-mask" cx="50%" cy="50%" r="58%">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
-                  <stop offset="60%" stop-color="#ffffff" stop-opacity="0.35" />
-                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0.5" />
-                </radialGradient>
-              </defs>
-              <!-- Dot Grid -->
-              <rect width="100%" height="100%" fill="url(#cta-dot-grid)" class="cta-grid-rect"/>
-              <!-- Central Radial Softening -->
-              <rect width="100%" height="100%" fill="url(#cta-center-mask)" class="cta-mask-rect"/>
-              <!-- Rotating Blueprint Orbit Rings -->
-              <g class="cta-orbit-group">
-                <ellipse cx="500" cy="220" rx="250" ry="120" class="cta-orbit-ellipse orbit-inner" stroke-dasharray="6 6"/>
-                <ellipse cx="500" cy="220" rx="380" ry="180" class="cta-orbit-ellipse orbit-mid"/>
-                <ellipse cx="500" cy="220" rx="510" ry="240" class="cta-orbit-ellipse orbit-outer" stroke-dasharray="8 8"/>
-                <!-- Orbiting Signal Nodes -->
-                <circle cx="270" cy="170" r="4" class="cta-orbit-node node-amber"/>
-                <circle cx="730" cy="270" r="4" class="cta-orbit-node node-blue"/>
-                <circle cx="500" cy="100" r="3" class="cta-orbit-node node-emerald"/>
-              </g>
+        <div class="cta-banner-card cta-banner-dark-grid">
+          <!-- Top Architectural Notch Transition -->
+          <div class="cta-top-notch" aria-hidden="true">
+            <svg class="cta-notch-svg" viewBox="0 0 340 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0 C70 0 95 24 170 24 C245 24 270 0 340 0 H0 Z" fill="currentColor"/>
             </svg>
           </div>
 
+          <!-- Subtle Background Grid & Vignette Aura -->
+          <div class="cta-dark-grid-mesh" aria-hidden="true"></div>
+
           <div class="cta-content-wrapper">
-            <div class="cta-kicker-badge">
-              <span class="cta-kicker-dot"></span>
-              <span>Unified Omnichannel Dispatch</span>
-            </div>
             <h2 class="cta-headline">Ready to elevate your customer communication?</h2>
             <p class="cta-subheadline">Integrate Email, WhatsApp, SMS, and Voice in an afternoon.</p>
             <div class="cta-actions-row">
-              <a href="../Klayed dashboard/index.html" class="btn-primary-pill cta-btn-glow">
+              <a href="../Klayed dashboard/index.html" class="btn-cta-white">
                 <span>Create Free Account</span>
-                <svg class="cta-btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M3 8h10M9 4l4 4-4 4"/>
-                </svg>
               </a>
-              <a href="#channels" class="btn-demo-outline">
+              <a href="#channels" class="btn-cta-dark">
                 <span>Talk to Sales</span>
               </a>
+            </div>
+
+            <!-- Social Proof Star Ratings Strip (Image 1 aesthetic) -->
+            <div class="cta-ratings-strip" aria-label="Customer satisfaction ratings">
+              <div class="cta-rating-item">
+                <span class="cta-rating-badge-icon badge-g2">G</span>
+                <span class="cta-rating-stars">★★★★★</span>
+              </div>
+              <div class="cta-rating-item">
+                <span class="cta-rating-badge-icon badge-ph">P</span>
+                <span class="cta-rating-stars">★★★★★</span>
+              </div>
+              <div class="cta-rating-item">
+                <span class="cta-rating-badge-icon badge-star">★</span>
+                <span class="cta-rating-stars">★★★★★</span>
+              </div>
             </div>
           </div>
         </div>
@@ -3179,7 +3161,6 @@
             <li><a href="#channels">WhatsApp Business</a></li>
             <li><a href="#channels">SMS Gateway</a></li>
             <li><a href="#channels">Voice &amp; IVR</a></li>
-            <li><a href="#pricing">Pricing</a></li>
           </ul>
         </div>
 
@@ -3213,6 +3194,7 @@
           <h4 class="footer-col-heading">Company</h4>
           <ul class="footer-links-list">
             <li><a href="#why-klayed">About Us</a></li>
+            <li><a href="#pricing">Pricing</a></li>
             <li><a href="#contact">Contact Us</a></li>
             <li><a href="#solutions">Customers</a></li>
             <li><a href="#security">Security</a></li>

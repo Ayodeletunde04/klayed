@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
-  <link rel="stylesheet" href="landing.css?v=20261005_43">
+  <link rel="stylesheet" href="landing.css?v=20261005_44">
   <script>
     (function() {
       try {
@@ -206,38 +206,35 @@
               <div class="omni-flow-body">
                 <!-- 1. Left: Incoming Event on top of Klayed Orchestrator Hub -->
                 <div class="omni-orchestrator-col">
-                  <!-- Trigger Wrap: Event Trigger + Downward Connector -->
-                  <div class="orchestrator-col-trigger-wrap">
-                    <!-- Incoming Event Node (Event Trigger) -->
-                    <div class="omni-trigger-node" id="omniTriggerNode">
-                      <div class="trigger-node-badge">
-                        <span class="trigger-type-label">INCOMING EVENT</span>
-                        <span class="trigger-latency">12ms</span>
+                  <!-- Incoming Event Node (Event Trigger) -->
+                  <div class="omni-trigger-node" id="omniTriggerNode">
+                    <div class="trigger-node-badge">
+                      <span class="trigger-type-label">INCOMING EVENT</span>
+                      <span class="trigger-latency">12ms</span>
+                    </div>
+                    <div class="trigger-node-payload">
+                      <div class="trigger-icon-wrap" id="triggerIconWrap">
+                        <i class="hgi-stroke hgi-shopping-cart-01" style="font-size: 18px;"></i>
                       </div>
-                      <div class="trigger-node-payload">
-                        <div class="trigger-icon-wrap" id="triggerIconWrap">
-                          <i class="hgi-stroke hgi-shopping-cart-01" style="font-size: 18px;"></i>
-                        </div>
-                        <div class="trigger-meta">
-                          <span class="trigger-name" id="triggerEventName">orders.created</span>
-                          <span class="trigger-sub" id="triggerEventSub">Sarah Jenkins • #KL-8492</span>
-                        </div>
-                      </div>
-                      <div class="trigger-dispatch-tag">
-                        <span class="dispatch-pulse"></span>
-                        <span>Event Triggered</span>
+                      <div class="trigger-meta">
+                        <span class="trigger-name" id="triggerEventName">orders.created</span>
+                        <span class="trigger-sub" id="triggerEventSub">Sarah Jenkins • #KL-8492</span>
                       </div>
                     </div>
+                    <div class="trigger-dispatch-tag">
+                      <span class="dispatch-pulse"></span>
+                      <span>Event Triggered</span>
+                    </div>
+                  </div>
 
-                    <!-- Animated Connector Stream: Incoming Event -> Klayed -->
-                    <div class="source-connector-line" aria-hidden="true">
-                      <span class="stream-pill-tag">Payload</span>
-                      <svg class="source-connector-svg" width="24" height="28" viewBox="0 0 24 28" fill="none">
-                        <line x1="12" y1="0" x2="12" y2="22" stroke="#d8d4cd" stroke-width="1.5" stroke-dasharray="3 3" class="stream-line-event-down" />
-                        <polygon points="8,20 12,27 16,20" fill="#D49311" />
-                        <circle class="stream-particle-down" r="3.5" fill="#D49311" />
-                      </svg>
-                    </div>
+                  <!-- Animated Connector Stream: Incoming Event -> Klayed -->
+                  <div class="source-connector-line" aria-hidden="true">
+                    <span class="stream-pill-tag">Payload</span>
+                    <svg class="source-connector-svg" width="24" height="26" viewBox="0 0 24 26" fill="none">
+                      <line x1="12" y1="0" x2="12" y2="20" stroke="#d8d4cd" stroke-width="1.5" stroke-dasharray="3 3" class="stream-line-event-down" />
+                      <polygon points="8,17 12,24 16,17" fill="#D49311" />
+                      <circle class="stream-particle-down" r="3.5" fill="#D49311" />
+                    </svg>
                   </div>
 
                   <!-- Klayed Central Orchestrator & Distributor Hub Node (Center Hub) -->
@@ -254,44 +251,23 @@
                       <span class="distribute-dot"></span>
                       <span>Distributing 4 Channels</span>
                     </div>
-                    <!-- Right-edge visual distribution socket where rails connect -->
-                    <span class="source-dispatch-socket" aria-hidden="true"></span>
-                  </div>
-
-                  <!-- Left Column Engine Telemetry Status Card (Bottom) -->
-                  <div class="omni-engine-telemetry" id="omniEngineTelemetry">
-                    <div class="telemetry-badge-row">
-                      <span class="telemetry-live-dot"></span>
-                      <span class="telemetry-kicker">DISPATCH BUS</span>
-                    </div>
-                    <div class="telemetry-stats-row">
-                      <div class="telemetry-stat">
-                        <span class="tstat-val">Parallel</span>
-                        <span class="tstat-lbl">Fan-Out</span>
-                      </div>
-                      <div class="telemetry-divider"></div>
-                      <div class="telemetry-stat">
-                        <span class="tstat-val">38ms</span>
-                        <span class="tstat-lbl">Latency</span>
-                      </div>
-                    </div>
                   </div>
                 </div>
 
                 <!-- 2. Animated Connector Lines (SVG Railway) Originating Directly From Klayed Hub -->
                 <div class="omni-rail-network" aria-hidden="true">
                   <svg class="omni-rail-svg" viewBox="0 0 44 380" preserveAspectRatio="none">
-                    <!-- Central Hub Distribution Socket on Klayed (origin at Y = 190) -->
-                    <circle cx="0" cy="190" r="4.5" class="rail-hub-origin-socket" />
+                    <!-- Central Hub Distribution Socket on Klayed (origin at Y = 186) -->
+                    <circle cx="0" cy="186" r="4.5" class="rail-hub-origin-socket" />
 
                     <!-- Path to Email (Top) -->
-                    <path class="rail-path rail-email" d="M 0 190 C 24 190, 20 42, 44 42" />
+                    <path class="rail-path rail-email" d="M 0 186 C 24 186, 20 42, 44 42" />
                     <!-- Path to WhatsApp (Upper mid) -->
-                    <path class="rail-path rail-whatsapp" d="M 0 190 C 24 190, 20 138, 44 138" />
+                    <path class="rail-path rail-whatsapp" d="M 0 186 C 24 186, 20 138, 44 138" />
                     <!-- Path to SMS (Lower mid) -->
-                    <path class="rail-path rail-sms" d="M 0 190 C 24 190, 20 242, 44 242" />
+                    <path class="rail-path rail-sms" d="M 0 186 C 24 186, 20 242, 44 242" />
                     <!-- Path to Voice (Bottom) -->
-                    <path class="rail-path rail-voice" d="M 0 190 C 24 190, 20 334, 44 334" />
+                    <path class="rail-path rail-voice" d="M 0 186 C 24 186, 20 334, 44 334" />
 
                     <!-- Pulsing Light Packets Moving Along Paths (Emitting Out of Klayed) -->
                     <circle class="rail-particle particle-email" r="3.5" />

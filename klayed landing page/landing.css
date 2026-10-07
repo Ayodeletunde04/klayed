@@ -2184,12 +2184,12 @@ body.dark-preview .theme-toggle-btn .icon-moon {
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* Stage 1: Campaign Management - Clean Fintech/Martech Bento Presentation */
+/* Stage 1: Campaign Management - Bento Omnichannel Dispatch Hub */
 .stage-campaign {
   background: #F5F4F0;
   position: relative;
   min-height: auto;
-  padding: 24px 22px;
+  padding: 22px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2204,270 +2204,388 @@ body.dark-preview .theme-toggle-btn .icon-moon {
   gap: 12px;
 }
 
-/* Bento Surface Card */
+/* Elevated Bento Surface Card */
 .cmp-bento-card {
   background: #ffffff;
   border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 16px;
-  padding: 15px 16px;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+  border-radius: 18px;
+  padding: 16px 16px;
+  box-shadow: 0 4px 22px -2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.02);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 13px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .cmp-bento-card:hover {
   border-color: rgba(15, 23, 42, 0.14);
-  box-shadow: 0 8px 26px -4px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 10px 30px -4px rgba(15, 23, 42, 0.08);
 }
 
-/* Live Message Preview inside Bento */
-.cmp-preview-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.cmp-preview-brand {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.cmp-brand-k {
-  width: 17px;
-  height: 17px;
-  border-radius: 4px;
-  background: #D59312;
-  color: #ffffff;
-  font-family: var(--font-inter);
-  font-size: 10.5px;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-
-.cmp-sender-name {
-  font-family: var(--font-inter);
-  font-size: 12.5px;
-  font-weight: 600;
-  color: #0f172a;
-}
-
-.cmp-vip-badge {
-  font-family: var(--font-inter);
-  font-size: 10px;
-  font-weight: 600;
-  color: #92400e;
-  background: rgba(245, 158, 11, 0.12);
-  padding: 2px 7px;
-  border-radius: 4px;
-  letter-spacing: 0.01em;
-}
-
-.cmp-preview-status {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-family: var(--font-inter);
-  font-size: 11px;
-  color: #94a3b8;
-}
-
-.cmp-rate-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-family: var(--font-inter);
-  font-size: 10.5px;
-  font-weight: 600;
-  color: #059669;
-  background: rgba(16, 185, 129, 0.1);
-  padding: 2px 7px;
-  border-radius: 999px;
-}
-
-.cmp-rate-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #10b981;
-}
-
-.cmp-delivered-check {
-  color: #3b82f6;
-  font-weight: 700;
-  font-size: 11px;
-}
-
-.cmp-preview-msg {
-  font-family: var(--font-inter);
-  font-size: 12px;
-  line-height: 1.45;
-  color: #334155;
-  margin: 0;
-  background: #f8fafc;
-  border: 1px solid rgba(15, 23, 42, 0.06);
-  border-radius: 10px;
-  padding: 8px 11px;
-}
-
-.cmp-preview-msg strong {
-  color: #0f172a;
-  font-weight: 600;
-}
-
-/* Channel Distribution Meter */
-.cmp-meter-section {
-  width: 100%;
-}
-
-.cmp-meter-bar {
-  display: flex;
-  height: 6px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: #f1f5f9;
-  gap: 2px;
-}
-
-.cmp-meter-seg {
-  height: 100%;
-  transition: width 0.3s ease;
-}
-
-.cmp-meter-seg.seg-email {
-  background: #ea580c;
-  border-radius: 999px 0 0 999px;
-}
-
-.cmp-meter-seg.seg-sms {
-  background: #3b82f6;
-}
-
-.cmp-meter-seg.seg-wa {
-  background: #10b981;
-  border-radius: 0 999px 999px 0;
-}
-
-/* 3-Column Channel Metrics */
-.cmp-metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-
-.cmp-metric-col {
-  background: #f8fafc;
-  border: 1px solid rgba(15, 23, 42, 0.06);
-  border-radius: 12px;
-  padding: 8px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  transition: transform 0.15s ease, border-color 0.15s ease;
-}
-
-.cmp-metric-col:hover {
-  transform: translateY(-1px);
-  border-color: rgba(15, 23, 42, 0.14);
-}
-
-.cmp-metric-top {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-family: var(--font-inter);
-  font-size: 11px;
-  font-weight: 500;
-  color: #64748b;
-}
-
-.cmp-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.cmp-dot.dot-email {
-  background: #ea580c;
-}
-
-.cmp-dot.dot-wa {
-  background: #10b981;
-}
-
-.cmp-dot.dot-sms {
-  background: #3b82f6;
-}
-
-.cmp-metric-num {
-  font-family: var(--font-inter);
-  font-size: 15px;
-  font-weight: 700;
-  color: #0f172a;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
-.cmp-metric-rate {
-  font-family: var(--font-inter);
-  font-size: 10px;
-  font-weight: 600;
-  color: #059669;
-}
-
-/* Footer Strip: Target Audience Confirmation */
-.cmp-footer-strip {
+/* Top Header: Brand Badge & Live Dispatch Badge */
+.cmp-hub-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  background: #ffffff;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 12px;
-  padding: 7px 12px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
 }
 
-.cmp-audience-info {
-  display: flex;
+.cmp-hub-brand {
+  display: inline-flex;
   align-items: center;
-  gap: 7px;
-  font-family: var(--font-inter);
-  font-size: 11.5px;
-  font-weight: 500;
-  color: #334155;
+  gap: 8px;
 }
 
-.cmp-audience-info i {
-  color: #94a3b8;
-  font-size: 14px;
+.cmp-brand-logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  object-fit: contain;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(213, 147, 18, 0.22);
+}
+
+.cmp-hub-title {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.015em;
+}
+
+.cmp-hub-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-inter);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #059669;
+  background: rgba(16, 185, 129, 0.09);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.cmp-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.85);
+  animation: cmpPulseGreen 2.2s infinite ease-in-out;
+}
+
+@keyframes cmpPulseGreen {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.75;
+  }
+}
+
+.cmp-live-text {
+  letter-spacing: -0.005em;
+}
+
+.cmp-live-check {
+  width: 13px;
+  height: 13px;
+  color: #059669;
   flex-shrink: 0;
 }
 
-.cmp-status-chip {
+/* Visual Connection: Micro-badges + Segmented Delivery Stream Bar */
+.cmp-stream-connection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cmp-stream-badges {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cmp-micro-badge {
   display: inline-flex;
   align-items: center;
   gap: 5px;
+  font-family: var(--font-inter);
+  font-size: 10px;
+  font-weight: 600;
+  color: #475569;
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+}
+
+.cmp-micro-icon {
+  width: 12px;
+  height: 12px;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.cmp-segmented-stream-bar {
+  display: flex;
+  height: 5.5px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #f1f5f9;
+  gap: 2.5px;
+}
+
+.cmp-stream-seg {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.cmp-stream-seg.seg-orange {
+  background: #ea580c;
+}
+
+.cmp-stream-seg.seg-emerald {
+  background: #10b981;
+}
+
+.cmp-stream-seg.seg-cobalt {
+  background: #2563eb;
+}
+
+/* Center Showcase: 3 Distinct Elevated Product Cards */
+.cmp-channel-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.cmp-product-card {
+  background: #fafaf9;
+  border: 1px solid rgba(15, 23, 42, 0.07);
+  border-radius: 14px;
+  padding: 10px 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 7px;
+  min-height: 94px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.cmp-product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px -2px rgba(15, 23, 42, 0.06);
+}
+
+.cmp-product-card.card-email:hover {
+  border-color: rgba(234, 88, 12, 0.35);
+}
+
+.cmp-product-card.card-wa:hover {
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.cmp-product-card.card-sms:hover {
+  border-color: rgba(37, 99, 235, 0.35);
+}
+
+.cmp-pcard-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cmp-accent-dot {
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cmp-accent-dot.dot-orange {
+  background: #ea580c;
+  box-shadow: 0 0 5px rgba(234, 88, 12, 0.5);
+}
+
+.cmp-accent-dot.dot-emerald {
+  background: #10b981;
+  box-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
+}
+
+.cmp-accent-dot.dot-cobalt {
+  background: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
+}
+
+.cmp-pcard-icon {
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.cmp-pcard-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.cmp-pcard-name {
+  font-family: var(--font-inter);
+  font-size: 11px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.cmp-pcard-metric {
+  font-family: var(--font-inter);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.cmp-pcard-tag {
+  font-family: var(--font-inter);
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 2.5px 6.5px;
+  border-radius: 5px;
+  width: fit-content;
+  letter-spacing: 0.005em;
+  line-height: 1.2;
+}
+
+.cmp-pcard-tag.tag-email {
+  color: #c2410c;
+  background: rgba(234, 88, 12, 0.08);
+}
+
+.cmp-pcard-tag.tag-wa {
+  color: #047857;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.cmp-pcard-tag.tag-sms {
+  color: #1d4ed8;
+  background: rgba(37, 99, 235, 0.08);
+}
+
+/* Bottom Bar: Full-width Pill Card */
+.cmp-routing-pill-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 999px;
+  padding: 8px 14px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cmp-routing-pill-bar:hover {
+  border-color: rgba(15, 23, 42, 0.14);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.cmp-routing-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.cmp-routing-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.cmp-routing-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.cmp-routing-text {
+  font-family: var(--font-inter);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+
+.cmp-routing-status-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: #0f172a;
   color: #ffffff;
   font-family: var(--font-inter);
   font-size: 11px;
   font-weight: 600;
-  padding: 3.5px 9px;
-  border-radius: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
   white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: -0.005em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
-.cmp-check-icon {
-  color: #34d399;
-  font-weight: 700;
-  font-size: 10px;
+.cmp-btn-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 7px rgba(16, 185, 129, 0.9);
+  animation: cmpPulseGreen 2.2s infinite ease-in-out;
+}
+
+@media (max-width: 540px) {
+  .cmp-channel-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .cmp-hub-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .cmp-stream-badges {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .cmp-routing-pill-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 14px;
+    gap: 8px;
+    padding: 10px 12px;
+  }
 }
 
 /* Stage 2: Marketing Automation - Visual Workflow Canvas */
@@ -8659,83 +8777,112 @@ body.dark-preview .stage-automation {
 body.dark-preview .cmp-bento-card {
   background: #181816;
   border-color: #282724;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
 }
 
 body.dark-preview .cmp-bento-card:hover {
   border-color: #383632;
 }
 
-body.dark-preview .cmp-sender-name {
+body.dark-preview .cmp-hub-title {
   color: #ffffff;
-  font-weight: 600;
 }
 
-body.dark-preview .cmp-vip-badge {
-  color: #fbbf24;
-  background: rgba(251, 191, 36, 0.16);
-  border: 1px solid rgba(251, 191, 36, 0.35);
-  font-weight: 600;
-}
-
-body.dark-preview .cmp-rate-chip {
+body.dark-preview .cmp-hub-live-badge {
   color: #4ade80;
-  background: rgba(74, 222, 128, 0.16);
-  border: 1px solid rgba(74, 222, 128, 0.35);
-  font-weight: 600;
+  background: rgba(74, 222, 128, 0.14);
+  border-color: rgba(74, 222, 128, 0.35);
 }
 
-body.dark-preview .cmp-preview-msg {
-  background: #141412;
-  border-color: #242320;
-  color: #fdfcfc;
+body.dark-preview .cmp-live-check {
+  color: #4ade80;
 }
 
-body.dark-preview .cmp-preview-msg strong {
-  color: #ffffff;
-}
-
-body.dark-preview .cmp-meter-bar {
-  background: #242320;
-}
-
-body.dark-preview .cmp-metric-col {
+body.dark-preview .cmp-micro-badge {
+  color: #d4d0ca;
   background: #141412;
   border-color: #242320;
 }
 
-body.dark-preview .cmp-metric-col:hover {
-  border-color: #383632;
-}
-
-body.dark-preview .cmp-metric-top {
-  color: #d4d0ca;
-  font-weight: 500;
-}
-
-body.dark-preview .cmp-metric-num {
-  color: #ffffff;
-  font-weight: 700;
-}
-
-body.dark-preview .cmp-footer-strip {
-  background: #181816;
-  border-color: #282724;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-preview .cmp-audience-info {
-  color: #d4d0ca;
-}
-
-body.dark-preview .cmp-audience-info i {
+body.dark-preview .cmp-micro-icon {
   color: #a59f97;
 }
 
-body.dark-preview .cmp-status-chip {
-  background: var(--color-primary-gold);
+body.dark-preview .cmp-segmented-stream-bar {
+  background: #242320;
+}
+
+body.dark-preview .cmp-product-card {
+  background: #141412;
+  border-color: #242320;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-preview .cmp-product-card:hover {
+  border-color: #383632;
+}
+
+body.dark-preview .cmp-product-card.card-email:hover {
+  border-color: rgba(234, 88, 12, 0.45);
+}
+
+body.dark-preview .cmp-product-card.card-wa:hover {
+  border-color: rgba(16, 185, 129, 0.45);
+}
+
+body.dark-preview .cmp-product-card.card-sms:hover {
+  border-color: rgba(37, 99, 235, 0.45);
+}
+
+body.dark-preview .cmp-pcard-icon {
+  color: #a59f97;
+}
+
+body.dark-preview .cmp-pcard-name {
+  color: #d4d0ca;
+}
+
+body.dark-preview .cmp-pcard-metric {
   color: #ffffff;
-  font-weight: 600;
+}
+
+body.dark-preview .cmp-pcard-tag.tag-email {
+  color: #fb923c;
+  background: rgba(234, 88, 12, 0.2);
+}
+
+body.dark-preview .cmp-pcard-tag.tag-wa {
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.2);
+}
+
+body.dark-preview .cmp-pcard-tag.tag-sms {
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.2);
+}
+
+body.dark-preview .cmp-routing-pill-bar {
+  background: #181816;
+  border-color: #282724;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-preview .cmp-routing-pill-bar:hover {
+  border-color: #383632;
+}
+
+body.dark-preview .cmp-routing-icon {
+  color: #a59f97;
+}
+
+body.dark-preview .cmp-routing-text {
+  color: #d4d0ca;
+}
+
+body.dark-preview .cmp-routing-status-btn {
+  background: #242320;
+  color: #ffffff;
+  border: 1px solid #383632;
 }
 
 body.dark-preview .automation-floating-card {

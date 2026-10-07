@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
-  <link rel="stylesheet" href="landing.css?v=20261005_44">
+  <link rel="stylesheet" href="landing.css?v=20261005_45">
   <script>
     (function() {
       try {
@@ -438,71 +438,120 @@
             <article class="why-large-card">
               <div class="why-card-stage stage-campaign">
                 <div class="cmp-stage-canvas">
-                  <!-- Bento Surface: Live Message Preview + Distribution & Metrics -->
+                  <!-- Bento Surface: Omnichannel Dispatch Hub -->
                   <div class="cmp-bento-card">
-                    <!-- Live Message Preview Header -->
-                    <div class="cmp-preview-header">
-                      <div class="cmp-preview-brand">
-                        <span class="cmp-brand-k">k</span>
-                        <span class="cmp-sender-name">Klayed VIP</span>
-                        <span class="cmp-vip-badge">Flash Sale #04</span>
+                    <!-- Top Header -->
+                    <div class="cmp-hub-header">
+                      <div class="cmp-hub-brand">
+                        <img src="assets/klayed-logo.png?v=20261005_04" alt="Klayed" class="cmp-brand-logo" width="22" height="22">
+                        <span class="cmp-hub-title">Omnichannel Dispatch Hub</span>
                       </div>
-                      <div class="cmp-preview-status">
-                        <span class="cmp-rate-chip"><span class="cmp-rate-dot"></span>99.4% sent</span>
-                        <span class="cmp-delivered-check" title="Delivered">✓✓</span>
-                      </div>
-                    </div>
-                    <div class="cmp-preview-msg">
-                      &ldquo;Hey Alex! Your 20% discount code <strong>FLASH20</strong> is live for 24h.&rdquo;
-                    </div>
-
-                    <!-- Channel Distribution Meter -->
-                    <div class="cmp-meter-section">
-                      <div class="cmp-meter-bar">
-                        <div class="cmp-meter-seg seg-email" style="width: 56%;" title="Email: 56% (48.2k)"></div>
-                        <div class="cmp-meter-seg seg-sms" style="width: 27%;" title="SMS: 27% (22.4k)"></div>
-                        <div class="cmp-meter-seg seg-wa" style="width: 17%;" title="WhatsApp: 17% (14.8k)"></div>
+                      <div class="cmp-hub-live-badge">
+                        <span class="cmp-live-dot"></span>
+                        <span class="cmp-live-text">Active Channels &bull; 3/3</span>
+                        <svg class="cmp-live-check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Active">
+                          <path d="M1.5 8.5l3 3 7-7"/>
+                          <path d="M6 11.5l2.5 2.5 6-6"/>
+                        </svg>
                       </div>
                     </div>
 
-                    <!-- 3-Column Channel Metrics -->
-                    <div class="cmp-metrics-grid">
-                      <div class="cmp-metric-col col-email">
-                        <div class="cmp-metric-top">
-                          <span class="cmp-dot dot-email"></span>
-                          <span class="cmp-metric-name">Email</span>
-                        </div>
-                        <div class="cmp-metric-num">48.2k</div>
-                        <div class="cmp-metric-rate">99.8% delivered</div>
+                    <!-- Visual Connection: Micro-badges + Segmented Delivery Stream Bar -->
+                    <div class="cmp-stream-connection">
+                      <div class="cmp-stream-badges">
+                        <span class="cmp-micro-badge">
+                          <svg class="cmp-micro-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13.5 8A5.5 5.5 0 1 1 8 2.5c2.3 0 4.3 1.4 5.1 3.5"/>
+                            <path d="M13.5 2.5v3.5h-3.5"/>
+                          </svg>
+                          <span>Multi-Channel Fallback Active</span>
+                        </span>
+                        <span class="cmp-micro-badge">
+                          <svg class="cmp-micro-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="4.5 5.5 2 8 4.5 10.5"/>
+                            <polyline points="11.5 5.5 14 8 11.5 10.5"/>
+                            <line x1="9.5" y1="4" x2="6.5" y2="12"/>
+                          </svg>
+                          <span>Unified API Endpoint</span>
+                        </span>
                       </div>
-                      <div class="cmp-metric-col col-wa">
-                        <div class="cmp-metric-top">
-                          <span class="cmp-dot dot-wa"></span>
-                          <span class="cmp-metric-name">WhatsApp</span>
-                        </div>
-                        <div class="cmp-metric-num">14.8k</div>
-                        <div class="cmp-metric-rate">94.2% read rate</div>
+                      <div class="cmp-segmented-stream-bar" title="Email &bull; WhatsApp &bull; SMS Delivery Stream">
+                        <div class="cmp-stream-seg seg-orange" style="width: 36%;" title="Email API"></div>
+                        <div class="cmp-stream-seg seg-emerald" style="width: 34%;" title="WhatsApp Business"></div>
+                        <div class="cmp-stream-seg seg-cobalt" style="width: 30%;" title="Global SMS"></div>
                       </div>
-                      <div class="cmp-metric-col col-sms">
-                        <div class="cmp-metric-top">
-                          <span class="cmp-dot dot-sms"></span>
-                          <span class="cmp-metric-name">SMS</span>
+                    </div>
+
+                    <!-- Center Showcase: 3 Distinct Elevated Product Cards -->
+                    <div class="cmp-channel-showcase-grid">
+                      <!-- 1. Email Card -->
+                      <div class="cmp-product-card card-email">
+                        <div class="cmp-pcard-header">
+                          <span class="cmp-accent-dot dot-orange"></span>
+                          <div class="cmp-pcard-icon">
+                            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                              <rect x="2.5" y="4.5" width="15" height="11" rx="2.5"/>
+                              <path d="M3 5.5l7 5 7-5"/>
+                            </svg>
+                          </div>
+                          <span class="cmp-pcard-name">Email API</span>
                         </div>
-                        <div class="cmp-metric-num">22.4k</div>
-                        <div class="cmp-metric-rate">99.6% delivered</div>
+                        <div class="cmp-pcard-metric">99.8% Inbox Placement</div>
+                        <div class="cmp-pcard-tag tag-email">Transactional &amp; Marketing</div>
+                      </div>
+
+                      <!-- 2. WhatsApp Card -->
+                      <div class="cmp-product-card card-wa">
+                        <div class="cmp-pcard-header">
+                          <span class="cmp-accent-dot dot-emerald"></span>
+                          <div class="cmp-pcard-icon">
+                            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M17 9.5a7 7 0 0 1-10.8 5.9L2.5 16.5l1.3-3.4A7 7 0 1 1 17 9.5z"/>
+                              <path d="M7.8 7.8c.2-.5.5-.5.8-.5h.6c.2 0 .4.1.5.4.3.8.8 2 .9 2.2.1.2 0 .4-.1.6l-.4.5c-.1.2-.3.3-.1.6.4.8 1.1 1.5 1.9 1.9.3.2.4 0 .6-.1l.5-.4c.2-.1.4-.2.6-.1.2.1 1.4.6 2.2.9.3.1.4.3.4.5v.6c0 .3 0 .6-.5.8-.6.2-1.8.3-3.5-.6-2.1-1.1-3.5-3.3-3.6-3.5-.1-.2-.9-1.2-.9-2.3 0-1.1.6-1.7.8-1.9z" fill="currentColor" stroke="none"/>
+                            </svg>
+                          </div>
+                          <span class="cmp-pcard-name">WhatsApp Business</span>
+                        </div>
+                        <div class="cmp-pcard-metric">98.4% Read Rate</div>
+                        <div class="cmp-pcard-tag tag-wa">Official Meta API</div>
+                      </div>
+
+                      <!-- 3. SMS Card -->
+                      <div class="cmp-product-card card-sms">
+                        <div class="cmp-pcard-header">
+                          <span class="cmp-accent-dot dot-cobalt"></span>
+                          <div class="cmp-pcard-icon">
+                            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M17 10c0 3.866-3.358 7-7.5 7a8.5 8.5 0 0 1-3.4-.7L2.5 17.5l1.2-3.1A6.7 6.7 0 0 1 2.5 10C2.5 6.134 5.858 3 10 3s7.5 3.134 7.5 7z"/>
+                              <circle cx="7" cy="10" r="0.9" fill="currentColor"/>
+                              <circle cx="10" cy="10" r="0.9" fill="currentColor"/>
+                              <circle cx="13" cy="10" r="0.9" fill="currentColor"/>
+                            </svg>
+                          </div>
+                          <span class="cmp-pcard-name">Global SMS</span>
+                        </div>
+                        <div class="cmp-pcard-metric">99.9% Delivery</div>
+                        <div class="cmp-pcard-tag tag-sms">Instant OTP &amp; Alerts</div>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Footer Strip: Audience & Completion Status -->
-                  <div class="cmp-footer-strip">
-                    <div class="cmp-audience-info">
-                      <i class="hgi-stroke hgi-user-multiple" style="font-size: 14px;"></i>
-                      <span>Audience: High-LTV VIPs (85,400)</span>
+                  <!-- Bottom Bar: Full-width Pill Card -->
+                  <div class="cmp-routing-pill-bar">
+                    <div class="cmp-routing-left">
+                      <div class="cmp-routing-icon">
+                        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="5" cy="5" r="2.5"/>
+                          <circle cx="15" cy="5" r="2.5"/>
+                          <circle cx="10" cy="15" r="2.5"/>
+                          <path d="M5 7.5v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2M10 11.5v1"/>
+                        </svg>
+                      </div>
+                      <span class="cmp-routing-text">Global Carrier &amp; SMTP Routing</span>
                     </div>
-                    <div class="cmp-status-chip">
-                      <span class="cmp-check-icon">✓</span>
-                      <span>Broadcast Complete</span>
+                    <div class="cmp-routing-status-btn">
+                      <span class="cmp-btn-pulse-dot"></span>
+                      <span>All Gateways Operational</span>
                     </div>
                   </div>
                 </div>

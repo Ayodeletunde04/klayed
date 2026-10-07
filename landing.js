@@ -9,117 +9,550 @@ document.addEventListener('DOMContentLoaded', () => {
   const announcement = document.querySelector('.announcement-wrapper');
 
   if (header) {
-    const handleScroll = () => {
+    let ticking = false;
+    let isScrolled = false;
+
+    const onScroll = () => {
       const scrollY = window.scrollY || window.pageYOffset;
-      const bannerHeight = announcement ? announcement.offsetHeight : 40;
-      if (scrollY > bannerHeight) {
+      if (!isScrolled && scrollY > 40) {
+        isScrolled = true;
         header.classList.add('is-scrolled');
-      } else {
+      } else if (isScrolled && scrollY < 15) {
+        isScrolled = false;
         header.classList.remove('is-scrolled');
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          onScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    onScroll();
   }
 
-  // 2. Interactive Product Suite Tabs
-  const tabButtons = document.querySelectorAll('.suite-tab-btn');
-  const tabPanels = document.querySelectorAll('.suite-panel');
+  // 2. Feature Spotlight Tabs (The Unified Engine)
+  const spotlightTabs = document.querySelectorAll('.spotlight-tab-btn');
+  const spotlightViews = document.querySelectorAll('.spotlight-view');
 
-  tabButtons.forEach(button => {
+  spotlightTabs.forEach(button => {
     button.addEventListener('click', () => {
-      const targetTab = button.getAttribute('data-tab');
+      const target = button.getAttribute('data-spotlight');
 
-      // Update button active states
-      tabButtons.forEach(btn => btn.classList.remove('active'));
+      spotlightTabs.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
       button.classList.add('active');
+      button.setAttribute('aria-selected', 'true');
 
-      // Update panel visibility
-      tabPanels.forEach(panel => {
-        if (panel.id === `panel-${targetTab}`) {
-          panel.classList.add('active');
+      spotlightViews.forEach(view => {
+        if (view.id === `view-spotlight-${target}`) {
+          view.classList.add('active');
         } else {
-          panel.classList.remove('active');
+          view.classList.remove('active');
         }
       });
     });
   });
 
-  // 3. Interactive Merchant Broadcast & ROI Calculator
-  const contactsSlider = document.getElementById('contacts-range');
-  const contactsDisplay = document.getElementById('contacts-count-display');
-  const waOpensDisplay = document.getElementById('roi-wa-opens');
-  const emailOpensDisplay = document.getElementById('roi-email-opens');
-  const deliveryTimeDisplay = document.getElementById('roi-delivery-time');
-  const revenueLiftDisplay = document.getElementById('roi-revenue-lift');
+  // Solutions Section (Teams vs Industries Switcher)
+  const solModeBtns = document.querySelectorAll('.sol-mode-btn');
+  const navTeams = document.getElementById('nav-group-teams');
+  const navIndustries = document.getElementById('nav-group-industries');
+  const solNavBtns = document.querySelectorAll('.sol-nav-btn');
+  const solCards = document.querySelectorAll('.sol-showcase-card');
 
-  function updateCalculator() {
-    if (!contactsSlider) return;
+  // Mode Switcher (By Teams / By Industry)
+  solModeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const mode = btn.getAttribute('data-sol-mode');
 
-    const contacts = parseInt(contactsSlider.value, 10);
-    if (contactsDisplay) {
-      contactsDisplay.textContent = contacts.toLocaleString() + ' customers';
-    }
+      solModeBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
 
-    // WhatsApp benchmark: 98% delivery & read rate
-    const waReads = Math.round(contacts * 0.98);
-    // Email benchmark: 21% open rate
-    const emailOpens = Math.round(contacts * 0.21);
+      if (mode === 'teams') {
+        if (navTeams) navTeams.style.display = 'flex';
+        if (navIndustries) navIndustries.style.display = 'none';
+        const activeTeamBtn = navTeams ? (navTeams.querySelector('.sol-nav-btn.active') || navTeams.querySelector('.sol-nav-btn')) : null;
+        if (activeTeamBtn) activeTeamBtn.click();
+      } else {
+        if (navTeams) navTeams.style.display = 'none';
+        if (navIndustries) navIndustries.style.display = 'flex';
+        const activeIndBtn = navIndustries ? (navIndustries.querySelector('.sol-nav-btn.active') || navIndustries.querySelector('.sol-nav-btn')) : null;
+        if (activeIndBtn) activeIndBtn.click();
+      }
+    });
+  });
 
-    // Delivery time calculation at 500 msg/sec Meta Cloud API Tier 4
-    const seconds = Math.ceil(contacts / 480);
-    let timeStr = `${seconds} seconds`;
-    if (seconds >= 60) {
-      const mins = (seconds / 60).toFixed(1);
-      timeStr = `${mins} min`;
-    }
+  // Tab Button Click Handler
+  solNavBtns.forEach(button => {
+    button.addEventListener('click', () => {
+      const target = button.getAttribute('data-sol-tab');
+      if (!target) return;
 
-    // Revenue Lift Estimation: 4.8% conversion on WhatsApp vs 1.1% on email, avg order $45
-    const waConversions = Math.round(contacts * 0.048);
-    const emailConversions = Math.round(contacts * 0.011);
-    const extraConversions = Math.max(0, waConversions - emailConversions);
-    const estExtraRev = extraConversions * 45;
-
-    if (waOpensDisplay) waOpensDisplay.textContent = waReads.toLocaleString();
-    if (emailOpensDisplay) emailOpensDisplay.textContent = emailOpens.toLocaleString();
-    if (deliveryTimeDisplay) deliveryTimeDisplay.textContent = timeStr;
-    if (revenueLiftDisplay) revenueLiftDisplay.textContent = `+$${estExtraRev.toLocaleString()}`;
-  }
-
-  if (contactsSlider) {
-    contactsSlider.addEventListener('input', updateCalculator);
-    updateCalculator();
-  }
-
-  // 4. Copy Code Snippet Interaction
-  const copyBtn = document.getElementById('btn-copy-code');
-  if (copyBtn) {
-    copyBtn.addEventListener('click', () => {
-      const codeBlock = document.getElementById('code-snippet-body');
-      if (codeBlock) {
-        navigator.clipboard.writeText(codeBlock.innerText).then(() => {
-          const originalText = copyBtn.innerText;
-          copyBtn.innerText = 'Copied!';
-          setTimeout(() => {
-            copyBtn.innerText = originalText;
-          }, 2000);
+      const parentNav = button.closest('.solutions-tab-nav');
+      if (parentNav) {
+        parentNav.querySelectorAll('.sol-nav-btn').forEach(btn => {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
         });
+      } else {
+        solNavBtns.forEach(btn => {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
+        });
+      }
+      button.classList.add('active');
+      button.setAttribute('aria-selected', 'true');
+
+      solCards.forEach(card => {
+        if (card.id === `card-sol-${target}`) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+    });
+  });
+
+  // Solutions Feature Items Accordion/Panel Switcher
+  document.querySelectorAll('.sol-showcase-card').forEach(card => {
+    const featureItems = card.querySelectorAll('.sol-feature-item');
+    const panels = card.querySelectorAll('.sol-feature-panel');
+
+    featureItems.forEach((item, index) => {
+      const activate = () => {
+        featureItems.forEach(i => {
+          i.classList.remove('active');
+          i.setAttribute('aria-expanded', 'false');
+        });
+        panels.forEach(p => {
+          p.classList.remove('active');
+        });
+
+        item.classList.add('active');
+        item.setAttribute('aria-expanded', 'true');
+
+        const targetId = item.getAttribute('data-feature-target');
+        let targetPanel = targetId ? card.querySelector(`#${targetId}`) : null;
+        if (!targetPanel && panels[index]) {
+          targetPanel = panels[index];
+        }
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+        }
+      };
+
+      item.addEventListener('click', activate);
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          activate();
+        }
+      });
+    });
+  });
+
+  // 3. Developer SDK Code Switcher
+  const sdkSnippets = {
+    curl: `curl -X POST https://api.klayed.com/v1/messages \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -d '{
+    "to": "+2348012345678",
+    "channel": "whatsapp",
+    "fallback": "sms",
+    "template": "order_confirmed"
+  }'`,
+    node: `import { Klayed } from '@klayed/sdk';
+
+const klayed = new Klayed({ apiKey: process.env.KLAYED_API_KEY });
+
+const message = await klayed.messages.create({
+  to: '+2348012345678',
+  channel: 'whatsapp',
+  fallback: 'sms',
+  template: 'order_confirmed'
+});
+
+console.log(message.id, message.status);`,
+    python: `import klayed
+
+client = klayed.Client(api_key="YOUR_API_KEY")
+
+message = client.messages.create(
+    to="+2348012345678",
+    channel="whatsapp",
+    fallback="sms",
+    template="order_confirmed"
+)
+
+print(message.id, message.status)`,
+    go: `package main
+
+import (
+  "fmt"
+  "github.com/klayed/klayed-go"
+)
+
+func main() {
+  client := klayed.NewClient("YOUR_API_KEY")
+  msg, err := client.Messages.Create(&klayed.MessageParams{
+    To:       "+2348012345678",
+    Channel:  "whatsapp",
+    Fallback: "sms",
+    Template: "order_confirmed",
+  })
+  if err != nil { panic(err) }
+  fmt.Println(msg.ID, msg.Status)
+}`,
+    php: `<?php
+use Klayed\\KlayedClient;
+
+$klayed = new KlayedClient('YOUR_API_KEY');
+
+$message = $klayed->messages->create([
+    'to'       => '+2348012345678',
+    'channel'  => 'whatsapp',
+    'fallback' => 'sms',
+    'template' => 'order_confirmed'
+]);
+
+echo $message->id . ': ' . $message->status;`
+  };
+
+  const devTabs = document.querySelectorAll('.dev-lang-tab');
+  const codeContent = document.getElementById('code-terminal-content');
+  const copySnippetBtn = document.getElementById('btn-copy-snippet');
+  const copyBtnText = document.getElementById('copy-btn-text');
+
+  devTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const lang = tab.getAttribute('data-lang');
+      devTabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      if (codeContent && sdkSnippets[lang]) {
+        codeContent.textContent = sdkSnippets[lang];
+      }
+    });
+  });
+
+  if (copySnippetBtn && codeContent) {
+    copySnippetBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(codeContent.textContent).then(() => {
+        const originalText = copyBtnText ? copyBtnText.textContent : 'Copy';
+        if (copyBtnText) copyBtnText.textContent = 'Copied!';
+        setTimeout(() => {
+          if (copyBtnText) copyBtnText.textContent = originalText;
+        }, 2000);
+      });
+    });
+  }
+
+  // 5. Header Theme Toggle Button (Zero-Flicker Native View Transition)
+  const themeToggleBtn = document.getElementById('theme-toggle-btn');
+  if (themeToggleBtn) {
+    if (localStorage.getItem('klayed-theme') === 'dark' || document.documentElement.classList.contains('dark-preview')) {
+      document.body.classList.add('dark-preview');
+      document.documentElement.classList.add('dark-preview');
+    }
+
+    const applyTheme = (isDark) => {
+      document.body.classList.toggle('dark-preview', isDark);
+      document.documentElement.classList.toggle('dark-preview', isDark);
+      try {
+        localStorage.setItem('klayed-theme', isDark ? 'dark' : 'light');
+      } catch (e) {}
+    };
+
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = !document.body.classList.contains('dark-preview');
+
+      // If browser supports the native View Transitions API (Chrome 111+, Safari 18+, Edge),
+      // crossfade the entire DOM at GPU compositor level — zero line flicker, zero tearing.
+      if (document.startViewTransition) {
+        document.documentElement.classList.add('view-transitioning');
+        const transition = document.startViewTransition(() => {
+          applyTheme(isDark);
+        });
+        transition.finished.finally(() => {
+          document.documentElement.classList.remove('view-transitioning');
+        });
+      } else {
+        // Fallback for older browsers
+        applyTheme(isDark);
       }
     });
   }
 
-  // 5. Header Theme Toggle Button
-  const themeToggleBtn = document.getElementById('theme-toggle-btn');
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-preview');
-      themeToggleBtn.style.transition = 'transform 0.4s ease';
-      themeToggleBtn.style.transform = themeToggleBtn.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
+  // 6. Interactive Omnichannel Event Orchestrator Mockup
+  const orchestrator = document.getElementById('omniOrchestrator');
+  if (orchestrator) {
+    const tabBtns = orchestrator.querySelectorAll('.omni-tab-btn');
+    const triggerNode = document.getElementById('omniTriggerNode');
+    const triggerEventName = document.getElementById('triggerEventName');
+    const triggerEventSub = document.getElementById('triggerEventSub');
+    const triggerIconWrap = document.getElementById('triggerIconWrap');
+
+    const emailSubject = document.getElementById('emailSubject');
+    const emailPreview = document.getElementById('emailPreview');
+    const emailLatency = document.getElementById('emailLatency');
+
+    const whatsappSubject = document.getElementById('whatsappSubject');
+    const whatsappPreview = document.getElementById('whatsappPreview');
+    const whatsappLatency = document.getElementById('whatsappLatency');
+    const whatsappActions = document.getElementById('whatsappActions');
+
+    const smsSubject = document.getElementById('smsSubject');
+    const smsPreview = document.getElementById('smsPreview');
+    const smsLatency = document.getElementById('smsLatency');
+
+    const voiceAudioStatus = document.getElementById('voiceAudioStatus');
+    const voicePreview = document.getElementById('voicePreview');
+    const voiceLatency = document.getElementById('voiceLatency');
+
+    const scenarios = {
+      order_placed: {
+        trigger: {
+          name: 'orders.created',
+          sub: 'Sarah Jenkins • #KL-8492',
+          icon: '<i class="hgi-stroke hgi-shopping-cart-01" style="font-size: 18px;"></i>'
+        },
+        email: {
+          subject: 'Order Confirmation #KL-8492',
+          preview: 'Receipt sent with itemized breakdown & 1-click invoice download.',
+          latency: 'Delivered • 240ms'
+        },
+        whatsapp: {
+          subject: '📦 Package En Route',
+          preview: '"Hi Sarah! Your order is packing. Tap below to track live courier."',
+          actions: '<span class="btn-micro-action">Track Courier 🚚</span><span class="btn-micro-action">Help Desk 💬</span>',
+          latency: 'Read • 1.1s'
+        },
+        sms: {
+          subject: 'Direct Carrier Route',
+          preview: 'KLAYED: Order #KL-8492 confirmed. Dispatch code: 4920. View: klay.to/8492',
+          latency: 'Sent • 85ms'
+        },
+        voice: {
+          status: 'IVR Confirmation Call',
+          preview: '"Automated dispatch confirmed Sarah\'s delivery window for tomorrow."',
+          latency: 'Completed • 18s'
+        }
+      },
+      auth_2fa: {
+        trigger: {
+          name: 'auth.verify_otp',
+          sub: 'Alex Chen • +1 (415) 890-...',
+          icon: '<i class="hgi-stroke hgi-lock" style="font-size: 18px;"></i>'
+        },
+        email: {
+          subject: 'Security Passkey: 839-201',
+          preview: 'One-time secure login code requested. Expires in 5 minutes.',
+          latency: 'Delivered • 190ms'
+        },
+        whatsapp: {
+          subject: '🔐 2FA Verification',
+          preview: '"Your Klayed login code is 839201. Never share this code with anyone."',
+          actions: '<span class="btn-micro-action">Copy Code 📋</span><span class="btn-micro-action">Not Me ⚠️</span>',
+          latency: 'Delivered • 320ms'
+        },
+        sms: {
+          subject: 'Priority OTP Gateway',
+          preview: 'KLAYED: 839-201 is your sign-in verification code. Valid for 5 mins.',
+          latency: 'Sent • 42ms'
+        },
+        voice: {
+          status: 'Fallback Voice OTP',
+          preview: '"Your verification code is eight, three, nine, two, zero, one."',
+          latency: 'Standby / Ready'
+        }
+      },
+      cart_recovery: {
+        trigger: {
+          name: 'checkout.abandoned',
+          sub: 'Amara Okafor • Cart: $148',
+          icon: '<i class="hgi-stroke hgi-shopping-basket-01" style="font-size: 18px;"></i>'
+        },
+        email: {
+          subject: 'Still thinking it over?',
+          preview: 'Your reserved items are saved. Enjoy free expedited shipping today!',
+          latency: 'Delivered • 310ms'
+        },
+        whatsapp: {
+          subject: '✨ Special Offer for Amara',
+          preview: '"Hey Amara! You left 2 items in your cart. Here is 10% off: KLAY10"',
+          actions: '<span class="btn-micro-action">Complete Order 🛒</span><span class="btn-micro-action">View Cart</span>',
+          latency: 'Read • 850ms'
+        },
+        sms: {
+          subject: 'Flash Recovery Alert',
+          preview: 'Hi Amara, your cart is reserved for 1 hour. Finish checkout: klay.to/c/928',
+          latency: 'Sent • 95ms'
+        },
+        voice: {
+          status: 'VIP Concierge Option',
+          preview: '"High-value customer flagged; queued for automated assistance."',
+          latency: 'Scheduled'
+        }
+      }
+    };
+
+    let isTransitioning = false;
+
+    function setScenario(scenarioKey) {
+      const data = scenarios[scenarioKey];
+      if (!data || isTransitioning) return;
+      isTransitioning = true;
+
+      // Update tabs smoothly
+      tabBtns.forEach(btn => {
+        const isActive = btn.getAttribute('data-event') === scenarioKey;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      // Pulse Klayed platform source node smoothly
+      const sourceNode = document.getElementById('omniSourceNode');
+      if (sourceNode) {
+        sourceNode.classList.remove('source-flash');
+        void sourceNode.offsetHeight;
+        sourceNode.classList.add('source-flash');
+      }
+
+      // Smooth crossfade out
+      const elementsToFade = [
+        triggerEventName,
+        triggerEventSub,
+        triggerIconWrap,
+        emailSubject,
+        emailPreview,
+        emailLatency,
+        whatsappSubject,
+        whatsappPreview,
+        whatsappLatency,
+        whatsappActions,
+        smsSubject,
+        smsPreview,
+        smsLatency,
+        voiceAudioStatus,
+        voicePreview,
+        voiceLatency
+      ].filter(Boolean);
+
+      elementsToFade.forEach(el => {
+        el.style.transition = 'opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)';
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(3px)';
+      });
+
+      // After soft fade-out, swap data and fade-in with staggered ease
+      setTimeout(() => {
+        // Trigger node gentle pulse
+        if (triggerNode) {
+          triggerNode.classList.remove('node-flash');
+          void triggerNode.offsetHeight;
+          triggerNode.classList.add('node-flash');
+        }
+
+        // Update Trigger
+        if (triggerEventName) triggerEventName.textContent = data.trigger.name;
+        if (triggerEventSub) triggerEventSub.textContent = data.trigger.sub;
+        if (triggerIconWrap) triggerIconWrap.innerHTML = data.trigger.icon;
+
+        // Update Email
+        if (emailSubject) emailSubject.textContent = data.email.subject;
+        if (emailPreview) emailPreview.textContent = data.email.preview;
+        if (emailLatency) emailLatency.textContent = data.email.latency;
+
+        // Update WhatsApp
+        if (whatsappSubject) whatsappSubject.textContent = data.whatsapp.subject;
+        if (whatsappPreview) whatsappPreview.textContent = data.whatsapp.preview;
+        if (whatsappLatency) whatsappLatency.textContent = data.whatsapp.latency;
+        if (whatsappActions) whatsappActions.innerHTML = data.whatsapp.actions;
+
+        // Update SMS
+        if (smsSubject) smsSubject.textContent = data.sms.subject;
+        if (smsPreview) smsPreview.textContent = data.sms.preview;
+        if (smsLatency) smsLatency.textContent = data.sms.latency;
+
+        // Update Voice
+        if (voiceAudioStatus) voiceAudioStatus.textContent = data.voice.status;
+        if (voicePreview) voicePreview.textContent = data.voice.preview;
+        if (voiceLatency) voiceLatency.textContent = data.voice.latency;
+
+        // Soft fade back in
+        requestAnimationFrame(() => {
+          elementsToFade.forEach((el, i) => {
+            setTimeout(() => {
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            }, (i % 4) * 20);
+          });
+        });
+
+        // Trigger staggered card arrival highlights
+        const cards = [
+          { el: document.getElementById('cardEmail'), delay: 100 },
+          { el: document.getElementById('cardWhatsApp'), delay: 220 },
+          { el: document.getElementById('cardSMS'), delay: 340 },
+          { el: document.getElementById('cardVoice'), delay: 460 }
+        ];
+
+        cards.forEach(({ el, delay }) => {
+          if (!el) return;
+          setTimeout(() => {
+            el.classList.remove('packet-arrival');
+            void el.offsetHeight;
+            el.classList.add('packet-arrival');
+            setTimeout(() => el.classList.remove('packet-arrival'), 600);
+          }, delay);
+        });
+
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 500);
+      }, 190);
+    }
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const scenario = btn.getAttribute('data-event');
+        setScenario(scenario);
+      });
     });
+
+    // Auto rotate scenarios gently every 6.5 seconds, pause on hover
+    const scenarioKeys = ['order_placed', 'auth_2fa', 'cart_recovery'];
+    let currentIdx = 0;
+    let isHovered = false;
+
+    setInterval(() => {
+      if (!isHovered) {
+        currentIdx = (currentIdx + 1) % scenarioKeys.length;
+        setScenario(scenarioKeys[currentIdx]);
+      }
+    }, 6500);
+
+    orchestrator.addEventListener('mouseenter', () => { isHovered = true; });
+    orchestrator.addEventListener('mouseleave', () => { isHovered = false; });
   }
 
-  // 6. Containerless Animated Campaign Story (Setup -> Preview Pop-up Click -> Success Modal)
+  // 7. Legacy Campaign Story Stage (if present)
   const storyStage = document.getElementById('campaignStoryStage') || document.getElementById('campaignWorkflowStage');
   if (storyStage) {
     const slide1 = document.getElementById('storySlide1') || storyStage.querySelector('.story-slide-setup') || storyStage.querySelector('[data-step="1"]');
@@ -313,4 +746,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start the story animation loop
     runPhase1();
   }
+
+  // 12. Automated Workflow Builder Interactive Accordions & Item Selection
+  const wfGroups = document.querySelectorAll('.wf-group-block');
+  wfGroups.forEach(group => {
+    const headerRow = group.querySelector('.wf-group-row');
+    const chevron = group.querySelector('.wf-chevron-icon');
+    const items = group.querySelectorAll('.wf-item-card, .wf-items-stack');
+
+    if (headerRow && chevron) {
+      headerRow.addEventListener('click', () => {
+        const isCollapsed = group.classList.toggle('is-collapsed');
+        if (isCollapsed) {
+          chevron.classList.replace('hgi-arrow-up-01', 'hgi-arrow-down-01');
+          items.forEach(el => el.style.display = 'none');
+        } else {
+          chevron.classList.replace('hgi-arrow-down-01', 'hgi-arrow-up-01');
+          items.forEach(el => el.style.display = '');
+        }
+      });
+    }
+
+    const cards = group.querySelectorAll('.wf-item-card');
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        // Toggle selection highlight
+        const wasActive = card.classList.contains('is-active');
+        cards.forEach(c => c.classList.remove('is-active'));
+        if (!wasActive) {
+          card.classList.add('is-active');
+        }
+      });
+    });
+  });
 });
+

@@ -1100,7 +1100,7 @@ body.dark-preview .theme-toggle-btn .icon-moon {
    ========================================================================== */
 .omni-orchestrator-canvas {
   width: 100%;
-  max-width: 580px;
+  max-width: 650px;
   background: var(--color-warm-taupe);
   border: 1px solid var(--color-stone);
   border-radius: var(--radius-cards);
@@ -1188,19 +1188,100 @@ body.dark-preview .theme-toggle-btn .icon-moon {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
-/* Flow Body (Trigger -> SVG Rail -> 4 Destination Cards) */
+/* Flow Body (1. Incoming Event -> 2. Stream -> 3. Klayed Hub -> 4. Rail Network -> 5. Destinations) */
 .omni-flow-body {
   display: grid;
-  grid-template-columns: 154px 44px 1fr;
+  grid-template-columns: 136px 44px 146px 44px 1fr;
   align-items: center;
-  padding: 18px 18px;
+  padding: 18px 16px;
   gap: 0;
   position: relative;
-  min-height: 390px;
+  min-height: 400px;
 }
 
-/* 1. Left Event Column (Klayed Platform Source Node -> Connector -> Incoming Event Card) */
-.omni-left-col {
+/* 1. Left Stage: Incoming Event Card */
+.omni-stage-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* 2. Stream Connector (Incoming Event -> Klayed Central Hub) */
+.omni-stream-to-klayed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  position: relative;
+  z-index: 1;
+}
+
+.stream-pill-tag {
+  font-family: var(--font-geist-mono);
+  font-size: 7.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-ash);
+  background: var(--color-stone);
+  padding: 1px 4px;
+  border-radius: 4px;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.stream-to-klayed-svg {
+  width: 44px;
+  height: 24px;
+  overflow: visible;
+}
+
+.stream-line-event {
+  stroke-dasharray: 4 3;
+  animation: flowConnectorRight 1.2s linear infinite;
+  will-change: stroke-dashoffset;
+}
+
+@keyframes flowConnectorRight {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -14; }
+}
+
+.stream-particle-to-klayed {
+  offset-path: path("M 0 12 L 40 12");
+  offset-rotate: 0deg;
+  animation: moveParticleToKlayedSmooth 1.6s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 0 3px rgba(212, 147, 17, 0.6));
+  will-change: transform, offset-distance, opacity;
+}
+
+@keyframes moveParticleToKlayedSmooth {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+/* 3. Middle Stage: Klayed Central Orchestrator & Distributor Hub */
+.omni-stage-middle {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1214,10 +1295,11 @@ body.dark-preview .theme-toggle-btn .icon-moon {
   width: 100%;
   background: #ffffff;
   border: 1px solid var(--color-stone);
-  border-radius: 12px;
-  padding: 8px 10px;
-  box-shadow: var(--shadow-subtle);
+  border-radius: 13px;
+  padding: 10px 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
 }
 
 .omni-source-node:hover {
@@ -1242,18 +1324,12 @@ body.dark-preview .theme-toggle-btn .icon-moon {
 }
 
 .source-k-squircle {
-  width: 24px;
-  height: 24px;
-  background-color: #000000;
-  color: #ffffff;
+  width: 26px;
+  height: 26px;
   border-radius: 6px;
-  font-family: var(--font-inter);
-  font-size: 13.5px;
-  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
   flex-shrink: 0;
 }
 
@@ -1266,7 +1342,7 @@ body.dark-preview .theme-toggle-btn .icon-moon {
 
 .source-kicker {
   font-family: var(--font-inter);
-  font-size: 8px;
+  font-size: 7.5px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -1292,60 +1368,30 @@ body.dark-preview .theme-toggle-btn .icon-moon {
   flex-shrink: 0;
 }
 
-/* Animated Connector Line (Klayed -> Incoming Event) */
-.source-connector-line {
-  height: 26px;
-  display: flex;
+.source-distribute-tag {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
+  gap: 5px;
+  font-size: 8.5px;
+  font-weight: 500;
+  color: var(--color-graphite);
+  background: var(--color-warm-taupe);
+  border: 1px solid var(--color-stone);
+  padding: 3px 6px;
+  border-radius: 6px;
+  margin-top: 8px;
   width: 100%;
+  justify-content: center;
+  white-space: nowrap;
 }
 
-.source-connector-svg {
-  width: 20px;
-  height: 26px;
-  overflow: visible;
-}
-
-.source-connector-svg line {
-  stroke-dasharray: 4 3;
-  animation: flowConnectorDown 1.4s linear infinite;
-  will-change: stroke-dashoffset;
-}
-
-@keyframes flowConnectorDown {
-  from { stroke-dashoffset: 0; }
-  to { stroke-dashoffset: -14; }
-}
-
-.source-stream-particle {
-  offset-path: path("M 10 0 L 10 26");
-  offset-rotate: 0deg;
-  animation: moveParticleSourceSmooth 1.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 0 3px rgba(213, 147, 18, 0.6));
-  will-change: transform, offset-distance, opacity;
-}
-
-@keyframes moveParticleSourceSmooth {
-  0% {
-    offset-distance: 0%;
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  20% {
-    opacity: 1;
-    transform: scale(1.15);
-  }
-  80% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    offset-distance: 100%;
-    opacity: 0;
-    transform: scale(0.6);
-  }
+.distribute-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #16a34a;
+  box-shadow: 0 0 5px rgba(22, 163, 74, 0.4);
+  animation: pulseDot 1.6s infinite ease-in-out;
 }
 
 /* 1b. Left Trigger Node (Crisp White Card with Stone Border) */
@@ -1873,8 +1919,9 @@ body.dark-preview .theme-toggle-btn .icon-moon {
 @media (max-width: 640px) {
   .omni-flow-body {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
+  .omni-stream-to-klayed,
   .omni-rail-network {
     display: none;
   }
@@ -7732,6 +7779,7 @@ body.dark-preview .omni-tab-btn.active {
 body.dark-preview .omni-source-node {
   background-color: #181815;
   border-color: #242320;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 body.dark-preview .source-k-squircle {
@@ -7747,8 +7795,23 @@ body.dark-preview .source-name {
   color: #ffffff;
 }
 
-body.dark-preview .source-connector-svg line {
-  stroke: #2a2925;
+body.dark-preview .source-distribute-tag {
+  background-color: #1a1a17;
+  border-color: #242320;
+  color: #c8c4be;
+}
+
+body.dark-preview .stream-pill-tag {
+  background-color: #242420;
+  color: #a59f97;
+}
+
+body.dark-preview .stream-line-event {
+  stroke: #33332d;
+}
+
+body.dark-preview .stream-to-klayed-svg polygon {
+  fill: #D49311;
 }
 
 body.dark-preview .omni-trigger-node {

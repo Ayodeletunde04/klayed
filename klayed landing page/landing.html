@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
-  <link rel="stylesheet" href="landing.css?v=20261005_40">
+  <link rel="stylesheet" href="landing.css?v=20261005_41">
   <script>
     (function() {
       try {
@@ -204,29 +204,8 @@
 
               <!-- Main Interactive Flow Stage -->
               <div class="omni-flow-body">
-                <!-- 1. Left Event Source: Klayed Platform Engine Linking to Incoming Event Card -->
-                <div class="omni-left-col">
-                  <!-- Klayed Logo Platform Source Node -->
-                  <div class="omni-source-node" id="omniSourceNode">
-                    <div class="source-node-inner">
-                      <img src="assets/klayed-logo.png?v=20261005_04" alt="Klayed Logo" class="brand-logo-img source-k-squircle" width="32" height="32">
-                      <div class="source-info">
-                        <span class="source-kicker">PLATFORM SOURCE</span>
-                        <span class="source-name">Klayed API</span>
-                      </div>
-                      <span class="source-pulse-dot" title="Klayed Engine Active"></span>
-                    </div>
-                  </div>
-
-                  <!-- Animated Connector Line (Klayed -> Incoming Event) -->
-                  <div class="source-connector-line" aria-hidden="true">
-                    <svg class="source-connector-svg" width="20" height="26" viewBox="0 0 20 26" fill="none">
-                      <line x1="10" y1="0" x2="10" y2="26" stroke="#d8d4cd" stroke-width="1.5" stroke-dasharray="3 2" />
-                      <circle class="source-stream-particle" r="3" fill="#0447ff" />
-                    </svg>
-                  </div>
-
-                  <!-- Incoming Event Card -->
+                <!-- 1. Left: Incoming Event Node (Event Trigger) -->
+                <div class="omni-stage-left">
                   <div class="omni-trigger-node" id="omniTriggerNode">
                     <div class="trigger-node-badge">
                       <span class="trigger-type-label">INCOMING EVENT</span>
@@ -243,7 +222,35 @@
                     </div>
                     <div class="trigger-dispatch-tag">
                       <span class="dispatch-pulse"></span>
-                      <span>Broadcasting 4 Channels</span>
+                      <span>Event Triggered</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 2. Animated Connector Stream: Incoming Event -> Klayed -->
+                <div class="omni-stream-to-klayed" aria-hidden="true">
+                  <span class="stream-pill-tag">Payload</span>
+                  <svg class="stream-to-klayed-svg" width="44" height="24" viewBox="0 0 44 24" fill="none">
+                    <line x1="0" y1="12" x2="38" y2="12" stroke="#d8d4cd" stroke-width="1.5" stroke-dasharray="3 3" class="stream-line-event" />
+                    <polygon points="36,8 44,12 36,16" fill="#D49311" />
+                    <circle class="stream-particle-to-klayed" r="3.5" fill="#D49311" />
+                  </svg>
+                </div>
+
+                <!-- 3. Middle: Klayed Central Orchestrator & Distributor Hub -->
+                <div class="omni-stage-middle">
+                  <div class="omni-source-node" id="omniSourceNode">
+                    <div class="source-node-inner">
+                      <img src="assets/klayed-logo.png?v=20261005_04" alt="Klayed Logo" class="brand-logo-img source-k-squircle" width="30" height="30">
+                      <div class="source-info">
+                        <span class="source-kicker">ORCHESTRATOR HUB</span>
+                        <span class="source-name">Klayed API</span>
+                      </div>
+                      <span class="source-pulse-dot" title="Klayed Engine Active"></span>
+                    </div>
+                    <div class="source-distribute-tag">
+                      <span class="distribute-dot"></span>
+                      <span>Distributing 4 Channels</span>
                     </div>
                   </div>
                 </div>

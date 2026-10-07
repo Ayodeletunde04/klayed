@@ -1199,37 +1199,30 @@ body.dark-preview .theme-toggle-btn .icon-moon {
   min-height: 390px;
 }
 
-/* 1. Left Column: Incoming Event on top, Klayed in Center, Telemetry at Bottom */
+/* 1. Left Column: Incoming Event on top sends request to Klayed in center, distributing to channels */
 .omni-orchestrator-col {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
   position: relative;
   z-index: 2;
   box-sizing: border-box;
-  padding: 4px 0;
-}
-
-.orchestrator-col-trigger-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  padding-top: 18px;
 }
 
 /* Vertical Stream Connector (Incoming Event -> Klayed API Hub) */
 .source-connector-line {
-  height: 28px;
+  height: 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   width: 100%;
-  margin-top: 4px;
+  margin: 0;
 }
 
 .stream-pill-tag {
@@ -1396,21 +1389,6 @@ body.dark-preview .theme-toggle-btn .icon-moon {
   animation: pulseDot 1.6s infinite ease-in-out;
 }
 
-/* Golden Socket on right border of Klayed Hub where railway lines connect */
-.source-dispatch-socket {
-  position: absolute;
-  right: -5px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #D49311;
-  border: 2px solid #ffffff;
-  box-shadow: 0 0 8px rgba(212, 147, 17, 0.7);
-  z-index: 4;
-}
-
 /* 1b. Left Trigger Node (Crisp White Card with Stone Border) */
 .omni-trigger-node {
   width: 100%;
@@ -1529,84 +1507,10 @@ body.dark-preview .theme-toggle-btn .icon-moon {
   animation: pulseDot 1.4s infinite ease-in-out;
 }
 
-/* 1c. Left Column Engine Telemetry Status Card (Bottom) */
-.omni-engine-telemetry {
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid var(--color-stone);
-  border-radius: 10px;
-  padding: 7px 10px;
-  box-shadow: var(--shadow-subtle);
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.telemetry-badge-row {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.telemetry-live-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #16a34a;
-  box-shadow: 0 0 6px rgba(22, 163, 74, 0.5);
-  animation: pulseDot 1.8s infinite ease-in-out;
-}
-
-.telemetry-kicker {
-  font-family: var(--font-inter);
-  font-size: 7.5px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-ash);
-}
-
-.telemetry-stats-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--color-warm-taupe);
-  border: 1px solid var(--color-stone);
-  border-radius: 6px;
-  padding: 4px 8px;
-}
-
-.telemetry-stat {
-  display: flex;
-  flex-direction: column;
-}
-
-.tstat-val {
-  font-family: var(--font-geist-mono);
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--color-ink);
-  line-height: 1.1;
-}
-
-.tstat-lbl {
-  font-family: var(--font-inter);
-  font-size: 7px;
-  color: var(--color-smoke);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.telemetry-divider {
-  width: 1px;
-  height: 18px;
-  background: var(--color-stone);
-}
-
 /* 2. SVG Rail Network Emerging Directly from Klayed Hub Socket */
 .omni-rail-network {
   position: relative;
-  width: 48px;
+  width: 44px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -1614,7 +1518,7 @@ body.dark-preview .theme-toggle-btn .icon-moon {
 }
 
 .omni-rail-svg {
-  width: 48px;
+  width: 44px;
   height: 100%;
   min-height: 380px;
   overflow: visible;
@@ -1649,28 +1553,28 @@ body.dark-preview .theme-toggle-btn .icon-moon {
 }
 
 .particle-email {
-  offset-path: path("M 0 190 C 24 190, 20 42, 44 42");
+  offset-path: path("M 0 186 C 24 186, 20 42, 44 42");
   offset-rotate: 0deg;
   animation: moveRailEmailSmooth 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
   fill: var(--color-violet-spark);
 }
 
 .particle-whatsapp {
-  offset-path: path("M 0 190 C 24 190, 20 138, 44 138");
+  offset-path: path("M 0 186 C 24 186, 20 138, 44 138");
   offset-rotate: 0deg;
   animation: moveRailWhatsAppSmooth 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1) 0.55s;
   fill: #16a34a;
 }
 
 .particle-sms {
-  offset-path: path("M 0 190 C 24 190, 20 242, 44 242");
+  offset-path: path("M 0 186 C 24 186, 20 242, 44 242");
   offset-rotate: 0deg;
   animation: moveRailSMSSmooth 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1) 1.1s;
   fill: var(--color-ember-orange);
 }
 
 .particle-voice {
-  offset-path: path("M 0 190 C 24 190, 20 334, 44 334");
+  offset-path: path("M 0 186 C 24 186, 20 334, 44 334");
   offset-rotate: 0deg;
   animation: moveRailVoiceSmooth 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1) 1.65s;
   fill: #111111;
@@ -7918,39 +7822,8 @@ body.dark-preview .omni-trigger-node {
   border-color: #242320;
 }
 
-body.dark-preview .source-dispatch-socket {
-  border-color: #181815;
-}
-
 body.dark-preview .rail-hub-origin-socket {
   stroke: #181815;
-}
-
-body.dark-preview .omni-engine-telemetry {
-  background-color: #181815;
-  border-color: #242320;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-}
-
-body.dark-preview .telemetry-kicker {
-  color: #a59f97;
-}
-
-body.dark-preview .telemetry-stats-row {
-  background-color: #1a1a17;
-  border-color: #242320;
-}
-
-body.dark-preview .tstat-val {
-  color: #ffffff;
-}
-
-body.dark-preview .tstat-lbl {
-  color: #8c8780;
-}
-
-body.dark-preview .telemetry-divider {
-  background-color: #242320;
 }
 
 body.dark-preview .trigger-node-card {

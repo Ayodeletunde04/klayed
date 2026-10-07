@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
-  <link rel="stylesheet" href="landing.css?v=20261005_46">
+  <link rel="stylesheet" href="landing.css?v=20261005_47">
   <script>
     (function() {
       try {
@@ -3091,40 +3091,92 @@
     <section class="cta-banner-section" aria-label="Get Started with Klayed">
       <div class="cta-banner-container">
         <div class="cta-banner-card">
-          <!-- Background Architectural Pattern -->
+          <!-- Animated Ambient Aurora Glow Orbs -->
+          <div class="cta-aurora-glow" aria-hidden="true">
+            <div class="cta-orb cta-orb-amber"></div>
+            <div class="cta-orb cta-orb-blue"></div>
+            <div class="cta-orb cta-orb-emerald"></div>
+          </div>
+
+          <!-- Background Architectural Blueprint & Orbit Pattern -->
           <div class="cta-pattern-mesh" aria-hidden="true">
-            <svg class="cta-pattern-svg" width="100%" height="100%" viewBox="0 0 1000 400" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <svg class="cta-pattern-svg" width="100%" height="100%" viewBox="0 0 1000 440" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <radialGradient id="cta-glow" cx="50%" cy="50%" r="55%">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
-                  <stop offset="70%" stop-color="#f5f3f1" stop-opacity="0.4" />
-                  <stop offset="100%" stop-color="#f5f3f1" stop-opacity="0" />
-                </radialGradient>
-                <pattern id="cta-grid-pattern" width="36" height="36" patternUnits="userSpaceOnUse">
-                  <path d="M 36 0 L 0 0 0 36" fill="none" stroke="rgba(0,0,0,0.035)" stroke-width="1"/>
-                  <circle cx="36" cy="36" r="1.2" fill="rgba(0,0,0,0.07)"/>
+                <pattern id="cta-dot-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1.1" fill="currentColor" class="cta-grid-dot"/>
                 </pattern>
+                <radialGradient id="cta-center-mask" cx="50%" cy="50%" r="58%">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+                  <stop offset="60%" stop-color="#ffffff" stop-opacity="0.35" />
+                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                </radialGradient>
               </defs>
-              <!-- Grid & Dot Pattern -->
-              <rect width="100%" height="100%" fill="url(#cta-grid-pattern)" />
-              <!-- Center Glow Radial Wash -->
-              <rect width="100%" height="100%" fill="url(#cta-glow)" />
-              <!-- Concentric Blueprint Rings -->
-              <ellipse cx="500" cy="200" rx="240" ry="130" stroke="rgba(0,0,0,0.06)" stroke-width="1" stroke-dasharray="4 4"/>
-              <ellipse cx="500" cy="200" rx="360" ry="190" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
-              <ellipse cx="500" cy="200" rx="470" ry="240" stroke="rgba(0,0,0,0.04)" stroke-width="1" stroke-dasharray="6 6"/>
-              <!-- Subtle Bauhaus Spark Highlights -->
-              <circle cx="260" cy="130" r="3" fill="#0447ff" opacity="0.6"/>
-              <circle cx="740" cy="270" r="3" fill="#ff4704" opacity="0.6"/>
+              <!-- Dot Grid -->
+              <rect width="100%" height="100%" fill="url(#cta-dot-grid)" class="cta-grid-rect"/>
+              <!-- Central Radial Softening -->
+              <rect width="100%" height="100%" fill="url(#cta-center-mask)" class="cta-mask-rect"/>
+              <!-- Rotating Blueprint Orbit Rings -->
+              <g class="cta-orbit-group">
+                <ellipse cx="500" cy="220" rx="250" ry="120" class="cta-orbit-ellipse orbit-inner" stroke-dasharray="6 6"/>
+                <ellipse cx="500" cy="220" rx="380" ry="180" class="cta-orbit-ellipse orbit-mid"/>
+                <ellipse cx="500" cy="220" rx="510" ry="240" class="cta-orbit-ellipse orbit-outer" stroke-dasharray="8 8"/>
+                <!-- Orbiting Signal Nodes -->
+                <circle cx="270" cy="170" r="4" class="cta-orbit-node node-amber"/>
+                <circle cx="730" cy="270" r="4" class="cta-orbit-node node-blue"/>
+                <circle cx="500" cy="100" r="3" class="cta-orbit-node node-emerald"/>
+              </g>
             </svg>
           </div>
 
+          <!-- Floating Ambient Badges (Desktop) -->
+          <div class="cta-float-badge badge-left" aria-hidden="true">
+            <span class="cta-badge-dot dot-green"></span>
+            <span>99.99% Uptime SLA</span>
+          </div>
+          <div class="cta-float-badge badge-right" aria-hidden="true">
+            <span class="cta-badge-dot dot-gold"></span>
+            <span>Sub-40ms Global Latency</span>
+          </div>
+
           <div class="cta-content-wrapper">
+            <div class="cta-kicker-badge">
+              <span class="cta-kicker-dot"></span>
+              <span>Unified Omnichannel Dispatch</span>
+            </div>
             <h2 class="cta-headline">Ready to elevate your customer communication?</h2>
             <p class="cta-subheadline">Integrate Email, WhatsApp, SMS, and Voice in an afternoon.</p>
             <div class="cta-actions-row">
-              <a href="../Klayed dashboard/index.html" class="btn-primary-pill">Create Free Account</a>
-              <a href="#channels" class="btn-demo-outline">Talk to Sales</a>
+              <a href="../Klayed dashboard/index.html" class="btn-primary-pill cta-btn-glow">
+                <span>Create Free Account</span>
+                <svg class="cta-btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4"/>
+                </svg>
+              </a>
+              <a href="#channels" class="btn-demo-outline">
+                <span>Talk to Sales</span>
+              </a>
+            </div>
+            <div class="cta-trust-strip">
+              <span class="cta-trust-item">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M13.5 4.5l-7 7-3.5-3.5"/>
+                </svg>
+                No credit card required
+              </span>
+              <span class="cta-trust-sep">•</span>
+              <span class="cta-trust-item">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M13.5 4.5l-7 7-3.5-3.5"/>
+                </svg>
+                Instant API keys
+              </span>
+              <span class="cta-trust-sep">•</span>
+              <span class="cta-trust-item">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M13.5 4.5l-7 7-3.5-3.5"/>
+                </svg>
+                Free test credits included
+              </span>
             </div>
           </div>
         </div>
@@ -3144,7 +3196,7 @@
             <img src="assets/klayed-logo.png?v=20261005_04" alt="Klayed Logo" class="brand-logo-img" width="28" height="28" style="width: 28px; height: 28px; border-radius: 7px;">
             <span>Klayed</span>
           </div>
-          <p class="footer-copyright-text">© 2026 Klayed Technologies Inc. All rights reserved.</p>
+          <p class="footer-copyright-text">&copy; 2026 Klayed Technologies Inc. All rights reserved.</p>
           <div class="footer-system-status">
             <span class="status-pulse-dot"></span>
             <span>All systems operational</span>
@@ -3159,28 +3211,54 @@
             <li><a href="#channels">WhatsApp Business</a></li>
             <li><a href="#channels">SMS Gateway</a></li>
             <li><a href="#channels">Voice &amp; IVR</a></li>
+            <li><a href="#pricing">Pricing</a></li>
           </ul>
         </div>
 
-        <!-- Column 3 (Developers) -->
+        <!-- Column 3 (Solutions) -->
+        <div class="footer-col">
+          <h4 class="footer-col-heading">Solutions</h4>
+          <ul class="footer-links-list">
+            <li><a href="#solutions">Marketing Teams</a></li>
+            <li><a href="#solutions">Sales &amp; Operations</a></li>
+            <li><a href="#solutions">Customer Support</a></li>
+            <li><a href="#solutions">Product Teams</a></li>
+            <li><a href="#solutions">Commercial Banks</a></li>
+            <li><a href="#solutions">Fintechs</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4 (Developers) -->
         <div class="footer-col">
           <h4 class="footer-col-heading">Developers</h4>
           <ul class="footer-links-list">
-            <li><a href="#developers">Documentation</a></li>
+            <li><a href="#developers">Documentation (Docs)</a></li>
             <li><a href="#developers">API Reference</a></li>
-            <li><a href="#developers">SDKs</a></li>
+            <li><a href="#pricing">Pricing Docs</a></li>
+            <li><a href="#developers">SDKs &amp; Libraries</a></li>
             <li><a href="#developers">Changelog</a></li>
           </ul>
         </div>
 
-        <!-- Column 4 (Company & Legal) -->
+        <!-- Column 5 (Company) -->
         <div class="footer-col">
           <h4 class="footer-col-heading">Company</h4>
           <ul class="footer-links-list">
-            <li><a href="#channels">About Us</a></li>
+            <li><a href="#why-klayed">About Us</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#solutions">Customers</a></li>
+            <li><a href="#security">Security</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 6 (Legal) -->
+        <div class="footer-col">
+          <h4 class="footer-col-heading">Legal</h4>
+          <ul class="footer-links-list">
             <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">Security</a></li>
+            <li><a href="#">Compliance &amp; SLA</a></li>
+            <li><a href="#">Security &amp; Trust</a></li>
           </ul>
         </div>
       </div>

@@ -7349,13 +7349,13 @@ body.dark-preview .bento-check-btn svg {
   background-size: 38px 38px, 38px 38px, 100% 100%;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
-  padding: 86px 36px 64px;
+  padding: 72px 36px 64px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 32px 80px -20px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 32px 80px -20px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   overflow: hidden;
   isolation: isolate;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -7363,31 +7363,7 @@ body.dark-preview .bento-check-btn svg {
 
 .cta-banner-card:hover {
   border-color: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 36px 90px -18px rgba(0, 0, 0, 0.85);
-}
-
-/* Top Architectural Notch (Dub.co Aesthetic from Image 1) */
-.cta-top-notch {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 320px;
-  height: 22px;
-  z-index: 4;
-  color: #fdfbf7;
-  pointer-events: none;
-}
-
-body.dark-preview .cta-top-notch,
-.dark-preview .cta-top-notch {
-  color: #0c0c0a;
-}
-
-.cta-notch-svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+  box-shadow: 0 36px 90px -18px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 /* Subtle Vignette & Mesh */
@@ -7493,46 +7469,7 @@ body.dark-preview .cta-top-notch,
   color: #ffffff;
 }
 
-/* Social Proof Star Ratings Strip (Image 1 aesthetic) */
-.cta-ratings-strip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
 
-.cta-rating-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: rgba(255, 255, 255, 0.85);
-  font-family: var(--font-inter);
-  font-size: 12px;
-  user-select: none;
-}
-
-.cta-rating-badge-icon {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-  font-size: 10px;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-}
-
-.cta-rating-stars {
-  color: #ffffff;
-  font-size: 10px;
-  letter-spacing: 2px;
-  opacity: 0.9;
-}
 
 /* ==========================================================================
    8. Minimalist Footer
@@ -8771,14 +8708,56 @@ body.dark-preview .metric-desc {
 }
 
 /* CTA Banner in Dark Mode */
-body.dark-preview .cta-banner-card {
+body.dark-preview .cta-banner-card,
+html.dark-preview .cta-banner-card,
+.dark-preview .cta-banner-card {
   background-color: #0b0b0e;
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
     radial-gradient(ellipse 70% 50% at 50% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 80%);
-  border-color: #282724;
-  box-shadow: 0 32px 80px -20px rgba(0, 0, 0, 0.85);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 32px 80px -20px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+body.dark-preview .cta-banner-card:hover,
+html.dark-preview .cta-banner-card:hover,
+.dark-preview .cta-banner-card:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 36px 90px -18px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+body.dark-preview .btn-cta-white,
+html.dark-preview .btn-cta-white,
+.dark-preview .btn-cta-white {
+  background-color: #ffffff;
+  color: #09090b;
+  border-color: #ffffff;
+  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.18);
+}
+
+body.dark-preview .btn-cta-white:hover,
+html.dark-preview .btn-cta-white:hover,
+.dark-preview .btn-cta-white:hover {
+  background-color: #f4f4f5;
+  color: #000000;
+  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.28);
+}
+
+body.dark-preview .btn-cta-dark,
+html.dark-preview .btn-cta-dark,
+.dark-preview .btn-cta-dark {
+  background: #202024;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+body.dark-preview .btn-cta-dark:hover,
+html.dark-preview .btn-cta-dark:hover,
+.dark-preview .btn-cta-dark:hover {
+  background: #2a2a30;
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #ffffff;
 }
 
 body.dark-preview .cta-orb-amber {

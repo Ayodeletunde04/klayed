@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
-  <link rel="stylesheet" href="landing.css?v=20261005_41">
+  <link rel="stylesheet" href="landing.css?v=20261005_42">
   <script>
     (function() {
       try {
@@ -204,8 +204,9 @@
 
               <!-- Main Interactive Flow Stage -->
               <div class="omni-flow-body">
-                <!-- 1. Left: Incoming Event Node (Event Trigger) -->
-                <div class="omni-stage-left">
+                <!-- 1. Left: Incoming Event on top of Klayed Orchestrator Hub -->
+                <div class="omni-orchestrator-col">
+                  <!-- Incoming Event Node (Event Trigger) -->
                   <div class="omni-trigger-node" id="omniTriggerNode">
                     <div class="trigger-node-badge">
                       <span class="trigger-type-label">INCOMING EVENT</span>
@@ -225,23 +226,21 @@
                       <span>Event Triggered</span>
                     </div>
                   </div>
-                </div>
 
-                <!-- 2. Animated Connector Stream: Incoming Event -> Klayed -->
-                <div class="omni-stream-to-klayed" aria-hidden="true">
-                  <span class="stream-pill-tag">Payload</span>
-                  <svg class="stream-to-klayed-svg" width="44" height="24" viewBox="0 0 44 24" fill="none">
-                    <line x1="0" y1="12" x2="38" y2="12" stroke="#d8d4cd" stroke-width="1.5" stroke-dasharray="3 3" class="stream-line-event" />
-                    <polygon points="36,8 44,12 36,16" fill="#D49311" />
-                    <circle class="stream-particle-to-klayed" r="3.5" fill="#D49311" />
-                  </svg>
-                </div>
+                  <!-- Animated Connector Stream: Incoming Event -> Klayed -->
+                  <div class="source-connector-line" aria-hidden="true">
+                    <span class="stream-pill-tag">Payload</span>
+                    <svg class="source-connector-svg" width="24" height="32" viewBox="0 0 24 32" fill="none">
+                      <line x1="12" y1="0" x2="12" y2="26" stroke="#d8d4cd" stroke-width="1.5" stroke-dasharray="3 3" class="stream-line-event-down" />
+                      <polygon points="8,24 12,31 16,24" fill="#D49311" />
+                      <circle class="stream-particle-down" r="3.5" fill="#D49311" />
+                    </svg>
+                  </div>
 
-                <!-- 3. Middle: Klayed Central Orchestrator & Distributor Hub -->
-                <div class="omni-stage-middle">
+                  <!-- Klayed Central Orchestrator & Distributor Hub Node -->
                   <div class="omni-source-node" id="omniSourceNode">
                     <div class="source-node-inner">
-                      <img src="assets/klayed-logo.png?v=20261005_04" alt="Klayed Logo" class="brand-logo-img source-k-squircle" width="30" height="30">
+                      <img src="assets/klayed-logo.png?v=20261005_04" alt="Klayed Logo" class="brand-logo-img source-k-squircle" width="28" height="28">
                       <div class="source-info">
                         <span class="source-kicker">ORCHESTRATOR HUB</span>
                         <span class="source-name">Klayed API</span>

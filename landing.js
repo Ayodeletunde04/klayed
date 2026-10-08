@@ -907,4 +907,258 @@ echo $message->id . ': ' . $message->status;`
       });
     });
   }
+
+  // 12. Hero Visual: "One Customer, One Conversation" Animation Controller
+  initHeroConversationVisual();
 });
+
+/**
+ * Hero Visual: "One Customer, One Conversation" Animation Controller
+ * Coordinates the sequential multi-channel timeline, campaign dispach,
+ * shared inbox view, and auto-advancing interactive pills.
+ */
+function initHeroConversationVisual() {
+  const root = document.getElementById('hero-conversation-visual');
+  if (!root) return;
+
+  const tabs = root.querySelectorAll('.khv-tab-pill');
+  const scenes = root.querySelectorAll('.khv-scene');
+  const spineFill = document.getElementById('khv-spine-fill');
+  const spineDot = document.getElementById('khv-spine-dot');
+  const msgNodes = root.querySelectorAll('.khv-msg-node');
+  const voiceKeypad = document.getElementById('khv-keypad-1');
+  const voiceKeypadStatus = document.getElementById('khv-keypad-status');
+  const voiceStatusLabel = document.getElementById('khv-voice-status-label');
+  const caption1 = document.getElementById('khv-caption-1');
+  const caption2 = document.getElementById('khv-caption-2');
+  const caption3 = document.getElementById('khv-caption-3');
+  const channelIcons = root.querySelectorAll('#khv-topbar-channels .khv-ch-icon');
+
+  const barWa = document.getElementById('khv-bar-wa');
+  const barSms = document.getElementById('khv-bar-sms');
+  const barEmail = document.getElementById('khv-bar-email');
+
+  let currentScene = 0;
+  let activeTimeouts = [];
+  let isPaused = false;
+  let pauseResumeTimeout = null;
+
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function clearAllTimers() {
+    activeTimeouts.forEach(t => clearTimeout(t));
+    activeTimeouts = [];
+    if (pauseResumeTimeout) {
+      clearTimeout(pauseResumeTimeout);
+      pauseResumeTimeout = null;
+    }
+  }
+
+  function schedule(fn, delay) {
+    const id = setTimeout(fn, delay);
+    activeTimeouts.push(id);
+    return id;
+  }
+
+  function setScene(index, isManual = false) {
+    clearAllTimers();
+    currentScene = index;
+
+    // Update Tab UI
+    tabs.forEach((tab, i) => {
+      const active = i === index;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      tab.setAttribute('tabindex', active ? '0' : '-1');
+    });
+
+    // Update Scenes
+    scenes.forEach((sc, i) => {
+      sc.classList.toggle('active', i === index);
+    });
+
+    // Handle Reduced Motion
+    if (prefersReducedMotion) {
+      msgNodes.forEach(m => m.classList.add('is-visible'));
+      if (spineFill) spineFill.style.height = '100%';
+      if (caption1) caption1.classList.add('is-visible');
+      if (caption2) caption2.classList.add('is-visible');
+      if (caption3) caption3.classList.add('is-visible');
+      if (barWa) barWa.style.width = '100%';
+      if (barSms) barSms.style.width = '100%';
+      if (barEmail) barEmail.style.width = '100%';
+      return;
+    }
+
+    if (index === 0) {
+      playScene1();
+    } else if (index === 1) {
+      playScene2();
+    } else if (index === 2) {
+      playScene3();
+    }
+  }
+
+  function playScene1() {
+    // Reset state for Scene 1
+    msgNodes.forEach(m => m.classList.remove('is-visible'));
+    if (caption1) caption1.classList.remove('is-visible');
+    if (voiceKeypad) voiceKeypad.classList.remove('is-pressed');
+    if (voiceKeypadStatus) voiceKeypadStatus.textContent = 'Press 1';
+    if (voiceStatusLabel) voiceStatusLabel.textContent = 'Calling...';
+    if (spineFill) spineFill.style.height = '0%';
+    if (spineDot) {
+      spineDot.classList.remove('is-active');
+      spineDot.style.top = '0%';
+    }
+
+    // Message 1: Email (0.4s)
+    schedule(() => {
+      if (msgNodes[0]) msgNodes[0].classList.add('is-visible');
+      if (spineFill) spineFill.style.height = '14%';
+      if (spineDot) {
+        spineDot.classList.add('is-active');
+        spineDot.style.top = '14%';
+      }
+    }, 400);
+
+    // Message 2: WhatsApp Outbound (1.9s)
+    schedule(() => {
+      if (msgNodes[1]) msgNodes[1].classList.add('is-visible');
+      if (spineFill) spineFill.style.height = '33%';
+      if (spineDot) spineDot.style.top = '33%';
+    }, 1900);
+
+    // Message 3: WhatsApp Inbound (3.4s)
+    schedule(() => {
+      if (msgNodes[2]) msgNodes[2].classList.add('is-visible');
+      if (spineFill) spineFill.style.height = '50%';
+      if (spineDot) spineDot.style.top = '50%';
+    }, 3400);
+
+    // Message 4: WhatsApp Outbound (4.8s)
+    schedule(() => {
+      if (msgNodes[3]) msgNodes[3].classList.add('is-visible');
+      if (spineFill) spineFill.style.height = '67%';
+      if (spineDot) spineDot.style.top = '67%';
+    }, 4800);
+
+    // Message 5: SMS (6.3s)
+    schedule(() => {
+      if (msgNodes[4]) msgNodes[4].classList.add('is-visible');
+      if (spineFill) spineFill.style.height = '83%';
+      if (spineDot) spineDot.style.top = '83%';
+    }, 6300);
+
+    // Message 6: Voice (7.7s)
+    schedule(() => {
+      if (msgNodes[5]) msgNodes[5].classList.add('is-visible');
+      if (spineFill) spineFill.style.height = '98%';
+      if (spineDot) spineDot.style.top = '98%';
+    }, 7700);
+
+    // Voice Keypad press & Status update (8.7s)
+    schedule(() => {
+      if (voiceKeypad) voiceKeypad.classList.add('is-pressed');
+      if (voiceKeypadStatus) voiceKeypadStatus.textContent = 'Confirmed';
+      if (voiceStatusLabel) voiceStatusLabel.textContent = 'Confirmed';
+    }, 8700);
+
+    // Channel Icons Pulse Sequence + Caption Reveal (9.3s)
+    schedule(() => {
+      channelIcons.forEach((icon, i) => {
+        schedule(() => {
+          icon.classList.add('pulse');
+          schedule(() => icon.classList.remove('pulse'), 450);
+        }, i * 160);
+      });
+
+      if (caption1) caption1.classList.add('is-visible');
+    }, 9300);
+
+    // Auto-advance to Scene 2 (after 2s pause, ~11.8s)
+    schedule(() => {
+      if (!isPaused) setScene(1);
+    }, 11800);
+  }
+
+  function playScene2() {
+    // Reset Scene 2
+    if (caption2) caption2.classList.remove('is-visible');
+    if (barWa) barWa.style.width = '0%';
+    if (barSms) barSms.style.width = '0%';
+    if (barEmail) barEmail.style.width = '0%';
+
+    // Progress Bars animate filling
+    schedule(() => {
+      if (barWa) barWa.style.width = '100%';
+      if (barSms) barSms.style.width = '100%';
+      if (barEmail) barEmail.style.width = '100%';
+    }, 400);
+
+    // Caption fades in
+    schedule(() => {
+      if (caption2) caption2.classList.add('is-visible');
+    }, 1600);
+
+    // Auto-advance to Scene 3 (~8.0s)
+    schedule(() => {
+      if (!isPaused) setScene(2);
+    }, 8000);
+  }
+
+  function playScene3() {
+    // Reset Scene 3
+    if (caption3) caption3.classList.remove('is-visible');
+
+    // Caption fades in
+    schedule(() => {
+      if (caption3) caption3.classList.add('is-visible');
+    }, 1200);
+
+    // Auto-advance loop back to Scene 1 (~8.0s)
+    schedule(() => {
+      if (!isPaused) setScene(0);
+    }, 8000);
+  }
+
+  // Clickable Tab Pills
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      setScene(index, true);
+    });
+
+    // Keyboard navigation (Arrow keys + Home/End)
+    tab.addEventListener('keydown', (e) => {
+      let nextIndex = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        nextIndex = (index + 1) % tabs.length;
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        nextIndex = (index - 1 + tabs.length) % tabs.length;
+      } else if (e.key === 'Home') {
+        nextIndex = 0;
+      } else if (e.key === 'End') {
+        nextIndex = tabs.length - 1;
+      }
+
+      if (nextIndex !== null) {
+        e.preventDefault();
+        tabs[nextIndex].focus();
+        setScene(nextIndex, true);
+      }
+    });
+  });
+
+  // Pause on hover or focus
+  root.addEventListener('mouseenter', () => { isPaused = true; });
+  root.addEventListener('mouseleave', () => {
+    isPaused = false;
+  });
+  root.addEventListener('focusin', () => { isPaused = true; });
+  root.addEventListener('focusout', () => {
+    isPaused = false;
+  });
+
+  // Initial trigger
+  setScene(0);
+}

@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
-  <link rel="stylesheet" href="landing.css?v=20261008_08">
+  <link rel="stylesheet" href="landing.css?v=20261008_09">
   <script>
     (function() {
       try {
@@ -535,200 +535,386 @@
           </div>
         </div>
 
-        <!-- Hero Right Column: Large Futuristic Dashboard Mockup -->
+        <!-- Hero Right Column: One Customer, One Conversation Visual -->
         <div class="v2-hero-right">
-          <div class="v2-dashboard-stage">
+          <div class="klayed-hero-visual" id="hero-conversation-visual" role="region" aria-label="Animation showing one customer receiving email, WhatsApp, SMS and voice messages from a business, all in a single conversation on Klayed.">
             
-            <!-- Floating Pill 1: OTP Speed -->
-            <div class="v2-floating-pill v2-float-top-left">
-              <div class="v2-float-icon-box v2-icon-gold">
-                <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
-                  <path d="M11.3 1.05a1 1 0 0 0-1.12.2l-7 8a1 1 0 0 0 .75 1.66h4.55l-2.77 7.04a1 1 0 0 0 1.67 1.05l7-8a1 1 0 0 0-.75-1.66H9.08l2.77-7.04a1 1 0 0 0-.55-1.25z"/>
+            <!-- Top-Left Klayed Origin Connector Chip -->
+            <div class="khv-origin-badge" aria-hidden="true">
+              <div class="khv-origin-chip">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="#D49311">
+                  <path d="M4 3h5v7.2L15.3 3H21l-7.5 8.5L21 21h-5.7L9 13.8V21H4V3z"/>
                 </svg>
+                <span>Klayed</span>
               </div>
-              <div class="v2-float-info">
-                <span class="v2-float-primary">OTP Delivered in 0.8s</span>
-                <span class="v2-float-secondary">Tier-1 Telco Direct Routing</span>
-              </div>
+              <svg class="khv-origin-connector" viewBox="0 0 80 32" fill="none" preserveAspectRatio="none">
+                <path d="M 38 0 V 16 Q 38 28 50 28 H 78" stroke="rgba(212, 147, 17, 0.45)" stroke-width="1.5" stroke-dasharray="3 3"/>
+              </svg>
             </div>
 
-            <!-- Floating Pill 2: WhatsApp Conversion -->
-            <div class="v2-floating-pill v2-float-bottom-right">
-              <div class="v2-float-icon-box v2-icon-emerald">
-                <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
-                  <path d="M10 0C4.477 0 0 4.477 0 10c0 1.765.46 3.424 1.264 4.872L.055 19.34a.75.75 0 0 0 .937.937l4.468-1.209A9.957 9.957 0 0 0 10 20c5.523 0 10-4.477 10-10S15.523 0 10 0zm4.84 14.18c-.205.578-.992 1.085-1.609 1.15-.422.045-.972.082-2.825-.685-2.372-.98-3.905-3.385-4.024-3.542-.118-.158-.962-1.28-.962-2.44 0-1.16.608-1.733.824-1.97.215-.236.47-.295.627-.295.157 0 .314.002.45.008.145.008.337-.055.528.404.196.47.667 1.628.725 1.746.059.118.098.255.02.412-.079.157-.118.255-.235.392-.118.138-.247.308-.353.414-.118.118-.241.246-.104.482.138.235.61 1.004 1.309 1.627.9.803 1.658 1.052 1.894 1.17.235.118.373.098.51-.059.137-.157.588-.686.745-.921.157-.236.314-.197.53-.118.215.078 1.372.647 1.607.765.236.117.393.176.451.274.059.098.059.569-.146 1.147z"/>
-                </svg>
-              </div>
-              <div class="v2-float-info">
-                <span class="v2-float-primary">48.2% Click Rate</span>
-                <span class="v2-float-secondary">WhatsApp Flash Sale</span>
-              </div>
-            </div>
-
-            <!-- Glowing multi-channel connector lines (SVG) -->
-            <svg class="v2-connector-svg" viewBox="0 0 600 450" fill="none" aria-hidden="true">
-              <path d="M 60 120 C 180 120, 240 220, 320 220 C 400 220, 440 140, 540 140" stroke="url(#connector-gradient)" stroke-width="2" stroke-dasharray="6 6" class="v2-line-pulse"/>
-              <path d="M 80 340 C 200 340, 260 250, 330 250 C 420 250, 480 320, 520 320" stroke="url(#connector-gradient-gold)" stroke-width="2" stroke-dasharray="4 4" class="v2-line-pulse-alt"/>
-              <defs>
-                <linearGradient id="connector-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#D49311" stop-opacity="0.8"/>
-                  <stop offset="50%" stop-color="#22C55E" stop-opacity="0.9"/>
-                  <stop offset="100%" stop-color="#D49311" stop-opacity="0.8"/>
-                </linearGradient>
-                <linearGradient id="connector-gradient-gold" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.3"/>
-                  <stop offset="50%" stop-color="#D49311" stop-opacity="0.8"/>
-                  <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.3"/>
-                </linearGradient>
-              </defs>
-            </svg>
-
-            <!-- Main Dashboard Frame -->
-            <div class="v2-dash-window">
+            <!-- The Main Conversation Card -->
+            <div class="khv-card" id="khv-main-card">
               
-              <!-- Dashboard Chrome Bar -->
-              <div class="v2-dash-header">
-                <div class="v2-dash-dots">
-                  <span class="v2-dash-dot v2-dot-red"></span>
-                  <span class="v2-dash-dot v2-dot-amber"></span>
-                  <span class="v2-dash-dot v2-dot-green"></span>
+              <!-- Card Top Bar: Customer Profile + Channel Icons + "1 thread" -->
+              <div class="khv-topbar">
+                <div class="khv-customer-profile">
+                  <div class="khv-avatar" aria-hidden="true">AO</div>
+                  <div class="khv-customer-meta">
+                    <span class="khv-customer-name">Adaeze Okafor</span>
+                    <span class="khv-customer-sub">Customer since 2024</span>
+                  </div>
                 </div>
-                <div class="v2-dash-titlebar">
-                  <span class="v2-dash-title-icon">⚡</span>
-                  <span class="v2-dash-title-text">klayed-live-orchestrator • production</span>
-                </div>
-                <div class="v2-dash-status-pill">
-                  <span class="v2-live-pulse-dot"></span>
-                  <span>99.98% Live</span>
+
+                <div class="khv-thread-indicator">
+                  <div class="khv-channel-icons-row" id="khv-topbar-channels">
+                    <span class="khv-ch-icon khv-wa" title="WhatsApp" aria-label="WhatsApp">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2zm0 18.15c-1.48 0-2.93-.39-4.19-1.14l-.3-.18-3.12.82.83-3.04-.2-.32c-.82-1.3-1.25-2.82-1.25-4.38 0-4.54 3.69-8.23 8.23-8.23 2.21 0 4.27.86 5.83 2.42 1.55 1.56 2.41 3.62 2.41 5.82 0 4.54-3.7 8.22-8.24 8.22z"/>
+                      </svg>
+                    </span>
+                    <span class="khv-ch-icon khv-sms" title="SMS" aria-label="SMS">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                      </svg>
+                    </span>
+                    <span class="khv-ch-icon khv-email" title="Email" aria-label="Email">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                      </svg>
+                    </span>
+                    <span class="khv-ch-icon khv-voice" title="Voice" aria-label="Voice">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                      </svg>
+                    </span>
+                  </div>
+                  <span class="khv-thread-badge">1 thread</span>
                 </div>
               </div>
 
-              <!-- Dashboard Body Grid -->
-              <div class="v2-dash-body">
+              <!-- Stage Views (Cross-fading) -->
+              <div class="khv-stage">
                 
-                <!-- Metrics Bar: SMS, Email, WhatsApp, Voice -->
-                <div class="v2-dash-stats-row">
-                  <div class="v2-stat-tile">
-                    <div class="v2-stat-tile-top">
-                      <span class="v2-ch-tag v2-tag-sms">SMS</span>
-                      <span class="v2-stat-percent">99.8%</span>
+                <!-- SCENE 1: CUSTOMER CONVERSATION -->
+                <div class="khv-scene khv-scene-conversation active" id="khv-scene-1" role="tabpanel" aria-labelledby="khv-tab-1">
+                  <div class="khv-timeline">
+                    <!-- Amber Spine Track & Indicator -->
+                    <div class="khv-spine-track">
+                      <div class="khv-spine-fill" id="khv-spine-fill"></div>
+                      <div class="khv-spine-dot" id="khv-spine-dot"></div>
                     </div>
-                    <div class="v2-stat-tile-val">1,248,930</div>
-                    <div class="v2-stat-tile-sub">Sent • 0.8s avg</div>
+
+                    <div class="khv-messages-list" id="khv-messages-list">
+                      
+                      <!-- 1. Email -->
+                      <div class="khv-msg-node" data-msg="1">
+                        <div class="khv-node-dot khv-nd-email">
+                          <svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                          </svg>
+                        </div>
+                        <div class="khv-bubble khv-bubble-business">
+                          <div class="khv-bubble-meta">
+                            <span class="khv-tag khv-tag-email">EMAIL</span>
+                            <span class="khv-time">9:02 AM</span>
+                            <span class="khv-status khv-stat-opened">
+                              <svg viewBox="0 0 16 16" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 8.5 6.5 12 13 4.5"/></svg>
+                              <span>Opened</span>
+                            </span>
+                          </div>
+                          <p class="khv-text">Order confirmed. Your receipt for order #8492 is attached.</p>
+                        </div>
+                      </div>
+
+                      <!-- 2. WhatsApp Outbound -->
+                      <div class="khv-msg-node" data-msg="2">
+                        <div class="khv-node-dot khv-nd-wa">
+                          <svg viewBox="0 0 24 24" width="9" height="9" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2z"/></svg>
+                        </div>
+                        <div class="khv-bubble khv-bubble-business">
+                          <div class="khv-bubble-meta">
+                            <span class="khv-tag khv-tag-wa">WHATSAPP</span>
+                            <span class="khv-time">9:05 AM</span>
+                            <span class="khv-status khv-stat-read">
+                              <svg viewBox="0 0 18 14" width="11" height="9" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m1 7 4 4 8-8m-4 8 2 2 6-6"/></svg>
+                              <span>Read</span>
+                            </span>
+                          </div>
+                          <p class="khv-text">Your order is on the way.</p>
+                          <div class="khv-actions-row">
+                            <span class="khv-action-btn">Track order</span>
+                            <span class="khv-action-btn">Change time</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- 3. WhatsApp Inbound (Customer Reply) -->
+                      <div class="khv-msg-node khv-node-inbound" data-msg="3">
+                        <div class="khv-node-dot khv-nd-inbound">
+                          <span class="khv-mini-initials">AO</span>
+                        </div>
+                        <div class="khv-bubble khv-bubble-customer">
+                          <div class="khv-bubble-meta">
+                            <span class="khv-tag khv-tag-customer">Adaeze</span>
+                            <span class="khv-time">9:12 AM</span>
+                          </div>
+                          <p class="khv-text">Can you deliver after 2pm?</p>
+                        </div>
+                      </div>
+
+                      <!-- 4. WhatsApp Outbound (Business Reply) -->
+                      <div class="khv-msg-node" data-msg="4">
+                        <div class="khv-node-dot khv-nd-wa">
+                          <svg viewBox="0 0 24 24" width="9" height="9" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2z"/></svg>
+                        </div>
+                        <div class="khv-bubble khv-bubble-business">
+                          <div class="khv-bubble-meta">
+                            <span class="khv-tag khv-tag-wa">WHATSAPP</span>
+                            <span class="khv-time">9:13 AM</span>
+                            <span class="khv-badge-author">Replied by Support team</span>
+                          </div>
+                          <p class="khv-text">Done. Rescheduled for 2:30 PM.</p>
+                        </div>
+                      </div>
+
+                      <!-- 5. SMS -->
+                      <div class="khv-msg-node" data-msg="5">
+                        <div class="khv-node-dot khv-nd-sms">
+                          <svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <div class="khv-bubble khv-bubble-business">
+                          <div class="khv-bubble-meta">
+                            <span class="khv-tag khv-tag-sms">SMS</span>
+                            <span class="khv-time">1:55 PM</span>
+                            <span class="khv-status khv-stat-delivered">
+                              <svg viewBox="0 0 16 16" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 8.5 6.5 12 13 4.5"/></svg>
+                              <span>Delivered</span>
+                            </span>
+                          </div>
+                          <p class="khv-text">Your delivery code is <span class="khv-code-highlight">4920</span>.</p>
+                        </div>
+                      </div>
+
+                      <!-- 6. Voice Call -->
+                      <div class="khv-msg-node" data-msg="6">
+                        <div class="khv-node-dot khv-nd-voice">
+                          <svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div class="khv-bubble khv-bubble-voice">
+                          <div class="khv-bubble-meta">
+                            <span class="khv-tag khv-tag-voice">VOICE</span>
+                            <span class="khv-time">2:28 PM</span>
+                            <span class="khv-status khv-stat-voice" id="khv-voice-status">
+                              <span class="khv-voice-pulse-dot"></span>
+                              <span id="khv-voice-status-label">Calling...</span>
+                            </span>
+                          </div>
+                          <div class="khv-voice-body">
+                            <span class="khv-voice-desc">Delivery call · Press 1 to confirm</span>
+                            <div class="khv-keypad-box">
+                              <span class="khv-keypad-key" id="khv-keypad-1">1</span>
+                              <span class="khv-keypad-status" id="khv-keypad-status">Press 1</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
 
-                  <div class="v2-stat-tile">
-                    <div class="v2-stat-tile-top">
-                      <span class="v2-ch-tag v2-tag-wa">WhatsApp</span>
-                      <span class="v2-stat-percent">98.9%</span>
-                    </div>
-                    <div class="v2-stat-tile-val">682,410</div>
-                    <div class="v2-stat-tile-sub">Verified Business</div>
-                  </div>
-
-                  <div class="v2-stat-tile">
-                    <div class="v2-stat-tile-top">
-                      <span class="v2-ch-tag v2-tag-mail">Email</span>
-                      <span class="v2-stat-percent">99.4%</span>
-                    </div>
-                    <div class="v2-stat-tile-val">412,050</div>
-                    <div class="v2-stat-tile-sub">48.2% Open rate</div>
-                  </div>
-
-                  <div class="v2-stat-tile">
-                    <div class="v2-stat-tile-top">
-                      <span class="v2-ch-tag v2-tag-voice">Voice</span>
-                      <span class="v2-stat-percent">99.1%</span>
-                    </div>
-                    <div class="v2-stat-tile-val">94,320</div>
-                    <div class="v2-stat-tile-sub">IVR &amp; Outbound</div>
+                  <!-- Scene 1 Caption Footer -->
+                  <div class="khv-caption-strip" id="khv-caption-1">
+                    <span>Email. WhatsApp. SMS. Voice. One conversation.</span>
                   </div>
                 </div>
 
-                <!-- Two-Column Preview inside Dashboard -->
-                <div class="v2-dash-split-views">
-                  
-                  <!-- Left: Interactive WhatsApp & SMS Conversations -->
-                  <div class="v2-chat-stream-box">
-                    <div class="v2-chat-box-header">
-                      <div class="v2-sender-info">
-                        <div class="v2-sender-avatar">K</div>
-                        <div>
-                          <div class="v2-sender-name">Klayed Commerce <span class="v2-verified-check">✓</span></div>
-                          <div class="v2-sender-sub">Active session with +234 814 ••• 9281</div>
-                        </div>
+                <!-- SCENE 2: CAMPAIGN -->
+                <div class="khv-scene khv-scene-campaign" id="khv-scene-2" role="tabpanel" aria-labelledby="khv-tab-2">
+                  <div class="khv-campaign-content">
+                    
+                    <div class="khv-camp-card">
+                      <div class="khv-camp-top">
+                        <span class="khv-camp-eyebrow">Multi-channel campaign</span>
+                        <span class="khv-camp-state">Dispatching</span>
                       </div>
-                      <span class="v2-status-online">Automated</span>
+                      <h4 class="khv-camp-title">Weekend Sale</h4>
+                      <div class="khv-camp-preview-box">
+                        <span class="khv-camp-preview-label">Message preview</span>
+                        <p class="khv-camp-preview-msg">"30% off until Sunday."</p>
+                      </div>
                     </div>
 
-                    <div class="v2-chat-bubbles-wrap">
-                      <div class="v2-bubble v2-bubble-user">
-                        <div class="v2-bubble-text">Hi, is my order #KL-9402 on the way?</div>
-                        <span class="v2-bubble-time">10:42 AM</span>
-                      </div>
-                      <div class="v2-bubble v2-bubble-bot">
-                        <div class="v2-bubble-text">
-                          Yes! Your order has been dispatched. Track in real-time or tap below for delivery ETA:
+                    <div class="khv-camp-audiences">
+                      
+                      <!-- WhatsApp Row -->
+                      <div class="khv-aud-item">
+                        <div class="khv-aud-header">
+                          <div class="khv-aud-left">
+                            <span class="khv-tag khv-tag-wa">WHATSAPP</span>
+                            <span class="khv-aud-label">Customers who opted in</span>
+                          </div>
+                          <div class="khv-aud-right">
+                            <span class="khv-editable-badge" title="Editable placeholder">[14,250]</span>
+                          </div>
                         </div>
-                        <div class="v2-bubble-actions">
-                          <span class="v2-action-chip">Track Order 📦</span>
-                          <span class="v2-action-chip">Call Driver 📞</span>
+                        <div class="khv-progress-track">
+                          <div class="khv-progress-bar khv-pbar-wa" id="khv-bar-wa"></div>
                         </div>
-                        <span class="v2-bubble-time">10:42 AM • Delivered</span>
                       </div>
+
+                      <!-- SMS Row -->
+                      <div class="khv-aud-item">
+                        <div class="khv-aud-header">
+                          <div class="khv-aud-left">
+                            <span class="khv-tag khv-tag-sms">SMS</span>
+                            <span class="khv-aud-label">Customers without data</span>
+                          </div>
+                          <div class="khv-aud-right">
+                            <span class="khv-editable-badge" title="Editable placeholder">[9,840]</span>
+                          </div>
+                        </div>
+                        <div class="khv-progress-track">
+                          <div class="khv-progress-bar khv-pbar-sms" id="khv-bar-sms"></div>
+                        </div>
+                      </div>
+
+                      <!-- Email Row -->
+                      <div class="khv-aud-item">
+                        <div class="khv-aud-header">
+                          <div class="khv-aud-left">
+                            <span class="khv-tag khv-tag-email">EMAIL</span>
+                            <span class="khv-aud-label">Newsletter subscribers</span>
+                          </div>
+                          <div class="khv-aud-right">
+                            <span class="khv-editable-badge" title="Editable placeholder">[32,100]</span>
+                          </div>
+                        </div>
+                        <div class="khv-progress-track">
+                          <div class="khv-progress-bar khv-pbar-email" id="khv-bar-email"></div>
+                        </div>
+                      </div>
+
                     </div>
+
                   </div>
 
-                  <!-- Right: Real-Time Live Activity Feed & Voice Logs -->
-                  <div class="v2-feed-stream-box">
-                    <div class="v2-feed-box-header">
-                      <span class="v2-feed-title">Live Dispatch Stream</span>
-                      <span class="v2-feed-latency">Latency: 112ms</span>
+                  <!-- Scene 2 Caption Footer -->
+                  <div class="khv-caption-strip" id="khv-caption-2">
+                    <span>One campaign. Every channel your customers use.</span>
+                  </div>
+                </div>
+
+                <!-- SCENE 3: SUPPORT INBOX -->
+                <div class="khv-scene khv-scene-inbox" id="khv-scene-3" role="tabpanel" aria-labelledby="khv-tab-3">
+                  <div class="khv-inbox-layout">
+                    
+                    <!-- Left: Incoming channel feed -->
+                    <div class="khv-inbox-column">
+                      <div class="khv-inbox-feed-header">Incoming streams</div>
+                      <div class="khv-inbox-cards">
+                        
+                        <div class="khv-feed-card is-active">
+                          <div class="khv-feed-card-head">
+                            <span class="khv-tag khv-tag-wa">WHATSAPP</span>
+                            <span class="khv-feed-time">2m ago</span>
+                          </div>
+                          <div class="khv-feed-snippet">"Where is my order?"</div>
+                        </div>
+
+                        <div class="khv-feed-card">
+                          <div class="khv-feed-card-head">
+                            <span class="khv-tag khv-tag-sms">SMS</span>
+                            <span class="khv-feed-time">7m ago</span>
+                          </div>
+                          <div class="khv-feed-snippet">"Reply STOP to unsubscribe"</div>
+                        </div>
+
+                        <div class="khv-feed-card">
+                          <div class="khv-feed-card-head">
+                            <span class="khv-tag khv-tag-email">EMAIL</span>
+                            <span class="khv-feed-time">12m ago</span>
+                          </div>
+                          <div class="khv-feed-snippet">"Invoice request"</div>
+                        </div>
+
+                        <div class="khv-feed-card">
+                          <div class="khv-feed-card-head">
+                            <span class="khv-tag khv-tag-voice">VOICE</span>
+                            <span class="khv-feed-time">19m ago</span>
+                          </div>
+                          <div class="khv-feed-snippet">"Missed call · call back"</div>
+                        </div>
+
+                      </div>
                     </div>
 
-                    <div class="v2-feed-items">
-                      <div class="v2-feed-row">
-                        <span class="v2-feed-badge v2-fb-sms">SMS</span>
-                        <div class="v2-feed-desc">
-                          <span class="v2-feed-text">OTP 720-419 sent to Lagos (+234)</span>
-                          <span class="v2-feed-meta">MTN Primary Route • 810ms</span>
+                    <!-- Right: Active conversation & agent reply box -->
+                    <div class="khv-detail-column">
+                      <div class="khv-detail-top">
+                        <div class="khv-detail-user">
+                          <span class="khv-detail-avatar">AO</span>
+                          <div>
+                            <span class="khv-detail-name">Adaeze Okafor</span>
+                            <span class="khv-detail-sub">WhatsApp Thread</span>
+                          </div>
                         </div>
-                        <span class="v2-feed-status v2-fs-green">Delivered</span>
+                        <span class="khv-status-badge">Open</span>
                       </div>
 
-                      <div class="v2-feed-row">
-                        <span class="v2-feed-badge v2-fb-email">EMAIL</span>
-                        <div class="v2-feed-desc">
-                          <span class="v2-feed-text">Receipt dispatched to tobi@fintech.co</span>
-                          <span class="v2-feed-meta">DKIM/SPF Validated • Inbox</span>
+                      <div class="khv-detail-bubble-area">
+                        <div class="khv-detail-customer-msg">
+                          <span>Where is my order?</span>
+                          <span class="khv-detail-msg-time">10:48 AM</span>
                         </div>
-                        <span class="v2-feed-status v2-fs-green">Opened</span>
                       </div>
 
-                      <div class="v2-feed-row">
-                        <span class="v2-feed-badge v2-fb-voice">VOICE</span>
-                        <div class="v2-feed-desc">
-                          <span class="v2-feed-text">Urgent fraud confirmation IVR</span>
-                          <span class="v2-feed-meta">Duration 24s • Keypad '1'</span>
+                      <div class="khv-agent-reply-box">
+                        <div class="khv-reply-field">
+                          <span class="khv-typing-cursor">Type a reply to Adaeze...</span>
                         </div>
-                        <span class="v2-feed-status v2-fs-green">Resolved</span>
-                      </div>
-
-                      <div class="v2-feed-row">
-                        <span class="v2-feed-badge v2-fb-wa">WA</span>
-                        <div class="v2-feed-desc">
-                          <span class="v2-feed-text">Campaign broadcast: Summer Promo</span>
-                          <span class="v2-feed-meta">Batch 40,000 users</span>
+                        <div class="khv-reply-bottom">
+                          <span class="khv-template-chip">Insert template</span>
+                          <button type="button" class="khv-send-action" aria-label="Send reply">
+                            <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 2-6 6M14 2 9 14l-2-5-5-2 12-5z"/></svg>
+                          </button>
                         </div>
-                        <span class="v2-feed-status v2-fs-green">Delivered</span>
                       </div>
                     </div>
+
                   </div>
 
+                  <!-- Scene 3 Caption Footer -->
+                  <div class="khv-caption-strip" id="khv-caption-3">
+                    <span>Every channel lands in one inbox. Your team answers from one place.</span>
+                  </div>
                 </div>
 
               </div>
+            </div>
 
+            <!-- Under Card: Auto-advancing Pill Selector & Tagline -->
+            <div class="khv-footer-controls">
+              <div class="khv-pills-row" role="tablist" aria-label="Klayed interactive product scenarios">
+                <button type="button" class="khv-tab-pill is-active" id="khv-tab-1" role="tab" aria-selected="true" aria-controls="khv-scene-1" data-scene="0">
+                  <span class="khv-pill-dot"></span>
+                  <span>Customer conversation</span>
+                </button>
+                <button type="button" class="khv-tab-pill" id="khv-tab-2" role="tab" aria-selected="false" aria-controls="khv-scene-2" data-scene="1">
+                  <span class="khv-pill-dot"></span>
+                  <span>Campaign</span>
+                </button>
+                <button type="button" class="khv-tab-pill" id="khv-tab-3" role="tab" aria-selected="false" aria-controls="khv-scene-3" data-scene="2">
+                  <span class="khv-pill-dot"></span>
+                  <span>Support inbox</span>
+                </button>
+              </div>
+
+              <div class="khv-fixed-label">
+                <span class="khv-label-prefix">Sample scenario</span>
+                <span class="khv-label-separator">•</span>
+                <span class="khv-label-main">One platform. Every customer conversation.</span>
+              </div>
             </div>
 
           </div>
@@ -2328,6 +2514,6 @@ $result = $klayed-&gt;messages-&gt;create([
     </div>
   </footer>
 
-  <script src="landing.js?v=20261008_04"></script>
+  <script src="landing.js?v=20261008_05"></script>
 </body>
 </html>

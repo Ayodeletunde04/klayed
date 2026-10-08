@@ -12085,91 +12085,367 @@ body.dark-preview .phone-email-toolbar,
 }
 
 /* ==========================================================================
-   6. INDUSTRIES SECTION
+   6. INDUSTRIES SECTION (Monday.com Style Interactive Showcase Layout)
    ========================================================================== */
 .v2-industries-section {
-  padding: 96px 0;
+  padding: 104px 0;
   background: var(--color-warm-taupe);
   border-top: 1px solid var(--color-stone);
   border-bottom: 1px solid var(--color-stone);
 }
 
-.v2-industries-grid {
+/* Horizontal Pill Tabs Bar (Image 1 Style) */
+.v2-ind-pill-bar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 56px;
+}
+
+.v2-ind-pill-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-eggshell);
+  border: 1px solid var(--color-stone);
+  border-radius: 9999px;
+  padding: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.v2-ind-tab {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  padding: 9px 20px;
+  font-family: var(--font-work-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-smoke);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.v2-ind-tab:hover {
+  color: var(--color-ink);
+  background: var(--color-warm-taupe);
+}
+
+.v2-ind-tab.active {
+  background: var(--color-primary-gold);
+  color: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(212, 147, 17, 0.35);
+  border-color: var(--color-primary-gold);
+}
+
+/* Showcase Stage */
+.v2-ind-showcase-stage {
+  position: relative;
+  width: 100%;
+}
+
+.v2-ind-view {
+  display: none;
+}
+
+.v2-ind-view.active {
+  display: block;
+  animation: v2FadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes v2FadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.v2-ind-split-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1.6fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Left Content */
+.v2-ind-left-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.v2-ind-showcase-headline {
+  font-family: var(--font-work-sans);
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  margin-bottom: 20px;
+}
+
+.v2-accent-word {
+  color: var(--color-primary-gold);
+  position: relative;
+}
+
+.v2-ind-showcase-subtext {
+  font-family: var(--font-work-sans);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--color-smoke);
+  margin-bottom: 32px;
+  max-width: 440px;
+}
+
+.v2-ind-cta-btn {
+  padding: 13px 26px;
+  font-size: 15px;
+}
+
+/* Right SaaS Dashboard Mockup (Monday.com Style) */
+.v2-ind-mockup-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.v2-app-mockup-window {
+  background: var(--color-eggshell);
+  border: 1px solid var(--color-stone);
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  overflow: hidden;
+  min-height: 380px;
+}
+
+.v2-app-sidebar-strip {
+  background: var(--color-warm-taupe);
+  border-right: 1px solid var(--color-stone);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 0;
   gap: 24px;
 }
 
-.v2-industry-card {
-  background: var(--color-eggshell);
-  border: 1px solid var(--color-stone);
-  border-radius: 16px;
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.22s ease;
-}
-
-.v2-industry-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--color-primary-gold);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
-}
-
-.v2-ind-top {
+.v2-strip-logo {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
+  justify-content: center;
 }
 
-.v2-ind-icon {
-  font-size: 28px;
+.v2-strip-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-primary-gold);
 }
 
-.v2-ind-badge {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--color-smoke);
-  background: var(--color-warm-taupe);
-  padding: 4px 10px;
-  border-radius: 100px;
-}
-
-.v2-ind-title {
-  font-family: var(--font-work-sans);
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--color-ink);
-  margin-bottom: 8px;
-}
-
-.v2-ind-desc {
-  font-family: var(--font-work-sans);
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--color-smoke);
-  margin-bottom: 20px;
-  flex: 1;
-}
-
-.v2-ind-metric {
+.v2-strip-icons {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
-  padding-top: 14px;
-  border-top: 1px solid var(--color-stone);
+  flex-direction: column;
+  gap: 16px;
+  color: var(--color-smoke);
 }
 
-.v2-ind-metric-num {
-  font-size: 18px;
-  font-weight: 800;
+.v2-strip-ico {
+  font-size: 15px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+  user-select: none;
+}
+
+.v2-strip-ico.active,
+.v2-strip-ico:hover {
   color: var(--color-primary-gold);
 }
 
-.v2-ind-metric-txt {
-  font-size: 12px;
+.v2-app-main-area {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.v2-app-header-row {
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--color-stone);
+  padding-bottom: 14px;
+}
+
+.v2-app-doc-title {
+  font-family: var(--font-work-sans);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 12px;
+}
+
+.v2-app-subtabs {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--color-smoke);
+}
+
+.v2-app-subtab {
+  cursor: pointer;
+  padding-bottom: 4px;
+  transition: color 0.15s ease;
+}
+
+.v2-app-subtab.active {
+  color: var(--color-ink);
+  border-bottom: 2px solid var(--color-primary-gold);
+}
+
+.v2-app-split-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* Inner Table View */
+.v2-app-table-col {
+  background: var(--color-warm-taupe);
+  border: 1px solid var(--color-stone);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.v2-table-header-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.2fr;
+  font-family: var(--font-work-sans);
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-smoke);
+  padding: 6px 8px 10px;
+  border-bottom: 1px solid var(--color-stone);
+}
+
+.v2-table-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.v2-table-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.2fr;
+  align-items: center;
+  padding: 8px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  background: var(--color-eggshell);
+  border: 1px solid var(--color-stone);
+}
+
+.v2-td-name {
+  font-weight: 600;
+  color: var(--color-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Status Pills */
+.v2-pill-wa { background: rgba(34, 197, 94, 0.12); color: #16a34a; padding: 2px 7px; border-radius: 100px; font-size: 10.5px; font-weight: 600; display: inline-block; }
+.v2-pill-sms { background: rgba(212, 147, 17, 0.12); color: var(--color-primary-gold); padding: 2px 7px; border-radius: 100px; font-size: 10.5px; font-weight: 600; display: inline-block; }
+.v2-pill-email { background: rgba(59, 130, 246, 0.12); color: #2563eb; padding: 2px 7px; border-radius: 100px; font-size: 10.5px; font-weight: 600; display: inline-block; }
+.v2-pill-voice { background: rgba(139, 92, 246, 0.12); color: #7c3aed; padding: 2px 7px; border-radius: 100px; font-size: 10.5px; font-weight: 600; display: inline-block; }
+
+.v2-st-green { color: #16a34a; font-weight: 600; font-size: 11px; }
+.v2-st-gold { color: var(--color-primary-gold); font-weight: 600; font-size: 11px; }
+.v2-st-blue { color: #2563eb; font-weight: 600; font-size: 11px; }
+
+/* Inner Agent Assistant Box */
+.v2-app-agent-col {
+  background: var(--color-eggshell);
+  border: 1px solid var(--color-stone);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.v2-agent-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.v2-agent-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(212, 147, 17, 0.12);
+  border: 1px solid rgba(212, 147, 17, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.v2-agent-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-ink);
+  display: block;
+}
+
+.v2-agent-sub {
+  font-size: 11px;
+  color: var(--color-smoke);
+  display: block;
+}
+
+.v2-agent-bubble {
+  background: rgba(212, 147, 17, 0.08);
+  border: 1px solid rgba(212, 147, 17, 0.2);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
+.v2-agent-bubble p {
+  margin: 0;
+}
+
+.v2-agent-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--color-smoke);
+  font-weight: 500;
+}
+
+.v2-agent-spinner {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: v2Pulse 2s infinite;
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -13140,4 +13416,35 @@ body.dark-preview .v2-footer-socials a:hover {
     font-size: 13.5px;
     padding: 6px 2px;
   }
+}
+
+
+body.dark-preview .v2-ind-pill-bar {
+  background-color: #141412;
+  border-color: #242320;
+}
+
+body.dark-preview .v2-app-mockup-window,
+body.dark-preview .v2-app-agent-col {
+  background-color: #141412;
+  border-color: #242320;
+}
+
+body.dark-preview .v2-app-sidebar-strip,
+body.dark-preview .v2-app-table-col {
+  background-color: #181816;
+  border-color: #242320;
+}
+
+body.dark-preview .v2-table-row {
+  background-color: #141412;
+  border-color: #262624;
+}
+
+body.dark-preview .v2-ind-showcase-headline,
+body.dark-preview .v2-app-doc-title,
+body.dark-preview .v2-agent-name,
+body.dark-preview .v2-td-name,
+body.dark-preview .v2-agent-bubble {
+  color: #fdfcfc;
 }

@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
-  <link rel="stylesheet" href="landing.css?v=20261005_56">
+  <link rel="stylesheet" href="landing.css?v=20261005_57">
   <script>
     (function() {
       try {
@@ -51,53 +51,360 @@
 
       <!-- Center Navigation with Products Dropdown -->
       <nav class="header-nav" aria-label="Main Navigation">
-        <!-- Products (Dropdown: Email, WhatsApp, SMS, Voice) -->
+        <!-- Products (Mega Dropdown: Capabilities & Use Cases) -->
         <div class="nav-item-dropdown">
-          <button type="button" class="nav-link-item" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="nav-link-item" aria-haspopup="true" aria-expanded="false" id="btn-products-dropdown">
             <span>Products</span>
             <i class="hgi-stroke hgi-arrow-down-01 chevron-icon" style="font-size: 11px;"></i>
           </button>
-          <div class="nav-dropdown-menu nav-dropdown-products" role="menu">
-            <!-- Email -->
-            <a href="#channels" class="dropdown-item" role="menuitem">
-              <div class="dropdown-item-icon icon-email">
-                <i class="hgi-stroke hgi-mail-01" style="font-size: 18px;"></i>
+          <div class="nav-dropdown-menu nav-dropdown-products nav-mega-dropdown" role="menu" aria-labelledby="btn-products-dropdown">
+            <div class="mega-dropdown-grid">
+              
+              <!-- LEFT PANEL: ONE PLATFORM FOR ANY USE CASE -->
+              <div class="mega-panel-usecases">
+                <!-- Header -->
+                <div class="mega-section-header">
+                  <div class="mega-header-pill">
+                    <svg class="mega-icon-loop" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.267-8-12.356-8-5.096 0-5.096 8 0 8 5.095 0 7.267-8 12.356-8z"/>
+                    </svg>
+                    <span class="mega-title-badge">ONE PLATFORM FOR ANY USE CASE</span>
+                  </div>
+                  <p class="mega-subtitle">Built for teams and agents working together</p>
+                </div>
+
+                <!-- 2-Column Grid of 7 Use Cases -->
+                <div class="mega-usecases-grid">
+                  <!-- PMO -->
+                  <a href="#solutions" class="mega-usecase-item">
+                    <div class="mega-avatar avatar-pmo">
+                      <svg viewBox="0 0 40 40" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="10" fill="url(#pmo-grad)"/>
+                        <circle cx="20" cy="15" r="9" fill="#1e1b4b"/>
+                        <circle cx="20" cy="17" r="5.5" fill="#fbcfe8"/>
+                        <path d="M15 16c0-2.8 2.2-5 5-5s5 2.2 5 5v1h-10v-1z" fill="#0f172a"/>
+                        <path d="M9 39c0-6 4.9-11 11-11s11 5 11 11" fill="#f43f5e"/>
+                        <path d="M16 28l4 6 4-6" fill="#fda4af"/>
+                        <defs>
+                          <linearGradient id="pmo-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#6366f1"/>
+                            <stop offset="1" stop-color="#4338ca"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </div>
+                    <div class="mega-usecase-meta">
+                      <span class="mega-usecase-title">PMO</span>
+                      <span class="mega-usecase-desc">Projects & delivery</span>
+                    </div>
+                  </a>
+
+                  <!-- Marketing -->
+                  <a href="#solutions" class="mega-usecase-item" data-sol-tab-trigger="marketing">
+                    <div class="mega-avatar avatar-marketing">
+                      <svg viewBox="0 0 40 40" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="10" fill="url(#mkt-grad)"/>
+                        <circle cx="20" cy="15" r="9" fill="#0891b2"/>
+                        <circle cx="20" cy="17" r="5.5" fill="#fed7aa"/>
+                        <rect x="12" y="10" width="16" height="6" rx="3" fill="#ec4899"/>
+                        <rect x="14" y="13" width="12" height="4" rx="2" fill="#a855f7"/>
+                        <path d="M9 39c0-6 4.9-11 11-11s11 5 11 11" fill="#10b981"/>
+                        <path d="M16 28l4 5 4-5" fill="#facc15"/>
+                        <defs>
+                          <linearGradient id="mkt-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#38bdf8"/>
+                            <stop offset="1" stop-color="#0284c7"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </div>
+                    <div class="mega-usecase-meta">
+                      <span class="mega-usecase-title">Marketing</span>
+                      <span class="mega-usecase-desc">Campaigns & creative</span>
+                    </div>
+                  </a>
+
+                  <!-- Operations -->
+                  <a href="#solutions" class="mega-usecase-item">
+                    <div class="mega-avatar avatar-ops">
+                      <svg viewBox="0 0 40 40" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="10" fill="url(#ops-grad)"/>
+                        <circle cx="20" cy="16" r="8" fill="#18181b"/>
+                        <circle cx="20" cy="17" r="5.5" fill="#fed7aa"/>
+                        <rect x="15" y="15" width="10" height="3" rx="1.5" fill="#09090b"/>
+                        <path d="M12 16a2 2 0 0 1 2-2v4a2 2 0 0 1-2-2zM28 16a2 2 0 0 0-2-2v4a2 2 0 0 0 2-2z" fill="#f97316"/>
+                        <path d="M9 39c0-6 4.9-11 11-11s11 5 11 11" fill="#ea580c"/>
+                        <path d="M16 28h8v11h-8z" fill="#0284c7"/>
+                        <defs>
+                          <linearGradient id="ops-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#fb923c"/>
+                            <stop offset="1" stop-color="#f97316"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </div>
+                    <div class="mega-usecase-meta">
+                      <span class="mega-usecase-title">Operations</span>
+                      <span class="mega-usecase-desc">Processes & efficiency</span>
+                    </div>
+                  </a>
+
+                  <!-- IT -->
+                  <a href="#solutions" class="mega-usecase-item">
+                    <div class="mega-avatar avatar-it">
+                      <svg viewBox="0 0 40 40" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="10" fill="url(#it-grad)"/>
+                        <circle cx="20" cy="17" r="7" fill="#6366f1"/>
+                        <circle cx="20" cy="18" r="5" fill="#fbcfe8"/>
+                        <path d="M13 15c0-3.9 3.1-7 7-7s7 3.1 7 7v2H13v-2z" fill="#4f46e5"/>
+                        <rect x="12" y="15" width="16" height="3.5" rx="1.75" fill="#ec4899"/>
+                        <path d="M9 39c0-6 4.9-11 11-11s11 5 11 11" fill="#a21caf"/>
+                        <path d="M17 28l3 5 3-5" fill="#38bdf8"/>
+                        <defs>
+                          <linearGradient id="it-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#f43f5e"/>
+                            <stop offset="1" stop-color="#ec4899"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </div>
+                    <div class="mega-usecase-meta">
+                      <span class="mega-usecase-title">IT</span>
+                      <span class="mega-usecase-desc">Tickets & support</span>
+                    </div>
+                  </a>
+
+                  <!-- HR -->
+                  <a href="#solutions" class="mega-usecase-item">
+                    <div class="mega-avatar avatar-hr">
+                      <svg viewBox="0 0 40 40" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="10" fill="url(#hr-grad)"/>
+                        <circle cx="20" cy="16" r="7.5" fill="#ea580c"/>
+                        <circle cx="20" cy="17" r="5.5" fill="#fde68a"/>
+                        <path d="M12 17a2 2 0 0 1 2-2v4a2 2 0 0 1-2-2zM28 17a2 2 0 0 0-2-2v4a2 2 0 0 0 2-2z" fill="#ec4899"/>
+                        <path d="M9 39c0-6 4.9-11 11-11s11 5 11 11" fill="#10b981"/>
+                        <path d="M16 28l4 4 4-4" fill="#ffffff"/>
+                        <defs>
+                          <linearGradient id="hr-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#a7f3d0"/>
+                            <stop offset="1" stop-color="#34d399"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </div>
+                    <div class="mega-usecase-meta">
+                      <span class="mega-usecase-title">HR</span>
+                      <span class="mega-usecase-desc">Hiring & onboarding</span>
+                    </div>
+                  </a>
+
+                  <!-- Sales -->
+                  <a href="#solutions" class="mega-usecase-item" data-sol-tab-trigger="sales">
+                    <div class="mega-avatar avatar-sales">
+                      <svg viewBox="0 0 40 40" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="10" fill="url(#sales-grad)"/>
+                        <circle cx="20" cy="16" r="8" fill="#451a03"/>
+                        <circle cx="20" cy="17" r="5.5" fill="#fed7aa"/>
+                        <path d="M16 19c0 2.5 1.8 4 4 4s4-1.5 4-4h-8z" fill="#451a03"/>
+                        <path d="M9 39c0-6 4.9-11 11-11s11 5 11 11" fill="#0284c7"/>
+                        <path d="M17 28l3 5 3-5" fill="#38bdf8"/>
+                        <defs>
+                          <linearGradient id="sales-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#38bdf8"/>
+                            <stop offset="1" stop-color="#0284c7"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </div>
+                    <div class="mega-usecase-meta">
+                      <span class="mega-usecase-title">Sales</span>
+                      <span class="mega-usecase-desc">Pipeline & deals</span>
+                    </div>
+                  </a>
+
+                  <!-- Legal -->
+                  <a href="#solutions" class="mega-usecase-item">
+                    <div class="mega-avatar avatar-legal">
+                      <svg viewBox="0 0 40 40" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="10" fill="url(#legal-grad)"/>
+                        <ellipse cx="20" cy="13" rx="9" ry="3.5" fill="#1e3a8a"/>
+                        <path d="M15 13c0-3 2.2-5 5-5s5 2.2 5 5h-10z" fill="#1e40af"/>
+                        <circle cx="20" cy="17" r="5" fill="#fed7aa"/>
+                        <path d="M9 39c0-6 4.9-11 11-11s11 5 11 11" fill="#2563eb"/>
+                        <path d="M16 28l4 5 4-5" fill="#dbeafe"/>
+                        <defs>
+                          <linearGradient id="legal-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#93c5fd"/>
+                            <stop offset="1" stop-color="#3b82f6"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </div>
+                    <div class="mega-usecase-meta">
+                      <span class="mega-usecase-title">Legal</span>
+                      <span class="mega-usecase-desc">Contracts & compliance</span>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Footer Link -->
+                <div class="mega-panel-footer">
+                  <a href="#solutions" class="mega-view-all-link">
+                    <span>View all use cases</span>
+                    <span class="mega-link-arrow">→</span>
+                  </a>
+                </div>
               </div>
-              <div class="dropdown-item-content">
-                <span class="dropdown-item-title">Email</span>
-                <span class="dropdown-item-desc">High-deliverability transactional & marketing API</span>
+
+              <!-- RIGHT PANEL: PLATFORM CAPABILITIES -->
+              <div class="mega-panel-capabilities">
+                <div class="mega-capabilities-header">
+                  <span class="mega-title-badge">PLATFORM CAPABILITIES</span>
+                </div>
+
+                <!-- 3 Columns -->
+                <div class="mega-capabilities-cols">
+                  
+                  <!-- Col 1: AI agents -->
+                  <div class="mega-cap-col">
+                    <h5 class="mega-col-title">AI agents</h5>
+                    <ul class="mega-cap-list">
+                      <li>
+                        <a href="#channels" class="mega-cap-link">
+                          <svg class="mega-cap-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.267-8-12.356-8-5.096 0-5.096 8 0 8 5.095 0 7.267-8 12.356-8z"/>
+                          </svg>
+                          <span>Agent builder</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#channels" class="mega-cap-link">
+                          <svg class="mega-cap-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2z"/>
+                          </svg>
+                          <span>AI assistant</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#channels" class="mega-cap-link">
+                          <svg class="mega-cap-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3v18M8 7v10M4 11v2M16 7v10M20 11v2"/>
+                          </svg>
+                          <span>Notetaker</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Col 2: Flexible workspace -->
+                  <div class="mega-cap-col">
+                    <h5 class="mega-col-title">Flexible workspace</h5>
+                    <ul class="mega-cap-list">
+                      <li>
+                        <a href="#developers" class="mega-cap-link">
+                          <svg class="mega-cap-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                          </svg>
+                          <span>Vibe coding</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#solutions" class="mega-cap-link">
+                          <svg class="mega-cap-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/>
+                          </svg>
+                          <span>Dashboards</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#developers" class="mega-cap-link">
+                          <svg class="mega-cap-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+                          </svg>
+                          <span>Docs</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#solutions" class="mega-cap-link">
+                          <svg class="mega-cap-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                          </svg>
+                          <span>Forms</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Col 3: Connectivity & tools -->
+                  <div class="mega-cap-col">
+                    <h5 class="mega-col-title">Connectivity & tools</h5>
+                    <ul class="mega-cap-list">
+                      <li>
+                        <a href="#channels" class="mega-cap-link">
+                          <svg class="mega-cap-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                          </svg>
+                          <span>Integrations</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#solutions" class="mega-cap-link">
+                          <svg class="mega-cap-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="11"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="16" y1="16" x2="16.01" y2="16"/>
+                          </svg>
+                          <span>Automations</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#developers" class="mega-cap-link">
+                          <svg class="mega-cap-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                          </svg>
+                          <span>Our infra</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#developers" class="mega-cap-link">
+                          <svg class="mega-cap-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                          </svg>
+                          <span>MCP</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                </div>
+
+                <!-- Bottom Featured Event Banner: Elevate26 -->
+                <div class="mega-event-banner">
+                  <div class="mega-event-left">
+                    <span class="mega-event-title">Elevate26</span>
+                    <span class="mega-event-meta">NYC, Javits Center <span class="mega-event-date">Oct 28–29</span></span>
+                  </div>
+                  <div class="mega-event-badges" aria-hidden="true">
+                    <div class="badge-shape shape-lavender"></div>
+                    <div class="badge-shape shape-blue"></div>
+                    <div class="badge-shape shape-clover">
+                      <span></span><span></span><span></span><span></span>
+                    </div>
+                  </div>
+                  <div class="mega-event-action">
+                    <a href="../Klayed dashboard/index.html" class="mega-event-cta">
+                      <span>Get tickets</span>
+                    </a>
+                    <a href="../Klayed dashboard/index.html" class="mega-event-arrow-btn" aria-label="Get tickets">
+                      <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="15" x2="15" y2="5"/>
+                        <polyline points="7 5 15 5 15 13"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+
               </div>
-            </a>
-            <!-- WhatsApp -->
-            <a href="#channels" class="dropdown-item" role="menuitem">
-              <div class="dropdown-item-icon icon-whatsapp">
-                <i class="hgi-stroke hgi-whatsapp" style="font-size: 18px;"></i>
-              </div>
-              <div class="dropdown-item-content">
-                <span class="dropdown-item-title">WhatsApp</span>
-                <span class="dropdown-item-desc">Meta Cloud API v21 broadcasts, bots & checkout</span>
-              </div>
-            </a>
-            <!-- SMS -->
-            <a href="#channels" class="dropdown-item" role="menuitem">
-              <div class="dropdown-item-icon icon-sms">
-                <i class="hgi-stroke hgi-message-01" style="font-size: 18px;"></i>
-              </div>
-              <div class="dropdown-item-content">
-                <span class="dropdown-item-title">SMS</span>
-                <span class="dropdown-item-desc">Sub-second 2FA OTPs & smart carrier routing</span>
-              </div>
-            </a>
-            <!-- Voice -->
-            <a href="#channels" class="dropdown-item" role="menuitem">
-              <div class="dropdown-item-icon icon-voice">
-                <i class="hgi-stroke hgi-call-02" style="font-size: 18px;"></i>
-              </div>
-              <div class="dropdown-item-content">
-                <span class="dropdown-item-title">Voice</span>
-                <span class="dropdown-item-desc">Automated outbound calls, IVR & text-to-speech</span>
-              </div>
-            </a>
+
+            </div>
           </div>
         </div>
 
@@ -3190,6 +3497,6 @@
       </div>
     </div>
   </footer>
-  <script src="landing.js?v=20261005_35"></script>
+  <script src="landing.js?v=20261005_36"></script>
 </body>
 </html>

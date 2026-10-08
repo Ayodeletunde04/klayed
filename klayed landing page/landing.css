@@ -8561,11 +8561,7 @@ body.dark-preview .bento-check-btn svg {
   }
   
   .trust-logo-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .trust-logo-cell:nth-child(3n) {
-    border-right: none;
+    grid-template-columns: repeat(5, 1fr);
   }
   
   .testimonials-grid {

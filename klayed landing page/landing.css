@@ -4338,12 +4338,12 @@ body.dark-preview .wf-feature-banner {
 
 .solutions-container .sol-card-headline {
   font-family: var(--font-work-sans);
-  font-size: clamp(32px, 3.6vw, 42px);
+  font-size: 24px;
   font-weight: 500;
   color: #ffffff;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   margin: 14px 0 0;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .solutions-container .sol-inner-card {
@@ -5280,11 +5280,11 @@ body.dark-preview .wf-feature-banner {
 
 .sol-card-headline {
   font-family: var(--font-work-sans);
-  font-size: clamp(32px, 3.6vw, 42px);
+  font-size: 24px;
   font-weight: 500;
   color: #ffffff;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
   margin: 16px 0 0;
 }
 

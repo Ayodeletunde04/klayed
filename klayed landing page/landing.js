@@ -780,31 +780,52 @@ echo $message->id . ': ' . $message->status;`
     });
   });
 
-  // 13. Products Mega Dropdown Interactive Handlers
-  const productsDropdown = document.querySelector('.nav-item-dropdown');
-  if (productsDropdown) {
-    const btn = productsDropdown.querySelector('.nav-link-item');
-    if (btn) {
+  // 13. Header Dropdowns Interactive Handlers (Products & Solutions)
+  const navDropdowns = document.querySelectorAll('.nav-item-dropdown');
+  if (navDropdowns.length > 0) {
+    navDropdowns.forEach(dropdown => {
+      const btn = dropdown.querySelector('.nav-link-item');
+      if (!btn) return;
+
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isOpen = productsDropdown.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        const willOpen = !dropdown.classList.contains('is-open');
+        // Close any other open dropdown
+        navDropdowns.forEach(other => {
+          if (other !== dropdown) {
+            other.classList.remove('is-open');
+            const otherBtn = other.querySelector('.nav-link-item');
+            if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+        dropdown.classList.toggle('is-open', willOpen);
+        btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
       });
 
-      document.addEventListener('click', (e) => {
-        if (!productsDropdown.contains(e.target)) {
-          productsDropdown.classList.remove('is-open');
+      // Close dropdown when any link inside it is clicked
+      dropdown.querySelectorAll('.nav-dropdown-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          dropdown.classList.remove('is-open');
           btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    });
+
+    // Close all dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+      navDropdowns.forEach(dropdown => {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove('is-open');
+          const btn = dropdown.querySelector('.nav-link-item');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
         }
       });
-    }
+    });
 
     // Connect mega dropdown links that target specific solution tabs
-    const solTabTriggers = productsDropdown.querySelectorAll('[data-sol-tab-trigger]');
+    const solTabTriggers = document.querySelectorAll('[data-sol-tab-trigger]');
     solTabTriggers.forEach(trigger => {
       trigger.addEventListener('click', () => {
-        productsDropdown.classList.remove('is-open');
-        if (btn) btn.setAttribute('aria-expanded', 'false');
         const tabTarget = trigger.getAttribute('data-sol-tab-trigger');
         if (tabTarget) {
           const tabBtn = document.querySelector(`.sol-nav-btn[data-sol-tab="${tabTarget}"]`);
@@ -812,14 +833,6 @@ echo $message->id . ': ' . $message->status;`
             tabBtn.click();
           }
         }
-      });
-    });
-
-    // Close dropdown when any link inside it is clicked
-    productsDropdown.querySelectorAll('.mega-dropdown-grid a').forEach(link => {
-      link.addEventListener('click', () => {
-        productsDropdown.classList.remove('is-open');
-        if (btn) btn.setAttribute('aria-expanded', 'false');
       });
     });
   }

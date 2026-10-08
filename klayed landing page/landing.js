@@ -836,5 +836,49 @@ echo $message->id . ': ' . $message->status;`
       });
     });
   }
+
+  // 10. V2 Developer Section Code Tabs Switcher & Copy Handler
+  const v2CodeTabs = document.querySelectorAll('.v2-code-tab');
+  const v2CodeBlocks = document.querySelectorAll('.v2-code-block');
+  const v2CopyBtn = document.getElementById('v2-copy-btn');
+  const v2CopyText = document.getElementById('v2-copy-text');
+
+  if (v2CodeTabs.length) {
+    v2CodeTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const lang = tab.getAttribute('data-lang');
+        v2CodeTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        v2CodeBlocks.forEach(block => {
+          if (block.id === `code-${lang}`) {
+            block.classList.add('active');
+          } else {
+            block.classList.remove('active');
+          }
+        });
+      });
+    });
+  }
+
+  if (v2CopyBtn) {
+    v2CopyBtn.addEventListener('click', () => {
+      const activeBlock = document.querySelector('.v2-code-block.active');
+      if (activeBlock) {
+        const codeText = activeBlock.textContent;
+        navigator.clipboard.writeText(codeText).then(() => {
+          if (v2CopyText) v2CopyText.textContent = 'Copied!';
+          setTimeout(() => {
+            if (v2CopyText) v2CopyText.textContent = 'Copy';
+          }, 2000);
+        }).catch(() => {
+          if (v2CopyText) v2CopyText.textContent = 'Copied!';
+          setTimeout(() => {
+            if (v2CopyText) v2CopyText.textContent = 'Copy';
+          }, 2000);
+        });
+      }
+    });
+  }
 });
 

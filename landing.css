@@ -2570,7 +2570,7 @@ body.dark-preview .theme-toggle-btn .icon-moon {
 
 .trust-logo-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   width: 100%;
 }
 
@@ -2584,11 +2584,11 @@ body.dark-preview .theme-toggle-btn .icon-moon {
   transition: background-color 0.2s ease;
 }
 
-.trust-logo-cell:nth-child(5n) {
+.trust-logo-cell:nth-child(4n) {
   border-right: none;
 }
 
-.trust-logo-cell:nth-child(-n+5) {
+.trust-logo-cell:nth-child(-n+4) {
   border-bottom: 1px solid var(--color-stone);
 }
 
@@ -8561,7 +8561,7 @@ body.dark-preview .bento-check-btn svg {
   }
   
   .trust-logo-grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
   
   .testimonials-grid {

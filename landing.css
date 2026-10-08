@@ -403,10 +403,10 @@ h2 {
 .site-header.is-scrolled .header-inner {
   pointer-events: auto;
   margin: 0 auto;
-  width: 880px;
+  width: 1140px;
   max-width: calc(100% - 32px);
   height: 64px;
-  padding: 0 10px 0 22px;
+  padding: 0 14px 0 24px;
   background-color: var(--nav-glass-bg-scrolled);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -493,6 +493,8 @@ h2 {
   align-items: center;
   gap: 10px;
   text-decoration: none;
+  flex-shrink: 0;
+  margin-right: 32px;
 }
 
 .brand-k-squircle {
@@ -547,7 +549,9 @@ h2 {
 .header-nav {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 28px;
+  flex: 1;
 }
 
 .nav-item-dropdown {
@@ -558,18 +562,19 @@ h2 {
 
 .nav-link-item {
   font-family: var(--font-work-sans);
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 500;
   color: var(--color-smoke);
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 8px 4px;
+  padding: 8px 6px;
   text-decoration: none;
   transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   background: none;
   border: none;
+  white-space: nowrap;
 }
 
 .nav-link-item:hover {
@@ -1245,6 +1250,8 @@ h2 {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
+  margin-left: 32px;
 }
 
 .theme-toggle-btn {
@@ -13093,5 +13100,44 @@ body.dark-preview .v2-footer-socials a:hover {
     flex-direction: column;
     gap: 16px;
     text-align: center;
+  }
+}
+
+/* Responsive adjustments for header pill to prevent any choking across screen widths */
+@media (max-width: 1240px) {
+  .site-header.is-scrolled .header-inner {
+    width: 1060px;
+    padding: 0 12px 0 20px;
+  }
+  .header-brand {
+    margin-right: 20px;
+  }
+  .header-actions {
+    margin-left: 20px;
+    gap: 10px;
+  }
+  .header-nav {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .site-header.is-scrolled .header-inner {
+    width: calc(100% - 24px);
+    padding: 0 10px 0 18px;
+  }
+  .header-brand {
+    margin-right: 14px;
+  }
+  .header-actions {
+    margin-left: 14px;
+    gap: 8px;
+  }
+  .header-nav {
+    gap: 16px;
+  }
+  .nav-link-item {
+    font-size: 13.5px;
+    padding: 6px 2px;
   }
 }

@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
-  <link rel="stylesheet" href="landing.css?v=20261005_57">
+  <link rel="stylesheet" href="landing.css?v=20261005_58">
   <script>
     (function() {
       try {
@@ -51,13 +51,184 @@
 
       <!-- Center Navigation with Products Dropdown -->
       <nav class="header-nav" aria-label="Main Navigation">
-        <!-- Products (Mega Dropdown: Capabilities & Use Cases) -->
-        <div class="nav-item-dropdown">
+        <!-- Products (Klayed Core Products Dropdown) -->
+        <div class="nav-item-dropdown nav-item-products">
           <button type="button" class="nav-link-item" aria-haspopup="true" aria-expanded="false" id="btn-products-dropdown">
             <span>Products</span>
             <i class="hgi-stroke hgi-arrow-down-01 chevron-icon" style="font-size: 11px;"></i>
           </button>
-          <div class="nav-dropdown-menu nav-dropdown-products nav-mega-dropdown" role="menu" aria-labelledby="btn-products-dropdown">
+          <div class="nav-dropdown-menu nav-dropdown-products" role="menu" aria-labelledby="btn-products-dropdown">
+            <div class="prod-dropdown-inner">
+              
+              <!-- 3 Columns of Klayed Products -->
+              <div class="prod-dropdown-grid">
+                
+                <!-- Col 1: Communication APIs (The 4 Pillars) -->
+                <div class="prod-col">
+                  <span class="prod-col-badge">COMMUNICATION APIS</span>
+                  <div class="prod-col-items">
+                    <!-- Email -->
+                    <a href="#channels" class="prod-item" role="menuitem">
+                      <div class="prod-item-icon icon-email">
+                        <i class="hgi-stroke hgi-mail-01"></i>
+                      </div>
+                      <div class="prod-item-text">
+                        <span class="prod-item-title">Email API</span>
+                        <span class="prod-item-desc">High-deliverability transactional &amp; marketing API with custom domain DKIM/SPF</span>
+                      </div>
+                    </a>
+                    <!-- WhatsApp -->
+                    <a href="#channels" class="prod-item" role="menuitem">
+                      <div class="prod-item-icon icon-whatsapp">
+                        <i class="hgi-stroke hgi-whatsapp"></i>
+                      </div>
+                      <div class="prod-item-text">
+                        <span class="prod-item-title">WhatsApp Business</span>
+                        <span class="prod-item-desc">Meta Cloud API v21 broadcasts, interactive bots &amp; in-chat catalog checkout</span>
+                      </div>
+                    </a>
+                    <!-- SMS -->
+                    <a href="#channels" class="prod-item" role="menuitem">
+                      <div class="prod-item-icon icon-sms">
+                        <i class="hgi-stroke hgi-message-01"></i>
+                      </div>
+                      <div class="prod-item-text">
+                        <span class="prod-item-title">SMS API</span>
+                        <span class="prod-item-desc">Sub-second 2FA OTPs, smart carrier routing &amp; 10DLC compliance</span>
+                      </div>
+                    </a>
+                    <!-- Voice -->
+                    <a href="#channels" class="prod-item" role="menuitem">
+                      <div class="prod-item-icon icon-voice">
+                        <i class="hgi-stroke hgi-call-02"></i>
+                      </div>
+                      <div class="prod-item-text">
+                        <span class="prod-item-title">Voice API</span>
+                        <span class="prod-item-desc">Automated outbound calls, programmable IVR &amp; neural text-to-speech</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Col 2: Platform & Automations -->
+                <div class="prod-col">
+                  <span class="prod-col-badge">PLATFORM &amp; ORCHESTRATION</span>
+                  <div class="prod-col-items">
+                    <!-- Workflow Builder -->
+                    <a href="#workflows" class="prod-item" role="menuitem">
+                      <div class="prod-item-icon icon-workflow">
+                        <i class="hgi-stroke hgi-workflow-circle"></i>
+                      </div>
+                      <div class="prod-item-text">
+                        <span class="prod-item-title">Workflow Automations</span>
+                        <span class="prod-item-desc">Visual drag-and-drop customer journey builder with branching logic</span>
+                      </div>
+                    </a>
+                    <!-- Unified Inbox -->
+                    <a href="#solutions" class="prod-item" role="menuitem">
+                      <div class="prod-item-icon icon-inbox">
+                        <i class="hgi-stroke hgi-user-multiple"></i>
+                      </div>
+                      <div class="prod-item-text">
+                        <span class="prod-item-title">Unified Team Inbox</span>
+                        <span class="prod-item-desc">Shared cross-channel inbox for live support agents and sales teams</span>
+                      </div>
+                    </a>
+                    <!-- AI Bots -->
+                    <a href="#solutions" class="prod-item" role="menuitem">
+                      <div class="prod-item-icon icon-ai">
+                        <i class="hgi-stroke hgi-magic-wand"></i>
+                      </div>
+                      <div class="prod-item-text">
+                        <span class="prod-item-title">AI Conversation Agents</span>
+                        <span class="prod-item-desc">Autonomous customer support &amp; sales triage powered by generative AI</span>
+                      </div>
+                    </a>
+                    <!-- Audience Segments -->
+                    <a href="#solutions" class="prod-item" role="menuitem">
+                      <div class="prod-item-icon icon-segments">
+                        <i class="hgi-stroke hgi-filter"></i>
+                      </div>
+                      <div class="prod-item-text">
+                        <span class="prod-item-title">Audience &amp; Segments</span>
+                        <span class="prod-item-desc">Targeted campaign broadcasts segmented by real-time customer behavior</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Col 3: Developer Infrastructure -->
+                <div class="prod-col">
+                  <span class="prod-col-badge">DEVELOPER TOOLS</span>
+                  <div class="prod-col-items">
+                    <!-- SDKs -->
+                    <a href="#developers" class="prod-item" role="menuitem">
+                      <div class="prod-item-icon icon-sdk">
+                        <i class="hgi-stroke hgi-developer"></i>
+                      </div>
+                      <div class="prod-item-text">
+                        <span class="prod-item-title">REST APIs &amp; SDKs</span>
+                        <span class="prod-item-desc">Production-ready client SDKs for Node.js, Python, Go, PHP &amp; cURL</span>
+                      </div>
+                    </a>
+                    <!-- Webhooks -->
+                    <a href="#developers" class="prod-item" role="menuitem">
+                      <div class="prod-item-icon icon-webhooks">
+                        <i class="hgi-stroke hgi-link-02"></i>
+                      </div>
+                      <div class="prod-item-text">
+                        <span class="prod-item-title">Webhooks &amp; Telemetry</span>
+                        <span class="prod-item-desc">Real-time delivery receipts, read states &amp; failure status callbacks</span>
+                      </div>
+                    </a>
+                    <!-- Sandbox -->
+                    <a href="#developers" class="prod-item" role="menuitem">
+                      <div class="prod-item-icon icon-sandbox">
+                        <i class="hgi-stroke hgi-computer"></i>
+                      </div>
+                      <div class="prod-item-text">
+                        <span class="prod-item-title">Developer Sandbox</span>
+                        <span class="prod-item-desc">Zero-cost simulated testing environment before sending live traffic</span>
+                      </div>
+                    </a>
+                    <!-- Deliverability Engine -->
+                    <a href="#metrics" class="prod-item" role="menuitem">
+                      <div class="prod-item-icon icon-shield">
+                        <i class="hgi-stroke hgi-tick-double-02"></i>
+                      </div>
+                      <div class="prod-item-text">
+                        <span class="prod-item-title">Deliverability Engine</span>
+                        <span class="prod-item-desc">99.99% uptime SLA, automated warm-up &amp; multi-tier carrier redundancy</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Bottom Footer Bar -->
+              <div class="prod-dropdown-footer">
+                <div class="prod-footer-meta">
+                  <span class="prod-footer-dot"></span>
+                  <span>Sub-second delivery across 190+ countries • 99.99% uptime SLA</span>
+                </div>
+                <a href="#developers" class="prod-footer-link">
+                  <span>Explore Developer Docs</span>
+                  <span class="prod-footer-arrow">→</span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Solutions (Mega Dropdown: Use Cases & Capabilities) -->
+        <div class="nav-item-dropdown nav-item-solutions">
+          <button type="button" class="nav-link-item" aria-haspopup="true" aria-expanded="false" id="btn-solutions-dropdown">
+            <span>Solutions</span>
+            <i class="hgi-stroke hgi-arrow-down-01 chevron-icon" style="font-size: 11px;"></i>
+          </button>
+          <div class="nav-dropdown-menu nav-dropdown-solutions nav-mega-dropdown" role="menu" aria-labelledby="btn-solutions-dropdown">
             <div class="mega-dropdown-grid">
               
               <!-- LEFT PANEL: ONE PLATFORM FOR ANY USE CASE -->
@@ -228,7 +399,7 @@
                       <svg viewBox="0 0 40 40" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="40" height="40" rx="10" fill="url(#legal-grad)"/>
                         <ellipse cx="20" cy="13" rx="9" ry="3.5" fill="#1e3a8a"/>
-                        <path d="M15 13c0-3 2.2-5 5-5s5 2 5 5h-10z" fill="#1e40af"/>
+                        <path d="M15 13c0-3 2.2-5 5-5s5 2.2 5 5h-10z" fill="#1e40af"/>
                         <circle cx="20" cy="17" r="5" fill="#fed7aa"/>
                         <path d="M9 39c0-6 4.9-11 11-11s11 5 11 11" fill="#2563eb"/>
                         <path d="M16 28l4 5 4-5" fill="#dbeafe"/>
@@ -407,9 +578,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Solutions -->
-        <a href="#solutions" class="nav-link-item">Solutions</a>
 
         <!-- Pricing -->
         <a href="#metrics" class="nav-link-item">Pricing</a>
@@ -3497,6 +3665,6 @@
       </div>
     </div>
   </footer>
-  <script src="landing.js?v=20261005_36"></script>
+  <script src="landing.js?v=20261005_37"></script>
 </body>
 </html>

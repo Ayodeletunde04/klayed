@@ -880,5 +880,31 @@ echo $message->id . ': ' . $message->status;`
       }
     });
   }
-});
 
+  // 11. V2 Industries Monday.com Style Showcase Tabs Switcher
+  const indTabs = document.querySelectorAll('.v2-ind-tab');
+  const indViews = document.querySelectorAll('.v2-ind-view');
+
+  if (indTabs.length) {
+    indTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetInd = tab.getAttribute('data-industry');
+
+        indTabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        indViews.forEach(view => {
+          if (view.id === `ind-view-${targetInd}`) {
+            view.classList.add('active');
+          } else {
+            view.classList.remove('active');
+          }
+        });
+      });
+    });
+  }
+});

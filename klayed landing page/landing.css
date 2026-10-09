@@ -14519,7 +14519,7 @@ html.dark-preview .kij-tab-btn:hover {
   padding: 12px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
   overflow: hidden;
 }

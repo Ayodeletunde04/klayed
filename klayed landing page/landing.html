@@ -1799,198 +1799,213 @@
     </section>
 
     <!-- ====================================================================
-         7. DEVELOPER SECTION (Code Editor on Left, Content on Right)
+         7. DEVELOPER SECTION ("Send once. Klayed relays it.")
          ==================================================================== -->
-    <section class="v2-dev-section" id="developers">
-      <div class="v2-container">
+    <section class="kly-dev-section" id="developers">
+      <div class="kly-dev-container">
         
-        <div class="v2-dev-split">
-          
-          <!-- Dev Left: Interactive Code Editor Visual -->
-          <div class="v2-dev-editor-wrap">
-            <div class="v2-code-window">
-              <div class="v2-code-header">
-                <div class="v2-code-dots">
-                  <span class="v2-dash-dot v2-dot-red"></span>
-                  <span class="v2-dash-dot v2-dot-amber"></span>
-                  <span class="v2-dash-dot v2-dot-green"></span>
-                </div>
-                
-                <!-- Language Selector Tabs -->
-                <div class="v2-code-tabs">
-                  <button type="button" class="v2-code-tab active" data-lang="curl">cURL</button>
-                  <button type="button" class="v2-code-tab" data-lang="node">Node.js</button>
-                  <button type="button" class="v2-code-tab" data-lang="python">Python</button>
-                  <button type="button" class="v2-code-tab" data-lang="php">PHP</button>
-                  <button type="button" class="v2-code-tab" data-lang="go">Go</button>
-                </div>
+        <!-- (1) Hero Icon: Rounded-square tile in near-black with thin amber rim & soft glow -->
+        <div class="kly-dev-hero-icon-wrap">
+          <div class="kly-dev-hero-icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 15C11 11.6863 13.6863 9 17 9H31C34.3137 9 37 11.6863 37 15V25C37 28.3137 34.3137 31 31 31H21L14 36.5V31H17" stroke="rgba(255,255,255,0.95)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M25 21L39 11M39 11H31M39 11V19" stroke="#D59312" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
 
-                <button type="button" class="v2-copy-code-btn" id="v2-copy-btn" title="Copy code">
-                  <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="5" y="5" width="8" height="8" rx="1.5"/>
-                    <path d="M3 11V3h8"/>
-                  </svg>
-                  <span id="v2-copy-text">Copy</span>
-                </button>
-              </div>
+        <!-- (2) Headline -->
+        <h2 class="kly-dev-headline">Send once. <span class="kly-dev-headline-gradient">Klayed relays it.</span></h2>
 
-              <!-- Code Content Blocks -->
-              <div class="v2-code-body">
-                <pre class="v2-code-block active" id="code-curl"><code><span class="c-comment"># Send an Omnichannel message with failover via Klayed API</span>
-curl -X POST https://api.klayed.com/v1/messages \
-  -H <span class="c-str">"Authorization: Bearer kly_live_94829ad01b"</span> \
-  -H <span class="c-str">"Content-Type: application/json"</span> \
-  -d '{
-    <span class="c-key">"to"</span>: <span class="c-str">"+2348149201928"</span>,
-    <span class="c-key">"channels"</span>: [<span class="c-str">"whatsapp"</span>, <span class="c-str">"sms"</span>],
-    <span class="c-key">"message"</span>: {
-      <span class="c-key">"template"</span>: <span class="c-str">"order_dispatched"</span>,
-      <span class="c-key">"params"</span>: { <span class="c-key">"name"</span>: <span class="c-str">"Tunde"</span>, <span class="c-key">"order_id"</span>: <span class="c-str">"KL-9042"</span> }
-    },
-    <span class="c-key">"failover_timeout_secs"</span>: <span class="c-num">60</span>
-  }'</code></pre>
+        <!-- (3) Subtext -->
+        <p class="kly-dev-subtext">One simple API for WhatsApp, SMS, email and voice. If a message doesn't land on one channel, Klayed relays it to the next. Your first message can go out in minutes.</p>
 
-                <pre class="v2-code-block" id="code-node"><code><span class="c-comment">// Node.js SDK</span>
-<span class="c-keyword">import</span> { Klayed } <span class="c-keyword">from</span> <span class="c-str">'@klayed/sdk'</span>;
+        <!-- (4) Language Tiles Bar -->
+        <div class="kly-dev-lang-bar" role="tablist" aria-label="Programming Languages">
+          <button type="button" class="kly-dev-lang-item active" role="tab" id="kly-lang-tab-node" aria-selected="true" aria-controls="kly-code-panel" data-lang="node" tabindex="0">
+            <div class="kly-dev-lang-tile">
+              <span class="kly-dev-lang-glyph">JS</span>
+            </div>
+            <span class="kly-dev-lang-label">Node.js</span>
+          </button>
+          <button type="button" class="kly-dev-lang-item" role="tab" id="kly-lang-tab-python" aria-selected="false" aria-controls="kly-code-panel" data-lang="python" tabindex="-1">
+            <div class="kly-dev-lang-tile">
+              <span class="kly-dev-lang-glyph">Py</span>
+            </div>
+            <span class="kly-dev-lang-label">Python</span>
+          </button>
+          <button type="button" class="kly-dev-lang-item" role="tab" id="kly-lang-tab-php" aria-selected="false" aria-controls="kly-code-panel" data-lang="php" tabindex="-1">
+            <div class="kly-dev-lang-tile">
+              <span class="kly-dev-lang-glyph">PHP</span>
+            </div>
+            <span class="kly-dev-lang-label">PHP</span>
+          </button>
+          <button type="button" class="kly-dev-lang-item" role="tab" id="kly-lang-tab-ruby" aria-selected="false" aria-controls="kly-code-panel" data-lang="ruby" tabindex="-1">
+            <div class="kly-dev-lang-tile">
+              <span class="kly-dev-lang-glyph">Rb</span>
+            </div>
+            <span class="kly-dev-lang-label">Ruby</span>
+          </button>
+          <button type="button" class="kly-dev-lang-item" role="tab" id="kly-lang-tab-go" aria-selected="false" aria-controls="kly-code-panel" data-lang="go" tabindex="-1">
+            <div class="kly-dev-lang-tile">
+              <span class="kly-dev-lang-glyph">Go</span>
+            </div>
+            <span class="kly-dev-lang-label">Go</span>
+          </button>
+          <button type="button" class="kly-dev-lang-item" role="tab" id="kly-lang-tab-java" aria-selected="false" aria-controls="kly-code-panel" data-lang="java" tabindex="-1">
+            <div class="kly-dev-lang-tile">
+              <span class="kly-dev-lang-glyph">Java</span>
+            </div>
+            <span class="kly-dev-lang-label">Java</span>
+          </button>
+          <button type="button" class="kly-dev-lang-item" role="tab" id="kly-lang-tab-dotnet" aria-selected="false" aria-controls="kly-code-panel" data-lang="dotnet" tabindex="-1">
+            <div class="kly-dev-lang-tile">
+              <span class="kly-dev-lang-glyph">C#</span>
+            </div>
+            <span class="kly-dev-lang-label">.NET</span>
+          </button>
+          <button type="button" class="kly-dev-lang-item" role="tab" id="kly-lang-tab-curl" aria-selected="false" aria-controls="kly-code-panel" data-lang="curl" tabindex="-1">
+            <div class="kly-dev-lang-tile">
+              <span class="kly-dev-lang-glyph">cURL</span>
+            </div>
+            <span class="kly-dev-lang-label">cURL</span>
+          </button>
+          <button type="button" class="kly-dev-lang-item" role="tab" id="kly-lang-tab-rest" aria-selected="false" aria-controls="kly-code-panel" data-lang="rest" tabindex="-1">
+            <div class="kly-dev-lang-tile">
+              <span class="kly-dev-lang-glyph">HTTP</span>
+            </div>
+            <span class="kly-dev-lang-label">REST</span>
+          </button>
+        </div>
 
-<span class="c-keyword">const</span> klayed = <span class="c-keyword">new</span> <span class="c-type">Klayed</span>(process.env.KLAYED_API_KEY);
+        <!-- (5) Code Panel -->
+        <div class="kly-dev-panel" id="kly-code-panel" role="region" aria-label="Interactive Code Example">
+          <div class="kly-dev-panel-top-rim" aria-hidden="true"></div>
 
-<span class="c-keyword">const</span> dispatch = <span class="c-keyword">await</span> klayed.messages.send({
-  to: <span class="c-str">'+2348149201928'</span>,
-  channels: [<span class="c-str">'whatsapp'</span>, <span class="c-str">'sms'</span>],
-  content: {
-    template: <span class="c-str">'order_dispatched'</span>,
-    params: { name: <span class="c-str">'Tunde'</span>, orderId: <span class="c-str">'KL-9042'</span> }
-  },
-  failoverAfter: <span class="c-num">60</span>
-});
+          <!-- Panel Header: Klayed Action Tabs + Copy Button -->
+          <div class="kly-dev-panel-header">
+            <div class="kly-dev-action-tabs" role="tablist" aria-label="Klayed Actions">
+              <button type="button" class="kly-dev-tab-btn active" role="tab" id="kly-tab-send" aria-selected="true" data-tab="send" tabindex="0">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2L2 7.5l5 2 2 5L14 2z"/></svg>
+                <span>Send a message</span>
+              </button>
+              <button type="button" class="kly-dev-tab-btn" role="tab" id="kly-tab-fallback" aria-selected="false" data-tab="fallback" tabindex="-1">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 3l-3 3h4a5 5 0 0 1 0 10H3"/><path d="M3 13l3-3H2a5 5 0 0 1 0-10h11"/></svg>
+                <span>Automatic fallback</span>
+              </button>
+              <button type="button" class="kly-dev-tab-btn" role="tab" id="kly-tab-login" aria-selected="false" data-tab="login" tabindex="-1">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V4.5a2.5 2.5 0 0 1 5 0V7"/></svg>
+                <span>Login codes</span>
+              </button>
+              <button type="button" class="kly-dev-tab-btn" role="tab" id="kly-tab-campaign" aria-selected="false" data-tab="campaign" tabindex="-1">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 10V3L4 6v5l9 2v-3zm0-7l2 1v5l-2 1M4 9l-2 1v2l2-1"/></svg>
+                <span>Campaign</span>
+              </button>
+              <button type="button" class="kly-dev-tab-btn" role="tab" id="kly-tab-updates" aria-selected="false" data-tab="updates" tabindex="-1">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8l4 4 8-8"/></svg>
+                <span>Delivery updates</span>
+              </button>
+              <button type="button" class="kly-dev-tab-btn" role="tab" id="kly-tab-voice" aria-selected="false" data-tab="voice" tabindex="-1">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4a2 2 0 0 1 2-2h1.5a1 1 0 0 1 1 .8l.7 2.8a1 1 0 0 1-.3 1L6.7 7.8a9.4 9.4 0 0 0 4.5 4.5l1.2-1.2a1 1 0 0 1 1-.3l2.8.7a1 1 0 0 1 .8 1V14a2 2 0 0 1-2 2A12.5 12.5 0 0 1 2 5.5V4z"/></svg>
+                <span>Voice call</span>
+              </button>
+            </div>
 
-console.log(<span class="c-str">'Dispatched message ID:'</span>, dispatch.id);</code></pre>
+            <!-- Copy Button -->
+            <button type="button" class="kly-dev-copy-btn" id="kly-copy-code-btn" aria-label="Copy code to clipboard">
+              <svg class="kly-copy-icon" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="5" y="5" width="8" height="8" rx="1.5"/>
+                <path d="M3 11V3h8"/>
+              </svg>
+              <svg class="kly-check-icon" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" style="display:none;">
+                <path d="M3 8.5l3.5 3.5 6.5-7"/>
+              </svg>
+              <span class="kly-copy-text">Copy</span>
+            </button>
+          </div>
 
-                <pre class="v2-code-block" id="code-python"><code><span class="c-comment"># Python SDK</span>
-<span class="c-keyword">from</span> klayed <span class="c-keyword">import</span> KlayedClient
+          <!-- Code Display Area -->
+          <div class="kly-dev-code-wrap">
+            <div class="kly-dev-line-numbers" id="kly-code-lines" aria-hidden="true"></div>
+            <pre class="kly-dev-code-pre"><code id="kly-code-display"></code></pre>
+          </div>
 
-client = KlayedClient(api_key=<span class="c-str">"kly_live_94829ad01b"</span>)
+          <!-- Result Strip -->
+          <div class="kly-dev-result-strip" id="kly-result-strip" aria-live="polite">
+            <span class="kly-dev-result-badge">Result</span>
+            <div class="kly-dev-result-flow" id="kly-result-flow"></div>
+          </div>
 
-response = client.messages.send(
-    to=<span class="c-str">"+2348149201928"</span>,
-    channels=[<span class="c-str">"whatsapp"</span>, <span class="c-str">"sms"</span>],
-    template=<span class="c-str">"order_dispatched"</span>,
-    params={<span class="c-str">"name"</span>: <span class="c-str">"Tunde"</span>, <span class="c-str">"order_id"</span>: <span class="c-str">"KL-9042"</span>},
-    failover_timeout=<span class="c-num">60</span>
-)
+          <!-- Panel Footer -->
+          <div class="kly-dev-panel-footer">
+            <a href="../Klayed dashboard/index.html" class="kly-dev-footer-link">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2V3z"/><path d="M6 3v12M2 7h4"/></svg>
+              <span>Read the docs</span>
+            </a>
+            <a href="../Klayed dashboard/index.html" class="kly-dev-footer-link">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2l6 3.5v7L8 16l-6-3.5v-7L8 2z"/><path d="M8 2v14M2 5.5l12 7"/></svg>
+              <span>Open the sandbox</span>
+            </a>
+            <a href="../Klayed dashboard/index.html" class="kly-dev-footer-link">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="6"/><path d="M8 5v6M5 8h6"/></svg>
+              <span>Download Postman collection</span>
+            </a>
+          </div>
+        </div>
 
-print(f<span class="c-str">"Status: {response.status}, ID: {response.id}"</span>)</code></pre>
-
-                <pre class="v2-code-block" id="code-php"><code><span class="c-comment">// PHP SDK</span>
-<span class="c-keyword">use</span> Klayed\Client;
-
-$klayed = <span class="c-keyword">new</span> Client(<span class="c-str">'kly_live_94829ad01b'</span>);
-
-$result = $klayed-&gt;messages-&gt;create([
-    <span class="c-str">'to'</span> =&gt; <span class="c-str">'+2348149201928'</span>,
-    <span class="c-str">'channels'</span> =&gt; [<span class="c-str">'whatsapp'</span>, <span class="c-str">'sms'</span>],
-    <span class="c-str">'template'</span> =&gt; <span class="c-str">'order_dispatched'</span>,
-    <span class="c-str">'params'</span> =&gt; [<span class="c-str">'name'</span> =&gt; <span class="c-str">'Tunde'</span>, <span class="c-str">'order_id'</span> =&gt; <span class="c-str">'KL-9042'</span>],
-    <span class="c-str">'failover_timeout_secs'</span> =&gt; <span class="c-num">60</span>
-]);</code></pre>
-
-                <pre class="v2-code-block" id="code-go"><code><span class="c-comment">// Go SDK</span>
-<span class="c-keyword">package</span> main
-
-<span class="c-keyword">import</span> (
-    <span class="c-str">"context"</span>
-    <span class="c-str">"github.com/klayed/klayed-go"</span>
-)
-
-<span class="c-keyword">func</span> main() {
-    client := klayed.NewClient(<span class="c-str">"kly_live_94829ad01b"</span>)
-    msg, err := client.Messages.Send(context.Background(), &amp;klayed.MessageParams{
-        To:       <span class="c-str">"+2348149201928"</span>,
-        Channels: []string{<span class="c-str">"whatsapp"</span>, <span class="c-str">"sms"</span>},
-        Template: <span class="c-str">"order_dispatched"</span>,
-    })
-}</code></pre>
-              </div>
-
-              <!-- Terminal Output Footer -->
-              <div class="v2-code-footer">
-                <span class="v2-code-status-pill">HTTP 200 OK • 74ms</span>
-                <span class="v2-code-meta">{"status": "queued", "channel": "whatsapp", "rate_limit_remaining": 998}</span>
-              </div>
+        <!-- (6) Four Small Features Grid -->
+        <div class="kly-dev-features-grid">
+          <div class="kly-dev-feature-card">
+            <div class="kly-dev-feat-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2 2-6 6-3-1 1-3 6-6zM3 13l2-2M2 14l1-1"/></svg>
+            </div>
+            <div>
+              <h3 class="kly-dev-feat-title">Webhooks</h3>
+              <p class="kly-dev-feat-desc">Get a signed notice the moment a message is delivered, relayed or fails.</p>
             </div>
           </div>
 
-          <!-- Dev Right: Content, Feature List, Action Buttons -->
-          <div class="v2-dev-content">
-            <span class="v2-section-eyebrow">Built for engineers</span>
-            <h2 class="v2-section-title">Developer-Friendly APIs</h2>
-            <p class="v2-section-subtext">
-              Integrate SMS, WhatsApp, Email, and Voice into your applications with simple APIs. Clean REST endpoints, predictable error codes, and battle-tested SDKs.
-            </p>
-
-            <div class="v2-dev-feature-list">
-              <div class="v2-dev-pill-item">
-                <span class="v2-dev-check">✓</span>
-                <div>
-                  <strong>REST APIs</strong>
-                  <p>Modern JSON REST architecture with idempotency keys and rate limits.</p>
-                </div>
-              </div>
-
-              <div class="v2-dev-pill-item">
-                <span class="v2-dev-check">✓</span>
-                <div>
-                  <strong>SDKs</strong>
-                  <p>Official libraries for Node.js, Python, PHP, Go, Ruby, and Java.</p>
-                </div>
-              </div>
-
-              <div class="v2-dev-pill-item">
-                <span class="v2-dev-check">✓</span>
-                <div>
-                  <strong>Webhooks</strong>
-                  <p>Signed HMAC-SHA256 delivery events for real-time status updates.</p>
-                </div>
-              </div>
-
-              <div class="v2-dev-pill-item">
-                <span class="v2-dev-check">✓</span>
-                <div>
-                  <strong>API Keys</strong>
-                  <p>Granular scoping, IP whitelisting, and instant revocation controls.</p>
-                </div>
-              </div>
-
-              <div class="v2-dev-pill-item">
-                <span class="v2-dev-check">✓</span>
-                <div>
-                  <strong>Sandbox Environment</strong>
-                  <p>Simulate delivery failures, carrier bounces, and OTP verification for free.</p>
-                </div>
-              </div>
-
-              <div class="v2-dev-pill-item">
-                <span class="v2-dev-check">✓</span>
-                <div>
-                  <strong>Detailed Documentation</strong>
-                  <p>Interactive guides, copy-paste snippets, and Postman collections.</p>
-                </div>
-              </div>
+          <div class="kly-dev-feature-card">
+            <div class="kly-dev-feat-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2l6 3.5v7L8 16l-6-3.5v-7L8 2z"/><path d="M8 2v14"/></svg>
             </div>
-
-            <div class="v2-dev-actions">
-              <a href="../Klayed dashboard/index.html" class="v2-btn-primary">
-                <span>View Docs</span>
-                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-              </a>
-              <a href="../Klayed dashboard/index.html" class="v2-btn-secondary">
-                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 6a4 4 0 1 0-7 2.6L2 13.6V15h1.4l1.8-1.8H7l1.4-1.4.6.6a4 4 0 0 0 5-6.4z"/></svg>
-                <span>Get API Key</span>
-              </a>
+            <div>
+              <h3 class="kly-dev-feat-title">Sandbox</h3>
+              <p class="kly-dev-feat-desc">Test failed messages and fallbacks for free.</p>
             </div>
           </div>
 
+          <div class="kly-dev-feature-card">
+            <div class="kly-dev-feat-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 6a4 4 0 1 0-7 2.6L2 13.6V15h1.4l1.8-1.8H7l1.4-1.4.6.6a4 4 0 0 0 5-6.4z"/></svg>
+            </div>
+            <div>
+              <h3 class="kly-dev-feat-title">API keys</h3>
+              <p class="kly-dev-feat-desc">Limit each key to what it needs. Revoke it instantly.</p>
+            </div>
+          </div>
+
+          <div class="kly-dev-feature-card">
+            <div class="kly-dev-feat-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3V2z"/><path d="M6 6h5M6 10h4"/></svg>
+            </div>
+            <div>
+              <h3 class="kly-dev-feat-title">Docs</h3>
+              <p class="kly-dev-feat-desc">Guides, copy-and-paste snippets and a Postman collection.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- (7) Two Centred CTA Buttons -->
+        <div class="kly-dev-actions">
+          <a href="../Klayed dashboard/index.html" class="v2-btn-primary">
+            <span>View docs</span>
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="../Klayed dashboard/index.html" class="v2-btn-secondary">
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 6a4 4 0 1 0-7 2.6L2 13.6V15h1.4l1.8-1.8H7l1.4-1.4.6.6a4 4 0 0 0 5-6.4z"/></svg>
+            <span>Get API key</span>
+          </a>
         </div>
 
       </div>

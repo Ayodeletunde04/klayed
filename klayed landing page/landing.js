@@ -844,49 +844,8 @@ echo $message->id . ': ' . $message->status;`
     });
   }
 
-  // 10. V2 Developer Section Code Tabs Switcher & Copy Handler
-  const v2CodeTabs = document.querySelectorAll('.v2-code-tab');
-  const v2CodeBlocks = document.querySelectorAll('.v2-code-block');
-  const v2CopyBtn = document.getElementById('v2-copy-btn');
-  const v2CopyText = document.getElementById('v2-copy-text');
-
-  if (v2CodeTabs.length) {
-    v2CodeTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const lang = tab.getAttribute('data-lang');
-        v2CodeTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-
-        v2CodeBlocks.forEach(block => {
-          if (block.id === `code-${lang}`) {
-            block.classList.add('active');
-          } else {
-            block.classList.remove('active');
-          }
-        });
-      });
-    });
-  }
-
-  if (v2CopyBtn) {
-    v2CopyBtn.addEventListener('click', () => {
-      const activeBlock = document.querySelector('.v2-code-block.active');
-      if (activeBlock) {
-        const codeText = activeBlock.textContent;
-        navigator.clipboard.writeText(codeText).then(() => {
-          if (v2CopyText) v2CopyText.textContent = 'Copied!';
-          setTimeout(() => {
-            if (v2CopyText) v2CopyText.textContent = 'Copy';
-          }, 2000);
-        }).catch(() => {
-          if (v2CopyText) v2CopyText.textContent = 'Copied!';
-          setTimeout(() => {
-            if (v2CopyText) v2CopyText.textContent = 'Copy';
-          }, 2000);
-        });
-      }
-    });
-  }
+  // 10. Developer Section ("Send once. Klayed relays it.")
+  initDeveloperSection();
 
   // 11. Industry Use-Case Journey System ("The Journey" Controller)
   initIndustryJourneySystem();
@@ -2079,5 +2038,1134 @@ function initIndustryJourneySystem(customData) {
         renderTab(tabKey, true);
       }
     }
+  };
+}
+
+/**
+ * ============================================================================
+ * Developer Section Controller ("Send once. Klayed relays it.")
+ * ============================================================================
+ * Coordinates 9 programming languages, 6 Klayed action tabs, line-by-line
+ * staggered code reveal, animated result strip with travelling amber dot,
+ * ARIA keyboard navigation, and copy clipboard management.
+ */
+function initDeveloperSection() {
+  const root = document.querySelector('.kly-dev-section');
+  if (!root) return;
+
+  const langItems = Array.from(root.querySelectorAll('.kly-dev-lang-item'));
+  const tabBtns = Array.from(root.querySelectorAll('.kly-dev-tab-btn'));
+  const codeDisplay = document.getElementById('kly-code-display');
+  const codeLines = document.getElementById('kly-code-lines');
+  const resultFlow = document.getElementById('kly-result-flow');
+  const copyBtn = document.getElementById('kly-copy-code-btn');
+  const copyText = copyBtn ? copyBtn.querySelector('.kly-copy-text') : null;
+  const copyIcon = copyBtn ? copyBtn.querySelector('.kly-copy-icon') : null;
+  const checkIcon = copyBtn ? copyBtn.querySelector('.kly-check-icon') : null;
+
+  if (!langItems.length || !tabBtns.length || !codeDisplay || !codeLines || !resultFlow) {
+    return;
+  }
+
+  let currentLang = 'node';
+  let currentTab = 'send';
+  let currentRawCode = '';
+  let copyTimeout = null;
+
+  // Matrix of 6 tabs x 9 languages
+  const DEV_DATA = {
+    tabs: {
+      send: {
+        steps: [
+          { type: 'chip', channel: 'whatsapp', text: 'WhatsApp' },
+          { type: 'text', text: "Queued, then delivered to Adaeze's phone." }
+        ]
+      },
+      fallback: {
+        steps: [
+          { type: 'chip', channel: 'whatsapp', text: 'WhatsApp' },
+          { type: 'text', text: 'Not delivered after 60s' },
+          { type: 'arrow' },
+          { type: 'chip', channel: 'sms', text: 'SMS' },
+          { type: 'text', text: 'Relayed and delivered.' }
+        ]
+      },
+      login: {
+        steps: [
+          { type: 'chip', channel: 'sms', text: 'SMS' },
+          { type: 'text', text: 'Code sent' },
+          { type: 'arrow' },
+          { type: 'chip', channel: 'voice', text: 'Voice' },
+          { type: 'text', text: 'Only if SMS fails' },
+          { type: 'arrow' },
+          { type: 'text', text: 'Code verified.' }
+        ]
+      },
+      campaign: {
+        steps: [
+          { type: 'chip', channel: 'whatsapp', text: 'WhatsApp' },
+          { type: 'chip', channel: 'email', text: 'Email' },
+          { type: 'text', text: 'Queued for [X,XXX] opted-in customers.' }
+        ]
+      },
+      updates: {
+        steps: [
+          { type: 'text', text: 'Event received: message.relayed' },
+          { type: 'arrow' },
+          { type: 'text', text: 'Order marked as notified.' }
+        ]
+      },
+      voice: {
+        steps: [
+          { type: 'chip', channel: 'voice', text: 'Voice' },
+          { type: 'text', text: 'Adaeze pressed 1' },
+          { type: 'arrow' },
+          { type: 'text', text: 'Delivery confirmed.' }
+        ]
+      }
+    },
+    snippets: {
+      send: {
+        node: `import { Klayed } from 'klayed';
+const klayed = new Klayed('kly_live_xxxxxxxx');
+
+// Tell Adaeze her Zuri Stores order is on the way.
+const { data, error } = await klayed.messages.send({
+  to: '+2348000000000',
+  channel: 'whatsapp',
+  template: 'order_shipped',
+  params: { name: 'Adaeze', order_id: '8492' },
+});
+
+if (error) return console.log(error);
+console.log(data.status); // "queued"`,
+
+        python: `from klayed import Klayed
+
+klayed = Klayed("kly_live_xxxxxxxx")
+
+# Tell Adaeze her Zuri Stores order is on the way.
+response = klayed.messages.send(
+    to="+2348000000000",
+    channel="whatsapp",
+    template="order_shipped",
+    params={"name": "Adaeze", "order_id": "8492"},
+)
+
+print(response.status)  # "queued"`,
+
+        php: `use Klayed\\Klayed;
+
+$klayed = new Klayed('kly_live_xxxxxxxx');
+
+// Tell Adaeze her Zuri Stores order is on the way.
+$response = $klayed->messages->send([
+    'to' => '+2348000000000',
+    'channel' => 'whatsapp',
+    'template' => 'order_shipped',
+    'params' => ['name' => 'Adaeze', 'order_id' => '8492'],
+]);
+
+echo $response->status; // "queued"`,
+
+        ruby: `require 'klayed'
+
+klayed = Klayed::Client.new('kly_live_xxxxxxxx')
+
+# Tell Adaeze her Zuri Stores order is on the way.
+response = klayed.messages.send(
+  to: '+2348000000000',
+  channel: 'whatsapp',
+  template: 'order_shipped',
+  params: { name: 'Adaeze', order_id: '8492' }
+)
+
+puts response.status # "queued"`,
+
+        go: `package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/klayed/klayed-go"
+)
+
+func main() {
+	client := klayed.NewClient("kly_live_xxxxxxxx")
+
+	// Tell Adaeze her Zuri Stores order is on the way.
+	msg, err := client.Messages.Send(context.Background(), &klayed.SendMessageParams{
+		To:       "+2348000000000",
+		Channel:  "whatsapp",
+		Template: "order_shipped",
+		Params:   map[string]string{"name": "Adaeze", "order_id": "8492"},
+	})
+	if err != nil {
+		return
+	}
+	fmt.Println(msg.Status) // "queued"
+}`,
+
+        java: `import com.klayed.Klayed;
+import com.klayed.models.MessageResponse;
+import java.util.Map;
+
+Klayed klayed = new Klayed("kly_live_xxxxxxxx");
+
+// Tell Adaeze her Zuri Stores order is on the way.
+MessageResponse response = klayed.messages().send(
+    MessageParams.builder()
+        .to("+2348000000000")
+        .channel("whatsapp")
+        .template("order_shipped")
+        .params(Map.of("name", "Adaeze", "order_id", "8492"))
+        .build()
+);
+
+System.out.println(response.getStatus()); // "queued"`,
+
+        dotnet: `using Klayed;
+
+var klayed = new KlayedClient("kly_live_xxxxxxxx");
+
+// Tell Adaeze her Zuri Stores order is on the way.
+var response = await klayed.Messages.SendAsync(new SendMessageRequest
+{
+    To = "+2348000000000",
+    Channel = "whatsapp",
+    Template = "order_shipped",
+    Params = new Dictionary<string, string> { { "name", "Adaeze" }, { "order_id", "8492" } }
+});
+
+Console.WriteLine(response.Status); // "queued"`,
+
+        curl: `# Tell Adaeze her Zuri Stores order is on the way.
+curl -X POST https://api.klayed.com/v1/messages \\
+  -H "Authorization: Bearer kly_live_xxxxxxxx" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "to": "+2348000000000",
+    "channel": "whatsapp",
+    "template": "order_shipped",
+    "params": { "name": "Adaeze", "order_id": "8492" }
+  }'`,
+
+        rest: `POST /v1/messages HTTP/1.1
+Host: api.klayed.com
+Authorization: Bearer kly_live_xxxxxxxx
+Content-Type: application/json
+
+{
+  "to": "+2348000000000",
+  "channel": "whatsapp",
+  "template": "order_shipped",
+  "params": {
+    "name": "Adaeze",
+    "order_id": "8492"
+  }
+}`
+      },
+
+      fallback: {
+        node: `import { Klayed } from 'klayed';
+const klayed = new Klayed('kly_live_xxxxxxxx');
+
+// Try WhatsApp first. If it isn't delivered in 60 seconds,
+// Klayed relays it to SMS, then to a voice call.
+await klayed.messages.send({
+  to: '+2348000000000',
+  channels: ['whatsapp', 'sms', 'voice'],
+  template: 'order_shipped',
+  params: { name: 'Adaeze', order_id: '8492' },
+  failover_timeout_secs: 60,
+});`,
+
+        python: `from klayed import Klayed
+
+klayed = Klayed("kly_live_xxxxxxxx")
+
+# Try WhatsApp first. If it isn't delivered in 60 seconds,
+# Klayed relays it to SMS, then to a voice call.
+klayed.messages.send(
+    to="+2348000000000",
+    channels=["whatsapp", "sms", "voice"],
+    template="order_shipped",
+    params={"name": "Adaeze", "order_id": "8492"},
+    failover_timeout_secs=60,
+)`,
+
+        php: `use Klayed\\Klayed;
+
+$klayed = new Klayed('kly_live_xxxxxxxx');
+
+// Try WhatsApp first. If it isn't delivered in 60 seconds,
+// Klayed relays it to SMS, then to a voice call.
+$klayed->messages->send([
+    'to' => '+2348000000000',
+    'channels' => ['whatsapp', 'sms', 'voice'],
+    'template' => 'order_shipped',
+    'params' => ['name' => 'Adaeze', 'order_id' => '8492'],
+    'failover_timeout_secs' => 60,
+]);`,
+
+        ruby: `require 'klayed'
+
+klayed = Klayed::Client.new('kly_live_xxxxxxxx')
+
+# Try WhatsApp first. If it isn't delivered in 60 seconds,
+# Klayed relays it to SMS, then to a voice call.
+klayed.messages.send(
+  to: '+2348000000000',
+  channels: %w[whatsapp sms voice],
+  template: 'order_shipped',
+  params: { name: 'Adaeze', order_id: '8492' },
+  failover_timeout_secs: 60
+)`,
+
+        go: `package main
+
+import (
+	"context"
+	"github.com/klayed/klayed-go"
+)
+
+func main() {
+	client := klayed.NewClient("kly_live_xxxxxxxx")
+
+	// Try WhatsApp first. If it isn't delivered in 60 seconds,
+	// Klayed relays it to SMS, then to a voice call.
+	client.Messages.Send(context.Background(), &klayed.SendMessageParams{
+		To:                  "+2348000000000",
+		Channels:            []string{"whatsapp", "sms", "voice"},
+		Template:            "order_shipped",
+		Params:              map[string]string{"name": "Adaeze", "order_id": "8492"},
+		FailoverTimeoutSecs: 60,
+	})
+}`,
+
+        java: `import com.klayed.Klayed;
+import java.util.List;
+import java.util.Map;
+
+Klayed klayed = new Klayed("kly_live_xxxxxxxx");
+
+// Try WhatsApp first. If it isn't delivered in 60 seconds,
+// Klayed relays it to SMS, then to a voice call.
+klayed.messages().send(
+    MessageParams.builder()
+        .to("+2348000000000")
+        .channels(List.of("whatsapp", "sms", "voice"))
+        .template("order_shipped")
+        .params(Map.of("name", "Adaeze", "order_id", "8492"))
+        .failoverTimeoutSecs(60)
+        .build()
+);`,
+
+        dotnet: `using Klayed;
+
+var klayed = new KlayedClient("kly_live_xxxxxxxx");
+
+// Try WhatsApp first. If it isn't delivered in 60 seconds,
+// Klayed relays it to SMS, then to a voice call.
+await klayed.Messages.SendAsync(new SendMessageRequest
+{
+    To = "+2348000000000",
+    Channels = new[] { "whatsapp", "sms", "voice" },
+    Template = "order_shipped",
+    Params = new Dictionary<string, string> { { "name", "Adaeze" }, { "order_id", "8492" } },
+    FailoverTimeoutSecs = 60
+});`,
+
+        curl: `# Try WhatsApp first. If it isn't delivered in 60 seconds,
+# Klayed relays it to SMS, then to a voice call.
+curl -X POST https://api.klayed.com/v1/messages \\
+  -H "Authorization: Bearer kly_live_xxxxxxxx" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "to": "+2348000000000",
+    "channels": ["whatsapp", "sms", "voice"],
+    "template": "order_shipped",
+    "params": { "name": "Adaeze", "order_id": "8492" },
+    "failover_timeout_secs": 60
+  }'`,
+
+        rest: `POST /v1/messages HTTP/1.1
+Host: api.klayed.com
+Authorization: Bearer kly_live_xxxxxxxx
+Content-Type: application/json
+
+{
+  "to": "+2348000000000",
+  "channels": ["whatsapp", "sms", "voice"],
+  "template": "order_shipped",
+  "params": {
+    "name": "Adaeze",
+    "order_id": "8492"
+  },
+  "failover_timeout_secs": 60
+}`
+      },
+
+      login: {
+        node: `import { Klayed } from 'klayed';
+const klayed = new Klayed('kly_live_xxxxxxxx');
+
+// Send a one-time code. SMS first, voice call as backup.
+const otp = await klayed.otp.send({
+  to: '+2348000000000',
+  channels: ['sms', 'voice'],
+  length: 6,
+});
+
+// Later, check the code Adaeze typed in.
+const check = await klayed.otp.verify({ id: otp.id, code: '492013' });
+console.log(check.valid); // true`,
+
+        python: `from klayed import Klayed
+
+klayed = Klayed("kly_live_xxxxxxxx")
+
+# Send a one-time code. SMS first, voice call as backup.
+otp = klayed.otp.send(
+    to="+2348000000000",
+    channels=["sms", "voice"],
+    length=6,
+)
+
+# Later, check the code Adaeze typed in.
+check = klayed.otp.verify(id=otp.id, code="492013")
+print(check.valid)  # true`,
+
+        php: `use Klayed\\Klayed;
+
+$klayed = new Klayed('kly_live_xxxxxxxx');
+
+// Send a one-time code. SMS first, voice call as backup.
+$otp = $klayed->otp->send([
+    'to' => '+2348000000000',
+    'channels' => ['sms', 'voice'],
+    'length' => 6,
+]);
+
+// Later, check the code Adaeze typed in.
+$check = $klayed->otp->verify(['id' => $otp->id, 'code' => '492013']);
+echo $check->valid; // true`,
+
+        ruby: `require 'klayed'
+
+klayed = Klayed::Client.new('kly_live_xxxxxxxx')
+
+# Send a one-time code. SMS first, voice call as backup.
+otp = klayed.otp.send(
+  to: '+2348000000000',
+  channels: %w[sms voice],
+  length: 6
+)
+
+# Later, check the code Adaeze typed in.
+check = klayed.otp.verify(id: otp.id, code: '492013')
+puts check.valid # true`,
+
+        go: `package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/klayed/klayed-go"
+)
+
+func main() {
+	client := klayed.NewClient("kly_live_xxxxxxxx")
+
+	// Send a one-time code. SMS first, voice call as backup.
+	otp, _ := client.OTP.Send(context.Background(), &klayed.SendOTPParams{
+		To:       "+2348000000000",
+		Channels: []string{"sms", "voice"},
+		Length:   6,
+	})
+
+	// Later, check the code Adaeze typed in.
+	check, _ := client.OTP.Verify(context.Background(), otp.ID, "492013")
+	fmt.Println(check.Valid) // true
+}`,
+
+        java: `import com.klayed.Klayed;
+import java.util.List;
+
+Klayed klayed = new Klayed("kly_live_xxxxxxxx");
+
+// Send a one-time code. SMS first, voice call as backup.
+var otp = klayed.otp().send(
+    OtpParams.builder()
+        .to("+2348000000000")
+        .channels(List.of("sms", "voice"))
+        .length(6)
+        .build()
+);
+
+// Later, check the code Adaeze typed in.
+var check = klayed.otp().verify(otp.getId(), "492013");
+System.out.println(check.isValid()); // true`,
+
+        dotnet: `using Klayed;
+
+var klayed = new KlayedClient("kly_live_xxxxxxxx");
+
+// Send a one-time code. SMS first, voice call as backup.
+var otp = await klayed.Otp.SendAsync(new SendOtpRequest
+{
+    To = "+2348000000000",
+    Channels = new[] { "sms", "voice" },
+    Length = 6
+});
+
+// Later, check the code Adaeze typed in.
+var check = await klayed.Otp.VerifyAsync(otp.Id, "492013");
+Console.WriteLine(check.Valid); // true`,
+
+        curl: `# Send a one-time code. SMS first, voice call as backup.
+curl -X POST https://api.klayed.com/v1/otp \\
+  -H "Authorization: Bearer kly_live_xxxxxxxx" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "to": "+2348000000000",
+    "channels": ["sms", "voice"],
+    "length": 6
+  }'
+
+# Later, check the code Adaeze typed in.
+curl -X POST https://api.klayed.com/v1/otp/verify \\
+  -H "Authorization: Bearer kly_live_xxxxxxxx" \\
+  -H "Content-Type: application/json" \\
+  -d '{ "id": "otp_839201", "code": "492013" }'`,
+
+        rest: `POST /v1/otp HTTP/1.1
+Host: api.klayed.com
+Authorization: Bearer kly_live_xxxxxxxx
+Content-Type: application/json
+
+{
+  "to": "+2348000000000",
+  "channels": ["sms", "voice"],
+  "length": 6
+}
+
+POST /v1/otp/verify HTTP/1.1
+Host: api.klayed.com
+Authorization: Bearer kly_live_xxxxxxxx
+Content-Type: application/json
+
+{
+  "id": "otp_839201",
+  "code": "492013"
+}`
+      },
+
+      campaign: {
+        node: `import { Klayed } from 'klayed';
+const klayed = new Klayed('kly_live_xxxxxxxx');
+
+// Send the weekend sale to every customer who opted in.
+await klayed.campaigns.send({
+  name: 'Weekend sale',
+  audience: 'opted_in_customers',
+  channels: ['whatsapp', 'email'],
+  template: 'weekend_sale',
+});`,
+
+        python: `from klayed import Klayed
+
+klayed = Klayed("kly_live_xxxxxxxx")
+
+# Send the weekend sale to every customer who opted in.
+klayed.campaigns.send(
+    name="Weekend sale",
+    audience="opted_in_customers",
+    channels=["whatsapp", "email"],
+    template="weekend_sale",
+)`,
+
+        php: `use Klayed\\Klayed;
+
+$klayed = new Klayed('kly_live_xxxxxxxx');
+
+// Send the weekend sale to every customer who opted in.
+$klayed->campaigns->send([
+    'name' => 'Weekend sale',
+    'audience' => 'opted_in_customers',
+    'channels' => ['whatsapp', 'email'],
+    'template' => 'weekend_sale',
+]);`,
+
+        ruby: `require 'klayed'
+
+klayed = Klayed::Client.new('kly_live_xxxxxxxx')
+
+# Send the weekend sale to every customer who opted in.
+klayed.campaigns.send(
+  name: 'Weekend sale',
+  audience: 'opted_in_customers',
+  channels: %w[whatsapp email],
+  template: 'weekend_sale'
+)`,
+
+        go: `package main
+
+import (
+	"context"
+	"github.com/klayed/klayed-go"
+)
+
+func main() {
+	client := klayed.NewClient("kly_live_xxxxxxxx")
+
+	// Send the weekend sale to every customer who opted in.
+	client.Campaigns.Send(context.Background(), &klayed.SendCampaignParams{
+		Name:     "Weekend sale",
+		Audience: "opted_in_customers",
+		Channels: []string{"whatsapp", "email"},
+		Template: "weekend_sale",
+	})
+}`,
+
+        java: `import com.klayed.Klayed;
+import java.util.List;
+
+Klayed klayed = new Klayed("kly_live_xxxxxxxx");
+
+// Send the weekend sale to every customer who opted in.
+klayed.campaigns().send(
+    CampaignParams.builder()
+        .name("Weekend sale")
+        .audience("opted_in_customers")
+        .channels(List.of("whatsapp", "email"))
+        .template("weekend_sale")
+        .build()
+);`,
+
+        dotnet: `using Klayed;
+
+var klayed = new KlayedClient("kly_live_xxxxxxxx");
+
+// Send the weekend sale to every customer who opted in.
+await klayed.Campaigns.SendAsync(new SendCampaignRequest
+{
+    Name = "Weekend sale",
+    Audience = "opted_in_customers",
+    Channels = new[] { "whatsapp", "email" },
+    Template = "weekend_sale"
+});`,
+
+        curl: `# Send the weekend sale to every customer who opted in.
+curl -X POST https://api.klayed.com/v1/campaigns \\
+  -H "Authorization: Bearer kly_live_xxxxxxxx" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "name": "Weekend sale",
+    "audience": "opted_in_customers",
+    "channels": ["whatsapp", "email"],
+    "template": "weekend_sale"
+  }'`,
+
+        rest: `POST /v1/campaigns HTTP/1.1
+Host: api.klayed.com
+Authorization: Bearer kly_live_xxxxxxxx
+Content-Type: application/json
+
+{
+  "name": "Weekend sale",
+  "audience": "opted_in_customers",
+  "channels": ["whatsapp", "email"],
+  "template": "weekend_sale"
+}`
+      },
+
+      updates: {
+        node: `// Klayed tells your server what happened to every message.
+app.post('/klayed/webhook', (req, res) => {
+  const event = klayed.webhooks.verify(req.body, req.headers['klayed-signature']);
+
+  if (event.type === 'message.delivered') markOrderNotified(event.data.order_id);
+  if (event.type === 'message.relayed') console.log('Moved to', event.data.channel);
+  if (event.type === 'message.failed') alertSupportTeam(event.data.order_id);
+
+  res.sendStatus(200);
+});`,
+
+        python: `# Klayed tells your server what happened to every message.
+@app.route("/klayed/webhook", methods=["POST"])
+def webhook():
+    event = klayed.webhooks.verify(request.data, request.headers.get("klayed-signature"))
+
+    if event.type == "message.delivered":
+        mark_order_notified(event.data["order_id"])
+    elif event.type == "message.relayed":
+        print("Moved to", event.data["channel"])
+    elif event.type == "message.failed":
+        alert_support_team(event.data["order_id"])
+
+    return "", 200`,
+
+        php: `// Klayed tells your server what happened to every message.
+$payload = file_get_contents('php://input');
+$signature = $_SERVER['HTTP_KLAYED_SIGNATURE'] ?? '';
+
+$event = $klayed->webhooks->verify($payload, $signature);
+
+if ($event->type === 'message.delivered') {
+    markOrderNotified($event->data['order_id']);
+} elseif ($event->type === 'message.relayed') {
+    error_log('Moved to ' . $event->data['channel']);
+} elseif ($event->type === 'message.failed') {
+    alertSupportTeam($event->data['order_id']);
+}
+
+http_response_code(200);`,
+
+        ruby: `# Klayed tells your server what happened to every message.
+post '/klayed/webhook' do
+  payload = request.body.read
+  signature = request.env['HTTP_KLAYED_SIGNATURE']
+  event = klayed.webhooks.verify(payload, signature)
+
+  case event.type
+  when 'message.delivered' then mark_order_notified(event.data['order_id'])
+  when 'message.relayed'   then puts "Moved to #{event.data['channel']}"
+  when 'message.failed'    then alert_support_team(event.data['order_id'])
+  end
+
+  status 200
+end`,
+
+        go: `// Klayed tells your server what happened to every message.
+http.HandleFunc("/klayed/webhook", func(w http.ResponseWriter, r *http.Request) {
+	body, _ := io.ReadAll(r.Body)
+	sig := r.Header.Get("klayed-signature")
+
+	event, err := client.Webhooks.Verify(body, sig)
+	if err != nil {
+		w.WriteHeader(http.StatusUnauthorized)
+		return
+	}
+
+	switch event.Type {
+	case "message.delivered":
+		markOrderNotified(event.Data.OrderID)
+	case "message.relayed":
+		fmt.Println("Moved to", event.Data.Channel)
+	case "message.failed":
+		alertSupportTeam(event.Data.OrderID)
+	}
+
+	w.WriteHeader(http.StatusOK)
+})`,
+
+        java: `// Klayed tells your server what happened to every message.
+@PostMapping("/klayed/webhook")
+public ResponseEntity<Void> handleWebhook(
+    @RequestBody String payload,
+    @RequestHeader("klayed-signature") String signature
+) {
+    WebhookEvent event = klayed.webhooks().verify(payload, signature);
+
+    if ("message.delivered".equals(event.getType())) {
+        markOrderNotified(event.getData().getOrderId());
+    } else if ("message.relayed".equals(event.getType())) {
+        System.out.println("Moved to " + event.getData().getChannel());
+    } else if ("message.failed".equals(event.getType())) {
+        alertSupportTeam(event.getData().getOrderId());
+    }
+
+    return ResponseEntity.ok().build();
+}`,
+
+        dotnet: `// Klayed tells your server what happened to every message.
+app.MapPost("/klayed/webhook", async (HttpRequest request) =>
+{
+    using var reader = new StreamReader(request.Body);
+    var body = await reader.ReadToEndAsync();
+    var signature = request.Headers["klayed-signature"];
+
+    var ev = klayed.Webhooks.Verify(body, signature);
+
+    if (ev.Type == "message.delivered") MarkOrderNotified(ev.Data.OrderId);
+    if (ev.Type == "message.relayed") Console.WriteLine($"Moved to {ev.Data.Channel}");
+    if (ev.Type == "message.failed") AlertSupportTeam(ev.Data.OrderId);
+
+    return Results.Ok();
+});`,
+
+        curl: `# Verify webhook endpoint with a test delivery event.
+curl -X POST https://api.klayed.com/v1/webhooks/test \\
+  -H "Authorization: Bearer kly_live_xxxxxxxx" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "endpoint_url": "https://zuristores.com/klayed/webhook",
+    "event": "message.relayed"
+  }'`,
+
+        rest: `POST /klayed/webhook HTTP/1.1
+Host: zuristores.com
+klayed-signature: sig_live_xxxxxxxx
+Content-Type: application/json
+
+{
+  "type": "message.relayed",
+  "data": {
+    "order_id": "8492",
+    "recipient": "Adaeze",
+    "channel": "sms",
+    "reason": "whatsapp_undelivered_60s"
+  }
+}`
+      },
+
+      voice: {
+        node: `import { Klayed } from 'klayed';
+const klayed = new Klayed('kly_live_xxxxxxxx');
+
+// Call Adaeze and let her answer by pressing a key.
+await klayed.calls.create({
+  to: '+2348000000000',
+  say: 'Your order arrives today. Press 1 to confirm, or 2 to reschedule.',
+  replies: { 1: 'confirmed', 2: 'reschedule' },
+});`,
+
+        python: `from klayed import Klayed
+
+klayed = Klayed("kly_live_xxxxxxxx")
+
+# Call Adaeze and let her answer by pressing a key.
+klayed.calls.create(
+    to="+2348000000000",
+    say="Your order arrives today. Press 1 to confirm, or 2 to reschedule.",
+    replies={"1": "confirmed", "2": "reschedule"},
+)`,
+
+        php: `use Klayed\\Klayed;
+
+$klayed = new Klayed('kly_live_xxxxxxxx');
+
+// Call Adaeze and let her answer by pressing a key.
+$klayed->calls->create([
+    'to' => '+2348000000000',
+    'say' => 'Your order arrives today. Press 1 to confirm, or 2 to reschedule.',
+    'replies' => ['1' => 'confirmed', '2' => 'reschedule'],
+]);`,
+
+        ruby: `require 'klayed'
+
+klayed = Klayed::Client.new('kly_live_xxxxxxxx')
+
+# Call Adaeze and let her answer by pressing a key.
+klayed.calls.create(
+  to: '+2348000000000',
+  say: 'Your order arrives today. Press 1 to confirm, or 2 to reschedule.',
+  replies: { '1' => 'confirmed', '2' => 'reschedule' }
+)`,
+
+        go: `package main
+
+import (
+	"context"
+	"github.com/klayed/klayed-go"
+)
+
+func main() {
+	client := klayed.NewClient("kly_live_xxxxxxxx")
+
+	// Call Adaeze and let her answer by pressing a key.
+	client.Calls.Create(context.Background(), &klayed.CreateCallParams{
+		To:      "+2348000000000",
+		Say:     "Your order arrives today. Press 1 to confirm, or 2 to reschedule.",
+		Replies: map[string]string{"1": "confirmed", "2": "reschedule"},
+	})
+}`,
+
+        java: `import com.klayed.Klayed;
+import java.util.Map;
+
+Klayed klayed = new Klayed("kly_live_xxxxxxxx");
+
+// Call Adaeze and let her answer by pressing a key.
+klayed.calls().create(
+    CallParams.builder()
+        .to("+2348000000000")
+        .say("Your order arrives today. Press 1 to confirm, or 2 to reschedule.")
+        .replies(Map.of("1", "confirmed", "2", "reschedule"))
+        .build()
+);`,
+
+        dotnet: `using Klayed;
+
+var klayed = new KlayedClient("kly_live_xxxxxxxx");
+
+// Call Adaeze and let her answer by pressing a key.
+await klayed.Calls.CreateAsync(new CreateCallRequest
+{
+    To = "+2348000000000",
+    Say = "Your order arrives today. Press 1 to confirm, or 2 to reschedule.",
+    Replies = new Dictionary<string, string> { { "1", "confirmed" }, { "2", "reschedule" } }
+});`,
+
+        curl: `# Call Adaeze and let her answer by pressing a key.
+curl -X POST https://api.klayed.com/v1/calls \\
+  -H "Authorization: Bearer kly_live_xxxxxxxx" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "to": "+2348000000000",
+    "say": "Your order arrives today. Press 1 to confirm, or 2 to reschedule.",
+    "replies": { "1": "confirmed", "2": "reschedule" }
+  }'`,
+
+        rest: `POST /v1/calls HTTP/1.1
+Host: api.klayed.com
+Authorization: Bearer kly_live_xxxxxxxx
+Content-Type: application/json
+
+{
+  "to": "+2348000000000",
+  "say": "Your order arrives today. Press 1 to confirm, or 2 to reschedule.",
+  "replies": {
+    "1": "confirmed",
+    "2": "reschedule"
+  }
+}`
+      }
+    }
+  };
+
+  /**
+   * Token-safe syntax highlighter
+   */
+  function highlightLine(line) {
+    let escaped = line
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    // Handle full-line comment first
+    const fullComment = escaped.match(/^(\s*)(\/\/.*|#.*)$/);
+    if (fullComment) {
+      return `${fullComment[1]}<span class="kly-c-comment">${fullComment[2]}</span>`;
+    }
+
+    const tokens = [];
+    const saveToken = (html) => {
+      tokens.push(html);
+      return `___KLY_TOK_${tokens.length - 1}___`;
+    };
+
+    // 1. Strings (single, double, or backticks)
+    escaped = escaped.replace(/(['"`])(.*?)\1/g, (match) => {
+      return saveToken(`<span class="kly-c-str">${match}</span>`);
+    });
+
+    // 2. Trailing comments
+    escaped = escaped.replace(/(\/\/.*|#.*)$/, (match) => {
+      return saveToken(`<span class="kly-c-comment">${match}</span>`);
+    });
+
+    // 3. Keywords
+    const kwRegex = /\b(import|from|const|await|async|new|return|if|else|package|func|var|def|class|use|require|echo|puts|case|when|using|public|private|static|void|bool|int|string|map|type|struct|while|for|nil|null|true|false)\b/g;
+    escaped = escaped.replace(kwRegex, (match) => {
+      return saveToken(`<span class="kly-c-keyword">${match}</span>`);
+    });
+
+    // 4. Numbers
+    escaped = escaped.replace(/\b(\d+)\b/g, (match) => {
+      return saveToken(`<span class="kly-c-num">${match}</span>`);
+    });
+
+    // 5. Function calls
+    escaped = escaped.replace(/\b([a-zA-Z_][a-zA-Z0-9_]*)(?=\s*\()/g, (match) => {
+      return saveToken(`<span class="kly-c-func">${match}</span>`);
+    });
+
+    // Restore tokens
+    escaped = escaped.replace(/___KLY_TOK_(\d+)___/g, (_, idx) => tokens[Number(idx)]);
+
+    return escaped;
+  }
+
+  /**
+   * Render active code and result strip
+   */
+  function renderView() {
+    const tabSnippets = DEV_DATA.snippets[currentTab] || {};
+    const rawSnippet = tabSnippets[currentLang] || tabSnippets.curl || '';
+    currentRawCode = rawSnippet;
+
+    const lines = rawSnippet.split('\n');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Render line numbers
+    codeLines.innerHTML = lines
+      .map((_, i) => `<span class="kly-dev-code-line">${i + 1}</span>`)
+      .join('');
+
+    // Render highlighted code lines with staggered animation
+    codeDisplay.innerHTML = lines
+      .map((line, idx) => {
+        const highlighted = highlightLine(line);
+        if (prefersReducedMotion) {
+          return `<span class="kly-dev-code-line">${highlighted || '&nbsp;'}</span>`;
+        }
+        return `<span class="kly-dev-code-line animate-line" style="--line-delay: ${idx * 25}ms">${highlighted || '&nbsp;'}</span>`;
+      })
+      .join('');
+
+    // Render Result Strip steps
+    const tabMeta = DEV_DATA.tabs[currentTab] || { steps: [] };
+    resultFlow.innerHTML = '';
+
+    let stepDelay = 0;
+    tabMeta.steps.forEach((step) => {
+      if (step.type === 'chip') {
+        const span = document.createElement('span');
+        span.className = 'kly-dev-result-step';
+        if (!prefersReducedMotion) {
+          span.style.setProperty('--step-delay', `${stepDelay}ms`);
+          stepDelay += 90;
+        }
+        span.innerHTML = `<span class="kly-ch-chip kly-ch-${step.channel}">${step.text}</span>`;
+        resultFlow.appendChild(span);
+      } else if (step.type === 'arrow') {
+        const arrow = document.createElement('span');
+        arrow.className = 'kly-dev-arrow';
+        arrow.setAttribute('aria-hidden', 'true');
+        arrow.innerHTML = `<span class="kly-dev-travelling-dot"></span> &gt; `;
+        resultFlow.appendChild(arrow);
+      } else if (step.type === 'text') {
+        const span = document.createElement('span');
+        span.className = 'kly-dev-result-step';
+        if (!prefersReducedMotion) {
+          span.style.setProperty('--step-delay', `${stepDelay}ms`);
+          stepDelay += 90;
+        }
+        span.textContent = step.text;
+        resultFlow.appendChild(span);
+      }
+    });
+  }
+
+  /**
+   * Set Language
+   */
+  function setLanguage(lang) {
+    currentLang = lang;
+    langItems.forEach((btn) => {
+      const isSelected = btn.getAttribute('data-lang') === lang;
+      btn.classList.toggle('active', isSelected);
+      btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      btn.setAttribute('tabindex', isSelected ? '0' : '-1');
+    });
+    renderView();
+  }
+
+  /**
+   * Set Action Tab
+   */
+  function setTab(tabKey) {
+    currentTab = tabKey;
+    tabBtns.forEach((btn) => {
+      const isSelected = btn.getAttribute('data-tab') === tabKey;
+      btn.classList.toggle('active', isSelected);
+      btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      btn.setAttribute('tabindex', isSelected ? '0' : '-1');
+    });
+    renderView();
+  }
+
+  // Language Click & Keyboard Arrow Navigation
+  langItems.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+      setLanguage(btn.getAttribute('data-lang'));
+    });
+
+    btn.addEventListener('keydown', (e) => {
+      let targetIndex = -1;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        targetIndex = (index + 1) % langItems.length;
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        targetIndex = (index - 1 + langItems.length) % langItems.length;
+      } else if (e.key === 'Home') {
+        targetIndex = 0;
+      } else if (e.key === 'End') {
+        targetIndex = langItems.length - 1;
+      }
+
+      if (targetIndex !== -1) {
+        e.preventDefault();
+        const targetBtn = langItems[targetIndex];
+        targetBtn.focus();
+        setLanguage(targetBtn.getAttribute('data-lang'));
+      }
+    });
+  });
+
+  // Action Tabs Click & Keyboard Arrow Navigation
+  tabBtns.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+      setTab(btn.getAttribute('data-tab'));
+    });
+
+    btn.addEventListener('keydown', (e) => {
+      let targetIndex = -1;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        targetIndex = (index + 1) % tabBtns.length;
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        targetIndex = (index - 1 + tabBtns.length) % tabBtns.length;
+      } else if (e.key === 'Home') {
+        targetIndex = 0;
+      } else if (e.key === 'End') {
+        targetIndex = tabBtns.length - 1;
+      }
+
+      if (targetIndex !== -1) {
+        e.preventDefault();
+        const targetBtn = tabBtns[targetIndex];
+        targetBtn.focus();
+        setTab(targetBtn.getAttribute('data-tab'));
+      }
+    });
+  });
+
+  // Copy Button
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      if (!currentRawCode) return;
+      navigator.clipboard.writeText(currentRawCode).then(() => {
+        showCopiedState();
+      }).catch(() => {
+        showCopiedState();
+      });
+    });
+  }
+
+  function showCopiedState() {
+    if (!copyBtn) return;
+    copyBtn.classList.add('copied');
+    if (copyIcon) copyIcon.style.display = 'none';
+    if (checkIcon) checkIcon.style.display = 'inline-block';
+    if (copyText) copyText.textContent = 'Copied';
+
+    if (copyTimeout) clearTimeout(copyTimeout);
+    copyTimeout = setTimeout(() => {
+      copyBtn.classList.remove('copied');
+      if (copyIcon) copyIcon.style.display = 'inline-block';
+      if (checkIcon) checkIcon.style.display = 'none';
+      if (copyText) copyText.textContent = 'Copy';
+    }, 2000);
+  }
+
+  // Initial render
+  renderView();
+
+  // Expose for external testing or extensions
+  window.KlayedDevSection = {
+    setLanguage: setLanguage,
+    setTab: setTab,
+    data: DEV_DATA
   };
 }

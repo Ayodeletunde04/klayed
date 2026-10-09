@@ -1,39 +1,27 @@
 /* ==========================================================================
    KLAYED MERCHANT DASHBOARD — LANDING PAGE STYLESHEET
-   Design System: Blue Editorial Theme (Midnight Navy, Cobalt & Ice Mist)
+   Design System: Two-Font Typography System (Schibsted Grotesk + Hanken Grotesk + JetBrains Mono)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Hanken+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Schibsted+Grotesk:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
   /* ==========================================================================
-     ElevenLabs Bauhaus Editorial Design Tokens
-     Warm cream editorial with whispered headlines: eggshell paper, black ink,
-     stone hairlines, and violet & ember orange sparks for product moments.
+     Two-Font Typography System Tokens
      ========================================================================== */
-  --color-eggshell: #FDFCFC;
-  --color-warm-taupe: #f5f4f0;
-  --color-stone: #e8e6e1;
-  --color-ink: #000000;
-  --color-graphite: #44403b;
-  --color-smoke: #777169;
-  --color-ash: #a59f97;
-  --color-primary-gold: #D49311;
-  --color-gold-hover: #b87e0d;
-  --color-gold-light: #FDF6E8;
-  --color-gold-glow: rgba(212, 147, 17, 0.25);
-  --color-violet-spark: #D49311;
-  --color-ember-orange: #ff4704;
+  --font-display: "Schibsted Grotesk", "Hanken Grotesk", system-ui, sans-serif;
+  --font-text: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-code: "JetBrains Mono", ui-monospace, Menlo, monospace;
 
-  /* Typography — Font Families (Hanken Grotesk Editorial System) */
-  --font-hanken-grotesk: 'Hanken Grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-primary: var(--font-hanken-grotesk);
-  --font-work-sans: var(--font-hanken-grotesk);
-  --font-waldenburg: var(--font-hanken-grotesk);
-  --font-inter: var(--font-hanken-grotesk);
-  --font-geist-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-editorial: var(--font-hanken-grotesk);
-  --font-script: 'Caveat', cursive, sans-serif;
+  /* Legacy & Helper Font Aliases (Guarantees System-Wide Uniformity) */
+  --font-hanken-grotesk: var(--font-text);
+  --font-primary: var(--font-text);
+  --font-work-sans: var(--font-text);
+  --font-waldenburg: var(--font-text);
+  --font-editorial: var(--font-text);
+  --font-inter: var(--font-text);
+  --font-geist-mono: var(--font-code);
+  --font-script: var(--font-text);
 
   /* Typography — Scale */
   --text-caption: 11px;
@@ -167,10 +155,11 @@
 }
 
 html {
-  font-family: var(--font-hanken-grotesk);
+  font-family: var(--font-text);
   background-color: var(--color-cool-porcelain);
   color: var(--color-ink-navy);
   scroll-behavior: smooth;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
@@ -178,12 +167,15 @@ html {
 }
 
 body {
-  font-family: var(--font-hanken-grotesk);
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-cool-porcelain);
   color: var(--color-ink-navy);
-  font-size: var(--text-body);
-  line-height: var(--leading-body);
-  font-weight: var(--font-weight-w460);
   min-height: 100vh;
   overflow-x: hidden;
   padding-top: 72px;
@@ -247,29 +239,48 @@ a {
 }
 
 button {
-  font-family: inherit;
+  font-family: var(--font-text);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0;
+  text-transform: none;
   cursor: pointer;
   border: none;
   background: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-inter);
+h1, h2, h3, .stat-number {
+  font-family: var(--font-display);
   color: var(--color-ink);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
+h4, h5, h6 {
+  font-family: var(--font-text);
+  color: var(--color-ink);
+}
+
 h1 {
-  font-weight: 500;
+  font-weight: 800;
 }
 
 h2 {
-  font-family: var(--font-work-sans);
-  font-size: 32px;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  font-weight: 500;
-  text-align: left;
+  font-weight: 700;
+}
+
+h3 {
+  font-weight: 700;
+}
+
+code, pre, kbd {
+  font-family: var(--font-code);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+p {
+  max-width: 65ch;
 }
 
 /* ==========================================================================
@@ -564,8 +575,8 @@ h2 {
 }
 
 .nav-link-item {
-  font-family: var(--font-work-sans);
-  font-size: 14.5px;
+  font-family: var(--font-text);
+  font-size: 15px;
   font-weight: 500;
   color: var(--color-smoke);
   display: inline-flex;
@@ -1321,8 +1332,8 @@ body.dark-preview .theme-toggle-btn .icon-moon {
 
 /* Outline Pill Button (Log In) */
 .nav-signin-link {
-  font-family: var(--font-inter);
-  font-size: 14px;
+  font-family: var(--font-text);
+  font-size: 15px;
   font-weight: 500;
   color: var(--color-ink);
   background-color: var(--color-eggshell);
@@ -1346,14 +1357,14 @@ body.dark-preview .theme-toggle-btn .icon-moon {
 
 /* Filled Pill Button (Get Started Free) */
 .btn-get-started {
-  font-family: var(--font-inter);
+  font-family: var(--font-text);
   background: var(--color-primary-gold);
   color: #ffffff;
   border: 1px solid var(--color-primary-gold);
   border-radius: var(--radius-full);
   padding: 8px 18px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 700;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -11074,11 +11085,11 @@ body.dark-preview .phone-email-toolbar,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-work-sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--font-text);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--color-primary-gold);
   margin: 0 auto 14px;
   padding: 4px 14px;
@@ -11089,11 +11100,11 @@ body.dark-preview .phone-email-toolbar,
 }
 
 .v2-section-title {
-  font-family: var(--font-work-sans);
-  font-size: 38px;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.6vw, 48px);
   font-weight: 700;
-  line-height: 1.18;
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: var(--color-ink);
   margin: 0 auto 16px !important;
   text-align: center !important;
@@ -11101,13 +11112,14 @@ body.dark-preview .phone-email-toolbar,
 }
 
 .v2-section-subtext {
-  font-family: var(--font-work-sans);
-  font-size: 17px;
+  font-family: var(--font-text);
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1.6;
   color: var(--color-smoke);
   text-align: center !important;
   margin: 0 auto !important;
-  max-width: 640px;
+  max-width: 65ch;
 }
 
 /* Common Buttons */
@@ -11119,9 +11131,11 @@ body.dark-preview .phone-email-toolbar,
   padding: 13px 26px;
   background-color: var(--color-primary-gold);
   color: #ffffff !important;
-  font-family: var(--font-work-sans);
-  font-size: 15px;
-  font-weight: 600;
+  font-family: var(--font-text);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
   border-radius: 8px;
   text-decoration: none;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
@@ -11144,9 +11158,11 @@ body.dark-preview .phone-email-toolbar,
   padding: 13px 24px;
   background: transparent;
   color: var(--color-ink) !important;
-  font-family: var(--font-work-sans);
-  font-size: 15px;
-  font-weight: 600;
+  font-family: var(--font-text);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
   border-radius: 8px;
   text-decoration: none;
   border: 1px solid var(--color-stone);
@@ -11219,22 +11235,23 @@ body.dark-preview .phone-email-toolbar,
 }
 
 .v2-hero-headline {
-  font-family: var(--font-work-sans);
-  font-size: 52px;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5.4vw, 72px);
   font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.035em;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
   color: var(--color-ink);
   margin-bottom: 20px;
 }
 
 .v2-hero-subtext {
-  font-family: var(--font-work-sans);
-  font-size: 18px;
-  line-height: 1.6;
+  font-family: var(--font-text);
+  font-size: clamp(18px, 1.8vw, 20px);
+  font-weight: 400;
+  line-height: 1.55;
   color: var(--color-smoke);
   margin-bottom: 32px;
-  max-width: 540px;
+  max-width: 52ch;
 }
 
 .v2-hero-cta-group {
@@ -11245,12 +11262,15 @@ body.dark-preview .phone-email-toolbar,
   flex-wrap: wrap;
 }
 
-/* Pill variant for CTA buttons (Image 2 style) */
+/* Pill variant for CTA buttons */
 .v2-btn-pill {
   border-radius: 999px !important;
   padding: 14px 28px !important;
-  font-size: 15px !important;
-  font-weight: 600 !important;
+  font-family: var(--font-text) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -11355,18 +11375,20 @@ body.dark-preview .v2-trust-dot {
 }
 
 .v2-metric-val {
-  font-family: var(--font-work-sans);
-  font-size: 26px;
+  font-family: var(--font-display);
+  font-size: 44px;
   font-weight: 800;
   color: var(--color-ink);
   letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
 
 .v2-metric-lbl {
-  font-family: var(--font-work-sans);
-  font-size: 13px;
+  font-family: var(--font-text);
+  font-size: 13.5px;
   color: var(--color-smoke);
-  font-weight: 500;
+  font-weight: 400;
   margin-top: 2px;
 }
 
@@ -11717,11 +11739,12 @@ body.dark-preview .v2-trust-dot {
 }
 
 .khv-tag {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 1.5px 6px;
+  font-family: var(--font-text);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  padding: 2px 7px;
   border-radius: 4px;
 }
 
@@ -11788,12 +11811,12 @@ body.dark-preview .v2-trust-dot {
 }
 
 .khv-code-highlight {
-  font-family: var(--font-geist-mono);
+  font-family: var(--font-code);
   color: #60a5fa;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-weight: 500;
+  letter-spacing: 0;
   background: rgba(59, 130, 246, 0.1);
-  padding: 1px 4px;
+  padding: 1px 5px;
   border-radius: 4px;
 }
 
@@ -11890,10 +11913,11 @@ body.dark-preview .v2-trust-dot {
 }
 
 .khv-camp-eyebrow {
-  font-size: 10.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-family: var(--font-text);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
   color: #949089;
 }
 
@@ -11904,7 +11928,7 @@ body.dark-preview .v2-trust-dot {
 }
 
 .khv-camp-title {
-  font-family: var(--font-work-sans);
+  font-family: var(--font-text);
   font-size: 16px;
   font-weight: 700;
   color: #f5f4ef;
@@ -12352,11 +12376,11 @@ body.dark-preview .v2-trust-dot {
 }
 
 .v2-trusted-headline {
-  font-family: var(--font-work-sans);
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  font-family: var(--font-text);
+  font-size: 13.5px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
   color: var(--color-smoke);
   margin-bottom: 30px;
 }
@@ -12384,10 +12408,11 @@ body.dark-preview .v2-trust-dot {
 }
 
 .v2-logo-text {
-  font-family: var(--font-work-sans);
+  font-family: var(--font-text);
   font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--color-graphite);
 }
 
@@ -12438,17 +12463,19 @@ body.dark-preview .v2-trust-dot {
 .v2-channel-voice .v2-channel-icon-box { background: rgba(139, 92, 246, 0.12); color: #8B5CF6; }
 
 .v2-channel-title {
-  font-family: var(--font-work-sans);
-  font-size: 20px;
+  font-family: var(--font-display);
+  font-size: 22px;
   font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
   color: var(--color-ink);
   margin-bottom: 10px;
 }
 
 .v2-channel-desc {
-  font-family: var(--font-work-sans);
-  font-size: 14px;
-  line-height: 1.55;
+  font-family: var(--font-text);
+  font-size: 15px;
+  line-height: 1.6;
   color: var(--color-smoke);
   margin-bottom: 20px;
   flex: 1;
@@ -12456,8 +12483,11 @@ body.dark-preview .v2-trust-dot {
 
 .v2-channel-badge-chip {
   align-self: flex-start;
-  font-size: 11px;
+  font-family: var(--font-text);
+  font-size: 12.5px;
   font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
   padding: 4px 10px;
   border-radius: 100px;
   background: var(--color-eggshell);
@@ -12742,16 +12772,18 @@ body.dark-preview .v2-trust-dot {
 }
 
 .v2-feature-title {
-  font-family: var(--font-work-sans);
-  font-size: 20px;
+  font-family: var(--font-display);
+  font-size: 22px;
   font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
   color: var(--color-ink);
   margin-bottom: 10px;
 }
 
 .v2-feature-desc {
-  font-family: var(--font-work-sans);
-  font-size: 14px;
+  font-family: var(--font-text);
+  font-size: 15px;
   line-height: 1.6;
   color: var(--color-smoke);
   margin-bottom: 20px;
@@ -12870,27 +12902,29 @@ body.dark-preview .v2-trust-dot {
 }
 
 .v2-ind-showcase-headline {
-  font-family: var(--font-work-sans);
-  font-size: 40px;
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   color: var(--color-ink);
   margin-bottom: 20px;
 }
 
 .v2-accent-word {
-  color: var(--color-primary-gold);
+  color: inherit !important;
+  font-style: normal !important;
+  font-weight: inherit !important;
   position: relative;
 }
 
 .v2-ind-showcase-subtext {
-  font-family: var(--font-work-sans);
-  font-size: 17px;
-  line-height: 1.65;
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: 1.6;
   color: var(--color-smoke);
-  margin-bottom: 32px;
-  max-width: 440px;
+  margin-bottom: 28px;
+  max-width: 65ch;
 }
 
 .v2-ind-cta-btn {
@@ -13231,9 +13265,10 @@ body.dark-preview .v2-trust-dot {
 
 .v2-code-block {
   margin: 0;
-  font-family: var(--font-geist-mono);
-  font-size: 13px;
-  line-height: 1.65;
+  font-family: var(--font-code);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
   color: #e5e5e5;
   display: none;
 }
@@ -13257,8 +13292,9 @@ body.dark-preview .v2-trust-dot {
   padding: 10px 18px;
   background: #141412;
   border-top: 1px solid #262624;
-  font-family: var(--font-geist-mono);
-  font-size: 11px;
+  font-family: var(--font-code);
+  font-weight: 400;
+  font-size: 12px;
 }
 
 .v2-code-status-pill {
@@ -13653,9 +13689,9 @@ body.dark-preview .v2-trust-dot {
   background: rgba(36, 35, 32, 0.85);
   border: 1px solid rgba(212, 147, 17, 0.4);
   color: var(--color-primary-gold);
-  font-family: var(--font-geist-mono);
+  font-family: var(--font-code);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13683,11 +13719,11 @@ body.dark-preview .v2-trust-dot {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-work-sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--font-text);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--color-primary-gold);
   margin: 0 auto 18px;
   padding: 4px 14px;
@@ -13698,11 +13734,11 @@ body.dark-preview .v2-trust-dot {
 }
 
 .v2-final-cta-headline {
-  font-family: var(--font-work-sans);
-  font-size: 46px;
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.6vw, 48px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: #ffffff !important;
   margin: 0 auto 16px !important;
   text-align: center !important;
@@ -13710,13 +13746,13 @@ body.dark-preview .v2-trust-dot {
 }
 
 .v2-final-cta-subtext {
-  font-family: var(--font-work-sans);
-  font-size: 18px;
+  font-family: var(--font-text);
+  font-size: 16px;
   line-height: 1.6;
   color: #a59f97;
   margin: 0 auto 36px !important;
   text-align: center !important;
-  max-width: 580px;
+  max-width: 65ch;
 }
 
 .v2-final-cta-btns {

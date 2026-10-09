@@ -1901,35 +1901,38 @@ function initIndustryJourneySystem(customData) {
     phoneScreen.innerHTML = renderPhoneScreen(step);
 
     if (isManualClick) {
-      hasUserInteracted = true;
       stopAutoplay();
+      // Resume autoplay after 3.5s of inactivity so the animation continues seamlessly
+      autoplayTimer = setTimeout(() => {
+        startAutoplay((stepIndex + 1) % 4);
+      }, 3500);
     }
   }
 
   /**
-   * Autoplay scheduler (~2.5s per step, finishes and freezes on step 4)
+   * Autoplay scheduler (~2.5s per step, loops continuously)
    */
-  function startAutoplay() {
+  function startAutoplay(startIndex = 0) {
     stopAutoplay();
     if (prefersReducedMotion) {
       setActiveStep(3, false);
       return;
     }
 
-    let nextStep = 0;
-    setActiveStep(nextStep, false);
+    let currentStep = startIndex;
+    setActiveStep(currentStep, false);
 
     const advanceStep = () => {
-      if (isPaused || hasUserInteracted) return;
-
-      nextStep += 1;
-      if (nextStep < 4) {
-        setActiveStep(nextStep, false);
-        autoplayTimer = setTimeout(advanceStep, 2500);
-      } else {
-        // Stop on Step 4 (frozen final state)
-        stopAutoplay();
+      if (isPaused) {
+        // Paused on hover/focus: retry smoothly in 400ms without killing the loop
+        autoplayTimer = setTimeout(advanceStep, 400);
+        return;
       }
+
+      // Loop back to step 1 after step 4 finishes
+      currentStep = (currentStep + 1) % 4;
+      setActiveStep(currentStep, false);
+      autoplayTimer = setTimeout(advanceStep, 2500);
     };
 
     autoplayTimer = setTimeout(advanceStep, 2500);

@@ -1224,5 +1224,23 @@ function initHeroConversationVisual() {
       channelTiles.forEach(tile => tile.classList.add('is-in-view'));
     }
   }
-}
+
+  // Stacking Channel Showcase Cards Smooth Scroll Effect
+  const stackCards = document.querySelectorAll('.channel-stack-card');
+  if (stackCards.length > 0) {
+    const onStackScroll = () => {
+      stackCards.forEach((card, idx) => {
+        const rect = card.getBoundingClientRect();
+        const stickyTop = 96 + (idx * 16);
+        if (rect.top <= stickyTop + 2) {
+          card.classList.add('is-stuck');
+        } else {
+          card.classList.remove('is-stuck');
+        }
+      });
+    };
+    window.addEventListener('scroll', onStackScroll, { passive: true });
+    onStackScroll();
+  }
+});
 

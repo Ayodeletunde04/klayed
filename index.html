@@ -951,13 +951,17 @@
           <p class="v2-section-subtext">Connect with customers across every major communication channel.</p>
         </div>
 
+                <!-- 2x2 Channels Feature Grid (Redesigned) -->
         <div class="cft-grid">
           
-          <!-- Tile 1: WhatsApp -->
+          <!-- ==============================================================
+               TILE 1: WHATSAPP
+               ============================================================== -->
           <article class="cft-tile cft-tile-wa" data-channel="wa">
-            <!-- ILLUSTRATION AREA -->
-            <div class="cft-illus" role="region" aria-label="WhatsApp broadcast and automated conversation demonstration for Zuri Stores" tabindex="0">
+            <!-- ILLUSTRATION AREA (about 280px tall, 28px padding) -->
+            <div class="cft-illus" role="region" aria-label="Phone showing an automated WhatsApp reply that reschedules a delivery." tabindex="0">
               <div class="cft-stage cft-wa-stage">
+                
                 <!-- Left: Broadcast Fan-Out -->
                 <div class="cft-wa-broadcast">
                   <div class="cft-wa-bc-card">
@@ -969,14 +973,19 @@
                     <p class="cft-wa-bc-sub">Up to 40% off dresses &amp; bags</p>
                   </div>
 
-                  <!-- Connecting fan-out SVG lines -->
-                  <svg class="cft-wa-fan-svg" viewBox="0 0 60 76" fill="none" aria-hidden="true">
+                  <!-- Desktop 3-path Fan-out SVG (hidden on mobile) -->
+                  <svg class="cft-wa-fan-svg cft-wa-fan-desktop" viewBox="0 0 60 76" fill="none" aria-hidden="true">
                     <path class="cft-wa-fan-path cft-wa-fan-1" d="M0,38 C28,38 32,12 60,12" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
                     <path class="cft-wa-fan-path cft-wa-fan-2" d="M0,38 C28,38 32,38 60,38" stroke="currentColor" stroke-width="1.5"/>
                     <path class="cft-wa-fan-path cft-wa-fan-3" d="M0,38 C28,38 32,64 60,64" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
                   </svg>
 
-                  <!-- 3 Customer Avatars -->
+                  <!-- Mobile Simplified Single Arrow (visible only on mobile) -->
+                  <div class="cft-wa-fan-mobile-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </div>
+
+                  <!-- Customer Avatars -->
                   <div class="cft-wa-avatars-col">
                     <div class="cft-wa-avatar" title="Adaeze">AO</div>
                     <div class="cft-wa-avatar" title="Chidi">CK</div>
@@ -1021,13 +1030,14 @@
                       <span>Automated reply</span>
                     </div>
 
-                    <!-- Business Message 3 -->
+                    <!-- Business Message 3 (Rescheduled) -->
                     <div class="cft-wa-bubble cft-wa-biz cft-wa-anim-4">
                       <p class="cft-wa-msg-text">Done. Rescheduled for 2:30 PM.</p>
                       <span class="cft-wa-time">9:13 AM</span>
                     </div>
                   </div>
                 </div>
+
               </div>
               <p class="cft-caption">What your customer sees</p>
             </div>
@@ -1057,10 +1067,12 @@
             </div>
           </article>
 
-          <!-- Tile 2: SMS -->
+          <!-- ==============================================================
+               TILE 2: SMS
+               ============================================================== -->
           <article class="cft-tile cft-tile-sms" data-channel="sms">
             <!-- ILLUSTRATION AREA -->
-            <div class="cft-illus" role="region" aria-label="SMS login code, payment alert, and promotional notifications on mobile phone for Zuri Stores" tabindex="0">
+            <div class="cft-illus" role="region" aria-label="Phone lock screen showing instant SMS alerts for login code, payment, and promotion." tabindex="0">
               <div class="cft-stage cft-sms-stage">
                 <div class="cft-sms-device">
                   <div class="cft-sms-notch"></div>
@@ -1071,7 +1083,7 @@
                       <div class="cft-sms-head">
                         <div class="cft-sms-head-left">
                           <span class="cft-sms-chip">Login code</span>
-                          <strong class="cft-sms-sender">ZURISTORES</strong>
+                          <strong class="cft-sms-sender">KLAYED</strong>
                         </div>
                         <div class="cft-sms-head-right">
                           <span class="cft-sms-time">now</span>
@@ -1089,7 +1101,7 @@
                       <div class="cft-sms-head">
                         <div class="cft-sms-head-left">
                           <span class="cft-sms-chip">Payment alert</span>
-                          <strong class="cft-sms-sender">ZURISTORES</strong>
+                          <strong class="cft-sms-sender">KLAYED</strong>
                         </div>
                         <div class="cft-sms-head-right">
                           <span class="cft-sms-time">now</span>
@@ -1099,7 +1111,7 @@
                           </span>
                         </div>
                       </div>
-                      <p class="cft-sms-body">N45,000 payment received. Thank you!</p>
+                      <p class="cft-sms-body">N45,000 received from Adaeze.</p>
                     </div>
 
                     <!-- Notification 3: Promotion -->
@@ -1107,7 +1119,7 @@
                       <div class="cft-sms-head">
                         <div class="cft-sms-head-left">
                           <span class="cft-sms-chip">Promotion</span>
-                          <strong class="cft-sms-sender">ZURISTORES</strong>
+                          <strong class="cft-sms-sender">KLAYED</strong>
                         </div>
                         <div class="cft-sms-head-right">
                           <span class="cft-sms-time">now</span>
@@ -1121,6 +1133,13 @@
                     </div>
 
                   </div>
+                </div>
+
+                <!-- Caption chips below: Alerts, OTPs, Promotions -->
+                <div class="cft-sms-cue-chips">
+                  <span class="cft-cue-chip">Alerts</span>
+                  <span class="cft-cue-chip">OTPs</span>
+                  <span class="cft-cue-chip">Promotions</span>
                 </div>
               </div>
               <p class="cft-caption">What your customer sees</p>
@@ -1151,10 +1170,12 @@
             </div>
           </article>
 
-          <!-- Tile 3: Email -->
+          <!-- ==============================================================
+               TILE 3: EMAIL
+               ============================================================== -->
           <article class="cft-tile cft-tile-email" data-channel="email">
             <!-- ILLUSTRATION AREA -->
-            <div class="cft-illus" role="region" aria-label="Email campaign workflow showing drag-and-drop editor, inbox preview from Zuri Stores, and performance tracking" tabindex="0">
+            <div class="cft-illus" role="region" aria-label="Three-step email campaign workflow from drag-and-drop creation to inbox delivery and engagement tracking." tabindex="0">
               <div class="cft-stage cft-email-stage">
                 <!-- 3-Step Journey Strip -->
                 <div class="cft-email-track">
@@ -1176,12 +1197,12 @@
                   </div>
                 </div>
 
-                <!-- 3 Lifecycle Stages -->
+                <!-- 3 Lifecycle Stages Grid -->
                 <div class="cft-email-panels">
-                  <!-- Stage 1: Create (Editor) -->
+                  <!-- Step 1: Create (Editor) -->
                   <div class="cft-email-panel cft-panel-create">
                     <div class="cft-email-panel-header">
-                      <span>Editor</span>
+                      <span>Create</span>
                     </div>
                     <div class="cft-email-editor-blocks">
                       <div class="cft-email-block-img">
@@ -1193,32 +1214,32 @@
                         <span>Headline &amp; text</span>
                       </div>
                       <div class="cft-email-block-btn">
-                        <span>Shop now</span>
+                        <span>Button</span>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Stage 2: Send (Inbox row) -->
+                  <!-- Step 2: Send (Inbox row) -->
                   <div class="cft-email-panel cft-panel-send">
                     <div class="cft-email-panel-header">
-                      <span>Customer inbox</span>
+                      <span>Send</span>
                     </div>
                     <div class="cft-email-inbox-item">
-                      <div class="cft-email-avatar">ZS</div>
+                      <div class="cft-email-avatar">KC</div>
                       <div class="cft-email-inbox-text">
                         <div class="cft-email-from-row">
-                          <strong class="cft-email-sender">Zuri Stores</strong>
-                          <span class="cft-email-time">Just now</span>
+                          <strong class="cft-email-sender">Klayed Commerce</strong>
+                          <span class="cft-email-time">now</span>
                         </div>
                         <span class="cft-email-subject">Your weekend offer is here</span>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Stage 3: Track (Report) -->
+                  <!-- Step 3: Track (Report) -->
                   <div class="cft-email-panel cft-panel-track">
                     <div class="cft-email-panel-header">
-                      <span>Campaign report</span>
+                      <span>Track</span>
                     </div>
                     <div class="cft-email-metric-row">
                       <div class="cft-email-metric-head">
@@ -1240,8 +1261,9 @@
                     </div>
                   </div>
                 </div>
+
               </div>
-              <p class="cft-caption">What your customer sees, and what you see</p>
+              <p class="cft-caption">What your customer sees</p>
             </div>
 
             <div class="cft-divider"></div>
@@ -1269,10 +1291,12 @@
             </div>
           </article>
 
-          <!-- Tile 4: Voice -->
+          <!-- ==============================================================
+               TILE 4: VOICE
+               ============================================================== -->
           <article class="cft-tile cft-tile-voice" data-channel="voice">
             <!-- ILLUSTRATION AREA -->
-            <div class="cft-illus" role="region" aria-label="Automated voice call with dynamic waveform and Press 1 confirmation for Zuri Stores" tabindex="0">
+            <div class="cft-illus" role="region" aria-label="Automated voice call interface with live speech waveform, audio transcript, and customer keypad response." tabindex="0">
               <div class="cft-stage cft-voice-stage">
                 
                 <!-- Call Header Card -->
@@ -1282,7 +1306,7 @@
                       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                     </div>
                     <div class="cft-voice-details">
-                      <span class="cft-voice-caller">Zuri Stores</span>
+                      <span class="cft-voice-caller">Klayed Commerce</span>
                       <span class="cft-voice-sub">Automated call</span>
                     </div>
                     <div class="cft-voice-timer">00:24</div>
@@ -1290,18 +1314,18 @@
 
                   <!-- Teal Sound Waveform -->
                   <div class="cft-voice-waveform" aria-hidden="true">
-                    <span class="cft-wave-bar" style="--h: 9px; --d: 0.1s;"></span>
-                    <span class="cft-wave-bar" style="--h: 18px; --d: 0.25s;"></span>
-                    <span class="cft-wave-bar" style="--h: 26px; --d: 0.4s;"></span>
-                    <span class="cft-wave-bar" style="--h: 14px; --d: 0.15s;"></span>
-                    <span class="cft-wave-bar" style="--h: 24px; --d: 0.35s;"></span>
-                    <span class="cft-wave-bar" style="--h: 30px; --d: 0.5s;"></span>
-                    <span class="cft-wave-bar" style="--h: 20px; --d: 0.2s;"></span>
-                    <span class="cft-wave-bar" style="--h: 28px; --d: 0.45s;"></span>
-                    <span class="cft-wave-bar" style="--h: 16px; --d: 0.3s;"></span>
-                    <span class="cft-wave-bar" style="--h: 25px; --d: 0.55s;"></span>
+                    <span class="cft-wave-bar" style="--h: 8px; --d: 0.1s;"></span>
+                    <span class="cft-wave-bar" style="--h: 16px; --d: 0.25s;"></span>
+                    <span class="cft-wave-bar" style="--h: 24px; --d: 0.4s;"></span>
+                    <span class="cft-wave-bar" style="--h: 12px; --d: 0.15s;"></span>
+                    <span class="cft-wave-bar" style="--h: 22px; --d: 0.35s;"></span>
+                    <span class="cft-wave-bar" style="--h: 28px; --d: 0.5s;"></span>
                     <span class="cft-wave-bar" style="--h: 18px; --d: 0.2s;"></span>
-                    <span class="cft-wave-bar" style="--h: 10px; --d: 0.1s;"></span>
+                    <span class="cft-wave-bar" style="--h: 26px; --d: 0.45s;"></span>
+                    <span class="cft-wave-bar" style="--h: 14px; --d: 0.3s;"></span>
+                    <span class="cft-wave-bar" style="--h: 22px; --d: 0.55s;"></span>
+                    <span class="cft-wave-bar" style="--h: 16px; --d: 0.2s;"></span>
+                    <span class="cft-wave-bar" style="--h: 9px; --d: 0.1s;"></span>
                   </div>
                 </div>
 
@@ -1327,7 +1351,7 @@
                 </div>
 
               </div>
-              <p class="cft-caption">What your customer hears</p>
+              <p class="cft-caption">What your customer sees</p>
             </div>
 
             <div class="cft-divider"></div>
@@ -1358,6 +1382,7 @@
         </div>
       </div>
     </section>
+
 
     <!-- ====================================================================
          4. WHY KLAYED SECTION (Alternating image & content blocks)

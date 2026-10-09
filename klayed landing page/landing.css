@@ -12569,11 +12569,11 @@ body.dark-preview {
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
 }
 
-/* Illustration Area */
+/* Illustration Area (about 280px tall, 28px padding) */
 .cft-illus {
-  min-height: 350px;
+  min-height: 280px;
   background: var(--cft-illus-bg);
-  padding: 24px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12801,6 +12801,10 @@ body.dark-preview {
   height: 56px;
   color: var(--cft-color-wa);
   margin: 6px 0;
+}
+
+.cft-wa-fan-mobile-arrow {
+  display: none;
 }
 
 .cft-wa-avatars-col {
@@ -13106,6 +13110,23 @@ body.dark-preview {
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--cft-color-sms);
+}
+
+.cft-sms-cue-chips {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.cft-cue-chip {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--cft-inner-bg);
+  border: 1px solid var(--cft-inner-border);
+  color: var(--cft-text-caption);
 }
 
 /* SMS Animations */
@@ -13582,11 +13603,24 @@ body.dark-preview {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  .cft-wa-broadcast {
-    display: none; /* Hide WhatsApp fan-out on mobile as requested */
+  .cft-wa-stage {
+    gap: 12px;
+  }
+  .cft-wa-fan-desktop {
+    display: none;
+  }
+  .cft-wa-fan-mobile-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cft-color-wa);
+    margin: 6px 0;
+  }
+  .cft-email-track {
+    max-width: 280px;
   }
   .cft-email-panels {
-    grid-template-columns: 1fr; /* Email steps stack vertically on mobile */
+    grid-template-columns: 1fr; /* Email strip becomes vertical on mobile */
     gap: 10px;
   }
 }
@@ -15326,4 +15360,511 @@ body.dark-preview .v2-final-cta-content .v2-final-cta-subtext {
   margin-left: auto !important;
   margin-right: auto !important;
   align-self: center !important;
+}
+
+
+/* ==========================================================================
+   11. STACKING CHANNELS SHOWCASE (STICKY CARDS ON SCROLL + IMAGE 1 ILLUSTRATION)
+   ========================================================================== */
+.channels-stack-container {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  position: relative;
+  margin-bottom: 72px;
+  padding-top: 16px;
+  width: 100%;
+}
+
+.channel-stack-card {
+  position: sticky;
+  border-radius: 24px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.03), 0 20px 48px -12px rgba(0, 0, 0, 0.09);
+  display: grid;
+  grid-template-columns: 1.05fr 1.15fr;
+  gap: 48px;
+  align-items: center;
+  padding: 44px 48px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Stacking Sticky Top Offsets */
+.channel-stack-card:nth-child(1) { top: 96px; z-index: 1; }
+.channel-stack-card:nth-child(2) { top: 112px; z-index: 2; }
+.channel-stack-card:nth-child(3) { top: 128px; z-index: 3; }
+.channel-stack-card:nth-child(4) { top: 144px; z-index: 4; }
+
+body.dark-preview .channel-stack-card,
+[data-theme="dark"] .channel-stack-card {
+  background-color: #121318;
+  border-color: #232530;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4), 0 24px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Left Column: Content Stack */
+.stack-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.stack-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-family: var(--font-display, inherit);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.badge-wa {
+  background: rgba(34, 197, 94, 0.12);
+  color: #16a34a;
+  border: 1px solid rgba(34, 197, 94, 0.28);
+}
+
+.badge-sms {
+  background: rgba(59, 130, 246, 0.12);
+  color: #2563eb;
+  border: 1px solid rgba(59, 130, 246, 0.28);
+}
+
+.badge-email {
+  background: rgba(139, 92, 246, 0.12);
+  color: #7c3aed;
+  border: 1px solid rgba(139, 92, 246, 0.28);
+}
+
+.badge-voice {
+  background: rgba(249, 115, 22, 0.12);
+  color: #ea580c;
+  border: 1px solid rgba(249, 115, 22, 0.28);
+}
+
+.stack-card-title {
+  font-family: var(--font-display, inherit);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: #111827;
+  margin-bottom: 14px;
+}
+
+body.dark-preview .stack-card-title,
+[data-theme="dark"] .stack-card-title {
+  color: #f9fafb;
+}
+
+.stack-card-desc {
+  font-family: var(--font-text, inherit);
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-bottom: 24px;
+  max-width: 52ch;
+}
+
+body.dark-preview .stack-card-desc,
+[data-theme="dark"] .stack-card-desc {
+  color: #9ca3af;
+}
+
+.stack-card-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+  list-style: none;
+  padding: 0;
+}
+
+.stack-card-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+body.dark-preview .stack-card-checklist li,
+[data-theme="dark"] .stack-card-checklist li {
+  color: #e5e7eb;
+}
+
+.stack-card-checklist svg.check-icon {
+  width: 17px;
+  height: 17px;
+  stroke-width: 2.5;
+  color: #D59312;
+  flex-shrink: 0;
+}
+
+.btn-pill-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #f3f4f6;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+  text-decoration: none;
+  transition: all 180ms ease;
+}
+
+.btn-pill-action:hover {
+  background-color: #ffffff;
+  border-color: #d1d5db;
+  transform: translateX(2px);
+  color: #000000;
+}
+
+body.dark-preview .btn-pill-action,
+[data-theme="dark"] .btn-pill-action {
+  background-color: #1c1d25;
+  border-color: #2e303c;
+  color: #f3f4f6;
+}
+
+body.dark-preview .btn-pill-action:hover,
+[data-theme="dark"] .btn-pill-action:hover {
+  background-color: #252733;
+  border-color: #3f4252;
+}
+
+/* Right Column: First Image Style Illustration */
+.stack-card-illus-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stack-illus-canvas {
+  width: 100%;
+  height: 390px;
+  background-color: #f7f7f8;
+  border: 1px solid #ebecee;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+body.dark-preview .stack-illus-canvas,
+[data-theme="dark"] .stack-illus-canvas {
+  background-color: #16171e;
+  border-color: #23242e;
+}
+
+/* Base Overlapping Cards */
+.stack-mockup-card {
+  border-radius: 14px;
+  box-sizing: border-box;
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+
+/* Background Card A: Placed Top-Left */
+.stack-mockup-card.bg-card {
+  width: 76%;
+  top: 22px;
+  left: 22px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  padding: 14px 16px;
+  z-index: 1;
+}
+
+body.dark-preview .stack-mockup-card.bg-card,
+[data-theme="dark"] .stack-mockup-card.bg-card {
+  background: #101116;
+  border-color: #242530;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Foreground Card B: Placed Bottom-Right with elevation */
+.stack-mockup-card.fg-card {
+  width: 78%;
+  bottom: 22px;
+  right: 22px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.03);
+  padding: 16px 18px;
+  z-index: 2;
+}
+
+body.dark-preview .stack-mockup-card.fg-card,
+[data-theme="dark"] .stack-mockup-card.fg-card {
+  background: #1b1c24;
+  border-color: #2f3140;
+  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Mockup Card Header */
+.mockup-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #f1f2f4;
+}
+
+body.dark-preview .mockup-card-header,
+[data-theme="dark"] .mockup-card-header {
+  border-bottom-color: #262734;
+}
+
+.mockup-header-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #111827;
+}
+
+body.dark-preview .mockup-header-title,
+[data-theme="dark"] .mockup-header-title {
+  color: #f3f4f6;
+}
+
+.mockup-header-sub {
+  font-size: 10px;
+  color: #6b7280;
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+body.dark-preview .mockup-header-sub,
+[data-theme="dark"] .mockup-header-sub {
+  color: #9ca3af;
+}
+
+/* Feed List in Background Card */
+.mockup-feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mockup-feed-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mockup-app-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.wa-bg { background: rgba(34, 197, 94, 0.14); color: #16a34a; }
+.sms-bg { background: rgba(59, 130, 246, 0.14); color: #2563eb; }
+.email-bg { background: rgba(139, 92, 246, 0.14); color: #7c3aed; }
+.voice-bg { background: rgba(249, 115, 22, 0.14); color: #ea580c; }
+
+.mockup-feed-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mockup-feed-name {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+body.dark-preview .mockup-feed-name,
+[data-theme="dark"] .mockup-feed-name {
+  color: #f3f4f6;
+}
+
+.verified-dot {
+  color: #16a34a;
+  font-size: 11px;
+}
+
+.latency-pill {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #16a34a;
+  background: rgba(34, 197, 94, 0.1);
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
+.mockup-feed-text {
+  font-size: 10.5px;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.dark-preview .mockup-feed-text,
+[data-theme="dark"] .mockup-feed-text {
+  color: #9ca3af;
+}
+
+/* Foreground Card Insights List (Image 1 Style Rows) */
+.mockup-insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mockup-insight-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 9px;
+  border-radius: 8px;
+  background: #fbfbf9;
+  border: 1px solid #f1f0eb;
+}
+
+body.dark-preview .mockup-insight-row,
+[data-theme="dark"] .mockup-insight-row {
+  background: #14151c;
+  border-color: #252733;
+}
+
+.insight-icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.box-green { background: #22c55e; color: #ffffff; }
+.box-blue { background: #3b82f6; color: #ffffff; }
+.box-purple { background: #8b5cf6; color: #ffffff; }
+.box-amber { background: #D59312; color: #ffffff; }
+.box-teal { background: #14b8a6; color: #ffffff; }
+
+.insight-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.insight-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.3;
+}
+
+body.dark-preview .insight-title,
+[data-theme="dark"] .insight-title {
+  color: #f9fafb;
+}
+
+.insight-desc {
+  font-size: 10.5px;
+  color: #6b7280;
+  line-height: 1.35;
+}
+
+body.dark-preview .insight-desc,
+[data-theme="dark"] .insight-desc {
+  color: #9ca3af;
+}
+
+.insight-chips {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+  flex-wrap: wrap;
+}
+
+.insight-chip {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1.5px 7px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  color: #1f2937;
+}
+
+body.dark-preview .insight-chip,
+[data-theme="dark"] .insight-chip {
+  background: #171822;
+  border-color: #2b2c3a;
+  color: #e5e7eb;
+}
+
+.insight-chip.status-live {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+/* Responsive Stacking Layout */
+@media (max-width: 1024px) {
+  .channel-stack-card {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px 28px;
+  }
+  .stack-card-title {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 640px) {
+  .channels-stack-container {
+    gap: 24px;
+  }
+  .channel-stack-card {
+    position: static !important;
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+  .stack-illus-canvas {
+    height: 340px;
+  }
+  .stack-mockup-card.bg-card {
+    width: 88%;
+    left: 12px;
+    top: 12px;
+  }
+  .stack-mockup-card.fg-card {
+    width: 90%;
+    right: 12px;
+    bottom: 12px;
+  }
 }

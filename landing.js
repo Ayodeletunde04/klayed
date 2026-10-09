@@ -1161,4 +1161,68 @@ function initHeroConversationVisual() {
 
   // Initial trigger
   setScene(0);
+
+  // ==========================================================================
+  // CHANNEL FEATURE TILES (2x2 GRID REDESIGN)
+  // Plays ONCE when tile scrolls into view (~5 seconds), ends on a complete
+  // final frame that stays frozen, and replays on hover or keyboard focus.
+  // ==========================================================================
+  const channelTiles = document.querySelectorAll('.cft-tile');
+  if (channelTiles.length > 0) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Helper to replay animation on a tile
+    const replayTileAnimation = (tile) => {
+      if (prefersReducedMotion) return;
+      tile.classList.remove('is-in-view');
+      // Force DOM reflow to restart CSS keyframe animations cleanly
+      void tile.offsetWidth;
+      tile.classList.add('is-in-view');
+    };
+
+    if ('IntersectionObserver' in window) {
+      const tileObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in-view');
+            // Unobserve after first entrance so it doesn't replay endlessly on scroll
+            tileObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      channelTiles.forEach(tile => {
+        tileObserver.observe(tile);
+
+        // Replay on hover
+        let isReplaying = false;
+        tile.addEventListener('mouseenter', () => {
+          if (!isReplaying && tile.classList.contains('is-in-view')) {
+            isReplaying = true;
+            replayTileAnimation(tile);
+            setTimeout(() => { isReplaying = false; }, 5000);
+          }
+        });
+
+        // Replay on keyboard focus inside illustration or tile
+        const illusArea = tile.querySelector('.cft-illus');
+        if (illusArea) {
+          illusArea.addEventListener('focus', () => {
+            if (!isReplaying && tile.classList.contains('is-in-view')) {
+              isReplaying = true;
+              replayTileAnimation(tile);
+              setTimeout(() => { isReplaying = false; }, 5000);
+            }
+          });
+        }
+      });
+    } else {
+      // Fallback for browsers without IntersectionObserver
+      channelTiles.forEach(tile => tile.classList.add('is-in-view'));
+    }
+  }
 }
+

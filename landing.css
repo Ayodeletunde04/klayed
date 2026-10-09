@@ -7,6 +7,28 @@
 
 :root {
   /* ==========================================================================
+     Klayed Brand Palette Tokens
+     Primary Color directly sampled from Brand Logo: #D59312
+     ========================================================================== */
+  --color-primary: #D59312;
+  --color-primary-gold: #D59312;
+  --color-gold-hover: #BC800E;
+  --color-gold-active: #A06B08;
+  --color-gold-light: #FDF6E8;
+  --color-gold-glow: rgba(213, 147, 18, 0.28);
+  --color-primary-rgb: 213, 147, 18;
+
+  --color-eggshell: #FDFCFC;
+  --color-warm-taupe: #f5f4f0;
+  --color-stone: #e8e6e1;
+  --color-ink: #000000;
+  --color-graphite: #44403b;
+  --color-smoke: #777169;
+  --color-ash: #a59f97;
+  --color-violet-spark: #D59312;
+  --color-ember-orange: #ff4704;
+
+  /* ==========================================================================
      Two-Font Typography System Tokens
      ========================================================================== */
   --font-display: "Schibsted Grotesk", "Hanken Grotesk", system-ui, sans-serif;
@@ -181,6 +203,16 @@ body {
   padding-top: 72px;
   transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::selection {
+  background-color: var(--color-gold-glow);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary-gold);
+  outline-offset: 2px;
 }
 
 /* ==========================================================================
@@ -8711,6 +8743,10 @@ body.dark-preview {
   --color-graphite: #d4d0ca;
   --color-smoke: #a59f97;
   --color-ash: #635f58;
+  --color-primary: #D59312;
+  --color-primary-gold: #D59312;
+  --color-gold-hover: #E5A11A;
+  --color-gold-active: #BC800E;
 
   --surface-eggshell-canvas: #0c0c0b;
   --surface-warm-taupe: #141412;
@@ -11629,7 +11665,7 @@ body.dark-preview .v2-trust-dot {
   left: 0;
   width: 100%;
   height: 0%;
-  background: linear-gradient(to bottom, #D49311 0%, #F59E0B 100%);
+  background: linear-gradient(to bottom, var(--color-primary-gold) 0%, #F59E0B 100%);
   transition: height 0.45s cubic-bezier(0.25, 1, 0.5, 1);
   border-radius: 2px;
 }
@@ -11641,8 +11677,8 @@ body.dark-preview .v2-trust-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #F59E0B;
-  box-shadow: 0 0 12px 2px rgba(212, 147, 17, 0.8);
+  background: var(--color-primary-gold);
+  box-shadow: 0 0 12px 2px var(--color-gold-glow);
   transform: translateY(-50%);
   transition: top 0.45s cubic-bezier(0.25, 1, 0.5, 1);
   opacity: 0;
@@ -12177,7 +12213,7 @@ body.dark-preview .v2-trust-dot {
 .khv-typing-cursor::after {
   content: '|';
   animation: khvBlink 1s infinite;
-  color: #D49311;
+  color: var(--color-primary-gold);
 }
 
 @keyframes khvBlink {
@@ -12204,13 +12240,18 @@ body.dark-preview .v2-trust-dot {
   width: 22px;
   height: 22px;
   border-radius: 5px;
-  background: #D49311;
+  background: var(--color-primary-gold);
   border: none;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.khv-send-action:hover {
+  background: var(--color-gold-hover);
 }
 
 /* ==========================================================================
@@ -12277,8 +12318,8 @@ body.dark-preview .v2-trust-dot {
 }
 
 .khv-tab-pill.is-active .khv-pill-dot {
-  background: #D49311;
-  box-shadow: 0 0 6px #D49311;
+  background: var(--color-primary-gold);
+  box-shadow: 0 0 6px var(--color-primary-gold);
 }
 
 .khv-fixed-label {
@@ -13486,7 +13527,7 @@ body.dark-preview .v2-trust-dot {
   border-radius: 50%;
 }
 
-.v2-dot-sms { background: #D49311; }
+.v2-dot-sms { background: var(--color-primary-gold); }
 .v2-dot-wa { background: #22C55E; }
 .v2-dot-mail { background: #3B82F6; }
 .v2-dot-voice { background: #8B5CF6; }
@@ -13700,7 +13741,7 @@ body.dark-preview .v2-trust-dot {
 }
 
 .v2-fn-wa { top: 20%; left: 10%; color: #22C55E; border-color: rgba(34, 197, 94, 0.5); }
-.v2-fn-sms { top: 70%; left: 16%; color: #D49311; border-color: rgba(212, 147, 17, 0.5); animation-delay: -2s; }
+.v2-fn-sms { top: 70%; left: 16%; color: var(--color-primary-gold); border-color: rgba(213, 147, 18, 0.5); animation-delay: -2s; }
 .v2-fn-mail { top: 25%; right: 12%; color: #3B82F6; border-color: rgba(59, 130, 246, 0.5); font-size: 16px; animation-delay: -1s; }
 .v2-fn-voice { top: 72%; right: 14%; color: #8B5CF6; border-color: rgba(139, 92, 246, 0.5); font-size: 16px; animation-delay: -3s; }
 
@@ -13762,6 +13803,20 @@ body.dark-preview .v2-trust-dot {
   gap: 16px;
   margin-bottom: 24px;
   flex-wrap: wrap;
+}
+
+.v2-final-cta-btns .v2-btn-primary {
+  background-color: var(--color-primary-gold) !important;
+  color: #ffffff !important;
+  border-radius: 999px !important;
+  padding: 14px 28px !important;
+  box-shadow: 0 10px 28px -6px rgba(213, 147, 18, 0.45), 0 2px 6px rgba(213, 147, 18, 0.25) !important;
+}
+
+.v2-final-cta-btns .v2-btn-primary:hover {
+  background-color: var(--color-gold-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px -6px rgba(213, 147, 18, 0.6), 0 4px 12px rgba(213, 147, 18, 0.35) !important;
 }
 
 .v2-final-cta-btns .v2-btn-secondary {

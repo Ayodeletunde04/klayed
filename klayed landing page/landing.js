@@ -1244,48 +1244,176 @@ document.addEventListener('DOMContentLoaded', () => {
 const INDUSTRY_JOURNEYS_DATA = {
   ecommerce: {
     label: "Ecommerce",
-    headline: "Recover carts, send delivery updates, and reward repeat buyers.",
-    subtext: "When a shopper browses, places an order, or waits for delivery, automated messages reach them on the channel they check first.",
+    headline: "Recover carts, confirm orders, collect reviews. Done.",
+    subtext: "Nudge shoppers who left, confirm every payment, share live delivery updates, and ask for a review, all on the channel each customer actually reads.",
     businessName: "Zuri Stores",
-    outcome: "Shoppers return to complete checkout and track their parcel from pickup to doorstep.",
+    outcome: "From abandoned cart to review, with no one on your team sending a message.",
     steps: [
       {
-        label: "Active cart",
-        trigger: "When a shopper leaves items in their bag",
+        label: "Cart left behind",
+        trigger: "When a shopper leaves without paying",
         channel: "whatsapp",
         channelLabel: "WhatsApp",
         preview: {
           channel: "whatsapp",
           sender: "Zuri Stores",
           time: "10:14 AM",
-          bubbleText: "Your silk dress is still reserved with free delivery today. Would you like to finish checking out?",
-          quickReplies: ["Complete checkout", "View bag"]
+          bubbleText: "You left something in your cart. Want to finish your order?",
+          quickReplies: ["Complete order", "No thanks"]
         }
       },
       {
-        label: "Order confirmed",
-        trigger: "When payment clears successfully",
+        label: "Payment received",
+        trigger: "When payment goes through",
         channel: "sms",
         channelLabel: "SMS",
         preview: {
           channel: "sms",
-          sender: "ZURI",
+          sender: "ZURISTORES",
           time: "10:18 AM",
           smsTitle: "Payment confirmed",
-          smsBody: "Order #8492 received. Your items are being packed at our central warehouse."
+          smsBody: "N45,000 payment received. Order #8492 confirmed. Thank you!"
         }
       },
       {
-        label: "Driver outside",
-        trigger: "When the delivery driver reaches the gate",
+        label: "Order shipped",
+        trigger: "When the order leaves the warehouse",
+        channel: "whatsapp",
+        channelLabel: "WhatsApp",
+        preview: {
+          channel: "whatsapp",
+          sender: "Zuri Stores",
+          time: "02:30 PM",
+          bubbleText: "Your order is on the way.",
+          quickReplies: ["Track order", "Change address"]
+        }
+      },
+      {
+        label: "After delivery",
+        trigger: "Two days after delivery",
+        channel: "email",
+        channelLabel: "Email",
+        preview: {
+          channel: "email",
+          sender: "Zuri Stores",
+          time: "Two days after",
+          emailSubject: "How was your order?",
+          emailSnippet: "Tap a star to rate your items from Zuri Stores.",
+          ratingStars: true,
+          btnText: "Submit review"
+        }
+      }
+    ]
+  },
+  fintech: {
+    label: "Fintech",
+    headline: "Verify users, alert instantly, stop fraud. Done.",
+    subtext: "Deliver login codes that always arrive, tell customers about every transaction, and confirm suspicious activity with a phone call.",
+    businessName: "Cedar Pay",
+    outcome: "Verified, alerted and protected, on whichever channel reaches the customer first.",
+    steps: [
+      {
+        label: "Login",
+        trigger: "When a customer signs in",
+        channel: "sms",
+        channelLabel: "SMS",
+        backupChip: "Voice call if not delivered",
+        preview: {
+          channel: "sms",
+          sender: "CEDARPAY",
+          time: "08:12 AM",
+          smsTitle: "Security code",
+          smsBody: "Your code is 492 013. Do not share it."
+        }
+      },
+      {
+        label: "Money moved",
+        trigger: "When a transfer is made",
+        channel: "whatsapp",
+        channelLabel: "WhatsApp",
+        preview: {
+          channel: "whatsapp",
+          sender: "Cedar Pay",
+          time: "11:05 AM",
+          bubbleText: "You sent N120,000 to Tunde Bello. Balance: N48,500.",
+          quickReplies: ["Not me"]
+        }
+      },
+      {
+        label: "Something looks wrong",
+        trigger: "When a payment looks unusual",
         channel: "voice",
         channelLabel: "Voice",
         preview: {
           channel: "voice",
-          sender: "Zuri Stores",
-          duration: "00:19",
-          transcript: "Your courier is at the front gate with your package. Press 1 to confirm you are home.",
-          keypadActive: "1"
+          sender: "Cedar Pay",
+          duration: "00:16",
+          transcript: "We noticed a payment of N350,000. Press 1 if this was you, or 2 to block your card.",
+          keypadActive: "2",
+          resultText: "Card blocked"
+        }
+      },
+      {
+        label: "Month end",
+        trigger: "On the 1st of every month",
+        channel: "email",
+        channelLabel: "Email",
+        preview: {
+          channel: "email",
+          sender: "Cedar Pay",
+          time: "1st of month",
+          emailSubject: "Your October statement is ready",
+          emailSnippet: "Review your detailed spending breakdown and transfer summary for October.",
+          btnText: "View statement"
+        }
+      }
+    ]
+  },
+  logistics: {
+    label: "Logistics",
+    headline: "Track parcels, reach recipients, confirm delivery. Done.",
+    subtext: "Keep senders and recipients updated at every stop, call automatically when nobody answers, and send proof when the parcel lands.",
+    businessName: "Swiftline Delivery",
+    outcome: "Recipients stay informed and nobody is chasing them by phone.",
+    steps: [
+      {
+        label: "Parcel picked up",
+        trigger: "When the rider collects the parcel",
+        channel: "whatsapp",
+        channelLabel: "WhatsApp",
+        preview: {
+          channel: "whatsapp",
+          sender: "Swiftline Delivery",
+          time: "09:15 AM",
+          bubbleText: "Your parcel is with Swiftline. Track it here.",
+          quickReplies: ["Track parcel"]
+        }
+      },
+      {
+        label: "Rider close by",
+        trigger: "When the rider is 10 minutes away",
+        channel: "sms",
+        channelLabel: "SMS",
+        preview: {
+          channel: "sms",
+          sender: "SWIFTLINE",
+          time: "01:25 PM",
+          smsTitle: "Courier arrival",
+          smsBody: "Your rider Musa arrives in about 10 minutes."
+        }
+      },
+      {
+        label: "Nobody answered",
+        trigger: "When the recipient does not pick up",
+        channel: "voice",
+        channelLabel: "Voice",
+        preview: {
+          channel: "voice",
+          sender: "Swiftline Delivery",
+          duration: "00:18",
+          transcript: "Your parcel has arrived. Press 1 if you are home, or 2 to reschedule.",
+          keypadActive: "1",
+          resultText: "Recipient confirmed"
         }
       },
       {
@@ -1295,315 +1423,209 @@ const INDUSTRY_JOURNEYS_DATA = {
         channelLabel: "Email",
         preview: {
           channel: "email",
-          sender: "Zuri Stores",
-          time: "1:45 PM",
-          emailSubject: "Your order has arrived and your receipt is ready",
-          emailSnippet: "Thank you for shopping with us today. Your delivery receipt and garment care instructions are inside."
-        }
-      }
-    ]
-  },
-  fintech: {
-    label: "Fintech",
-    headline: "Verify sign ins, confirm card transactions, and protect balances.",
-    subtext: "Every security alert and transfer confirmation reaches your user instantly across primary and fallback networks.",
-    businessName: "Apex Pay",
-    outcome: "Users complete payments safely and stay informed on every account movement.",
-    steps: [
-      {
-        label: "New login",
-        trigger: "When a user signs in on an unfamiliar browser",
-        channel: "sms",
-        channelLabel: "SMS",
-        preview: {
-          channel: "sms",
-          sender: "APEX PAY",
-          time: "08:22 AM",
-          smsTitle: "Security passkey",
-          smsBody: "Your login code is 841 092. Never share this code with anyone."
-        }
-      },
-      {
-        label: "Card swipe",
-        trigger: "When an in-store transaction is approved",
-        channel: "whatsapp",
-        channelLabel: "WhatsApp",
-        preview: {
-          channel: "whatsapp",
-          sender: "Apex Pay",
-          time: "11:05 AM",
-          bubbleText: "Payment of ₦14,500 was approved at City Market. Your new balance is updated.",
-          quickReplies: ["View statement", "Report issue"]
-        }
-      },
-      {
-        label: "High value transfer",
-        trigger: "When a transfer exceeds security limits",
-        channel: "voice",
-        channelLabel: "Voice",
-        preview: {
-          channel: "voice",
-          sender: "Apex Pay",
-          duration: "00:24",
-          transcript: "Transfer verification from your account. Press 1 to approve this transaction, or 2 to decline.",
-          keypadActive: "1"
-        }
-      },
-      {
-        label: "Monthly ledger",
-        trigger: "When the billing cycle closes",
-        channel: "email",
-        channelLabel: "Email",
-        preview: {
-          channel: "email",
-          sender: "Apex Pay",
-          time: "Yesterday",
-          emailSubject: "Your monthly account statement is ready",
-          emailSnippet: "Review your detailed spending breakdown, earned cashback, and transfer summary for the month."
-        }
-      }
-    ]
-  },
-  logistics: {
-    label: "Logistics",
-    headline: "Dispatch parcels, coordinate drop offs, and confirm delivery proofs.",
-    subtext: "Couriers and dispatchers stay connected with recipients so every shipment arrives without missed drop offs.",
-    businessName: "Swift Express",
-    outcome: "Deliveries succeed on the first visit with verified proof of receipt.",
-    steps: [
-      {
-        label: "Shipment booked",
-        trigger: "When sender schedules a home pickup",
-        channel: "email",
-        channelLabel: "Email",
-        preview: {
-          channel: "email",
-          sender: "Swift Express",
-          time: "09:00 AM",
-          emailSubject: "Your pickup is confirmed and tracking is active",
-          emailSnippet: "Your booking reference is confirmed. The courier will arrive during your chosen window."
-        }
-      },
-      {
-        label: "Out for route",
-        trigger: "When the van leaves the distribution hub",
-        channel: "sms",
-        channelLabel: "SMS",
-        preview: {
-          channel: "sms",
-          sender: "SWIFT",
-          time: "01:15 PM",
-          smsTitle: "Out for delivery",
-          smsBody: "Your courier is on route. Estimated drop off between 2:00 PM and 3:30 PM today."
-        }
-      },
-      {
-        label: "Arrival call",
-        trigger: "When courier pulls up to the recipient gate",
-        channel: "voice",
-        channelLabel: "Voice",
-        preview: {
-          channel: "voice",
-          sender: "Swift Express",
-          duration: "00:15",
-          transcript: "Your courier is at the building entrance. Press 1 to confirm you are available.",
-          keypadActive: "1"
-        }
-      },
-      {
-        label: "Signed handover",
-        trigger: "When the recipient signs for the package",
-        channel: "whatsapp",
-        channelLabel: "WhatsApp",
-        preview: {
-          channel: "whatsapp",
-          sender: "Swift Express",
-          time: "02:40 PM",
-          bubbleText: "Package handed to Chidi at the reception desk. Signature and photo proof recorded.",
-          quickReplies: ["View receipt", "Rate courier"]
+          sender: "Swiftline Delivery",
+          time: "01:42 PM",
+          emailSubject: "Delivered: parcel #SW-3071",
+          emailSnippet: "Signed by Adaeze",
+          btnText: "View proof"
         }
       }
     ]
   },
   healthcare: {
     label: "Healthcare",
-    headline: "Confirm visits, send preparation notes, and follow up with patients.",
-    subtext: "Automated clinic reminders and prescription notices reduce missed visits while keeping care guidance clear.",
-    businessName: "Crestview Health",
-    outcome: "Patients attend scheduled appointments prepared and follow post visit advice with confidence.",
+    headline: "Book appointments, cut no-shows, follow up. Done.",
+    subtext: "Confirm bookings, remind patients the day before, call those without smartphones, and tell them when something is ready, with no medical details in any message.",
+    businessName: "Palmview Clinic",
+    outcome: "Fewer missed appointments, and patient details never travel in a message.",
     steps: [
       {
-        label: "Visit booked",
-        trigger: "When a consultation is scheduled online",
-        channel: "email",
-        channelLabel: "Email",
-        preview: {
-          channel: "email",
-          sender: "Crestview Health",
-          time: "Monday",
-          emailSubject: "Your clinic appointment is confirmed",
-          emailSnippet: "Dr. Alabi looks forward to seeing you. Please find your visit preparation checklist attached."
-        }
-      },
-      {
-        label: "Day before visit",
-        trigger: "When the appointment is twenty four hours away",
+        label: "Appointment booked",
+        trigger: "When a patient books",
         channel: "sms",
         channelLabel: "SMS",
         preview: {
           channel: "sms",
-          sender: "CRESTVIEW",
+          sender: "PALMVIEW",
           time: "09:30 AM",
-          smsTitle: "Visit reminder",
-          smsBody: "Reminder: Consultation tomorrow at 10:00 AM. Please arrive ten minutes early with your records."
+          smsTitle: "Appointment alert",
+          smsBody: "Your appointment is booked for Tue 14 Oct, 10:30 AM. Reply C to cancel."
         }
       },
       {
-        label: "Prescription ready",
-        trigger: "When the pharmacy packs the medication",
+        label: "Day before",
+        trigger: "24 hours before the visit",
         channel: "whatsapp",
         channelLabel: "WhatsApp",
         preview: {
           channel: "whatsapp",
-          sender: "Crestview Health",
-          time: "02:15 PM",
-          bubbleText: "Your prescribed medication is packed and ready for pickup at the ground floor dispensary.",
-          quickReplies: ["Pharmacy hours", "Directions"]
+          sender: "Palmview Clinic",
+          time: "10:30 AM",
+          bubbleText: "Reminder: your appointment is tomorrow at 10:30 AM.",
+          quickReplies: [
+            { text: "Confirm", tapped: true },
+            { text: "Reschedule" }
+          ]
         }
       },
       {
-        label: "Follow up check",
-        trigger: "When the patient returns home after treatment",
+        label: "No reply",
+        trigger: "When a patient has not confirmed",
         channel: "voice",
         channelLabel: "Voice",
         preview: {
           channel: "voice",
-          sender: "Crestview Health",
-          duration: "00:28",
-          transcript: "Automated wellness check from Crestview. Press 1 if you are feeling well, or 2 to speak with nurse.",
-          keypadActive: "1"
+          sender: "Palmview Clinic",
+          duration: "00:20",
+          transcript: "Please press 1 to confirm tomorrow's appointment, or 2 to reschedule.",
+          keypadActive: "1",
+          resultText: "Patient confirmed"
+        }
+      },
+      {
+        label: "After the visit",
+        trigger: "When results are ready",
+        channel: "email",
+        channelLabel: "Email",
+        preview: {
+          channel: "email",
+          sender: "Palmview Clinic",
+          time: "Wednesday",
+          emailSubject: "Your results are ready",
+          emailSnippet: "Sign in to your patient portal to view them.",
+          btnText: "Patient portal"
         }
       }
     ]
   },
   education: {
     label: "Education",
-    headline: "Share tuition receipts, campus notices, and academic milestones.",
-    subtext: "Keep students and parents informed on admissions, term dates, and exam announcements without administrative delay.",
-    businessName: "Beacon Academy",
-    outcome: "Families receive timely updates throughout the term and stay engaged with school life.",
+    headline: "Admit students, collect fees, keep parents informed. Done.",
+    subtext: "Send offer letters, remind parents about fees, alert them the moment a child is absent, and share timetables with a whole class at once.",
+    businessName: "Brightpath Academy",
+    outcome: "Parents are always informed, with no phone trees and no printed notices.",
     steps: [
       {
-        label: "Enrollment received",
-        trigger: "When a family submits an admission form",
+        label: "Admission offer",
+        trigger: "When a place is offered",
         channel: "email",
         channelLabel: "Email",
         preview: {
           channel: "email",
-          sender: "Beacon Academy",
+          sender: "Brightpath Academy",
           time: "Tuesday",
-          emailSubject: "Welcome to Beacon Academy: Application received",
-          emailSnippet: "We have received your admission documents. Here are the orientation dates for the upcoming term."
+          emailSubject: "Your offer of admission",
+          emailSnippet: "We are pleased to offer admission for the upcoming academic year.",
+          btnText: "Accept place"
         }
       },
       {
-        label: "Tuition receipt",
-        trigger: "When school fees are recorded by bursar",
+        label: "Fees due",
+        trigger: "7 days before the deadline",
+        channel: "whatsapp",
+        channelLabel: "WhatsApp",
+        backupChip: "SMS if not read",
+        preview: {
+          channel: "whatsapp",
+          sender: "Brightpath Academy",
+          time: "11:20 AM",
+          bubbleText: "Term 2 fees of N180,000 are due on 20 Oct.",
+          quickReplies: ["Pay now"]
+        }
+      },
+      {
+        label: "Child absent",
+        trigger: "When attendance is marked",
         channel: "sms",
         channelLabel: "SMS",
         preview: {
           channel: "sms",
-          sender: "BEACON",
-          time: "11:20 AM",
-          smsTitle: "Payment receipt",
-          smsBody: "Tuition payment of ₦85,000 received for Term 1. Official receipt has been saved to portal."
+          sender: "BRIGHTPATH",
+          time: "08:45 AM",
+          smsTitle: "Attendance notification",
+          smsBody: "Chidi was marked absent today. Reply to tell us why."
         }
       },
       {
-        label: "Urgent notice",
-        trigger: "When campus schedule changes due to weather",
-        channel: "voice",
-        channelLabel: "Voice",
-        preview: {
-          channel: "voice",
-          sender: "Beacon Academy",
-          duration: "00:22",
-          transcript: "Important announcement from Beacon Academy. Campus opening will be delayed until 10:00 AM today.",
-          keypadActive: "1"
-        }
-      },
-      {
-        label: "Term report card",
-        trigger: "When end of term grading is finalized",
+        label: "Exams",
+        trigger: "When the timetable is published",
         channel: "whatsapp",
         channelLabel: "WhatsApp",
         preview: {
           channel: "whatsapp",
-          sender: "Beacon Academy",
-          time: "03:10 PM",
-          bubbleText: "Term 1 academic progress report for Fatima is now ready for parent review.",
-          quickReplies: ["View report card", "Teacher meeting"]
+          sender: "Brightpath Academy",
+          time: "02:00 PM",
+          broadcastBadge: "Sent to every parent in SS2",
+          bubbleText: "SS2 exam timetable is ready.",
+          quickReplies: ["View timetable"]
         }
       }
     ]
   },
   hospitality: {
     label: "Hospitality",
-    headline: "Welcome guests, share door codes, and arrange stay amenities.",
-    subtext: "From reservation booking to departure morning, guests receive effortless service on their preferred channel.",
-    businessName: "The Palm Suites",
-    outcome: "Guests check in without waiting at the desk and enjoy a seamless stay throughout.",
+    headline: "Check in guests, handle requests, collect feedback. Done.",
+    subtext: "Let guests check in with one tap, ask for anything on WhatsApp, get picked up on time, and tell you how the stay went, with no front desk queue.",
+    businessName: "Grand Horizon Resort",
+    outcome: "Guests check in, ask and give feedback from their phone. Your front desk stays free for the guests who need a person.",
     steps: [
       {
         label: "Before arrival",
-        trigger: "When a guest completes a room reservation",
-        channel: "email",
-        channelLabel: "Email",
-        preview: {
-          channel: "email",
-          sender: "The Palm Suites",
-          time: "10:00 AM",
-          emailSubject: "Your suite reservation is confirmed for this weekend",
-          emailSnippet: "We look forward to welcoming you to The Palm Suites. Your arrival details and directions are inside."
-        }
-      },
-      {
-        label: "Arrival morning",
-        trigger: "When check in time opens",
+        trigger: "The day before the stay",
         channel: "whatsapp",
         channelLabel: "WhatsApp",
         preview: {
           channel: "whatsapp",
-          sender: "The Palm Suites",
-          time: "01:30 PM",
-          bubbleText: "Welcome to The Palm Suites. Your digital key is active for Suite 402 with code 7193.",
-          quickReplies: ["Room directions", "Request luggage help"]
+          sender: "Grand Horizon Resort",
+          time: "10:00 AM",
+          bubbleText: "Welcome to Grand Horizon. Check in now and skip the front desk.",
+          quickReplies: ["Check in"]
         }
       },
       {
-        label: "Service request",
-        trigger: "When dinner is ordered from the room tablet",
+        label: "Room ready",
+        trigger: "When the room is cleaned",
+        channel: "whatsapp",
+        channelLabel: "WhatsApp",
+        preview: {
+          channel: "whatsapp",
+          sender: "Grand Horizon Resort",
+          time: "01:30 PM",
+          messages: [
+            { from: "business", text: "Your room, Penthouse 402, is ready.", time: "1:30 PM" },
+            { from: "customer", text: "Can we have late checkout and a poolside table for 8pm?", time: "1:32 PM" },
+            { from: "business", text: "Done. Checkout is 2 PM and table 14 is reserved.", time: "1:33 PM" }
+          ]
+        }
+      },
+      {
+        label: "Airport pickup",
+        trigger: "When the driver arrives",
         channel: "sms",
         channelLabel: "SMS",
         preview: {
           channel: "sms",
-          sender: "PALM SUITES",
-          time: "07:45 PM",
-          smsTitle: "Dining order",
-          smsBody: "Your dining selection has been prepared by our chef and is being brought to your suite."
+          sender: "GRANDHORIZON",
+          time: "03:15 PM",
+          smsTitle: "Chauffeur arrival",
+          smsBody: "Your chauffeur has arrived at Arrivals. Look for the Grand Horizon sign."
         }
       },
       {
-        label: "Departure day",
-        trigger: "When the guest checks out on departure morning",
-        channel: "voice",
-        channelLabel: "Voice",
+        label: "After the stay",
+        trigger: "The morning after checkout",
+        channel: "whatsapp",
+        channelLabel: "WhatsApp",
         preview: {
-          channel: "voice",
-          sender: "The Palm Suites",
-          duration: "00:20",
-          transcript: "Concierge departure check. Press 1 to confirm airport shuttle pickup, or 2 for late checkout.",
-          keypadActive: "1"
+          channel: "whatsapp",
+          sender: "Grand Horizon Resort",
+          time: "10:00 AM",
+          bubbleText: "How was your stay with us?",
+          ratingStars: true,
+          followUp: {
+            text: "Thank you for letting us know! We look forward to welcoming you back.",
+            time: "10:02 AM"
+          }
         }
       }
     ]
@@ -1667,9 +1689,56 @@ function initIndustryJourneySystem(customData) {
 
     if (channel === 'whatsapp') {
       const initials = (p.sender || 'ZS').split(' ').map(n => n[0]).join('').slice(0, 2);
+      
       const quickRepliesHtml = (p.quickReplies || [])
-        .map(qr => `<span class="kij-pv-qr-pill">${qr}</span>`)
+        .map(qr => {
+          const isObj = typeof qr === 'object';
+          const text = isObj ? qr.text : qr;
+          const isTapped = isObj && qr.tapped;
+          return `<span class="kij-pv-qr-pill ${isTapped ? 'is-tapped' : ''}">${isTapped ? '✓ ' : ''}${text}</span>`;
+        })
         .join('');
+
+      const broadcastBadgeHtml = p.broadcastBadge ? `
+        <div class="kij-pv-wa-broadcast">
+          <svg viewBox="0 0 16 16" width="10" height="10" fill="currentColor"><path d="M11.5 1a.5.5 0 0 1 .5.5v1.2a6 6 0 0 1 0 10.6v1.2a.5.5 0 0 1-.8.4L8.2 13H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.2l3-1.9a.5.5 0 0 1 .3-.1z"/></svg>
+          <span>${p.broadcastBadge}</span>
+        </div>
+      ` : '';
+
+      const ratingStarsHtml = p.ratingStars ? `
+        <div class="kij-stars-row" role="img" aria-label="Five stars">
+          <svg class="kij-star-svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="kij-star-svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="kij-star-svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="kij-star-svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="kij-star-svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+      ` : '';
+
+      const followUpHtml = p.followUp ? `
+        <div class="kij-pv-wa-bubble" style="margin-top: 4px;">
+          <p class="kij-pv-msg">${p.followUp.text}</p>
+          <span class="kij-pv-time">${p.followUp.time || ''}</span>
+        </div>
+      ` : '';
+
+      let messagesHtml = '';
+      if (p.messages && p.messages.length) {
+        messagesHtml = p.messages.map(m => `
+          <div class="kij-pv-wa-bubble ${m.from === 'customer' ? 'is-customer' : ''}">
+            <p class="kij-pv-msg">${m.text}</p>
+            <span class="kij-pv-time">${m.time || ''}</span>
+          </div>
+        `).join('');
+      } else {
+        messagesHtml = `
+          <div class="kij-pv-wa-bubble">
+            <p class="kij-pv-msg">${p.bubbleText}</p>
+            <span class="kij-pv-time">${p.time || ''}</span>
+          </div>
+        `;
+      }
 
       return `
         <div class="kij-phone-view kij-phone-wa" role="region" aria-label="WhatsApp message from ${p.sender}">
@@ -1684,10 +1753,10 @@ function initIndustryJourneySystem(customData) {
             </div>
           </div>
           <div class="kij-pv-body">
-            <div class="kij-pv-wa-bubble">
-              <p class="kij-pv-msg">${p.bubbleText}</p>
-              <span class="kij-pv-time">${p.time}</span>
-            </div>
+            ${broadcastBadgeHtml}
+            ${messagesHtml}
+            ${ratingStarsHtml}
+            ${followUpHtml}
             ${quickRepliesHtml ? `<div class="kij-pv-qr-list">${quickRepliesHtml}</div>` : ''}
           </div>
         </div>
@@ -1718,6 +1787,16 @@ function initIndustryJourneySystem(customData) {
     }
 
     if (channel === 'email') {
+      const ratingStarsHtml = p.ratingStars ? `
+        <div class="kij-stars-row" role="img" aria-label="Five stars">
+          <svg class="kij-star-svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="kij-star-svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="kij-star-svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="kij-star-svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="kij-star-svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+      ` : '';
+
       return `
         <div class="kij-phone-view kij-phone-email" role="region" aria-label="Email update from ${p.sender}">
           <div class="kij-pv-email-topbar">
@@ -1732,7 +1811,8 @@ function initIndustryJourneySystem(customData) {
           <div class="kij-pv-email-card">
             <h4 class="kij-pv-email-subj">${p.emailSubject}</h4>
             <p class="kij-pv-email-snippet">${p.emailSnippet}</p>
-            <div class="kij-pv-email-btn">View details</div>
+            ${ratingStarsHtml}
+            ${p.btnText ? `<div class="kij-pv-email-btn">${p.btnText}</div>` : ''}
           </div>
         </div>
       `;
@@ -1770,6 +1850,12 @@ function initIndustryJourneySystem(customData) {
             <span class="kij-vkey ${activeKey === '2' ? 'active' : ''}">2</span>
             <span class="kij-vkey ${activeKey === '3' ? 'active' : ''}">3</span>
           </div>
+          ${p.resultText ? `
+            <div class="kij-pv-voice-result">
+              <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 8.5 6.5 12 13 4.5"/></svg>
+              <span>${p.resultText}</span>
+            </div>
+          ` : ''}
         </div>
       `;
     }
@@ -1870,13 +1956,16 @@ function initIndustryJourneySystem(customData) {
 
     // Render 4 Step Cards
     stepsStack.innerHTML = data.steps.map((s, idx) => `
-      <button type="button" class="kij-step-btn ${idx === 0 ? 'is-active' : ''}" data-step="${idx}" aria-label="Step ${idx + 1}: ${s.label}. ${s.trigger}. Channel: ${s.channelLabel}">
+      <button type="button" class="kij-step-btn ${idx === 0 ? 'is-active' : ''}" data-step="${idx}" aria-label="Step ${idx + 1}: ${s.label}. ${s.trigger}. Channel: ${s.channelLabel}${s.backupChip ? '. Backup: ' + s.backupChip : ''}">
         <span class="kij-step-label">${s.label}</span>
         <p class="kij-step-trigger">${s.trigger}</p>
-        <span class="kij-step-channel chip-${s.channel}">
-          ${getChannelIconSvg(s.channel)}
-          <span>${s.channelLabel}</span>
-        </span>
+        <div class="kij-step-chips-row">
+          <span class="kij-step-channel chip-${s.channel}">
+            ${getChannelIconSvg(s.channel)}
+            <span>${s.channelLabel}</span>
+          </span>
+          ${s.backupChip ? `<span class="kij-step-backup-chip">${s.backupChip}</span>` : ''}
+        </div>
       </button>
     `).join('');
 

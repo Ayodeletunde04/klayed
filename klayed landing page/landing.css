@@ -14439,6 +14439,28 @@ html.dark-preview .kij-tab-btn:hover {
   border: 1px solid var(--kij-voice-border);
 }
 
+.kij-step-chips-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 3px;
+}
+
+.kij-step-backup-chip {
+  font-family: var(--font-text);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--kij-text-muted);
+  background: var(--kij-step-bg);
+  border: 1px dashed var(--kij-step-border);
+  padding: 2px 7px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
 /* RIGHT COLUMN: Clean Phone Screen Mockup */
 .kij-phone-col {
   display: flex;
@@ -14618,6 +14640,48 @@ html.dark-preview .kij-tab-btn:hover {
   border-radius: 5px;
   padding: 3px 6px;
   white-space: nowrap;
+}
+
+.kij-pv-qr-pill.is-tapped {
+  background: var(--kij-wa-color);
+  color: #FFFFFF;
+  border-color: var(--kij-wa-color);
+}
+
+.kij-pv-wa-bubble.is-customer {
+  background: var(--kij-step-active-bg);
+  border: 1px solid var(--kij-divider);
+  border-radius: 10px 10px 2px 10px;
+  align-self: flex-end;
+}
+
+.kij-pv-wa-broadcast {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--kij-wa-color);
+  background: var(--kij-wa-bg);
+  border: 1px solid var(--kij-wa-border);
+  padding: 2px 7px;
+  border-radius: 4px;
+  align-self: flex-start;
+}
+
+.kij-stars-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 0;
+}
+
+.kij-star-svg {
+  width: 15px;
+  height: 15px;
+  color: #EAB308;
+  fill: #EAB308;
+  flex-shrink: 0;
 }
 
 /* SMS Screen */
@@ -14881,6 +14945,21 @@ html.dark-preview .kij-tab-btn:hover {
   border-color: var(--kij-voice-color);
   color: var(--kij-voice-color);
   box-shadow: 0 0 8px rgba(20, 184, 166, 0.4);
+}
+
+.kij-pv-voice-result {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--kij-voice-color);
+  background: var(--kij-voice-bg);
+  border: 1px solid var(--kij-voice-border);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin: 2px auto 0 auto;
 }
 
 /* ==========================================================================

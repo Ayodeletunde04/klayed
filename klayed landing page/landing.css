@@ -12494,23 +12494,53 @@ body.dark-preview .v2-trust-dot {
   --cft-amber: var(--color-primary-gold, #D59312);
   --cft-amber-hover: #EAB308;
 
-  /* Tile Surface Variables (Default Dark Surface as required) */
-  --cft-card-bg: #141412;
-  --cft-illus-bg: #0c0c0a;
-  --cft-inner-bg: #1a1a17;
-  --cft-inner-border: #262522;
-  --cft-border: #242320;
-  --cft-divider: #20201d;
-  --cft-text-head: #FDFCFC;
-  --cft-text-body: #A59F97;
+  /* LIGHT MODE (Default: Crisp White Surfaces & Delicate Warm Accents) */
+  --cft-card-bg: #FFFFFF;
+  --cft-illus-bg: #F8F7F4;
+  --cft-inner-bg: #FFFFFF;
+  --cft-inner-border: #E8E5DD;
+  --cft-border: #E5E2D9;
+  --cft-divider: #EFECE6;
+  --cft-text-head: #111110;
+  --cft-text-body: #4A4640;
   --cft-text-caption: #777169;
-  --cft-chip-bg: #181816;
-  --cft-chip-border: #282723;
-  --cft-chip-text: #D5CFCA;
+  --cft-chip-bg: #F4F2EB;
+  --cft-chip-border: #DDD9CF;
+  --cft-chip-text: #2C2925;
+
+  /* Mockup Devices & Elements in Light Mode */
+  --cft-device-bg: #FFFFFF;
+  --cft-device-border: #E2DFD6;
+  --cft-device-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  --cft-device-top-bg: #F7F6F2;
+  --cft-device-top-border: #E8E5DD;
+  --cft-device-notch: #DDD9D0;
+  --cft-wa-biz-bg: #F4F3EE;
+  --cft-wa-biz-border: #E6E3DA;
+  --cft-wa-biz-text: #111110;
+  --cft-wa-cust-bg: rgba(34, 197, 94, 0.14);
+  --cft-wa-cust-border: rgba(34, 197, 94, 0.32);
+  --cft-wa-cust-text: #111110;
+  --cft-wa-badge-bg: #F4F2EB;
+  --cft-wa-badge-border: #E0DDD4;
+  --cft-wa-badge-text: #5A564F;
+  --cft-avatar-bg: #F0EDE6;
+  --cft-avatar-border: #DCD8CD;
+  --cft-avatar-color: #2C2925;
+  --cft-voice-bubble-bg: #F9F8F5;
+  --cft-voice-bubble-border: #E5E2D9;
+  --cft-voice-key-bg: #F4F3EE;
+  --cft-voice-key-border: #E2DFD6;
+  --cft-track-bar-bg: #EAE7DE;
+  --cft-email-block-img-bg: #F7F6F1;
+  --cft-email-block-img-border: #DDD8CD;
+  --cft-email-block-text-bg: #FAFAF7;
+  --cft-email-block-text-border: #E4E0D6;
 }
 
-/* Channel Feature Tiles - Always Rich Obsidian Dark Surface */
-.cft-tile {
+/* DARK MODE (Matte Obsidian & Rich Warm Slate) */
+body.dark-preview,
+html.dark-preview {
   --cft-card-bg: #141412;
   --cft-illus-bg: #0c0c0a;
   --cft-inner-bg: #1a1a17;
@@ -12523,6 +12553,34 @@ body.dark-preview .v2-trust-dot {
   --cft-chip-bg: #181816;
   --cft-chip-border: #282723;
   --cft-chip-text: #D5CFCA;
+
+  --cft-device-bg: #11110f;
+  --cft-device-border: #282824;
+  --cft-device-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  --cft-device-top-bg: #181815;
+  --cft-device-top-border: #242320;
+  --cft-device-notch: #262522;
+  --cft-wa-biz-bg: #1a1a17;
+  --cft-wa-biz-border: #282824;
+  --cft-wa-biz-text: #FDFCFC;
+  --cft-wa-cust-bg: rgba(34, 197, 94, 0.16);
+  --cft-wa-cust-border: rgba(34, 197, 94, 0.32);
+  --cft-wa-cust-text: #FDFCFC;
+  --cft-wa-badge-bg: #181815;
+  --cft-wa-badge-border: #262522;
+  --cft-wa-badge-text: #a59f97;
+  --cft-avatar-bg: #1e1e1b;
+  --cft-avatar-border: #33322d;
+  --cft-avatar-color: #fff;
+  --cft-voice-bubble-bg: #11110f;
+  --cft-voice-bubble-border: #292824;
+  --cft-voice-key-bg: #1a1a17;
+  --cft-voice-key-border: #262522;
+  --cft-track-bar-bg: #22221f;
+  --cft-email-block-img-bg: #1b1b19;
+  --cft-email-block-img-border: #30302b;
+  --cft-email-block-text-bg: #1e1e1b;
+  --cft-email-block-text-border: #2e2d28;
 }
 
 /* 2x2 Grid */
@@ -12801,9 +12859,9 @@ body.dark-preview .v2-trust-dot {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #1e1e1b;
-  border: 1px solid #33322d;
-  color: #fff;
+  background: var(--cft-avatar-bg);
+  border: 1px solid var(--cft-avatar-border);
+  color: var(--cft-avatar-color);
   font-size: 10px;
   font-weight: 700;
   display: flex;
@@ -12822,21 +12880,21 @@ body.dark-preview .v2-trust-dot {
 /* WhatsApp Phone */
 .cft-wa-phone {
   width: 228px;
-  background: #11110f;
-  border: 1px solid #282824;
+  background: var(--cft-device-bg);
+  border: 1px solid var(--cft-device-border);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--cft-device-shadow);
   flex-shrink: 0;
 }
 
 .cft-wa-phone-top {
-  background: #181815;
+  background: var(--cft-device-top-bg);
   padding: 8px 10px;
   display: flex;
   align-items: center;
   gap: 8px;
-  border-bottom: 1px solid #242320;
+  border-bottom: 1px solid var(--cft-device-top-border);
 }
 
 .cft-wa-brand-avatar {
@@ -12867,7 +12925,7 @@ body.dark-preview .v2-trust-dot {
 .cft-wa-brand-title {
   font-size: 12px;
   font-weight: 700;
-  color: #FDFCFC;
+  color: var(--cft-text-head);
 }
 
 .cft-wa-brand-status {
@@ -12891,16 +12949,16 @@ body.dark-preview .v2-trust-dot {
 }
 
 .cft-wa-biz {
-  background: #1a1a17;
-  border: 1px solid #282824;
+  background: var(--cft-wa-biz-bg);
+  border: 1px solid var(--cft-wa-biz-border);
   border-radius: 10px 10px 10px 2px;
   align-self: flex-start;
   max-width: 92%;
 }
 
 .cft-wa-cust {
-  background: rgba(34, 197, 94, 0.16);
-  border: 1px solid rgba(34, 197, 94, 0.32);
+  background: var(--cft-wa-cust-bg);
+  border: 1px solid var(--cft-wa-cust-border);
   border-radius: 10px 10px 2px 10px;
   align-self: flex-end;
   max-width: 86%;
@@ -12908,7 +12966,7 @@ body.dark-preview .v2-trust-dot {
 
 .cft-wa-msg-text {
   font-size: 12px;
-  color: #FDFCFC;
+  color: var(--cft-text-head);
   margin: 0;
   line-height: 1.35;
 }
@@ -12944,50 +13002,11 @@ body.dark-preview .v2-trust-dot {
   gap: 4px;
   font-size: 10px;
   font-weight: 500;
-  color: #a59f97;
-  background: #181815;
-  border: 1px solid #262522;
+  color: var(--cft-wa-badge-text);
+  background: var(--cft-wa-badge-bg);
+  border: 1px solid var(--cft-wa-badge-border);
   border-radius: 999px;
   padding: 2px 7px;
-}
-
-/* WhatsApp Animation Keyframes */
-@keyframes cftFadeSlideIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes cftLineDraw {
-  from { stroke-dashoffset: 40; opacity: 0.2; }
-  to { stroke-dashoffset: 0; opacity: 1; }
-}
-
-.cft-tile-wa .cft-wa-broadcast,
-.cft-tile-wa .cft-wa-anim-1,
-.cft-tile-wa .cft-wa-anim-2,
-.cft-tile-wa .cft-wa-anim-3,
-.cft-tile-wa .cft-wa-anim-4 {
-  opacity: 0;
-}
-
-.cft-tile-wa.is-in-view .cft-wa-broadcast {
-  animation: cftFadeSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
-}
-
-.cft-tile-wa.is-in-view .cft-wa-anim-1 {
-  animation: cftFadeSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
-}
-
-.cft-tile-wa.is-in-view .cft-wa-anim-2 {
-  animation: cftFadeSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.5s both;
-}
-
-.cft-tile-wa.is-in-view .cft-wa-anim-3 {
-  animation: cftFadeSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 2.2s both;
-}
-
-.cft-tile-wa.is-in-view .cft-wa-anim-4 {
-  animation: cftFadeSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 2.8s both;
 }
 
 /* ==========================================================================
@@ -13005,17 +13024,17 @@ body.dark-preview .v2-trust-dot {
 .cft-sms-device {
   width: 310px;
   max-width: 100%;
-  background: #11110f;
-  border: 1px solid #282824;
+  background: var(--cft-device-bg);
+  border: 1px solid var(--cft-device-border);
   border-radius: 18px;
   padding: 14px 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--cft-device-shadow);
 }
 
 .cft-sms-notch {
   width: 50px;
   height: 4px;
-  background: #262522;
+  background: var(--cft-device-notch);
   border-radius: 2px;
   margin: 0 auto 12px;
 }
@@ -13023,7 +13042,7 @@ body.dark-preview .v2-trust-dot {
 .cft-sms-stack {
   display: flex;
   flex-direction: column;
-  gap: 12px; /* Minimum 12px between elements, zero overlap */
+  gap: 12px;
 }
 
 .cft-sms-card {
@@ -13031,7 +13050,7 @@ body.dark-preview .v2-trust-dot {
   border: 1px solid var(--cft-inner-border);
   border-radius: 12px;
   padding: 11px 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .cft-sms-head {
@@ -13115,25 +13134,6 @@ body.dark-preview .v2-trust-dot {
   color: var(--cft-text-caption);
 }
 
-/* SMS Animations */
-.cft-tile-sms .cft-sms-anim-1,
-.cft-tile-sms .cft-sms-anim-2,
-.cft-tile-sms .cft-sms-anim-3 {
-  opacity: 0;
-}
-
-.cft-tile-sms.is-in-view .cft-sms-anim-1 {
-  animation: cftFadeSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
-}
-
-.cft-tile-sms.is-in-view .cft-sms-anim-2 {
-  animation: cftFadeSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
-}
-
-.cft-tile-sms.is-in-view .cft-sms-anim-3 {
-  animation: cftFadeSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 2.2s both;
-}
-
 /* ==========================================================================
    ILLUSTRATION 3: EMAIL
    ========================================================================== */
@@ -13210,7 +13210,7 @@ body.dark-preview .v2-trust-dot {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: border-color 0.3s ease;
 }
 
@@ -13232,8 +13232,8 @@ body.dark-preview .v2-trust-dot {
 }
 
 .cft-email-block-img {
-  background: #1b1b19;
-  border: 1px dashed #30302b;
+  background: var(--cft-email-block-img-bg);
+  border: 1px dashed var(--cft-email-block-img-border);
   border-radius: 6px;
   padding: 5px;
   display: flex;
@@ -13244,8 +13244,8 @@ body.dark-preview .v2-trust-dot {
 }
 
 .cft-email-block-text {
-  background: #1e1e1b;
-  border: 1px solid #2e2d28;
+  background: var(--cft-email-block-text-bg);
+  border: 1px solid var(--cft-email-block-text-border);
   border-radius: 6px;
   padding: 6px 7px;
   display: flex;
@@ -13258,7 +13258,7 @@ body.dark-preview .v2-trust-dot {
 
 .cft-block-lifted {
   border-color: var(--cft-color-email);
-  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.25);
   transform: translateY(-2px);
 }
 
@@ -13352,7 +13352,7 @@ body.dark-preview .v2-trust-dot {
 
 .cft-email-bar-track {
   height: 6px;
-  background: #22221f;
+  background: var(--cft-track-bar-bg);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -13362,28 +13362,6 @@ body.dark-preview .v2-trust-dot {
   background: var(--cft-color-email);
   border-radius: 3px;
   width: 0%;
-  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Email Animations */
-@keyframes cftTravelDot {
-  0% { left: 0%; opacity: 1; }
-  50% { left: 100%; opacity: 1; }
-  100% { left: 100%; opacity: 0; }
-}
-
-.cft-tile-email.is-in-view .cft-email-travel-dot {
-  animation: cftTravelDot 2.0s ease-in-out 0.5s forwards;
-}
-
-.cft-tile-email.is-in-view .cft-bar-opened {
-  width: 68%;
-  transition-delay: 2.0s;
-}
-
-.cft-tile-email.is-in-view .cft-bar-clicked {
-  width: 24%;
-  transition-delay: 2.4s;
 }
 
 /* ==========================================================================
@@ -13404,7 +13382,7 @@ body.dark-preview .v2-trust-dot {
   border: 1px solid var(--cft-inner-border);
   border-radius: 14px;
   padding: 12px 14px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .cft-voice-card-top {
@@ -13467,31 +13445,16 @@ body.dark-preview .v2-trust-dot {
   transform-origin: center;
 }
 
-@keyframes cftWavePulse {
-  0%, 100% { transform: scaleY(0.4); opacity: 0.6; }
-  50% { transform: scaleY(1.3); opacity: 1; }
-}
-
-.cft-tile-voice.is-in-view .cft-wave-bar {
-  animation: cftWavePulse 1.2s ease-in-out var(--d, 0s) 2;
-  animation-fill-mode: backwards;
-}
-
 .cft-voice-bubble {
   width: 100%;
-  background: #11110f;
-  border: 1px solid #292824;
+  background: var(--cft-voice-bubble-bg);
+  border: 1px solid var(--cft-voice-bubble-border);
   border-radius: 10px;
   padding: 10px 12px;
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-}
-
-.cft-tile-voice.is-in-view .cft-voice-bubble {
-  animation: cftFadeSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .cft-voice-speaker-ico {
@@ -13524,8 +13487,8 @@ body.dark-preview .v2-trust-dot {
   width: 30px;
   height: 30px;
   border-radius: 8px;
-  background: var(--cft-inner-bg);
-  border: 1px solid var(--cft-inner-border);
+  background: var(--cft-voice-key-bg);
+  border: 1px solid var(--cft-voice-key-border);
   color: var(--cft-text-head);
   font-size: 13px;
   font-weight: 700;
@@ -13533,16 +13496,6 @@ body.dark-preview .v2-trust-dot {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-}
-
-@keyframes cftKeyGlow {
-  0% { background: var(--cft-inner-bg); border-color: var(--cft-inner-border); color: var(--cft-text-head); box-shadow: none; }
-  50% { background: var(--cft-color-voice); border-color: var(--cft-color-voice); color: #fff; box-shadow: 0 0 14px var(--cft-color-voice); }
-  100% { background: var(--cft-bg-voice); border-color: var(--cft-color-voice); color: var(--cft-color-voice); box-shadow: 0 0 8px rgba(20, 184, 166, 0.35); }
-}
-
-.cft-tile-voice.is-in-view .cft-key-active {
-  animation: cftKeyGlow 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.8s forwards;
 }
 
 .cft-voice-result-chip {
@@ -13556,11 +13509,194 @@ body.dark-preview .v2-trust-dot {
   border: 1px solid var(--cft-border-voice);
   border-radius: 999px;
   padding: 4px 10px;
-  opacity: 0;
 }
 
-.cft-tile-voice.is-in-view .cft-voice-result-chip {
-  animation: cftFadeSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 2.6s both;
+/* ==========================================================================
+   SIMULTANEOUS AUTONOMOUS ANIMATIONS (Synchronized 7-Second Infinite Cycle)
+   Plays automatically by itself, perfectly coordinated across all 4 channels
+   ========================================================================== */
+
+/* 1. WHATSAPP STORY LOOP (7s) */
+@keyframes cftWaMsg1Loop {
+  0%, 8% { opacity: 0; transform: translateY(8px); }
+  16%, 92% { opacity: 1; transform: translateY(0); }
+  97%, 100% { opacity: 0; transform: translateY(-4px); }
+}
+
+@keyframes cftWaMsg2Loop {
+  0%, 28% { opacity: 0; transform: translateY(8px); }
+  36%, 92% { opacity: 1; transform: translateY(0); }
+  97%, 100% { opacity: 0; transform: translateY(-4px); }
+}
+
+@keyframes cftWaBadgeLoop {
+  0%, 48% { opacity: 0; transform: translateY(6px); }
+  56%, 92% { opacity: 1; transform: translateY(0); }
+  97%, 100% { opacity: 0; transform: translateY(-4px); }
+}
+
+@keyframes cftWaMsg3Loop {
+  0%, 65% { opacity: 0; transform: translateY(8px); }
+  73%, 92% { opacity: 1; transform: translateY(0); }
+  97%, 100% { opacity: 0; transform: translateY(-4px); }
+}
+
+@keyframes cftWaBcPulse {
+  0%, 100% { transform: scale(1); }
+  10%, 18% { transform: scale(1.02); }
+}
+
+.cft-wa-broadcast {
+  animation: cftWaBcPulse 7s ease-in-out infinite;
+}
+.cft-wa-anim-1 {
+  animation: cftWaMsg1Loop 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.cft-wa-anim-2 {
+  animation: cftWaMsg2Loop 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.cft-wa-anim-3 {
+  animation: cftWaBadgeLoop 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.cft-wa-anim-4 {
+  animation: cftWaMsg3Loop 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* 2. SMS STORY LOOP (7s) */
+@keyframes cftSmsCard1Loop {
+  0%, 8% { opacity: 0; transform: translateY(10px); }
+  16%, 92% { opacity: 1; transform: translateY(0); }
+  97%, 100% { opacity: 0; transform: translateY(-6px); }
+}
+
+@keyframes cftSmsCard2Loop {
+  0%, 32% { opacity: 0; transform: translateY(10px); }
+  40%, 92% { opacity: 1; transform: translateY(0); }
+  97%, 100% { opacity: 0; transform: translateY(-6px); }
+}
+
+@keyframes cftSmsCard3Loop {
+  0%, 58% { opacity: 0; transform: translateY(10px); }
+  66%, 92% { opacity: 1; transform: translateY(0); }
+  97%, 100% { opacity: 0; transform: translateY(-6px); }
+}
+
+.cft-sms-anim-1 {
+  animation: cftSmsCard1Loop 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.cft-sms-anim-2 {
+  animation: cftSmsCard2Loop 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.cft-sms-anim-3 {
+  animation: cftSmsCard3Loop 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* 3. EMAIL STORY LOOP (7s) */
+@keyframes cftEmailTravelLoop {
+  0%, 12% { left: 0%; opacity: 0; }
+  18% { left: 0%; opacity: 1; }
+  50% { left: 50%; opacity: 1; }
+  82%, 92% { left: 100%; opacity: 1; }
+  97%, 100% { left: 100%; opacity: 0; }
+}
+
+@keyframes cftEmailBlockLift {
+  0%, 100% { transform: translateY(0); }
+  15%, 35% { transform: translateY(-3px); }
+}
+
+@keyframes cftEmailBarOpenedLoop {
+  0%, 48% { width: 0%; }
+  68%, 92% { width: 68%; }
+  97%, 100% { width: 0%; }
+}
+
+@keyframes cftEmailBarClickedLoop {
+  0%, 56% { width: 0%; }
+  76%, 92% { width: 24%; }
+  97%, 100% { width: 0%; }
+}
+
+.cft-email-travel-dot {
+  animation: cftEmailTravelLoop 7s ease-in-out infinite;
+}
+.cft-block-lifted {
+  animation: cftEmailBlockLift 7s ease-in-out infinite;
+}
+.cft-bar-opened {
+  animation: cftEmailBarOpenedLoop 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.cft-bar-clicked {
+  animation: cftEmailBarClickedLoop 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* 4. VOICE STORY LOOP (7s) */
+@keyframes cftWavePulseLoop {
+  0%, 100% { transform: scaleY(0.4); opacity: 0.55; }
+  50% { transform: scaleY(1.35); opacity: 1; }
+}
+
+@keyframes cftVoiceBubbleLoop {
+  0%, 12% { opacity: 0; transform: translateY(8px); }
+  22%, 92% { opacity: 1; transform: translateY(0); }
+  97%, 100% { opacity: 0; transform: translateY(-4px); }
+}
+
+@keyframes cftVoiceKeyGlowLoop {
+  0%, 42% {
+    background: var(--cft-voice-key-bg);
+    border-color: var(--cft-voice-key-border);
+    color: var(--cft-text-head);
+    box-shadow: none;
+  }
+  50%, 88% {
+    background: var(--cft-bg-voice);
+    border-color: var(--cft-color-voice);
+    color: var(--cft-color-voice);
+    box-shadow: 0 0 10px rgba(20, 184, 166, 0.45);
+  }
+  96%, 100% {
+    background: var(--cft-voice-key-bg);
+    border-color: var(--cft-voice-key-border);
+    color: var(--cft-text-head);
+    box-shadow: none;
+  }
+}
+
+@keyframes cftVoiceResultLoop {
+  0%, 62% { opacity: 0; transform: translateY(8px); }
+  72%, 92% { opacity: 1; transform: translateY(0); }
+  97%, 100% { opacity: 0; transform: translateY(-4px); }
+}
+
+.cft-wave-bar {
+  animation: cftWavePulseLoop 1.2s ease-in-out var(--d, 0s) infinite;
+}
+.cft-voice-bubble {
+  animation: cftVoiceBubbleLoop 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.cft-key-active {
+  animation: cftVoiceKeyGlowLoop 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.cft-voice-result-chip {
+  animation: cftVoiceResultLoop 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* Pause animation on tile hover so user can inspect details comfortably */
+.cft-tile:hover .cft-wa-anim-1,
+.cft-tile:hover .cft-wa-anim-2,
+.cft-tile:hover .cft-wa-anim-3,
+.cft-tile:hover .cft-wa-anim-4,
+.cft-tile:hover .cft-sms-anim-1,
+.cft-tile:hover .cft-sms-anim-2,
+.cft-tile:hover .cft-sms-anim-3,
+.cft-tile:hover .cft-email-travel-dot,
+.cft-tile:hover .cft-bar-opened,
+.cft-tile:hover .cft-bar-clicked,
+.cft-tile:hover .cft-voice-bubble,
+.cft-tile:hover .cft-key-active,
+.cft-tile:hover .cft-voice-result-chip {
+  animation-play-state: paused;
 }
 
 /* ==========================================================================

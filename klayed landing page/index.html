@@ -951,87 +951,409 @@
           <p class="v2-section-subtext">Connect with customers across every major communication channel.</p>
         </div>
 
-        <div class="v2-channels-grid">
+        <div class="cft-grid">
           
-          <!-- Card 1: WhatsApp -->
-          <div class="v2-channel-card v2-channel-wa">
-            <div class="v2-channel-icon-box">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.63C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.04 20.15C10.56 20.15 9.11 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.68 12.04 3.68C14.25 3.68 16.31 4.54 17.87 6.1C19.42 7.66 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15ZM16.56 14.37C16.31 14.24 15.09 13.64 14.86 13.56C14.63 13.48 14.47 13.44 14.3 13.68C14.13 13.93 13.65 14.5 13.5 14.66C13.36 14.83 13.21 14.85 12.96 14.72C12.72 14.6 11.93 14.34 11 13.51C10.27 12.86 9.78 12.06 9.64 11.81C9.5 11.57 9.62 11.44 9.75 11.31C9.86 11.2 10 11.02 10.12 10.88C10.24 10.74 10.28 10.63 10.36 10.47C10.44 10.31 10.4 10.17 10.34 10.05C10.28 9.93 9.79 8.72 9.58 8.23C9.38 7.75 9.18 7.81 9.03 7.81H8.56C8.39 7.81 8.13 7.87 7.9 8.12C7.67 8.37 7.03 8.97 7.03 10.2C7.03 11.43 7.93 12.61 8.05 12.78C8.17 12.94 9.8 15.45 12.28 16.52C12.87 16.78 13.33 16.93 13.69 17.04C14.29 17.23 14.83 17.21 15.26 17.14C15.74 17.07 16.74 16.54 16.95 15.95C17.15 15.36 17.15 14.85 17.09 14.75C17.03 14.64 16.8 14.5 16.56 14.37Z"/>
-              </svg>
-            </div>
-            <h3 class="v2-channel-title">WhatsApp Messaging</h3>
-            <p class="v2-channel-desc">Broadcast campaigns, automate conversations, and engage customers at scale.</p>
-            <div class="v2-channel-badge-chip">Meta Cloud API Partner</div>
-            <a href="#developers" class="v2-channel-btn">
-              <span>Learn More</span>
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="3" y1="8" x2="13" y2="8"/>
-                <polyline points="9 4 13 8 9 12"/>
-              </svg>
-            </a>
-          </div>
+          <!-- Tile 1: WhatsApp -->
+          <article class="cft-tile cft-tile-wa" data-channel="wa">
+            <!-- ILLUSTRATION AREA -->
+            <div class="cft-illus" role="region" aria-label="WhatsApp broadcast and automated conversation demonstration for Zuri Stores" tabindex="0">
+              <div class="cft-stage cft-wa-stage">
+                <!-- Left: Broadcast Fan-Out -->
+                <div class="cft-wa-broadcast">
+                  <div class="cft-wa-bc-card">
+                    <div class="cft-wa-bc-top">
+                      <span class="cft-wa-bc-pill">Broadcast</span>
+                      <span class="cft-wa-bc-time">now</span>
+                    </div>
+                    <strong class="cft-wa-bc-title">Weekend sale</strong>
+                    <p class="cft-wa-bc-sub">Up to 40% off dresses &amp; bags</p>
+                  </div>
 
-          <!-- Card 2: SMS -->
-          <div class="v2-channel-card v2-channel-sms">
-            <div class="v2-channel-icon-box">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                <circle cx="8" cy="10" r="1" fill="currentColor"/>
-                <circle cx="12" cy="10" r="1" fill="currentColor"/>
-                <circle cx="16" cy="10" r="1" fill="currentColor"/>
-              </svg>
-            </div>
-            <h3 class="v2-channel-title">SMS Messaging</h3>
-            <p class="v2-channel-desc">Deliver alerts, OTPs, promotions, and notifications instantly.</p>
-            <div class="v2-channel-badge-chip">Direct Telco Interconnect</div>
-            <a href="#developers" class="v2-channel-btn">
-              <span>Learn More</span>
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="3" y1="8" x2="13" y2="8"/>
-                <polyline points="9 4 13 8 9 12"/>
-              </svg>
-            </a>
-          </div>
+                  <!-- Connecting fan-out SVG lines -->
+                  <svg class="cft-wa-fan-svg" viewBox="0 0 60 76" fill="none" aria-hidden="true">
+                    <path class="cft-wa-fan-path cft-wa-fan-1" d="M0,38 C28,38 32,12 60,12" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
+                    <path class="cft-wa-fan-path cft-wa-fan-2" d="M0,38 C28,38 32,38 60,38" stroke="currentColor" stroke-width="1.5"/>
+                    <path class="cft-wa-fan-path cft-wa-fan-3" d="M0,38 C28,38 32,64 60,64" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
+                  </svg>
 
-          <!-- Card 3: Email -->
-          <div class="v2-channel-card v2-channel-email">
-            <div class="v2-channel-icon-box">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-            </div>
-            <h3 class="v2-channel-title">Email Campaigns</h3>
-            <p class="v2-channel-desc">Create, send, and track email campaigns that drive engagement.</p>
-            <div class="v2-channel-badge-chip">Dedicated IP Warmup</div>
-            <a href="#developers" class="v2-channel-btn">
-              <span>Learn More</span>
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="3" y1="8" x2="13" y2="8"/>
-                <polyline points="9 4 13 8 9 12"/>
-              </svg>
-            </a>
-          </div>
+                  <!-- 3 Customer Avatars -->
+                  <div class="cft-wa-avatars-col">
+                    <div class="cft-wa-avatar" title="Adaeze">AO</div>
+                    <div class="cft-wa-avatar" title="Chidi">CK</div>
+                    <div class="cft-wa-avatar" title="Fatima">FB</div>
+                  </div>
+                  <span class="cft-wa-fan-label">Sent to every opted-in customer</span>
+                </div>
 
-          <!-- Card 4: Voice -->
-          <div class="v2-channel-card v2-channel-voice">
-            <div class="v2-channel-icon-box">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-              </svg>
+                <!-- Right: WhatsApp Phone Chat -->
+                <div class="cft-wa-phone">
+                  <div class="cft-wa-phone-top">
+                    <div class="cft-wa-brand-avatar">ZS</div>
+                    <div class="cft-wa-brand-info">
+                      <div class="cft-wa-brand-name-row">
+                        <span class="cft-wa-brand-title">Zuri Stores</span>
+                        <svg viewBox="0 0 16 16" width="12" height="12" fill="#22C55E" class="cft-wa-verified" aria-label="Verified"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-1.03a.75.75 0 0 0-1.06-1.06L6.75 10.16 4.78 8.19a.75.75 0 0 0-1.06 1.06l2.5 2.5a.75.75 0 0 0 1.06 0l5.75-5.78z"/></svg>
+                      </div>
+                      <span class="cft-wa-brand-status">Official account</span>
+                    </div>
+                  </div>
+
+                  <div class="cft-wa-chat-window">
+                    <!-- Business Message 1 -->
+                    <div class="cft-wa-bubble cft-wa-biz cft-wa-anim-1">
+                      <p class="cft-wa-msg-text">Your order is on the way.</p>
+                      <div class="cft-wa-quick-replies">
+                        <span class="cft-wa-qr-btn">Track order</span>
+                        <span class="cft-wa-qr-btn">Change address</span>
+                      </div>
+                      <span class="cft-wa-time">9:05 AM</span>
+                    </div>
+
+                    <!-- Customer Message 2 -->
+                    <div class="cft-wa-bubble cft-wa-cust cft-wa-anim-2">
+                      <p class="cft-wa-msg-text">Can you deliver after 2pm?</p>
+                      <span class="cft-wa-time">9:12 AM</span>
+                    </div>
+
+                    <!-- Automated reply tag -->
+                    <div class="cft-wa-bot-badge cft-wa-anim-3">
+                      <svg viewBox="0 0 16 16" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><polyline points="8 4.5 8 8 10.5 9.5"/></svg>
+                      <span>Automated reply</span>
+                    </div>
+
+                    <!-- Business Message 3 -->
+                    <div class="cft-wa-bubble cft-wa-biz cft-wa-anim-4">
+                      <p class="cft-wa-msg-text">Done. Rescheduled for 2:30 PM.</p>
+                      <span class="cft-wa-time">9:13 AM</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="cft-caption">What your customer sees</p>
             </div>
-            <h3 class="v2-channel-title">Voice Communications</h3>
-            <p class="v2-channel-desc">Automated voice calls, reminders, alerts, and customer outreach.</p>
-            <div class="v2-channel-badge-chip">Crystal HD Audio &amp; IVR</div>
-            <a href="#developers" class="v2-channel-btn">
-              <span>Learn More</span>
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="3" y1="8" x2="13" y2="8"/>
-                <polyline points="9 4 13 8 9 12"/>
-              </svg>
-            </a>
-          </div>
+
+            <div class="cft-divider"></div>
+
+            <!-- TEXT AREA -->
+            <div class="cft-text">
+              <div class="cft-brand">
+                <div class="cft-icon-box cft-box-wa">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2z"/></svg>
+                </div>
+                <span class="cft-brand-name cft-name-wa">WhatsApp</span>
+              </div>
+              <h3 class="cft-heading">WhatsApp Messaging</h3>
+              <p class="cft-desc">Broadcast campaigns, automate conversations, and engage customers at scale.</p>
+              <div class="cft-rule"></div>
+              <div class="cft-chips">
+                <span class="cft-chip">[Official WhatsApp partner]</span>
+                <span class="cft-chip">Message templates</span>
+                <span class="cft-chip">Quick-reply buttons</span>
+              </div>
+              <a href="#developers" class="cft-link">
+                <span>Learn more</span>
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Tile 2: SMS -->
+          <article class="cft-tile cft-tile-sms" data-channel="sms">
+            <!-- ILLUSTRATION AREA -->
+            <div class="cft-illus" role="region" aria-label="SMS login code, payment alert, and promotional notifications on mobile phone for Zuri Stores" tabindex="0">
+              <div class="cft-stage cft-sms-stage">
+                <div class="cft-sms-device">
+                  <div class="cft-sms-notch"></div>
+                  <div class="cft-sms-stack">
+                    
+                    <!-- Notification 1: Login Code -->
+                    <div class="cft-sms-card cft-sms-anim-1">
+                      <div class="cft-sms-head">
+                        <div class="cft-sms-head-left">
+                          <span class="cft-sms-chip">Login code</span>
+                          <strong class="cft-sms-sender">ZURISTORES</strong>
+                        </div>
+                        <div class="cft-sms-head-right">
+                          <span class="cft-sms-time">now</span>
+                          <span class="cft-sms-tick">
+                            <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 8.5 6.5 12 13 4.5"/></svg>
+                            <span>Delivered</span>
+                          </span>
+                        </div>
+                      </div>
+                      <p class="cft-sms-body">Your code is <span class="cft-tabular-otp">849 201</span>. Do not share it.</p>
+                    </div>
+
+                    <!-- Notification 2: Payment Alert -->
+                    <div class="cft-sms-card cft-sms-anim-2">
+                      <div class="cft-sms-head">
+                        <div class="cft-sms-head-left">
+                          <span class="cft-sms-chip">Payment alert</span>
+                          <strong class="cft-sms-sender">ZURISTORES</strong>
+                        </div>
+                        <div class="cft-sms-head-right">
+                          <span class="cft-sms-time">now</span>
+                          <span class="cft-sms-tick">
+                            <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 8.5 6.5 12 13 4.5"/></svg>
+                            <span>Delivered</span>
+                          </span>
+                        </div>
+                      </div>
+                      <p class="cft-sms-body">N45,000 payment received. Thank you!</p>
+                    </div>
+
+                    <!-- Notification 3: Promotion -->
+                    <div class="cft-sms-card cft-sms-anim-3">
+                      <div class="cft-sms-head">
+                        <div class="cft-sms-head-left">
+                          <span class="cft-sms-chip">Promotion</span>
+                          <strong class="cft-sms-sender">ZURISTORES</strong>
+                        </div>
+                        <div class="cft-sms-head-right">
+                          <span class="cft-sms-time">now</span>
+                          <span class="cft-sms-tick">
+                            <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 8.5 6.5 12 13 4.5"/></svg>
+                            <span>Delivered</span>
+                          </span>
+                        </div>
+                      </div>
+                      <p class="cft-sms-body">30% off until Sunday.</p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <p class="cft-caption">What your customer sees</p>
+            </div>
+
+            <div class="cft-divider"></div>
+
+            <!-- TEXT AREA -->
+            <div class="cft-text">
+              <div class="cft-brand">
+                <div class="cft-icon-box cft-box-sms">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <span class="cft-brand-name cft-name-sms">SMS</span>
+              </div>
+              <h3 class="cft-heading">SMS Messaging</h3>
+              <p class="cft-desc">Deliver alerts, OTPs, promotions, and notifications instantly.</p>
+              <div class="cft-rule"></div>
+              <div class="cft-chips">
+                <span class="cft-chip">Reaches phones without data</span>
+                <span class="cft-chip">Two-way texting</span>
+                <span class="cft-chip">Delivery reports</span>
+              </div>
+              <a href="#developers" class="cft-link">
+                <span>Learn more</span>
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Tile 3: Email -->
+          <article class="cft-tile cft-tile-email" data-channel="email">
+            <!-- ILLUSTRATION AREA -->
+            <div class="cft-illus" role="region" aria-label="Email campaign workflow showing drag-and-drop editor, inbox preview from Zuri Stores, and performance tracking" tabindex="0">
+              <div class="cft-stage cft-email-stage">
+                <!-- 3-Step Journey Strip -->
+                <div class="cft-email-track">
+                  <div class="cft-email-step cft-step-create is-active">
+                    <span class="cft-email-dot"></span>
+                    <span class="cft-email-step-name">Create</span>
+                  </div>
+                  <div class="cft-email-line">
+                    <span class="cft-email-travel-dot"></span>
+                  </div>
+                  <div class="cft-email-step cft-step-send">
+                    <span class="cft-email-dot"></span>
+                    <span class="cft-email-step-name">Send</span>
+                  </div>
+                  <div class="cft-email-line"></div>
+                  <div class="cft-email-step cft-step-track">
+                    <span class="cft-email-dot"></span>
+                    <span class="cft-email-step-name">Track</span>
+                  </div>
+                </div>
+
+                <!-- 3 Lifecycle Stages -->
+                <div class="cft-email-panels">
+                  <!-- Stage 1: Create (Editor) -->
+                  <div class="cft-email-panel cft-panel-create">
+                    <div class="cft-email-panel-header">
+                      <span>Editor</span>
+                    </div>
+                    <div class="cft-email-editor-blocks">
+                      <div class="cft-email-block-img">
+                        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        <span>Header image</span>
+                      </div>
+                      <div class="cft-email-block-text cft-block-lifted">
+                        <span class="cft-drag-grip">:::</span>
+                        <span>Headline &amp; text</span>
+                      </div>
+                      <div class="cft-email-block-btn">
+                        <span>Shop now</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Stage 2: Send (Inbox row) -->
+                  <div class="cft-email-panel cft-panel-send">
+                    <div class="cft-email-panel-header">
+                      <span>Customer inbox</span>
+                    </div>
+                    <div class="cft-email-inbox-item">
+                      <div class="cft-email-avatar">ZS</div>
+                      <div class="cft-email-inbox-text">
+                        <div class="cft-email-from-row">
+                          <strong class="cft-email-sender">Zuri Stores</strong>
+                          <span class="cft-email-time">Just now</span>
+                        </div>
+                        <span class="cft-email-subject">Your weekend offer is here</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Stage 3: Track (Report) -->
+                  <div class="cft-email-panel cft-panel-track">
+                    <div class="cft-email-panel-header">
+                      <span>Campaign report</span>
+                    </div>
+                    <div class="cft-email-metric-row">
+                      <div class="cft-email-metric-head">
+                        <span class="cft-email-metric-label">Opened</span>
+                        <span class="cft-email-metric-pct">[68%]</span>
+                      </div>
+                      <div class="cft-email-bar-track">
+                        <div class="cft-email-bar cft-bar-opened"></div>
+                      </div>
+                    </div>
+                    <div class="cft-email-metric-row">
+                      <div class="cft-email-metric-head">
+                        <span class="cft-email-metric-label">Clicked</span>
+                        <span class="cft-email-metric-pct">[24%]</span>
+                      </div>
+                      <div class="cft-email-bar-track">
+                        <div class="cft-email-bar cft-bar-clicked"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="cft-caption">What your customer sees, and what you see</p>
+            </div>
+
+            <div class="cft-divider"></div>
+
+            <!-- TEXT AREA -->
+            <div class="cft-text">
+              <div class="cft-brand">
+                <div class="cft-icon-box cft-box-email">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <span class="cft-brand-name cft-name-email">Email</span>
+              </div>
+              <h3 class="cft-heading">Email Campaigns</h3>
+              <p class="cft-desc">Create, send, and track email campaigns that drive engagement.</p>
+              <div class="cft-rule"></div>
+              <div class="cft-chips">
+                <span class="cft-chip">Drag-and-drop builder</span>
+                <span class="cft-chip">Your own sending domain</span>
+                <span class="cft-chip">Open and click tracking</span>
+              </div>
+              <a href="#developers" class="cft-link">
+                <span>Learn more</span>
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Tile 4: Voice -->
+          <article class="cft-tile cft-tile-voice" data-channel="voice">
+            <!-- ILLUSTRATION AREA -->
+            <div class="cft-illus" role="region" aria-label="Automated voice call with dynamic waveform and Press 1 confirmation for Zuri Stores" tabindex="0">
+              <div class="cft-stage cft-voice-stage">
+                
+                <!-- Call Header Card -->
+                <div class="cft-voice-card">
+                  <div class="cft-voice-card-top">
+                    <div class="cft-voice-avatar">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div class="cft-voice-details">
+                      <span class="cft-voice-caller">Zuri Stores</span>
+                      <span class="cft-voice-sub">Automated call</span>
+                    </div>
+                    <div class="cft-voice-timer">00:24</div>
+                  </div>
+
+                  <!-- Teal Sound Waveform -->
+                  <div class="cft-voice-waveform" aria-hidden="true">
+                    <span class="cft-wave-bar" style="--h: 9px; --d: 0.1s;"></span>
+                    <span class="cft-wave-bar" style="--h: 18px; --d: 0.25s;"></span>
+                    <span class="cft-wave-bar" style="--h: 26px; --d: 0.4s;"></span>
+                    <span class="cft-wave-bar" style="--h: 14px; --d: 0.15s;"></span>
+                    <span class="cft-wave-bar" style="--h: 24px; --d: 0.35s;"></span>
+                    <span class="cft-wave-bar" style="--h: 30px; --d: 0.5s;"></span>
+                    <span class="cft-wave-bar" style="--h: 20px; --d: 0.2s;"></span>
+                    <span class="cft-wave-bar" style="--h: 28px; --d: 0.45s;"></span>
+                    <span class="cft-wave-bar" style="--h: 16px; --d: 0.3s;"></span>
+                    <span class="cft-wave-bar" style="--h: 25px; --d: 0.55s;"></span>
+                    <span class="cft-wave-bar" style="--h: 18px; --d: 0.2s;"></span>
+                    <span class="cft-wave-bar" style="--h: 10px; --d: 0.1s;"></span>
+                  </div>
+                </div>
+
+                <!-- Speech Bubble (What customer hears) -->
+                <div class="cft-voice-bubble">
+                  <div class="cft-voice-speaker-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                  </div>
+                  <p class="cft-voice-speech-text">"Your order arrives today. Press 1 to confirm, or 2 to reschedule."</p>
+                </div>
+
+                <!-- Keypad & Result Row -->
+                <div class="cft-voice-action-row">
+                  <div class="cft-voice-keypad">
+                    <span class="cft-voice-key cft-key-active">1</span>
+                    <span class="cft-voice-key">2</span>
+                    <span class="cft-voice-key">3</span>
+                  </div>
+                  <div class="cft-voice-result-chip">
+                    <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="3 8.5 6.5 12 13 4.5"/></svg>
+                    <span>Customer confirmed</span>
+                  </div>
+                </div>
+
+              </div>
+              <p class="cft-caption">What your customer hears</p>
+            </div>
+
+            <div class="cft-divider"></div>
+
+            <!-- TEXT AREA -->
+            <div class="cft-text">
+              <div class="cft-brand">
+                <div class="cft-icon-box cft-box-voice">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <span class="cft-brand-name cft-name-voice">Voice</span>
+              </div>
+              <h3 class="cft-heading">Voice Communications</h3>
+              <p class="cft-desc">Automated voice calls, reminders, alerts, and customer outreach.</p>
+              <div class="cft-rule"></div>
+              <div class="cft-chips">
+                <span class="cft-chip">Text-to-speech</span>
+                <span class="cft-chip">Press-1 replies</span>
+                <span class="cft-chip">Call recording</span>
+              </div>
+              <a href="#developers" class="cft-link">
+                <span>Learn more</span>
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
 
         </div>
       </div>

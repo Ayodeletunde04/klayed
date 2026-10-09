@@ -14208,10 +14208,20 @@ html.dark-preview .kij-tab-btn:hover {
 
 .kij-tab-btn.active {
   background: var(--kij-amber) !important;
-  color: #111110 !important;
+  color: #FFFFFF !important;
   font-weight: 700;
   border-color: var(--kij-amber);
   box-shadow: 0 2px 12px rgba(213, 147, 18, 0.32);
+}
+
+.kij-tab-btn.active span {
+  color: #FFFFFF !important;
+}
+
+.kij-tab-btn.active svg,
+.kij-tab-btn.active .kij-tab-icon {
+  stroke: #FFFFFF !important;
+  color: #FFFFFF !important;
 }
 
 .kij-tab-icon {
@@ -15105,8 +15115,22 @@ body:not(.dark-preview) .kly-dev-hero-icon svg path[stroke="rgba(255,255,255,0.9
   stroke: #181816;
 }
 
+.kly-dev-hero-logo {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .kly-dev-hero-icon:hover {
   transform: translateY(-2px) scale(1.02);
+}
+
+.kly-dev-hero-icon:hover .kly-dev-hero-logo {
+  transform: scale(1.05);
 }
 
 /* (2) Headline */

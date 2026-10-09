@@ -1666,601 +1666,133 @@
         <div class="v2-section-header">
           <span class="v2-section-eyebrow">Use cases</span>
           <h2 class="v2-section-title">Built For Every Industry</h2>
-          <p class="v2-section-subtext">Tailored communications infrastructure powering vertical leaders worldwide.</p>
+          <p class="v2-section-subtext">Automated customer journeys delivered on the right channel at the right moment.</p>
         </div>
 
-        <!-- Horizontal Pill Tabs Bar (Image 1 Style) -->
-        <div class="v2-ind-pill-bar-wrapper">
-          <div class="v2-ind-pill-bar" role="tablist" aria-label="Industries">
-            <button type="button" class="v2-ind-tab active" data-industry="ecommerce" role="tab" aria-selected="true">
-              <span>🛍️ Ecommerce</span>
+        <!-- Horizontal Pill Tabs Bar (Sentence case, inline SVG icons, filled amber active) -->
+        <div class="kij-tab-bar-wrapper">
+          <div class="kij-tab-bar" role="tablist" aria-label="Industries">
+            <button type="button" class="kij-tab-btn active" data-industry="ecommerce" role="tab" id="kij-tab-ecommerce" aria-controls="kij-stage" aria-selected="true">
+              <svg class="kij-tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+              </svg>
+              <span>Ecommerce</span>
             </button>
-            <button type="button" class="v2-ind-tab" data-industry="fintech" role="tab" aria-selected="false">
-              <span>💳 Fintech</span>
+            <button type="button" class="kij-tab-btn" data-industry="fintech" role="tab" id="kij-tab-fintech" aria-controls="kij-stage" aria-selected="false">
+              <svg class="kij-tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="5" width="20" height="14" rx="2"/>
+                <line x1="2" y1="10" x2="22" y2="10"/>
+              </svg>
+              <span>Fintech</span>
             </button>
-            <button type="button" class="v2-ind-tab" data-industry="logistics" role="tab" aria-selected="false">
-              <span>🚚 Logistics</span>
+            <button type="button" class="kij-tab-btn" data-industry="logistics" role="tab" id="kij-tab-logistics" aria-controls="kij-stage" aria-selected="false">
+              <svg class="kij-tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="1" y="3" width="15" height="13"/>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                <circle cx="5.5" cy="18.5" r="2.5"/>
+                <circle cx="18.5" cy="18.5" r="2.5"/>
+              </svg>
+              <span>Logistics</span>
             </button>
-            <button type="button" class="v2-ind-tab" data-industry="healthcare" role="tab" aria-selected="false">
-              <span>🏥 Healthcare</span>
+            <button type="button" class="kij-tab-btn" data-industry="healthcare" role="tab" id="kij-tab-healthcare" aria-controls="kij-stage" aria-selected="false">
+              <svg class="kij-tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                <path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h4.28"/>
+              </svg>
+              <span>Healthcare</span>
             </button>
-            <button type="button" class="v2-ind-tab" data-industry="education" role="tab" aria-selected="false">
-              <span>🎓 Education</span>
+            <button type="button" class="kij-tab-btn" data-industry="education" role="tab" id="kij-tab-education" aria-controls="kij-stage" aria-selected="false">
+              <svg class="kij-tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+              <span>Education</span>
             </button>
-            <button type="button" class="v2-ind-tab" data-industry="hospitality" role="tab" aria-selected="false">
-              <span>🏨 Hospitality</span>
+            <button type="button" class="kij-tab-btn" data-industry="hospitality" role="tab" id="kij-tab-hospitality" aria-controls="kij-stage" aria-selected="false">
+              <svg class="kij-tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/>
+              </svg>
+              <span>Hospitality</span>
             </button>
           </div>
         </div>
 
-        <!-- Interactive Showcase Stage -->
-        <div class="v2-ind-showcase-stage">
-          
-          <!-- =================== 1. Ecommerce =================== -->
-          <div class="v2-ind-view active" id="ind-view-ecommerce">
-            <div class="v2-ind-split-grid">
-              
-              <!-- Left: Content & CTA -->
-              <div class="v2-ind-left-content">
-                <h3 class="v2-ind-showcase-headline">
-                  Recover carts, ship orders and sales. <span class="v2-accent-word">Done.</span>
-                </h3>
-                <p class="v2-ind-showcase-subtext">
-                  Marketing agents recover abandoned carts via WhatsApp, deliver automated shipment tracking SMS, and send curated email drops while your team focuses on strategy.
-                </p>
-                <a href="../Klayed dashboard/index.html" class="v2-btn-primary v2-ind-cta-btn">
-                  <span>Get Started</span>
-                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="8" x2="13" y2="8"/>
-                    <polyline points="9 4 13 8 9 12"/>
-                  </svg>
-                </a>
-              </div>
-
-              <!-- Right: SaaS Application Dashboard Mockup (Monday.com Style) -->
-              <div class="v2-ind-mockup-wrapper">
-                <div class="v2-app-mockup-window">
-                  
-                  <!-- Left Sidebar Strip -->
-                  <div class="v2-app-sidebar-strip">
-                    <div class="v2-strip-logo">
-                      <span class="v2-strip-dot"></span>
-                    </div>
-                    <div class="v2-strip-icons">
-                      <span class="v2-strip-ico active">⊞</span>
-                      <span class="v2-strip-ico">☰</span>
-                      <span class="v2-strip-ico">♡</span>
-                      <span class="v2-strip-ico">👥</span>
-                      <span class="v2-strip-ico">⚙</span>
-                    </div>
-                  </div>
-
-                  <!-- Main Content Area -->
-                  <div class="v2-app-main-area">
-                    
-                    <!-- App Title & Navigation Subtabs -->
-                    <div class="v2-app-header-row">
-                      <h4 class="v2-app-doc-title">Shopify Store • Cart &amp; Order Automations</h4>
-                      <div class="v2-app-subtabs">
-                        <span class="v2-app-subtab active">Main table</span>
-                        <span class="v2-app-subtab">Timeline</span>
-                        <span class="v2-app-subtab">Kanban</span>
-                        <span class="v2-app-subtab">+</span>
-                      </div>
-                    </div>
-
-                    <!-- Inner Split: Table on Left, Agent Box on Right -->
-                    <div class="v2-app-split-inner">
-                      
-                      <!-- Table Component -->
-                      <div class="v2-app-table-col">
-                        <div class="v2-table-header-row">
-                          <span class="v2-th-title">Incoming events</span>
-                          <span class="v2-th-channel">Channel</span>
-                          <span class="v2-th-status">Status</span>
-                        </div>
-                        <div class="v2-table-body">
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Order #KL-9402 • Tunde A.</span>
-                            <span class="v2-td-channel"><span class="v2-pill-wa">WhatsApp</span></span>
-                            <span class="v2-td-status v2-st-green">Paid &amp; Dispatched</span>
-                          </div>
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Cart #CA-8120 • Chioma E.</span>
-                            <span class="v2-td-channel"><span class="v2-pill-sms">SMS Alert</span></span>
-                            <span class="v2-td-status v2-st-gold">Recovered (+₦28k)</span>
-                          </div>
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Flash Drop • VIP Cohort</span>
-                            <span class="v2-td-channel"><span class="v2-pill-email">Email</span></span>
-                            <span class="v2-td-status v2-st-blue">58.4% Open Rate</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Agent Side Panel (Monday.com Leads Sourcer Style) -->
-                      <div class="v2-app-agent-col">
-                        <div class="v2-agent-card-header">
-                          <div class="v2-agent-avatar">🛍️</div>
-                          <div>
-                            <strong class="v2-agent-name">Klayed Commerce Agent</strong>
-                            <span class="v2-agent-sub">342 carts recovered today</span>
-                          </div>
-                        </div>
-                        <div class="v2-agent-bubble">
-                          <p>Recovered 32 abandoned carts in the last 1hr via WhatsApp broadcast</p>
-                        </div>
-                        <div class="v2-agent-action-bar">
-                          <span class="v2-agent-spinner"></span>
-                          <span>Auto-dispatching tracking SMS via MTN Direct</span>
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-
+        <!-- Interactive Journey Showcase Stage -->
+        <div class="kij-stage-wrapper" id="kij-stage" role="tabpanel" aria-labelledby="kij-tab-ecommerce">
+          <div class="kij-split-layout">
+            
+            <!-- Left Side: Headline, Subtext & CTA -->
+            <div class="kij-text-content">
+              <h3 class="kij-headline" id="kij-headline">
+                Recover carts, send delivery updates, and reward repeat buyers.
+              </h3>
+              <p class="kij-subtext" id="kij-subtext">
+                When a shopper browses, places an order, or waits for delivery, automated messages reach them on the channel they check first.
+              </p>
+              <a href="../Klayed dashboard/index.html" class="v2-btn-primary kij-cta-btn">
+                <span>Get started</span>
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="3" y1="8" x2="13" y2="8"/>
+                  <polyline points="9 4 13 8 9 12"/>
+                </svg>
+              </a>
             </div>
-          </div>
 
-          <!-- =================== 2. Fintech =================== -->
-          <div class="v2-ind-view" id="ind-view-fintech">
-            <div class="v2-ind-split-grid">
+            <!-- Right Side: The Journey Illustration Card (~620 x 480) -->
+            <div class="kij-illustration-card" id="kij-illustration">
               
-              <div class="v2-ind-left-content">
-                <h3 class="v2-ind-showcase-headline">
-                  Instant OTPs, fraud alerts and 2FA. <span class="v2-accent-word">Done.</span>
-                </h3>
-                <p class="v2-ind-showcase-subtext">
-                  Deliver sub-second 2FA OTPs, immediate debit/credit alerts, and automated fraud verification voice calls with guaranteed 99.99% uptime and zero latency.
-                </p>
-                <a href="../Klayed dashboard/index.html" class="v2-btn-primary v2-ind-cta-btn">
-                  <span>Get Started</span>
-                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="8" x2="13" y2="8"/>
-                    <polyline points="9 4 13 8 9 12"/>
-                  </svg>
-                </a>
-              </div>
-
-              <div class="v2-ind-mockup-wrapper">
-                <div class="v2-app-mockup-window">
-                  <div class="v2-app-sidebar-strip">
-                    <div class="v2-strip-logo"><span class="v2-strip-dot"></span></div>
-                    <div class="v2-strip-icons">
-                      <span class="v2-strip-ico active">⊞</span>
-                      <span class="v2-strip-ico">☰</span>
-                      <span class="v2-strip-ico">♡</span>
-                      <span class="v2-strip-ico">👥</span>
-                      <span class="v2-strip-ico">⚙</span>
-                    </div>
+              <div class="kij-card-grid">
+                <!-- Left Column: Vertical Timeline of 4 Step Cards joined by Amber Spine -->
+                <div class="kij-timeline-col">
+                  <!-- The Spine Track & Travelling Amber Dot -->
+                  <div class="kij-spine" aria-hidden="true">
+                    <div class="kij-spine-line"></div>
+                    <div class="kij-spine-dot" id="kij-spine-dot"></div>
                   </div>
-                  <div class="v2-app-main-area">
-                    <div class="v2-app-header-row">
-                      <h4 class="v2-app-doc-title">Core Banking &amp; Security • Sub-Second Stream</h4>
-                      <div class="v2-app-subtabs">
-                        <span class="v2-app-subtab active">Main table</span>
-                        <span class="v2-app-subtab">Latency</span>
-                        <span class="v2-app-subtab">Failover</span>
-                        <span class="v2-app-subtab">+</span>
+
+                  <!-- 4 Step Cards -->
+                  <div class="kij-steps-stack" id="kij-steps-stack" role="group" aria-label="Customer journey steps">
+                    <!-- Populated dynamically via initIndustryJourneySystem -->
+                  </div>
+                </div>
+
+                <!-- Right Column: Smartphone Mockup displaying Customer Message -->
+                <div class="kij-phone-col">
+                  <div class="kij-phone-frame">
+                    <!-- Status Header -->
+                    <div class="kij-phone-header">
+                      <span class="kij-phone-time">9:41</span>
+                      <div class="kij-phone-notch" aria-hidden="true"></div>
+                      <div class="kij-phone-icons" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 21l3.48-.91C9.28 20.61 10.6 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/></svg>
                       </div>
                     </div>
-                    <div class="v2-app-split-inner">
-                      <div class="v2-app-table-col">
-                        <div class="v2-table-header-row">
-                          <span class="v2-th-title">Security event</span>
-                          <span class="v2-th-channel">Channel</span>
-                          <span class="v2-th-status">Latency / Status</span>
-                        </div>
-                        <div class="v2-table-body">
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">2FA OTP • Login Auth</span>
-                            <span class="v2-td-channel"><span class="v2-pill-sms">Tier-1 Direct</span></span>
-                            <span class="v2-td-status v2-st-green">&lt; 740ms • Delivered</span>
-                          </div>
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">₦2,500,000 Debit Alert</span>
-                            <span class="v2-td-channel"><span class="v2-pill-wa">WhatsApp</span></span>
-                            <span class="v2-td-status v2-st-green">Instant Read Receipt</span>
-                          </div>
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Suspicious Login IVR</span>
-                            <span class="v2-td-channel"><span class="v2-pill-voice">Voice Call</span></span>
-                            <span class="v2-td-status v2-st-blue">Keypad Confirmed (1)</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="v2-app-agent-col">
-                        <div class="v2-agent-card-header">
-                          <div class="v2-agent-avatar">🛡️</div>
-                          <div>
-                            <strong class="v2-agent-name">Klayed Security Engine</strong>
-                            <span class="v2-agent-sub">99.99% carrier uptime SLA</span>
-                          </div>
-                        </div>
-                        <div class="v2-agent-bubble">
-                          <p>Zero dropped OTPs across 240,000 transactions during Lagos rush hour.</p>
-                        </div>
-                        <div class="v2-agent-action-bar">
-                          <span class="v2-agent-spinner"></span>
-                          <span>Smart Failover: WhatsApp → SMS in 0.5s active</span>
-                        </div>
-                      </div>
+
+                    <!-- Screen Area with aria-live region -->
+                    <div class="kij-phone-screen" id="kij-phone-screen" aria-live="polite" aria-atomic="true">
+                      <!-- Active message preview rendered dynamically -->
                     </div>
                   </div>
                 </div>
               </div>
 
-            </div>
-          </div>
-
-          <!-- =================== 3. Logistics =================== -->
-          <div class="v2-ind-view" id="ind-view-logistics">
-            <div class="v2-ind-split-grid">
-              
-              <div class="v2-ind-left-content">
-                <h3 class="v2-ind-showcase-headline">
-                  Track parcels, dispatch drivers and notify. <span class="v2-accent-word">Done.</span>
-                </h3>
-                <p class="v2-ind-showcase-subtext">
-                  Send live shipment tracking links, driver dispatch notifications, and interactive WhatsApp delivery confirmations that eliminate failed drop-offs.
-                </p>
-                <a href="../Klayed dashboard/index.html" class="v2-btn-primary v2-ind-cta-btn">
-                  <span>Get Started</span>
-                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="8" x2="13" y2="8"/>
-                    <polyline points="9 4 13 8 9 12"/>
+              <!-- Outcome Strip Under Both Columns -->
+              <div class="kij-outcome-strip" id="kij-outcome-strip">
+                <div class="kij-outcome-icon" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 8.5 6.5 12 13 4.5"/>
                   </svg>
-                </a>
-              </div>
-
-              <div class="v2-ind-mockup-wrapper">
-                <div class="v2-app-mockup-window">
-                  <div class="v2-app-sidebar-strip">
-                    <div class="v2-strip-logo"><span class="v2-strip-dot"></span></div>
-                    <div class="v2-strip-icons">
-                      <span class="v2-strip-ico active">⊞</span>
-                      <span class="v2-strip-ico">☰</span>
-                      <span class="v2-strip-ico">♡</span>
-                      <span class="v2-strip-ico">👥</span>
-                      <span class="v2-strip-ico">⚙</span>
-                    </div>
-                  </div>
-                  <div class="v2-app-main-area">
-                    <div class="v2-app-header-row">
-                      <h4 class="v2-app-doc-title">Fleet Dispatch &amp; Last-Mile Tracking • Lekki Depot</h4>
-                      <div class="v2-app-subtabs">
-                        <span class="v2-app-subtab active">Main table</span>
-                        <span class="v2-app-subtab">Live Map</span>
-                        <span class="v2-app-subtab">Couriers</span>
-                        <span class="v2-app-subtab">+</span>
-                      </div>
-                    </div>
-                    <div class="v2-app-split-inner">
-                      <div class="v2-app-table-col">
-                        <div class="v2-table-header-row">
-                          <span class="v2-th-title">Shipment batch</span>
-                          <span class="v2-th-channel">Channel</span>
-                          <span class="v2-th-status">ETA / Status</span>
-                        </div>
-                        <div class="v2-table-body">
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Waybill #LG-8941 • Victoria Is.</span>
-                            <span class="v2-td-channel"><span class="v2-pill-wa">WhatsApp</span></span>
-                            <span class="v2-td-status v2-st-green">Out for Delivery (12m)</span>
-                          </div>
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Package #AB-2041 • Garki</span>
-                            <span class="v2-td-channel"><span class="v2-pill-sms">SMS Link</span></span>
-                            <span class="v2-td-status v2-st-green">Delivered &amp; Signed</span>
-                          </div>
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Express Cargo • Ikeja Hub</span>
-                            <span class="v2-td-channel"><span class="v2-pill-voice">Voice Call</span></span>
-                            <span class="v2-td-status v2-st-gold">Driver Dispatched</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="v2-app-agent-col">
-                        <div class="v2-agent-card-header">
-                          <div class="v2-agent-avatar">🚚</div>
-                          <div>
-                            <strong class="v2-agent-name">Klayed Dispatch Agent</strong>
-                            <span class="v2-agent-sub">99.7% first-attempt success</span>
-                          </div>
-                        </div>
-                        <div class="v2-agent-bubble">
-                          <p>Customer requested delivery window shift to 2:00 PM via 1-tap WhatsApp reply.</p>
-                        </div>
-                        <div class="v2-agent-action-bar">
-                          <span class="v2-agent-spinner"></span>
-                          <span>Driver re-routed • New ETA confirmed</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
+                <span class="kij-outcome-text" id="kij-outcome-text">
+                  Shoppers return to complete checkout and track their parcel from pickup to doorstep.
+                </span>
               </div>
 
             </div>
+
           </div>
-
-          <!-- =================== 4. Healthcare =================== -->
-          <div class="v2-ind-view" id="ind-view-healthcare">
-            <div class="v2-ind-split-grid">
-              
-              <div class="v2-ind-left-content">
-                <h3 class="v2-ind-showcase-headline">
-                  Remind patients, book visits and alert. <span class="v2-accent-word">Done.</span>
-                </h3>
-                <p class="v2-ind-showcase-subtext">
-                  Automate confidential appointment reminders, lab test results, and prescription refill alerts with NDPR &amp; HIPAA compliant zero-trust encryption.
-                </p>
-                <a href="../Klayed dashboard/index.html" class="v2-btn-primary v2-ind-cta-btn">
-                  <span>Get Started</span>
-                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="8" x2="13" y2="8"/>
-                    <polyline points="9 4 13 8 9 12"/>
-                  </svg>
-                </a>
-              </div>
-
-              <div class="v2-ind-mockup-wrapper">
-                <div class="v2-app-mockup-window">
-                  <div class="v2-app-sidebar-strip">
-                    <div class="v2-strip-logo"><span class="v2-strip-dot"></span></div>
-                    <div class="v2-strip-icons">
-                      <span class="v2-strip-ico active">⊞</span>
-                      <span class="v2-strip-ico">☰</span>
-                      <span class="v2-strip-ico">♡</span>
-                      <span class="v2-strip-ico">👥</span>
-                      <span class="v2-strip-ico">⚙</span>
-                    </div>
-                  </div>
-                  <div class="v2-app-main-area">
-                    <div class="v2-app-header-row">
-                      <h4 class="v2-app-doc-title">Patient Portal &amp; Telehealth • MedCenter Hospital</h4>
-                      <div class="v2-app-subtabs">
-                        <span class="v2-app-subtab active">Main table</span>
-                        <span class="v2-app-subtab">Reminders</span>
-                        <span class="v2-app-subtab">Prescriptions</span>
-                        <span class="v2-app-subtab">+</span>
-                      </div>
-                    </div>
-                    <div class="v2-app-split-inner">
-                      <div class="v2-app-table-col">
-                        <div class="v2-table-header-row">
-                          <span class="v2-th-title">Patient encounter</span>
-                          <span class="v2-th-channel">Channel</span>
-                          <span class="v2-th-status">Confirmation</span>
-                        </div>
-                        <div class="v2-table-body">
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Dr. Adeleke • Cardiology 10am</span>
-                            <span class="v2-td-channel"><span class="v2-pill-wa">WhatsApp</span></span>
-                            <span class="v2-td-status v2-st-green">Confirmed (1-Tap)</span>
-                          </div>
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Blood Chemistry Lab Results</span>
-                            <span class="v2-td-channel"><span class="v2-pill-sms">Secure SMS</span></span>
-                            <span class="v2-td-status v2-st-blue">Accessed (PIN Auth)</span>
-                          </div>
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Prescription Refill #RX-409</span>
-                            <span class="v2-td-channel"><span class="v2-pill-voice">Voice Call</span></span>
-                            <span class="v2-td-status v2-st-gold">Pharmacy Notified</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="v2-app-agent-col">
-                        <div class="v2-agent-card-header">
-                          <div class="v2-agent-avatar">🏥</div>
-                          <div>
-                            <strong class="v2-agent-name">Klayed Care Assistant</strong>
-                            <span class="v2-agent-sub">-42% clinic no-show rate</span>
-                          </div>
-                        </div>
-                        <div class="v2-agent-bubble">
-                          <p>Sent automated 24hr reminders for 180 clinic visits today with zero data leaks.</p>
-                        </div>
-                        <div class="v2-agent-action-bar">
-                          <span class="v2-agent-spinner"></span>
-                          <span>NDPR encrypted records synced</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- =================== 5. Education =================== -->
-          <div class="v2-ind-view" id="ind-view-education">
-            <div class="v2-ind-split-grid">
-              
-              <div class="v2-ind-left-content">
-                <h3 class="v2-ind-showcase-headline">
-                  Broadcast alerts, tuition dates and exams. <span class="v2-accent-word">Done.</span>
-                </h3>
-                <p class="v2-ind-showcase-subtext">
-                  Broadcast emergency campus alerts, tuition fee payment reminders, exam schedules, and admissions updates to 100,000+ students and parents in seconds.
-                </p>
-                <a href="../Klayed dashboard/index.html" class="v2-btn-primary v2-ind-cta-btn">
-                  <span>Get Started</span>
-                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="8" x2="13" y2="8"/>
-                    <polyline points="9 4 13 8 9 12"/>
-                  </svg>
-                </a>
-              </div>
-
-              <div class="v2-ind-mockup-wrapper">
-                <div class="v2-app-mockup-window">
-                  <div class="v2-app-sidebar-strip">
-                    <div class="v2-strip-logo"><span class="v2-strip-dot"></span></div>
-                    <div class="v2-strip-icons">
-                      <span class="v2-strip-ico active">⊞</span>
-                      <span class="v2-strip-ico">☰</span>
-                      <span class="v2-strip-ico">♡</span>
-                      <span class="v2-strip-ico">👥</span>
-                      <span class="v2-strip-ico">⚙</span>
-                    </div>
-                  </div>
-                  <div class="v2-app-main-area">
-                    <div class="v2-app-header-row">
-                      <h4 class="v2-app-doc-title">Campus Broadcast &amp; Registry • Apex University</h4>
-                      <div class="v2-app-subtabs">
-                        <span class="v2-app-subtab active">Main table</span>
-                        <span class="v2-app-subtab">Tuition</span>
-                        <span class="v2-app-subtab">Admissions</span>
-                        <span class="v2-app-subtab">+</span>
-                      </div>
-                    </div>
-                    <div class="v2-app-split-inner">
-                      <div class="v2-app-table-col">
-                        <div class="v2-table-header-row">
-                          <span class="v2-th-title">Broadcast cohort</span>
-                          <span class="v2-th-channel">Channel</span>
-                          <span class="v2-th-status">Reach / Speed</span>
-                        </div>
-                        <div class="v2-table-body">
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Semester Tuition Deadline</span>
-                            <span class="v2-td-channel"><span class="v2-pill-wa">WhatsApp</span></span>
-                            <span class="v2-td-status v2-st-green">42,000 Delivered (18s)</span>
-                          </div>
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Hall Allocation Flash SMS</span>
-                            <span class="v2-td-channel"><span class="v2-pill-sms">SMS Direct</span></span>
-                            <span class="v2-td-status v2-st-green">18,500 Delivered (9s)</span>
-                          </div>
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Admissions Acceptance Letter</span>
-                            <span class="v2-td-channel"><span class="v2-pill-email">Email</span></span>
-                            <span class="v2-td-status v2-st-blue">78.2% Opened</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="v2-app-agent-col">
-                        <div class="v2-agent-card-header">
-                          <div class="v2-agent-avatar">🎓</div>
-                          <div>
-                            <strong class="v2-agent-name">Klayed Campus Engine</strong>
-                            <span class="v2-agent-sub">100,000+ sent in 30 secs</span>
-                          </div>
-                        </div>
-                        <div class="v2-agent-bubble">
-                          <p>Broadcast delivered to 42,000 parents with 1-click tuition payment link.</p>
-                        </div>
-                        <div class="v2-agent-action-bar">
-                          <span class="v2-agent-spinner"></span>
-                          <span>84% early fee compliance achieved</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- =================== 6. Hospitality =================== -->
-          <div class="v2-ind-view" id="ind-view-hospitality">
-            <div class="v2-ind-split-grid">
-              
-              <div class="v2-ind-left-content">
-                <h3 class="v2-ind-showcase-headline">
-                  Check-in guests, confirm stays and survey. <span class="v2-accent-word">Done.</span>
-                </h3>
-                <p class="v2-ind-showcase-subtext">
-                  Empower guests with 1-tap WhatsApp digital check-in, keycard delivery, concierge dining requests, and post-stay review surveys with 4.9/5 satisfaction.
-                </p>
-                <a href="../Klayed dashboard/index.html" class="v2-btn-primary v2-ind-cta-btn">
-                  <span>Get Started</span>
-                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="8" x2="13" y2="8"/>
-                    <polyline points="9 4 13 8 9 12"/>
-                  </svg>
-                </a>
-              </div>
-
-              <div class="v2-ind-mockup-wrapper">
-                <div class="v2-app-mockup-window">
-                  <div class="v2-app-sidebar-strip">
-                    <div class="v2-strip-logo"><span class="v2-strip-dot"></span></div>
-                    <div class="v2-strip-icons">
-                      <span class="v2-strip-ico active">⊞</span>
-                      <span class="v2-strip-ico">☰</span>
-                      <span class="v2-strip-ico">♡</span>
-                      <span class="v2-strip-ico">👥</span>
-                      <span class="v2-strip-ico">⚙</span>
-                    </div>
-                  </div>
-                  <div class="v2-app-main-area">
-                    <div class="v2-app-header-row">
-                      <h4 class="v2-app-doc-title">Grand Horizon Resort • Guest Concierge &amp; VIP</h4>
-                      <div class="v2-app-subtabs">
-                        <span class="v2-app-subtab active">Main table</span>
-                        <span class="v2-app-subtab">VIP Arrivals</span>
-                        <span class="v2-app-subtab">Feedback</span>
-                        <span class="v2-app-subtab">+</span>
-                      </div>
-                    </div>
-                    <div class="v2-app-split-inner">
-                      <div class="v2-app-table-col">
-                        <div class="v2-table-header-row">
-                          <span class="v2-th-title">Guest stay record</span>
-                          <span class="v2-th-channel">Channel</span>
-                          <span class="v2-th-status">Guest Status</span>
-                        </div>
-                        <div class="v2-table-body">
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Penthouse 402 • Adebayo K.</span>
-                            <span class="v2-td-channel"><span class="v2-pill-wa">WhatsApp</span></span>
-                            <span class="v2-td-status v2-st-green">Digital Check-in Done</span>
-                          </div>
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">VIP Airport Shuttle Dispatch</span>
-                            <span class="v2-td-channel"><span class="v2-pill-sms">SMS</span></span>
-                            <span class="v2-td-status v2-st-green">Chauffeur Arrived</span>
-                          </div>
-                          <div class="v2-table-row">
-                            <span class="v2-td-name">Post-Stay Survey &amp; Rating</span>
-                            <span class="v2-td-channel"><span class="v2-pill-wa">WhatsApp</span></span>
-                            <span class="v2-td-status v2-st-gold">★ 5.0 Rating Logged</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="v2-app-agent-col">
-                        <div class="v2-agent-card-header">
-                          <div class="v2-agent-avatar">🏨</div>
-                          <div>
-                            <strong class="v2-agent-name">Klayed Concierge Bot</strong>
-                            <span class="v2-agent-sub">4.9 / 5 guest satisfaction</span>
-                          </div>
-                        </div>
-                        <div class="v2-agent-bubble">
-                          <p>Guest requested late checkout &amp; poolside dinner reservation via WhatsApp.</p>
-                        </div>
-                        <div class="v2-agent-action-bar">
-                          <span class="v2-agent-spinner"></span>
-                          <span>Table 14 reserved • Folio updated</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
         </div>
 
       </div>

@@ -888,32 +888,8 @@ echo $message->id . ': ' . $message->status;`
     });
   }
 
-  // 11. V2 Industries Monday.com Style Showcase Tabs Switcher
-  const indTabs = document.querySelectorAll('.v2-ind-tab');
-  const indViews = document.querySelectorAll('.v2-ind-view');
-
-  if (indTabs.length) {
-    indTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const targetInd = tab.getAttribute('data-industry');
-
-        indTabs.forEach(t => {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-
-        indViews.forEach(view => {
-          if (view.id === `ind-view-${targetInd}`) {
-            view.classList.add('active');
-          } else {
-            view.classList.remove('active');
-          }
-        });
-      });
-    });
-  }
+  // 11. Industry Use-Case Journey System ("The Journey" Controller)
+  initIndustryJourneySystem();
 
   // 12. Hero Visual: "One Customer, One Conversation" Animation Controller
   initHeroConversationVisual();
@@ -1259,5 +1235,757 @@ document.addEventListener('DOMContentLoaded', () => {
     onStackScroll();
   }
 });
+// ==========================================================================
+// 13. INDUSTRY USE-CASE JOURNEY SYSTEM ("THE JOURNEY")
+// Reusable data-driven component for 4-step automated customer journeys.
+// Takes a data object per tab (headline, subtext, business name, 4 steps, outcome).
+// ==========================================================================
 
+const INDUSTRY_JOURNEYS_DATA = {
+  ecommerce: {
+    label: "Ecommerce",
+    headline: "Recover carts, send delivery updates, and reward repeat buyers.",
+    subtext: "When a shopper browses, places an order, or waits for delivery, automated messages reach them on the channel they check first.",
+    businessName: "Zuri Stores",
+    outcome: "Shoppers return to complete checkout and track their parcel from pickup to doorstep.",
+    steps: [
+      {
+        label: "Active cart",
+        trigger: "When a shopper leaves items in their bag",
+        channel: "whatsapp",
+        channelLabel: "WhatsApp",
+        preview: {
+          channel: "whatsapp",
+          sender: "Zuri Stores",
+          time: "10:14 AM",
+          bubbleText: "Your silk dress is still reserved with free delivery today. Would you like to finish checking out?",
+          quickReplies: ["Complete checkout", "View bag"]
+        }
+      },
+      {
+        label: "Order confirmed",
+        trigger: "When payment clears successfully",
+        channel: "sms",
+        channelLabel: "SMS",
+        preview: {
+          channel: "sms",
+          sender: "ZURI",
+          time: "10:18 AM",
+          smsTitle: "Payment confirmed",
+          smsBody: "Order #8492 received. Your items are being packed at our central warehouse."
+        }
+      },
+      {
+        label: "Driver outside",
+        trigger: "When the delivery driver reaches the gate",
+        channel: "voice",
+        channelLabel: "Voice",
+        preview: {
+          channel: "voice",
+          sender: "Zuri Stores",
+          duration: "00:19",
+          transcript: "Your courier is at the front gate with your package. Press 1 to confirm you are home.",
+          keypadActive: "1"
+        }
+      },
+      {
+        label: "Delivered",
+        trigger: "When the parcel is handed over",
+        channel: "email",
+        channelLabel: "Email",
+        preview: {
+          channel: "email",
+          sender: "Zuri Stores",
+          time: "1:45 PM",
+          emailSubject: "Your order has arrived and your receipt is ready",
+          emailSnippet: "Thank you for shopping with us today. Your delivery receipt and garment care instructions are inside."
+        }
+      }
+    ]
+  },
+  fintech: {
+    label: "Fintech",
+    headline: "Verify sign ins, confirm card transactions, and protect balances.",
+    subtext: "Every security alert and transfer confirmation reaches your user instantly across primary and fallback networks.",
+    businessName: "Apex Pay",
+    outcome: "Users complete payments safely and stay informed on every account movement.",
+    steps: [
+      {
+        label: "New login",
+        trigger: "When a user signs in on an unfamiliar browser",
+        channel: "sms",
+        channelLabel: "SMS",
+        preview: {
+          channel: "sms",
+          sender: "APEX PAY",
+          time: "08:22 AM",
+          smsTitle: "Security passkey",
+          smsBody: "Your login code is 841 092. Never share this code with anyone."
+        }
+      },
+      {
+        label: "Card swipe",
+        trigger: "When an in-store transaction is approved",
+        channel: "whatsapp",
+        channelLabel: "WhatsApp",
+        preview: {
+          channel: "whatsapp",
+          sender: "Apex Pay",
+          time: "11:05 AM",
+          bubbleText: "Payment of ₦14,500 was approved at City Market. Your new balance is updated.",
+          quickReplies: ["View statement", "Report issue"]
+        }
+      },
+      {
+        label: "High value transfer",
+        trigger: "When a transfer exceeds security limits",
+        channel: "voice",
+        channelLabel: "Voice",
+        preview: {
+          channel: "voice",
+          sender: "Apex Pay",
+          duration: "00:24",
+          transcript: "Transfer verification from your account. Press 1 to approve this transaction, or 2 to decline.",
+          keypadActive: "1"
+        }
+      },
+      {
+        label: "Monthly ledger",
+        trigger: "When the billing cycle closes",
+        channel: "email",
+        channelLabel: "Email",
+        preview: {
+          channel: "email",
+          sender: "Apex Pay",
+          time: "Yesterday",
+          emailSubject: "Your monthly account statement is ready",
+          emailSnippet: "Review your detailed spending breakdown, earned cashback, and transfer summary for the month."
+        }
+      }
+    ]
+  },
+  logistics: {
+    label: "Logistics",
+    headline: "Dispatch parcels, coordinate drop offs, and confirm delivery proofs.",
+    subtext: "Couriers and dispatchers stay connected with recipients so every shipment arrives without missed drop offs.",
+    businessName: "Swift Express",
+    outcome: "Deliveries succeed on the first visit with verified proof of receipt.",
+    steps: [
+      {
+        label: "Shipment booked",
+        trigger: "When sender schedules a home pickup",
+        channel: "email",
+        channelLabel: "Email",
+        preview: {
+          channel: "email",
+          sender: "Swift Express",
+          time: "09:00 AM",
+          emailSubject: "Your pickup is confirmed and tracking is active",
+          emailSnippet: "Your booking reference is confirmed. The courier will arrive during your chosen window."
+        }
+      },
+      {
+        label: "Out for route",
+        trigger: "When the van leaves the distribution hub",
+        channel: "sms",
+        channelLabel: "SMS",
+        preview: {
+          channel: "sms",
+          sender: "SWIFT",
+          time: "01:15 PM",
+          smsTitle: "Out for delivery",
+          smsBody: "Your courier is on route. Estimated drop off between 2:00 PM and 3:30 PM today."
+        }
+      },
+      {
+        label: "Arrival call",
+        trigger: "When courier pulls up to the recipient gate",
+        channel: "voice",
+        channelLabel: "Voice",
+        preview: {
+          channel: "voice",
+          sender: "Swift Express",
+          duration: "00:15",
+          transcript: "Your courier is at the building entrance. Press 1 to confirm you are available.",
+          keypadActive: "1"
+        }
+      },
+      {
+        label: "Signed handover",
+        trigger: "When the recipient signs for the package",
+        channel: "whatsapp",
+        channelLabel: "WhatsApp",
+        preview: {
+          channel: "whatsapp",
+          sender: "Swift Express",
+          time: "02:40 PM",
+          bubbleText: "Package handed to Chidi at the reception desk. Signature and photo proof recorded.",
+          quickReplies: ["View receipt", "Rate courier"]
+        }
+      }
+    ]
+  },
+  healthcare: {
+    label: "Healthcare",
+    headline: "Confirm visits, send preparation notes, and follow up with patients.",
+    subtext: "Automated clinic reminders and prescription notices reduce missed visits while keeping care guidance clear.",
+    businessName: "Crestview Health",
+    outcome: "Patients attend scheduled appointments prepared and follow post visit advice with confidence.",
+    steps: [
+      {
+        label: "Visit booked",
+        trigger: "When a consultation is scheduled online",
+        channel: "email",
+        channelLabel: "Email",
+        preview: {
+          channel: "email",
+          sender: "Crestview Health",
+          time: "Monday",
+          emailSubject: "Your clinic appointment is confirmed",
+          emailSnippet: "Dr. Alabi looks forward to seeing you. Please find your visit preparation checklist attached."
+        }
+      },
+      {
+        label: "Day before visit",
+        trigger: "When the appointment is twenty four hours away",
+        channel: "sms",
+        channelLabel: "SMS",
+        preview: {
+          channel: "sms",
+          sender: "CRESTVIEW",
+          time: "09:30 AM",
+          smsTitle: "Visit reminder",
+          smsBody: "Reminder: Consultation tomorrow at 10:00 AM. Please arrive ten minutes early with your records."
+        }
+      },
+      {
+        label: "Prescription ready",
+        trigger: "When the pharmacy packs the medication",
+        channel: "whatsapp",
+        channelLabel: "WhatsApp",
+        preview: {
+          channel: "whatsapp",
+          sender: "Crestview Health",
+          time: "02:15 PM",
+          bubbleText: "Your prescribed medication is packed and ready for pickup at the ground floor dispensary.",
+          quickReplies: ["Pharmacy hours", "Directions"]
+        }
+      },
+      {
+        label: "Follow up check",
+        trigger: "When the patient returns home after treatment",
+        channel: "voice",
+        channelLabel: "Voice",
+        preview: {
+          channel: "voice",
+          sender: "Crestview Health",
+          duration: "00:28",
+          transcript: "Automated wellness check from Crestview. Press 1 if you are feeling well, or 2 to speak with nurse.",
+          keypadActive: "1"
+        }
+      }
+    ]
+  },
+  education: {
+    label: "Education",
+    headline: "Share tuition receipts, campus notices, and academic milestones.",
+    subtext: "Keep students and parents informed on admissions, term dates, and exam announcements without administrative delay.",
+    businessName: "Beacon Academy",
+    outcome: "Families receive timely updates throughout the term and stay engaged with school life.",
+    steps: [
+      {
+        label: "Enrollment received",
+        trigger: "When a family submits an admission form",
+        channel: "email",
+        channelLabel: "Email",
+        preview: {
+          channel: "email",
+          sender: "Beacon Academy",
+          time: "Tuesday",
+          emailSubject: "Welcome to Beacon Academy: Application received",
+          emailSnippet: "We have received your admission documents. Here are the orientation dates for the upcoming term."
+        }
+      },
+      {
+        label: "Tuition receipt",
+        trigger: "When school fees are recorded by bursar",
+        channel: "sms",
+        channelLabel: "SMS",
+        preview: {
+          channel: "sms",
+          sender: "BEACON",
+          time: "11:20 AM",
+          smsTitle: "Payment receipt",
+          smsBody: "Tuition payment of ₦85,000 received for Term 1. Official receipt has been saved to portal."
+        }
+      },
+      {
+        label: "Urgent notice",
+        trigger: "When campus schedule changes due to weather",
+        channel: "voice",
+        channelLabel: "Voice",
+        preview: {
+          channel: "voice",
+          sender: "Beacon Academy",
+          duration: "00:22",
+          transcript: "Important announcement from Beacon Academy. Campus opening will be delayed until 10:00 AM today.",
+          keypadActive: "1"
+        }
+      },
+      {
+        label: "Term report card",
+        trigger: "When end of term grading is finalized",
+        channel: "whatsapp",
+        channelLabel: "WhatsApp",
+        preview: {
+          channel: "whatsapp",
+          sender: "Beacon Academy",
+          time: "03:10 PM",
+          bubbleText: "Term 1 academic progress report for Fatima is now ready for parent review.",
+          quickReplies: ["View report card", "Teacher meeting"]
+        }
+      }
+    ]
+  },
+  hospitality: {
+    label: "Hospitality",
+    headline: "Welcome guests, share door codes, and arrange stay amenities.",
+    subtext: "From reservation booking to departure morning, guests receive effortless service on their preferred channel.",
+    businessName: "The Palm Suites",
+    outcome: "Guests check in without waiting at the desk and enjoy a seamless stay throughout.",
+    steps: [
+      {
+        label: "Before arrival",
+        trigger: "When a guest completes a room reservation",
+        channel: "email",
+        channelLabel: "Email",
+        preview: {
+          channel: "email",
+          sender: "The Palm Suites",
+          time: "10:00 AM",
+          emailSubject: "Your suite reservation is confirmed for this weekend",
+          emailSnippet: "We look forward to welcoming you to The Palm Suites. Your arrival details and directions are inside."
+        }
+      },
+      {
+        label: "Arrival morning",
+        trigger: "When check in time opens",
+        channel: "whatsapp",
+        channelLabel: "WhatsApp",
+        preview: {
+          channel: "whatsapp",
+          sender: "The Palm Suites",
+          time: "01:30 PM",
+          bubbleText: "Welcome to The Palm Suites. Your digital key is active for Suite 402 with code 7193.",
+          quickReplies: ["Room directions", "Request luggage help"]
+        }
+      },
+      {
+        label: "Service request",
+        trigger: "When dinner is ordered from the room tablet",
+        channel: "sms",
+        channelLabel: "SMS",
+        preview: {
+          channel: "sms",
+          sender: "PALM SUITES",
+          time: "07:45 PM",
+          smsTitle: "Dining order",
+          smsBody: "Your dining selection has been prepared by our chef and is being brought to your suite."
+        }
+      },
+      {
+        label: "Departure day",
+        trigger: "When the guest checks out on departure morning",
+        channel: "voice",
+        channelLabel: "Voice",
+        preview: {
+          channel: "voice",
+          sender: "The Palm Suites",
+          duration: "00:20",
+          transcript: "Concierge departure check. Press 1 to confirm airport shuttle pickup, or 2 for late checkout.",
+          keypadActive: "1"
+        }
+      }
+    ]
+  }
+};
 
+/**
+ * Returns inline SVG for the 4 communication channels
+ */
+function getChannelIconSvg(channel) {
+  switch (channel) {
+    case 'whatsapp':
+      return `<svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M13.6 2.4A7.9 7.9 0 0 0 8 0C3.6 0 0 3.6 0 8a7.9 7.9 0 0 0 1.2 4.2L0 16l3.9-1.2A7.9 7.9 0 0 0 8 16c4.4 0 8-3.6 8-8 0-2.1-.8-4.1-2.4-5.6zM8 14.7c-1.3 0-2.5-.3-3.6-1l-.3-.2-2.3.7.7-2.2-.2-.3A6.7 6.7 0 0 1 1.3 8c0-3.7 3-6.7 6.7-6.7 1.8 0 3.5.7 4.7 2 1.3 1.2 2 2.9 2 4.7 0 3.7-3 6.7-6.7 6.7z"/></svg>`;
+    case 'sms':
+      return `<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 10a2 2 0 0 1-2 2H4l-3 3V3a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2z"/></svg>`;
+    case 'email':
+      return `<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="1" y="2" width="14" height="12" rx="1.5"/><polyline points="15 3 8 9 1 3"/></svg>`;
+    case 'voice':
+      return `<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14.7 11.3v2a1.3 1.3 0 0 1-1.5 1.4 13.2 13.2 0 0 1-5.8-2 13 13 0 0 1-4-4A13.2 13.2 0 0 1 1.4 2.8 1.3 1.3 0 0 1 2.7 1.3h2a1.3 1.3 0 0 1 1.3 1.1 8.6 8.6 0 0 0 .5 1.9c.2.6 0 1.2-.4 1.6l-.8.8a10.4 10.4 0 0 0 4 4l.8-.8a1.3 1.3 0 0 1 1.6-.4c.6.3 1.2.4 1.9.5a1.3 1.3 0 0 1 1.1 1.3z"/></svg>`;
+    default:
+      return '';
+  }
+}
+
+/**
+ * Controller for Industry Journey System
+ */
+function initIndustryJourneySystem(customData) {
+  const journeysData = customData || INDUSTRY_JOURNEYS_DATA;
+
+  const sectionEl = document.getElementById('industries');
+  if (!sectionEl) return;
+
+  const tabBtns = sectionEl.querySelectorAll('.kij-tab-btn');
+  const stageWrapper = sectionEl.querySelector('.kij-stage-wrapper');
+  const headlineEl = document.getElementById('kij-headline');
+  const subtextEl = document.getElementById('kij-subtext');
+  const stepsStack = document.getElementById('kij-steps-stack');
+  const spineDot = document.getElementById('kij-spine-dot');
+  const phoneScreen = document.getElementById('kij-phone-screen');
+  const outcomeText = document.getElementById('kij-outcome-text');
+  const illustrationCard = document.getElementById('kij-illustration');
+
+  if (!tabBtns.length || !stageWrapper || !headlineEl || !stepsStack || !phoneScreen) {
+    return;
+  }
+
+  let activeTabKey = 'ecommerce';
+  let activeStepIndex = 0;
+  let autoplayTimer = null;
+  let isPaused = false;
+  let hasUserInteracted = false;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /**
+   * Generates phone screen markup for active step
+   */
+  function renderPhoneScreen(step) {
+    const p = step.preview;
+    const channel = p.channel;
+
+    if (channel === 'whatsapp') {
+      const initials = (p.sender || 'ZS').split(' ').map(n => n[0]).join('').slice(0, 2);
+      const quickRepliesHtml = (p.quickReplies || [])
+        .map(qr => `<span class="kij-pv-qr-pill">${qr}</span>`)
+        .join('');
+
+      return `
+        <div class="kij-phone-view kij-phone-wa" role="region" aria-label="WhatsApp message from ${p.sender}">
+          <div class="kij-pv-head">
+            <div class="kij-pv-avatar">${initials}</div>
+            <div class="kij-pv-info">
+              <div class="kij-pv-title-row">
+                <span class="kij-pv-title">${p.sender}</span>
+                <svg viewBox="0 0 16 16" width="11" height="11" fill="#22C55E" aria-label="Verified"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-1.03a.75.75 0 0 0-1.06-1.06L6.75 10.16 4.78 8.19a.75.75 0 0 0-1.06 1.06l2.5 2.5a.75.75 0 0 0 1.06 0l5.75-5.78z"/></svg>
+              </div>
+              <span class="kij-pv-sub">Official account</span>
+            </div>
+          </div>
+          <div class="kij-pv-body">
+            <div class="kij-pv-wa-bubble">
+              <p class="kij-pv-msg">${p.bubbleText}</p>
+              <span class="kij-pv-time">${p.time}</span>
+            </div>
+            ${quickRepliesHtml ? `<div class="kij-pv-qr-list">${quickRepliesHtml}</div>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    if (channel === 'sms') {
+      return `
+        <div class="kij-phone-view kij-phone-sms" role="region" aria-label="SMS alert from ${p.sender}">
+          <div class="kij-pv-sms-badge">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span>Messages</span>
+          </div>
+          <div class="kij-pv-sms-card">
+            <div class="kij-pv-sms-top">
+              <span class="kij-pv-sms-title">${p.smsTitle || 'Alert'}</span>
+              <span class="kij-pv-time">${p.time || 'now'}</span>
+            </div>
+            <strong class="kij-pv-sms-sender">${p.sender}</strong>
+            <p class="kij-pv-sms-msg">${p.smsBody}</p>
+            <div class="kij-pv-sms-delivered">
+              <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 8.5 6.5 12 13 4.5"/></svg>
+              <span>Delivered</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    if (channel === 'email') {
+      return `
+        <div class="kij-phone-view kij-phone-email" role="region" aria-label="Email update from ${p.sender}">
+          <div class="kij-pv-email-topbar">
+            <div class="kij-pv-email-icon">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="kij-pv-email-meta">
+              <span class="kij-pv-email-sender">From: ${p.sender}</span>
+              <span class="kij-pv-time">${p.time}</span>
+            </div>
+          </div>
+          <div class="kij-pv-email-card">
+            <h4 class="kij-pv-email-subj">${p.emailSubject}</h4>
+            <p class="kij-pv-email-snippet">${p.emailSnippet}</p>
+            <div class="kij-pv-email-btn">View details</div>
+          </div>
+        </div>
+      `;
+    }
+
+    if (channel === 'voice') {
+      const activeKey = p.keypadActive || '1';
+      return `
+        <div class="kij-phone-view kij-phone-voice" role="region" aria-label="Automated call from ${p.sender}">
+          <div class="kij-pv-voice-head">
+            <div class="kij-pv-voice-avatar">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="kij-pv-voice-meta">
+              <span class="kij-pv-voice-name">${p.sender}</span>
+              <span class="kij-pv-voice-sub">Automated call</span>
+            </div>
+            <span class="kij-pv-voice-timer">${p.duration || '00:18'}</span>
+          </div>
+          <div class="kij-pv-voice-wave" aria-hidden="true">
+            <span class="kij-vbar" style="--h: 8px; animation-delay: 0.1s;"></span>
+            <span class="kij-vbar" style="--h: 16px; animation-delay: 0.25s;"></span>
+            <span class="kij-vbar" style="--h: 24px; animation-delay: 0.4s;"></span>
+            <span class="kij-vbar" style="--h: 12px; animation-delay: 0.15s;"></span>
+            <span class="kij-vbar" style="--h: 22px; animation-delay: 0.35s;"></span>
+            <span class="kij-vbar" style="--h: 15px; animation-delay: 0.2s;"></span>
+            <span class="kij-vbar" style="--h: 20px; animation-delay: 0.45s;"></span>
+            <span class="kij-vbar" style="--h: 9px; animation-delay: 0.1s;"></span>
+          </div>
+          <div class="kij-pv-voice-transcript">
+            <p class="kij-pv-voice-text">${p.transcript}</p>
+          </div>
+          <div class="kij-pv-voice-keypad">
+            <span class="kij-vkey ${activeKey === '1' ? 'active' : ''}">1</span>
+            <span class="kij-vkey ${activeKey === '2' ? 'active' : ''}">2</span>
+            <span class="kij-vkey ${activeKey === '3' ? 'active' : ''}">3</span>
+          </div>
+        </div>
+      `;
+    }
+
+    return '';
+  }
+
+  /**
+   * Positions travelling amber dot along the timeline spine
+   */
+  function updateSpineDot(stepIndex) {
+    if (!spineDot) return;
+    const stepBtns = stepsStack.querySelectorAll('.kij-step-btn');
+    if (!stepBtns[stepIndex]) return;
+
+    const targetBtn = stepBtns[stepIndex];
+    const targetTop = targetBtn.offsetTop + (targetBtn.offsetHeight / 2) - 5;
+    spineDot.style.top = `${targetTop}px`;
+  }
+
+  /**
+   * Sets active step on current tab
+   */
+  function setActiveStep(stepIndex, isManualClick = false) {
+    const data = journeysData[activeTabKey];
+    if (!data || !data.steps[stepIndex]) return;
+
+    activeStepIndex = stepIndex;
+    const step = data.steps[stepIndex];
+
+    const stepBtns = stepsStack.querySelectorAll('.kij-step-btn');
+    stepBtns.forEach((btn, idx) => {
+      if (idx === stepIndex) {
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-current', 'step');
+      } else {
+        btn.classList.remove('is-active');
+        btn.removeAttribute('aria-current');
+      }
+    });
+
+    updateSpineDot(stepIndex);
+    phoneScreen.innerHTML = renderPhoneScreen(step);
+
+    if (isManualClick) {
+      hasUserInteracted = true;
+      stopAutoplay();
+    }
+  }
+
+  /**
+   * Autoplay scheduler (~2.5s per step, finishes and freezes on step 4)
+   */
+  function startAutoplay() {
+    stopAutoplay();
+    if (prefersReducedMotion) {
+      setActiveStep(3, false);
+      return;
+    }
+
+    let nextStep = 0;
+    setActiveStep(nextStep, false);
+
+    const advanceStep = () => {
+      if (isPaused || hasUserInteracted) return;
+
+      nextStep += 1;
+      if (nextStep < 4) {
+        setActiveStep(nextStep, false);
+        autoplayTimer = setTimeout(advanceStep, 2500);
+      } else {
+        // Stop on Step 4 (frozen final state)
+        stopAutoplay();
+      }
+    };
+
+    autoplayTimer = setTimeout(advanceStep, 2500);
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) {
+      clearTimeout(autoplayTimer);
+      autoplayTimer = null;
+    }
+  }
+
+  /**
+   * Renders the tab data (headline, subtext, outcome, 4 steps)
+   */
+  function renderTab(tabKey, autoStart = true) {
+    const data = journeysData[tabKey];
+    if (!data) return;
+
+    activeTabKey = tabKey;
+    headlineEl.textContent = data.headline;
+    subtextEl.textContent = data.subtext;
+    if (outcomeText) outcomeText.textContent = data.outcome;
+
+    // Render 4 Step Cards
+    stepsStack.innerHTML = data.steps.map((s, idx) => `
+      <button type="button" class="kij-step-btn ${idx === 0 ? 'is-active' : ''}" data-step="${idx}" aria-label="Step ${idx + 1}: ${s.label}. ${s.trigger}. Channel: ${s.channelLabel}">
+        <span class="kij-step-label">${s.label}</span>
+        <p class="kij-step-trigger">${s.trigger}</p>
+        <span class="kij-step-channel chip-${s.channel}">
+          ${getChannelIconSvg(s.channel)}
+          <span>${s.channelLabel}</span>
+        </span>
+      </button>
+    `).join('');
+
+    // Attach step click & keyboard listeners
+    const stepBtns = stepsStack.querySelectorAll('.kij-step-btn');
+    stepBtns.forEach((btn, idx) => {
+      btn.addEventListener('click', () => {
+        setActiveStep(idx, true);
+      });
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+          e.preventDefault();
+          const nextIdx = (idx + 1) % 4;
+          stepBtns[nextIdx].focus();
+          setActiveStep(nextIdx, true);
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const prevIdx = (idx - 1 + 4) % 4;
+          stepBtns[prevIdx].focus();
+          setActiveStep(prevIdx, true);
+        }
+      });
+    });
+
+    if (autoStart) {
+      startAutoplay();
+    } else {
+      setActiveStep(0, false);
+    }
+  }
+
+  /**
+   * Tab switcher with 300ms cross-fade
+   */
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetInd = btn.getAttribute('data-industry');
+      if (targetInd === activeTabKey) return;
+
+      tabBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      // 300ms cross-fade transition
+      stageWrapper.classList.add('is-switching');
+      stopAutoplay();
+      hasUserInteracted = false;
+
+      setTimeout(() => {
+        renderTab(targetInd, true);
+        stageWrapper.classList.remove('is-switching');
+      }, 150);
+    });
+  });
+
+  // Pause on hover or focus
+  if (illustrationCard) {
+    illustrationCard.addEventListener('mouseenter', () => {
+      isPaused = true;
+    });
+    illustrationCard.addEventListener('mouseleave', () => {
+      isPaused = false;
+    });
+    illustrationCard.addEventListener('focusin', () => {
+      isPaused = true;
+    });
+    illustrationCard.addEventListener('focusout', () => {
+      isPaused = false;
+    });
+  }
+
+  // Initial render (Ecommerce by default)
+  renderTab('ecommerce', false);
+
+  // Play once when section enters viewport
+  if ('IntersectionObserver' in window) {
+    let hasViewTriggered = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasViewTriggered) {
+          hasViewTriggered = true;
+          startAutoplay();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    observer.observe(sectionEl);
+  } else {
+    startAutoplay();
+  }
+
+  // Recalculate spine dot on window resize
+  window.addEventListener('resize', () => {
+    updateSpineDot(activeStepIndex);
+  }, { passive: true });
+
+  // Expose global API so user or subsequent prompts can inspect or override data per tab
+  window.KlayedJourneySystem = {
+    data: journeysData,
+    renderTab: renderTab,
+    setTabData: function(tabKey, newData) {
+      journeysData[tabKey] = newData;
+      if (activeTabKey === tabKey) {
+        renderTab(tabKey, true);
+      }
+    }
+  };
+}

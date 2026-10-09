@@ -266,10 +266,13 @@ echo $message->id . ': ' . $message->status;`
   // 5. Header Theme Toggle Button (Zero-Flicker Native View Transition)
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
   if (themeToggleBtn) {
-    if (localStorage.getItem('klayed-theme') === 'dark' || document.documentElement.classList.contains('dark-preview')) {
-      document.body.classList.add('dark-preview');
-      document.documentElement.classList.add('dark-preview');
-    }
+    try {
+      const savedTheme = localStorage.getItem('klayed-theme');
+      if (savedTheme === 'dark' || document.documentElement.classList.contains('dark-preview')) {
+        document.body.classList.add('dark-preview');
+        document.documentElement.classList.add('dark-preview');
+      }
+    } catch (e) {}
 
     const applyTheme = (isDark) => {
       document.body.classList.toggle('dark-preview', isDark);
@@ -279,21 +282,25 @@ echo $message->id . ': ' . $message->status;`
       } catch (e) {}
     };
 
-    themeToggleBtn.addEventListener('click', () => {
+    themeToggleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
       const isDark = !document.body.classList.contains('dark-preview');
 
       // If browser supports the native View Transitions API (Chrome 111+, Safari 18+, Edge),
       // crossfade the entire DOM at GPU compositor level — zero line flicker, zero tearing.
-      if (document.startViewTransition) {
-        document.documentElement.classList.add('view-transitioning');
-        const transition = document.startViewTransition(() => {
+      try {
+        if (document.startViewTransition) {
+          document.documentElement.classList.add('view-transitioning');
+          const transition = document.startViewTransition(() => {
+            applyTheme(isDark);
+          });
+          transition.finished.finally(() => {
+            document.documentElement.classList.remove('view-transitioning');
+          });
+        } else {
           applyTheme(isDark);
-        });
-        transition.finished.finally(() => {
-          document.documentElement.classList.remove('view-transitioning');
-        });
-      } else {
-        // Fallback for older browsers
+        }
+      } catch (err) {
         applyTheme(isDark);
       }
     });
@@ -1161,71 +1168,80 @@ function initHeroConversationVisual() {
 
   // Initial trigger
   setScene(0);
+}
 
-  // ==========================================================================
-  // CHANNEL FEATURE TILES (2x2 GRID REDESIGN)
-  // Plays ONCE when tile scrolls into view (~5 seconds), ends on a complete
-  // final frame that stays frozen, and replays on hover or keyboard focus.
-  // ==========================================================================
+// ==========================================================================
+// CHANNEL FEATURE TILES (2x2 GRID REDESIGN)
+// Plays ONCE when tile scrolls into view (~5 seconds), ends on a complete
+// final frame that stays frozen, and replays on hover or keyboard focus.
+// ==========================================================================
+function initChannelTiles() {
   const channelTiles = document.querySelectorAll('.cft-tile');
-  if (channelTiles.length > 0) {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!channelTiles.length) return;
 
-    // Helper to replay animation on a tile
-    const replayTileAnimation = (tile) => {
-      if (prefersReducedMotion) return;
-      tile.classList.remove('is-in-view');
-      // Force DOM reflow to restart CSS keyframe animations cleanly
-      void tile.offsetWidth;
-      tile.classList.add('is-in-view');
-    };
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if ('IntersectionObserver' in window) {
-      const tileObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-in-view');
-            // Unobserve after first entrance so it doesn't replay endlessly on scroll
-            tileObserver.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.2,
-        rootMargin: '0px 0px -40px 0px'
+  const replayTileAnimation = (tile) => {
+    if (prefersReducedMotion) return;
+    tile.classList.remove('is-in-view');
+    void tile.offsetWidth; // Force DOM reflow to restart CSS keyframe animations cleanly
+    tile.classList.add('is-in-view');
+  };
+
+  if ('IntersectionObserver' in window) {
+    const tileObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in-view');
+          tileObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '50px 0px'
+    });
+
+    channelTiles.forEach(tile => {
+      tileObserver.observe(tile);
+
+      // Replay on hover
+      let isReplaying = false;
+      tile.addEventListener('mouseenter', () => {
+        if (!isReplaying && tile.classList.contains('is-in-view')) {
+          isReplaying = true;
+          replayTileAnimation(tile);
+          setTimeout(() => { isReplaying = false; }, 4000);
+        }
       });
 
-      channelTiles.forEach(tile => {
-        tileObserver.observe(tile);
-
-        // Replay on hover
-        let isReplaying = false;
-        tile.addEventListener('mouseenter', () => {
+      // Replay on keyboard focus inside illustration
+      const illusArea = tile.querySelector('.cft-illus');
+      if (illusArea) {
+        illusArea.addEventListener('focus', () => {
           if (!isReplaying && tile.classList.contains('is-in-view')) {
             isReplaying = true;
             replayTileAnimation(tile);
-            setTimeout(() => { isReplaying = false; }, 5000);
+            setTimeout(() => { isReplaying = false; }, 4000);
           }
         });
-
-        // Replay on keyboard focus inside illustration or tile
-        const illusArea = tile.querySelector('.cft-illus');
-        if (illusArea) {
-          illusArea.addEventListener('focus', () => {
-            if (!isReplaying && tile.classList.contains('is-in-view')) {
-              isReplaying = true;
-              replayTileAnimation(tile);
-              setTimeout(() => { isReplaying = false; }, 5000);
-            }
-          });
-        }
-      });
-    } else {
-      // Fallback for browsers without IntersectionObserver
-      channelTiles.forEach(tile => tile.classList.add('is-in-view'));
-    }
+      }
+    });
+  } else {
+    // Fallback for browsers without IntersectionObserver
+    channelTiles.forEach(tile => tile.classList.add('is-in-view'));
   }
+}
 
-  // Stacking Channel Showcase Cards Smooth Scroll Effect
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initChannelTiles);
+} else {
+  initChannelTiles();
+}
+
+// ==========================================================================
+// CHANNEL CARDS (STACKING SHOWCASE ON SCROLL)
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
   const stackCards = document.querySelectorAll('.channel-stack-card');
   if (stackCards.length > 0) {
     const onStackScroll = () => {
@@ -1243,4 +1259,5 @@ function initHeroConversationVisual() {
     onStackScroll();
   }
 });
+
 

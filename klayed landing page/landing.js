@@ -2067,7 +2067,8 @@ function initDeveloperSection() {
     return;
   }
 
-  let currentLang = 'node';
+  const activeLangBtn = root.querySelector('.kly-dev-lang-item.active');
+  let currentLang = activeLangBtn ? activeLangBtn.getAttribute('data-lang') : 'curl';
   let currentTab = 'send';
   let currentRawCode = '';
   let copyTimeout = null;

@@ -2179,6 +2179,13 @@ function initIndustryJourneySystem(customData) {
   };
 }
 
+// Auto-initialize if DOM is already ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => initIndustryJourneySystem());
+} else {
+  initIndustryJourneySystem();
+}
+
 /**
  * ============================================================================
  * Developer Section Controller ("Send once. Klayed relays it.")

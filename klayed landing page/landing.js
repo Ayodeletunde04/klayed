@@ -1391,200 +1391,211 @@ const INDUSTRY_JOURNEYS_DATA = {
       }
     ]
   },
-  healthcare: {
-    label: "Healthcare",
-    headline: "Book appointments, cut no-shows, follow up. Done.",
-    subtext: "Confirm bookings, remind patients the day before, call those without smartphones, and tell them when something is ready, with no medical details in any message.",
-    businessName: "Palmview Clinic",
-    outcome: "Fewer missed appointments, and patient details never travel in a message.",
+  'payment-processors': {
+    label: "Payment processors",
+    headline: "Confirm payments, alert merchants, report settlements. Done.",
+    subtext: "Tell the payer, the merchant and your finance team the moment money moves, each on the channel they actually read.",
+    businessName: "Payvera",
+    outcome: "From payment to settlement report, with no one on your team sending a message.",
     steps: [
       {
-        label: "Appointment booked",
-        trigger: "When a patient books",
+        label: "Payment completed",
+        trigger: "When a customer pays",
         channel: "sms",
         channelLabel: "SMS",
         preview: {
           channel: "sms",
-          sender: "PALMVIEW",
-          time: "09:30 AM",
-          smsTitle: "Appointment alert",
-          smsBody: "Your appointment is booked for Tue 14 Oct, 10:30 AM. Reply C to cancel."
+          sender: "PAYVERA",
+          time: "now",
+          smsTitle: "Payment completed",
+          smsBody: "You paid N45,000 to Zuri Stores. Ref 8492."
         }
       },
       {
-        label: "Day before",
-        trigger: "24 hours before the visit",
+        label: "Merchant notified",
+        trigger: "When the merchant gets paid",
         channel: "whatsapp",
         channelLabel: "WhatsApp",
         preview: {
           channel: "whatsapp",
-          sender: "Palmview Clinic",
-          time: "10:30 AM",
-          bubbleText: "Reminder: your appointment is tomorrow at 10:30 AM.",
-          quickReplies: [
-            { text: "Confirm", tapped: true },
-            { text: "Reschedule" }
-          ]
+          sender: "Payvera",
+          time: "10:14 AM",
+          bubbleText: "N45,000 payment received from Adaeze.",
+          quickReplies: ["View receipt", "Report a problem"]
         }
       },
       {
-        label: "No reply",
-        trigger: "When a patient has not confirmed",
+        label: "Payment declined",
+        trigger: "When a payment does not go through",
+        channel: "sms",
+        channelLabel: "WhatsApp then SMS",
+        fallback: {
+          primaryChannel: "whatsapp",
+          primaryLabel: "WhatsApp",
+          failedStatus: "Not delivered",
+          relayChannel: "sms",
+          relayLabel: "SMS",
+          deliveredStatus: "Delivered"
+        },
+        preview: {
+          channel: "sms",
+          sender: "PAYVERA",
+          time: "now",
+          smsTitle: "Relayed via SMS",
+          smsBody: "Your payment of N45,000 did not go through. Try again or use another card."
+        }
+      },
+      {
+        label: "Settlement ready",
+        trigger: "Every morning, for your finance team",
+        channel: "email",
+        channelLabel: "Email",
+        preview: {
+          channel: "email",
+          sender: "Payvera",
+          time: "07:00 AM",
+          emailSubject: "Daily settlement report",
+          emailSnippet: "Ready to download",
+          btnText: "Download report"
+        }
+      }
+    ]
+  },
+  'fraud-compliance': {
+    label: "Fraud and compliance",
+    headline: "Reach customers, confirm transfers, keep a record. Done.",
+    subtext: "When your system flags a risky transaction, Klayed carries your question to the customer and brings the answer back to you.",
+    businessName: "Northgate Bank",
+    outcome: "Customer reached. Answer received. Record saved.",
+    steps: [
+      {
+        label: "Transfer flagged",
+        trigger: "When your system flags a transfer",
+        channel: "sms",
+        channelLabel: "SMS",
+        preview: {
+          channel: "sms",
+          sender: "NORTHGATE",
+          time: "now",
+          smsTitle: "Transfer flagged",
+          smsBody: "Did you make this transfer of N250,000? Reply YES or NO."
+        }
+      },
+      {
+        label: "No reply yet",
+        trigger: "If the customer does not answer in 2 minutes",
+        channel: "voice",
+        channelLabel: "SMS then Voice",
+        fallback: {
+          primaryChannel: "sms",
+          primaryLabel: "SMS",
+          failedStatus: "No reply",
+          relayChannel: "voice",
+          relayLabel: "Voice",
+          deliveredStatus: "Relayed"
+        },
+        preview: {
+          channel: "voice",
+          sender: "Northgate Bank",
+          duration: "00:15",
+          transcript: "Press 1 if this was you. Press 2 if it was not.",
+          keypadActive: "1"
+        }
+      },
+      {
+        label: "Answer received",
+        trigger: "When the customer replies",
         channel: "voice",
         channelLabel: "Voice",
         preview: {
           channel: "voice",
-          sender: "Palmview Clinic",
-          duration: "00:20",
-          transcript: "Please press 1 to confirm tomorrow's appointment, or 2 to reschedule.",
-          keypadActive: "1",
-          resultText: "Patient confirmed"
+          sender: "Northgate Bank",
+          duration: "00:22",
+          transcript: "Press 1 if this was you. Press 2 if it was not.",
+          keypadActive: "2",
+          resultText: "Reply sent to your system: Not me",
+          systemNote: "Your system decides what happens next."
         }
       },
       {
-        label: "After the visit",
-        trigger: "When results are ready",
+        label: "Record saved",
+        trigger: "For your audit trail",
         channel: "email",
         channelLabel: "Email",
         preview: {
           channel: "email",
-          sender: "Palmview Clinic",
-          time: "Wednesday",
-          emailSubject: "Your results are ready",
-          emailSnippet: "Sign in to your patient portal to view them.",
-          btnText: "Patient portal"
+          sender: "Northgate Bank",
+          time: "Audit log",
+          emailSubject: "Record of this alert",
+          emailSnippet: "Saved for your audit trail."
         }
       }
     ]
   },
-  education: {
-    label: "Education",
-    headline: "Admit students, collect fees, keep parents informed. Done.",
-    subtext: "Send offer letters, remind parents about fees, alert them the moment a child is absent, and share timetables with a whole class at once.",
-    businessName: "Brightpath Academy",
-    outcome: "Parents are always informed, with no phone trees and no printed notices.",
+  'commercial-banks': {
+    label: "Commercial banks",
+    headline: "Verify logins, alert on activity, deliver statements. Done.",
+    subtext: "Reach customers on the channel that works, so fewer people get locked out and fewer call your support line.",
+    businessName: "Crestline Bank",
+    outcome: "Customer logged in. Alerts sent. Statement delivered. No support call needed.",
     steps: [
       {
-        label: "Admission offer",
-        trigger: "When a place is offered",
+        label: "Login code",
+        trigger: "When a customer logs in from a new phone",
+        channel: "sms",
+        channelLabel: "SMS",
+        preview: {
+          channel: "sms",
+          sender: "CRESTLINE",
+          time: "now",
+          smsTitle: "Security code",
+          smsBody: "Your code is 849 201. Do not share it."
+        }
+      },
+      {
+        label: "Code not delivered",
+        trigger: "When the text does not land",
+        channel: "voice",
+        channelLabel: "SMS then Voice",
+        fallback: {
+          primaryChannel: "sms",
+          primaryLabel: "SMS",
+          failedStatus: "Not delivered",
+          relayChannel: "voice",
+          relayLabel: "Voice",
+          deliveredStatus: "Relayed"
+        },
+        preview: {
+          channel: "voice",
+          sender: "Crestline Bank",
+          duration: "00:14",
+          transcript: "Your login code is 8 4 9 2 0 1."
+        }
+      },
+      {
+        label: "Debit alert",
+        trigger: "When money leaves an account",
+        channel: "whatsapp",
+        channelLabel: "WhatsApp",
+        preview: {
+          channel: "whatsapp",
+          sender: "Crestline Bank",
+          time: "11:42 AM",
+          bubbleText: "N120,000 was debited from your account ending 4821.",
+          quickReplies: ["This was me", "Report it"]
+        }
+      },
+      {
+        label: "Statement ready",
+        trigger: "At the end of the month",
         channel: "email",
         channelLabel: "Email",
         preview: {
           channel: "email",
-          sender: "Brightpath Academy",
-          time: "Tuesday",
-          emailSubject: "Your offer of admission",
-          emailSnippet: "We are pleased to offer admission for the upcoming academic year.",
-          btnText: "Accept place"
-        }
-      },
-      {
-        label: "Fees due",
-        trigger: "7 days before the deadline",
-        channel: "whatsapp",
-        channelLabel: "WhatsApp",
-        backupChip: "SMS if not read",
-        preview: {
-          channel: "whatsapp",
-          sender: "Brightpath Academy",
-          time: "11:20 AM",
-          bubbleText: "Term 2 fees of N180,000 are due on 20 Oct.",
-          quickReplies: ["Pay now"]
-        }
-      },
-      {
-        label: "Child absent",
-        trigger: "When attendance is marked",
-        channel: "sms",
-        channelLabel: "SMS",
-        preview: {
-          channel: "sms",
-          sender: "BRIGHTPATH",
-          time: "08:45 AM",
-          smsTitle: "Attendance notification",
-          smsBody: "Chidi was marked absent today. Reply to tell us why."
-        }
-      },
-      {
-        label: "Exams",
-        trigger: "When the timetable is published",
-        channel: "whatsapp",
-        channelLabel: "WhatsApp",
-        preview: {
-          channel: "whatsapp",
-          sender: "Brightpath Academy",
-          time: "02:00 PM",
-          broadcastBadge: "Sent to every parent in SS2",
-          bubbleText: "SS2 exam timetable is ready.",
-          quickReplies: ["View timetable"]
-        }
-      }
-    ]
-  },
-  hospitality: {
-    label: "Hospitality",
-    headline: "Check in guests, handle requests, collect feedback. Done.",
-    subtext: "Let guests check in with one tap, ask for anything on WhatsApp, get picked up on time, and tell you how the stay went, with no front desk queue.",
-    businessName: "Grand Horizon Resort",
-    outcome: "Guests check in, ask and give feedback from their phone. Your front desk stays free for the guests who need a person.",
-    steps: [
-      {
-        label: "Before arrival",
-        trigger: "The day before the stay",
-        channel: "whatsapp",
-        channelLabel: "WhatsApp",
-        preview: {
-          channel: "whatsapp",
-          sender: "Grand Horizon Resort",
-          time: "10:00 AM",
-          bubbleText: "Welcome to Grand Horizon. Check in now and skip the front desk.",
-          quickReplies: ["Check in"]
-        }
-      },
-      {
-        label: "Room ready",
-        trigger: "When the room is cleaned",
-        channel: "whatsapp",
-        channelLabel: "WhatsApp",
-        preview: {
-          channel: "whatsapp",
-          sender: "Grand Horizon Resort",
-          time: "01:30 PM",
-          messages: [
-            { from: "business", text: "Your room, Penthouse 402, is ready.", time: "1:30 PM" },
-            { from: "customer", text: "Can we have late checkout and a poolside table for 8pm?", time: "1:32 PM" },
-            { from: "business", text: "Done. Checkout is 2 PM and table 14 is reserved.", time: "1:33 PM" }
-          ]
-        }
-      },
-      {
-        label: "Airport pickup",
-        trigger: "When the driver arrives",
-        channel: "sms",
-        channelLabel: "SMS",
-        preview: {
-          channel: "sms",
-          sender: "GRANDHORIZON",
-          time: "03:15 PM",
-          smsTitle: "Chauffeur arrival",
-          smsBody: "Your chauffeur has arrived at Arrivals. Look for the Grand Horizon sign."
-        }
-      },
-      {
-        label: "After the stay",
-        trigger: "The morning after checkout",
-        channel: "whatsapp",
-        channelLabel: "WhatsApp",
-        preview: {
-          channel: "whatsapp",
-          sender: "Grand Horizon Resort",
-          time: "10:00 AM",
-          bubbleText: "How was your stay with us?",
-          ratingStars: true,
-          followUp: {
-            text: "Thank you for letting us know! We look forward to welcoming you back.",
-            time: "10:02 AM"
-          }
+          sender: "Crestline Bank",
+          time: "31 Mar",
+          emailSubject: "Your March statement is ready",
+          emailSnippet: "View it in your app."
         }
       }
     ]
@@ -1597,20 +1608,20 @@ const INDUSTRY_JOURNEYS_DATA = {
 function getChannelIconSvg(channel) {
   switch (channel) {
     case 'whatsapp':
-      return `<svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M13.6 2.4A7.9 7.9 0 0 0 8 0C3.6 0 0 3.6 0 8a7.9 7.9 0 0 0 1.2 4.2L0 16l3.9-1.2A7.9 7.9 0 0 0 8 16c4.4 0 8-3.6 8-8 0-2.1-.8-4.1-2.4-5.6zM8 14.7c-1.3 0-2.5-.3-3.6-1l-.3-.2-2.3.7.7-2.2-.2-.3A6.7 6.7 0 0 1 1.3 8c0-3.7 3-6.7 6.7-6.7 1.8 0 3.5.7 4.7 2 1.3 1.2 2 2.9 2 4.7 0 3.7-3 6.7-6.7 6.7z"/></svg>`;
+      return `<svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M13.6 2.4A7.9 7.9 0 0 0 8 0C3.6 0 0 3.6 0 8a7.9 7.9 0 0 0 1.2 4.2L0 16l3.9-1.2A7.9 7.9 0 0 0 8 16c4.4 0 8-3.6 8-8 0-2.1-.8-4.1-2.4-5.6zM8 14.7c-1.3 0-2.5-.3-3.6-1l-.3-.2-2.3.7.7-2.2-.2-.3A6.7 6.7 0 0 1 1.3 8c0-3.7 3-6.7 6.7-6.7 1.8 0 3.5.7 4.7 2 1.3 1.2 2 2.9 2 4.7 0 3.7-3 6.7-6.7 6.7z"/></svg>`;
     case 'sms':
-      return `<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 10a2 2 0 0 1-2 2H4l-3 3V3a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2z"/></svg>`;
+      return `<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 10a2 2 0 0 1-2 2H4l-3 3V3a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2z"/></svg>`;
     case 'email':
-      return `<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="1" y="2" width="14" height="12" rx="1.5"/><polyline points="15 3 8 9 1 3"/></svg>`;
+      return `<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="1" y="2" width="14" height="12" rx="1.5"/><polyline points="15 3 8 9 1 3"/></svg>`;
     case 'voice':
-      return `<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14.7 11.3v2a1.3 1.3 0 0 1-1.5 1.4 13.2 13.2 0 0 1-5.8-2 13 13 0 0 1-4-4A13.2 13.2 0 0 1 1.4 2.8 1.3 1.3 0 0 1 2.7 1.3h2a1.3 1.3 0 0 1 1.3 1.1 8.6 8.6 0 0 0 .5 1.9c.2.6 0 1.2-.4 1.6l-.8.8a10.4 10.4 0 0 0 4 4l.8-.8a1.3 1.3 0 0 1 1.6-.4c.6.3 1.2.4 1.9.5a1.3 1.3 0 0 1 1.1 1.3z"/></svg>`;
+      return `<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14.7 11.3v2a1.3 1.3 0 0 1-1.5 1.4 13.2 13.2 0 0 1-5.8-2 13 13 0 0 1-4-4A13.2 13.2 0 0 1 1.4 2.8 1.3 1.3 0 0 1 2.7 1.3h2a1.3 1.3 0 0 1 1.3 1.1 8.6 8.6 0 0 0 .5 1.9c.2.6 0 1.2-.4 1.6l-.8.8a10.4 10.4 0 0 0 4 4l.8-.8a1.3 1.3 0 0 1 1.6-.4c.6.3 1.2.4 1.9.5a1.3 1.3 0 0 1 1.1 1.3z"/></svg>`;
     default:
       return '';
   }
 }
 
 /**
- * Controller for Industry Journey System
+ * Controller for Industry Journey System (Step Player)
  */
 function initIndustryJourneySystem(customData) {
   const journeysData = customData || INDUSTRY_JOURNEYS_DATA;
@@ -1625,7 +1636,9 @@ function initIndustryJourneySystem(customData) {
   const stepsStack = document.getElementById('kij-steps-stack');
   const spineDot = document.getElementById('kij-spine-dot');
   const phoneScreen = document.getElementById('kij-phone-screen');
+  const outcomeStrip = document.getElementById('kij-outcome-strip');
   const outcomeText = document.getElementById('kij-outcome-text');
+  const replayBtn = document.getElementById('kij-replay-btn');
   const illustrationCard = document.getElementById('kij-illustration');
 
   if (!tabBtns.length || !stageWrapper || !headlineEl || !stepsStack || !phoneScreen) {
@@ -1635,6 +1648,8 @@ function initIndustryJourneySystem(customData) {
   let activeTabKey = 'ecommerce';
   let activeStepIndex = 0;
   let autoplayTimer = null;
+  let fallbackTimer = null;
+  let typingTimer = null;
   let isPaused = false;
   let hasUserInteracted = false;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1642,7 +1657,7 @@ function initIndustryJourneySystem(customData) {
   /**
    * Generates phone screen markup for active step
    */
-  function renderPhoneScreen(step) {
+  function renderPhoneScreen(step, animate = true) {
     const p = step.preview;
     const channel = p.channel;
 
@@ -1660,7 +1675,7 @@ function initIndustryJourneySystem(customData) {
 
       const broadcastBadgeHtml = p.broadcastBadge ? `
         <div class="kij-pv-wa-broadcast">
-          <svg viewBox="0 0 16 16" width="10" height="10" fill="currentColor"><path d="M11.5 1a.5.5 0 0 1 .5.5v1.2a6 6 0 0 1 0 10.6v1.2a.5.5 0 0 1-.8.4L8.2 13H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.2l3-1.9a.5.5 0 0 1 .3-.1z"/></svg>
+          <svg viewBox="0 0 16 16" width="11" height="11" fill="currentColor"><path d="M11.5 1a.5.5 0 0 1 .5.5v1.2a6 6 0 0 1 0 10.6v1.2a.5.5 0 0 1-.8.4L8.2 13H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.2l3-1.9a.5.5 0 0 1 .3-.1z"/></svg>
           <span>${p.broadcastBadge}</span>
         </div>
       ` : '';
@@ -1694,7 +1709,54 @@ function initIndustryJourneySystem(customData) {
         messagesHtml = `
           <div class="kij-pv-wa-bubble">
             <p class="kij-pv-msg">${p.bubbleText}</p>
-            <span class="kij-pv-time">${p.time || ''}</span>
+            <div style="display:flex; align-items:center; justify-content:flex-end; gap:4px;">
+              <span class="kij-pv-time">${p.time || 'now'}</span>
+              <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#22C55E" stroke-width="2.2" stroke-linecap="round"><polyline points="1.5 8 5 11.5 11 4.5"/><polyline points="6 11.5 9.5 8"/></svg>
+            </div>
+          </div>
+        `;
+      }
+
+      if (animate && !prefersReducedMotion && !p.messages) {
+        // WhatsApp Typing Indicator sequence: 600ms typing -> bubble slide up -> quick replies pop
+        if (typingTimer) clearTimeout(typingTimer);
+        typingTimer = setTimeout(() => {
+          const bodyEl = phoneScreen.querySelector('.kij-pv-wa-body');
+          if (!bodyEl) return;
+          bodyEl.innerHTML = `
+            ${broadcastBadgeHtml}
+            <div class="kij-pv-wa-bubble kij-bubble-anim">
+              <p class="kij-pv-msg">${p.bubbleText}</p>
+              <div style="display:flex; align-items:center; justify-content:flex-end; gap:4px;">
+                <span class="kij-pv-time">${p.time || 'now'}</span>
+                <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#22C55E" stroke-width="2.2" stroke-linecap="round"><polyline points="1.5 8 5 11.5 11 4.5"/><polyline points="6 11.5 9.5 8"/></svg>
+              </div>
+            </div>
+            ${ratingStarsHtml}
+            ${followUpHtml}
+            ${quickRepliesHtml ? `<div class="kij-pv-qr-list kij-qr-pop">${quickRepliesHtml}</div>` : ''}
+          `;
+        }, 600);
+
+        return `
+          <div class="kij-phone-view kij-phone-wa" role="region" aria-label="WhatsApp message from ${p.sender}">
+            <div class="kij-pv-head">
+              <div class="kij-pv-avatar">${initials}</div>
+              <div class="kij-pv-info">
+                <div class="kij-pv-title-row">
+                  <span class="kij-pv-title">${p.sender}</span>
+                  <svg viewBox="0 0 16 16" width="13" height="13" fill="#22C55E" aria-label="Verified"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-1.03a.75.75 0 0 0-1.06-1.06L6.75 10.16 4.78 8.19a.75.75 0 0 0-1.06 1.06l2.5 2.5a.75.75 0 0 0 1.06 0l5.75-5.78z"/></svg>
+                </div>
+                <span class="kij-pv-sub">Official account</span>
+              </div>
+            </div>
+            <div class="kij-pv-body kij-pv-wa-body">
+              <div class="kij-pv-wa-typing">
+                <span class="kij-typing-dot"></span>
+                <span class="kij-typing-dot"></span>
+                <span class="kij-typing-dot"></span>
+              </div>
+            </div>
           </div>
         `;
       }
@@ -1706,12 +1768,12 @@ function initIndustryJourneySystem(customData) {
             <div class="kij-pv-info">
               <div class="kij-pv-title-row">
                 <span class="kij-pv-title">${p.sender}</span>
-                <svg viewBox="0 0 16 16" width="11" height="11" fill="#22C55E" aria-label="Verified"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-1.03a.75.75 0 0 0-1.06-1.06L6.75 10.16 4.78 8.19a.75.75 0 0 0-1.06 1.06l2.5 2.5a.75.75 0 0 0 1.06 0l5.75-5.78z"/></svg>
+                <svg viewBox="0 0 16 16" width="13" height="13" fill="#22C55E" aria-label="Verified"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-1.03a.75.75 0 0 0-1.06-1.06L6.75 10.16 4.78 8.19a.75.75 0 0 0-1.06 1.06l2.5 2.5a.75.75 0 0 0 1.06 0l5.75-5.78z"/></svg>
               </div>
               <span class="kij-pv-sub">Official account</span>
             </div>
           </div>
-          <div class="kij-pv-body">
+          <div class="kij-pv-body kij-pv-wa-body">
             ${broadcastBadgeHtml}
             ${messagesHtml}
             ${ratingStarsHtml}
@@ -1724,9 +1786,9 @@ function initIndustryJourneySystem(customData) {
 
     if (channel === 'sms') {
       return `
-        <div class="kij-phone-view kij-phone-sms" role="region" aria-label="SMS alert from ${p.sender}">
+        <div class="kij-phone-view kij-phone-sms ${animate && !prefersReducedMotion ? 'kij-sms-anim' : ''}" role="region" aria-label="SMS alert from ${p.sender}">
           <div class="kij-pv-sms-badge">
-            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             <span>Messages</span>
           </div>
           <div class="kij-pv-sms-card">
@@ -1737,7 +1799,7 @@ function initIndustryJourneySystem(customData) {
             <strong class="kij-pv-sms-sender">${p.sender}</strong>
             <p class="kij-pv-sms-msg">${p.smsBody}</p>
             <div class="kij-pv-sms-delivered">
-              <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 8.5 6.5 12 13 4.5"/></svg>
+              <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 8.5 6.5 12 13 4.5"/></svg>
               <span>Delivered</span>
             </div>
           </div>
@@ -1757,10 +1819,10 @@ function initIndustryJourneySystem(customData) {
       ` : '';
 
       return `
-        <div class="kij-phone-view kij-phone-email" role="region" aria-label="Email update from ${p.sender}">
+        <div class="kij-phone-view kij-phone-email ${animate && !prefersReducedMotion ? 'kij-sms-anim' : ''}" role="region" aria-label="Email update from ${p.sender}">
           <div class="kij-pv-email-topbar">
             <div class="kij-pv-email-icon">
-              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div class="kij-pv-email-meta">
               <span class="kij-pv-email-sender">From: ${p.sender}</span>
@@ -1811,8 +1873,13 @@ function initIndustryJourneySystem(customData) {
           </div>
           ${p.resultText ? `
             <div class="kij-pv-voice-result">
-              <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 8.5 6.5 12 13 4.5"/></svg>
+              <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 8.5 6.5 12 13 4.5"/></svg>
               <span>${p.resultText}</span>
+            </div>
+          ` : ''}
+          ${p.systemNote ? `
+            <div class="kij-pv-system-note">
+              ${p.systemNote}
             </div>
           ` : ''}
         </div>
@@ -1823,7 +1890,7 @@ function initIndustryJourneySystem(customData) {
   }
 
   /**
-   * Positions travelling amber dot along the timeline spine
+   * Positions travelling amber dot along the timeline spine (400ms transition)
    */
   function updateSpineDot(stepIndex) {
     if (!spineDot) return;
@@ -1836,7 +1903,7 @@ function initIndustryJourneySystem(customData) {
   }
 
   /**
-   * Sets active step on current tab
+   * Sets active step on current tab with card lift, pulse, and done checks
    */
   function setActiveStep(stepIndex, isManualClick = false) {
     const data = journeysData[activeTabKey];
@@ -1845,36 +1912,93 @@ function initIndustryJourneySystem(customData) {
     activeStepIndex = stepIndex;
     const step = data.steps[stepIndex];
 
+    if (fallbackTimer) {
+      clearTimeout(fallbackTimer);
+      fallbackTimer = null;
+    }
+    if (typingTimer) {
+      clearTimeout(typingTimer);
+      typingTimer = null;
+    }
+
     const stepBtns = stepsStack.querySelectorAll('.kij-step-btn');
     stepBtns.forEach((btn, idx) => {
       if (idx === stepIndex) {
         btn.classList.add('is-active');
+        btn.classList.remove('is-done');
         btn.setAttribute('aria-current', 'step');
+
+        // Check if step has fallback configuration
+        if (step.fallback) {
+          const primaryChip = btn.querySelector('.kij-chip-primary');
+          const primaryText = primaryChip ? primaryChip.querySelector('.kij-chip-text') : null;
+          const relayChip = btn.querySelector('.kij-chip-relay');
+          const relayText = relayChip ? relayChip.querySelector('.kij-chip-text') : null;
+
+          if (primaryChip && relayChip && !prefersReducedMotion) {
+            // First chip turns red with failed status, then relays to next chip
+            fallbackTimer = setTimeout(() => {
+              primaryChip.classList.add('chip-failed');
+              if (primaryText) primaryText.textContent = `${step.fallback.primaryLabel} · ${step.fallback.failedStatus}`;
+              relayChip.classList.add('chip-sms');
+              if (relayText) relayText.textContent = `${step.fallback.relayLabel} · ${step.fallback.deliveredStatus}`;
+            }, 750);
+          }
+        }
+      } else if (idx < stepIndex) {
+        btn.classList.remove('is-active');
+        btn.classList.add('is-done');
+        btn.removeAttribute('aria-current');
       } else {
         btn.classList.remove('is-active');
+        btn.classList.remove('is-done');
         btn.removeAttribute('aria-current');
       }
     });
 
     updateSpineDot(stepIndex);
-    phoneScreen.innerHTML = renderPhoneScreen(step);
+    phoneScreen.innerHTML = renderPhoneScreen(step, !isManualClick);
 
     if (isManualClick) {
+      hasUserInteracted = true;
       stopAutoplay();
-      // Resume autoplay after 3.5s of inactivity so the animation continues seamlessly
-      autoplayTimer = setTimeout(() => {
-        startAutoplay((stepIndex + 1) % 4);
-      }, 3500);
+      // If user jumped to step 4, reveal outcome strip and replay button
+      if (stepIndex === 3) {
+        if (outcomeStrip) outcomeStrip.classList.add('is-revealed');
+        if (replayBtn) replayBtn.classList.add('is-visible');
+      }
     }
   }
 
   /**
-   * Autoplay scheduler (~2.5s per step, loops continuously)
+   * Data-driven Step Player: 4 steps, ~2.8s per step, total ~12s, no infinite loop.
    */
   function startAutoplay(startIndex = 0) {
     stopAutoplay();
+
+    if (outcomeStrip) outcomeStrip.classList.remove('is-revealed');
+    if (replayBtn) replayBtn.classList.remove('is-visible');
+
     if (prefersReducedMotion) {
-      setActiveStep(3, false);
+      // Reduced motion: show final frame statically
+      const stepBtns = stepsStack.querySelectorAll('.kij-step-btn');
+      stepBtns.forEach((btn, idx) => {
+        if (idx < 3) {
+          btn.classList.add('is-done');
+          btn.classList.remove('is-active');
+        } else {
+          btn.classList.add('is-active');
+          btn.classList.remove('is-done');
+        }
+      });
+      activeStepIndex = 3;
+      updateSpineDot(3);
+      const data = journeysData[activeTabKey];
+      if (data && data.steps[3]) {
+        phoneScreen.innerHTML = renderPhoneScreen(data.steps[3], false);
+      }
+      if (outcomeStrip) outcomeStrip.classList.add('is-revealed');
+      if (replayBtn) replayBtn.classList.add('is-visible');
       return;
     }
 
@@ -1882,25 +2006,40 @@ function initIndustryJourneySystem(customData) {
     setActiveStep(currentStep, false);
 
     const advanceStep = () => {
+      if (hasUserInteracted) return;
+
       if (isPaused) {
-        // Paused on hover/focus: retry smoothly in 400ms without killing the loop
         autoplayTimer = setTimeout(advanceStep, 400);
         return;
       }
 
-      // Loop back to step 1 after step 4 finishes
-      currentStep = (currentStep + 1) % 4;
-      setActiveStep(currentStep, false);
-      autoplayTimer = setTimeout(advanceStep, 2500);
+      if (currentStep < 3) {
+        currentStep++;
+        setActiveStep(currentStep, false);
+        autoplayTimer = setTimeout(advanceStep, 2800);
+      } else {
+        // Step 4 finished: reveal outcome bar and replay button, stop loop
+        if (outcomeStrip) outcomeStrip.classList.add('is-revealed');
+        if (replayBtn) replayBtn.classList.add('is-visible');
+        autoplayTimer = null;
+      }
     };
 
-    autoplayTimer = setTimeout(advanceStep, 2500);
+    autoplayTimer = setTimeout(advanceStep, 2800);
   }
 
   function stopAutoplay() {
     if (autoplayTimer) {
       clearTimeout(autoplayTimer);
       autoplayTimer = null;
+    }
+    if (fallbackTimer) {
+      clearTimeout(fallbackTimer);
+      fallbackTimer = null;
+    }
+    if (typingTimer) {
+      clearTimeout(typingTimer);
+      typingTimer = null;
     }
   }
 
@@ -1915,12 +2054,24 @@ function initIndustryJourneySystem(customData) {
     headlineEl.textContent = data.headline;
     subtextEl.textContent = data.subtext;
     if (outcomeText) outcomeText.textContent = data.outcome;
+    if (outcomeStrip) outcomeStrip.classList.remove('is-revealed');
+    if (replayBtn) replayBtn.classList.remove('is-visible');
 
     // Render 4 Step Cards
-    stepsStack.innerHTML = data.steps.map((s, idx) => `
-      <button type="button" class="kij-step-btn ${idx === 0 ? 'is-active' : ''}" data-step="${idx}" aria-label="Step ${idx + 1}: ${s.label}. ${s.trigger}. Channel: ${s.channelLabel}${s.backupChip ? '. Backup: ' + s.backupChip : ''}">
-        <span class="kij-step-label">${s.label}</span>
-        <p class="kij-step-trigger">${s.trigger}</p>
+    stepsStack.innerHTML = data.steps.map((s, idx) => {
+      const chipsHtml = s.fallback ? `
+        <div class="kij-step-chips-row">
+          <span class="kij-step-channel chip-${s.fallback.primaryChannel} kij-chip-primary">
+            ${getChannelIconSvg(s.fallback.primaryChannel)}
+            <span class="kij-chip-text">${s.fallback.primaryLabel}</span>
+          </span>
+          <span class="kij-relay-arrow" aria-hidden="true">→</span>
+          <span class="kij-step-channel chip-${s.fallback.relayChannel} kij-chip-relay">
+            ${getChannelIconSvg(s.fallback.relayChannel)}
+            <span class="kij-chip-text">${s.fallback.relayLabel}</span>
+          </span>
+        </div>
+      ` : `
         <div class="kij-step-chips-row">
           <span class="kij-step-channel chip-${s.channel}">
             ${getChannelIconSvg(s.channel)}
@@ -1928,8 +2079,19 @@ function initIndustryJourneySystem(customData) {
           </span>
           ${s.backupChip ? `<span class="kij-step-backup-chip">${s.backupChip}</span>` : ''}
         </div>
-      </button>
-    `).join('');
+      `;
+
+      return `
+        <button type="button" class="kij-step-btn ${idx === 0 ? 'is-active' : ''}" data-step="${idx}" aria-label="Step ${idx + 1}: ${s.label}. ${s.trigger}.">
+          <div class="kij-step-header">
+            <span class="kij-step-label">${s.label}</span>
+            <span class="kij-step-done-check" aria-hidden="true">✓</span>
+          </div>
+          <p class="kij-step-trigger">${s.trigger}</p>
+          ${chipsHtml}
+        </button>
+      `;
+    }).join('');
 
     // Attach step click & keyboard listeners
     const stepBtns = stepsStack.querySelectorAll('.kij-step-btn');
@@ -1953,10 +2115,18 @@ function initIndustryJourneySystem(customData) {
     });
 
     if (autoStart) {
-      startAutoplay();
+      startAutoplay(0);
     } else {
       setActiveStep(0, false);
     }
+  }
+
+  // Replay text button listener
+  if (replayBtn) {
+    replayBtn.addEventListener('click', () => {
+      hasUserInteracted = false;
+      startAutoplay(0);
+    });
   }
 
   /**
@@ -1986,7 +2156,7 @@ function initIndustryJourneySystem(customData) {
     });
   });
 
-  // Pause on hover or focus
+  // Pause on hover or focus of the card
   if (illustrationCard) {
     illustrationCard.addEventListener('mouseenter', () => {
       isPaused = true;
@@ -2012,7 +2182,7 @@ function initIndustryJourneySystem(customData) {
       entries.forEach(entry => {
         if (entry.isIntersecting && !hasViewTriggered) {
           hasViewTriggered = true;
-          startAutoplay();
+          startAutoplay(0);
           observer.unobserve(entry.target);
         }
       });
@@ -2020,7 +2190,7 @@ function initIndustryJourneySystem(customData) {
 
     observer.observe(sectionEl);
   } else {
-    startAutoplay();
+    startAutoplay(0);
   }
 
   // Recalculate spine dot on window resize
@@ -2028,7 +2198,7 @@ function initIndustryJourneySystem(customData) {
     updateSpineDot(activeStepIndex);
   }, { passive: true });
 
-  // Expose global API so user or subsequent prompts can inspect or override data per tab
+  // Expose global API
   window.KlayedJourneySystem = {
     data: journeysData,
     renderTab: renderTab,

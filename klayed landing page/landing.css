@@ -18359,3 +18359,229 @@ body.dark-preview .insight-chip,
     animation: none !important;
   }
 }
+
+/* ==========================================================================
+   REDESIGNED 6 ANIMATED ILLUSTRATIONS (Bold, Merchant-friendly, 85% Stage Fill)
+   ========================================================================== */
+.kij-merchant-stage-inner {
+  width: 90%;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.kij-result-chip-wrap {
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(232, 163, 61, 0.35);
+  box-shadow: 0 0 24px rgba(232, 163, 61, 0.18);
+}
+
+.kij-result-chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #E8A33D;
+  animation: kijBeaconPulse 1.8s infinite;
+}
+
+.kij-result-chip-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 640px) {
+  .kij-result-chip-text {
+    font-size: 15px;
+  }
+}
+
+/* Card 1: Multi-channel grid */
+.kij-mc-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .kij-mc-grid {
+    grid-template-columns: 1fr 1.35fr;
+    gap: 20px;
+    align-items: center;
+  }
+}
+
+.kij-mc-composer {
+  background: #171717;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+.kij-mc-channels-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kij-mc-chan-item {
+  padding: 12px 16px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #181818;
+}
+
+.kij-mc-chan-item.whatsapp {
+  background: #142319;
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+/* Card 2: Delivery Tracking */
+.kij-dt-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .kij-dt-grid {
+    grid-template-columns: 1.8fr 1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+}
+
+.kij-dt-card {
+  background: #171717;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 18px 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+.kij-dt-stat-box {
+  background: #171717;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* Card 3: Marketing Automation */
+.kij-ma-nodes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .kij-ma-nodes-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+}
+
+.kij-ma-node {
+  background: #171717;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.kij-ma-node.active-success {
+  background: #18261C;
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.15);
+}
+
+.kij-ma-popout {
+  margin-top: 18px;
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 18px;
+  background: #142319;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Card 4: Shared Inbox */
+.kij-si-wrapper {
+  width: 100%;
+  max-width: 620px;
+  background: #171717;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Card 5: Segmentation */
+.kij-cs-wrapper {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.kij-cs-avatar-box {
+  width: 100%;
+  background: #171717;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Card 6: Analytics */
+.kij-ca-wrapper {
+  width: 100%;
+  max-width: 640px;
+  background: #171717;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}

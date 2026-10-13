@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { 
   motion, 
   AnimatePresence, 
@@ -8,540 +8,887 @@ import {
 
 /**
  * ============================================================================
- * TAB CONFIGURATION & CONTENT DATA
- * Edit titles, copy, icons, and illustration parameters here.
+ * COPY & CONTENT DICTIONARY
+ * Single centralized object for copy editing (No jargon, 100% merchant-friendly).
  * ============================================================================
  */
-export interface TabItem {
-  id: string;
-  title: string;
-  description: string;
-  learnMoreUrl: string;
-  icon: (props: { className?: string; active?: boolean }) => JSX.Element;
-}
+export const ENGAGEMENT_COPY = {
+  header: {
+    pill: "Built different",
+    title: "Built For Modern Customer Engagement",
+    subtext: "Ditch fragmented point tools. Klayed provides a unified engine designed for speed, resilience, and actionable business insights.",
+    cta: "Explore The Platform"
+  },
+  tabs: [
+    {
+      id: "multichannel",
+      title: "Multi-channel communication",
+      description: "Send across SMS, WhatsApp, Email, and Voice through one uniform API endpoint.",
+      resultChip: "Write once. Reach customers on every channel.",
+      composer: {
+        title: "New Announcement",
+        message: "Your order #1042 has shipped. Track your delivery live.",
+        sendBtn: "Send to all"
+      },
+      channels: {
+        whatsapp: { title: "WhatsApp", preview: "Your order #1042 has shipped. Track your delivery live.", status: "Delivered" },
+        sms: { title: "SMS", preview: "Klayed Store: Your order #1042 has shipped.", status: "Delivered" },
+        email: { title: "Email", subject: "Order #1042 has shipped!", preview: "Track your items now.", status: "Opened" },
+        voice: { title: "Voice Call", caller: "Klayed Dispatch", status: "Ringing..." }
+      }
+    },
+    {
+      id: "delivery-tracking",
+      title: "Real-time delivery tracking",
+      description: "Sub-second carrier delivery receipts, bounce analysis, and dynamic route switching.",
+      resultChip: "Failed messages are re-sent automatically.",
+      customers: [
+        { name: "Chioma Okon", initials: "CO", phone: "0803 214 9811" },
+        { name: "Babatunde Adeleke", initials: "BA", phone: "0812 559 4022" }
+      ],
+      stat: {
+        value: "98.4%",
+        label: "Delivered on time"
+      }
+    },
+    {
+      id: "marketing-automation",
+      title: "Marketing automation",
+      description: "Visual event-driven builders to nurture leads and re-engage lapsed customers.",
+      resultChip: "Set it once. It runs 24/7.",
+      steps: [
+        { label: "Customer leaves cart", sub: "₦38,500 in bag" },
+        { label: "Wait 45 minutes", sub: "Auto countdown" },
+        { label: "Cart over ₦20,000?", sub: "Yes, VIP cart" },
+        { label: "Send WhatsApp offer", sub: "10% off coupon" }
+      ],
+      whatsappMsg: "You forgot your items! Here is 10% off your order.",
+      recoveredValue: "+₦45,000 recovered"
+    },
+    {
+      id: "team-inbox",
+      title: "Shared team inbox",
+      description: "Enable support and sales teams to collaborate seamlessly with zero message collisions.",
+      resultChip: "Never answer the same customer twice.",
+      customer: {
+        name: "Folake (Lagos)",
+        initials: "FL",
+        message: "How much is delivery to Ikeja?"
+      },
+      agents: {
+        ada: { name: "Ada", initials: "AD", status: "Replying now...", replyText: "Delivery to Ikeja is ₦2,500. Same-day delivery!" },
+        tunde: { name: "Tunde", initials: "TU", blockedNotice: "Ada is already on this" }
+      }
+    },
+    {
+      id: "customer-segmentation",
+      title: "Customer segmentation",
+      description: "Slice audiences by purchasing frequency, country, and behavior with instant syncing.",
+      resultChip: "Message the right people, not everyone.",
+      filters: [
+        { id: "freq", label: "Frequent buyers" },
+        { id: "lagos", label: "Lagos customers" },
+        { id: "cart", label: "Abandoned cart" }
+      ],
+      groupName: "VIP Campaign Audience",
+      matchedCount: "2,480 customers",
+      sendBtn: "Send campaign"
+    },
+    {
+      id: "campaign-analytics",
+      title: "Campaign analytics",
+      description: "Audit open rates, link clicks, conversion ROI, and deliverability health at a glance.",
+      resultChip: "Know what works, then do more of it.",
+      kpis: [
+        { label: "Open rate", value: "64.8%", change: "+12%" },
+        { label: "Link clicks", value: "28.4%", change: "+8%" },
+        { label: "Return on spend", value: "4.8x", change: "+18%" }
+      ],
+      chart: {
+        days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        bestDayTooltip: "Friday: your best day to send"
+      }
+    }
+  ]
+};
 
-export const TABS: TabItem[] = [
-  {
-    id: 'multichannel',
-    title: 'Multi-channel communication',
-    description: 'Send across SMS, WhatsApp, Email, and Voice through one uniform API endpoint.',
-    learnMoreUrl: '#multichannel',
-    icon: ({ className }) => (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-      </svg>
-    ),
-  },
-  {
-    id: 'delivery-tracking',
-    title: 'Real-time delivery tracking',
-    description: 'Sub-second carrier delivery receipts, bounce analysis, and dynamic route switching.',
-    learnMoreUrl: '#delivery-tracking',
-    icon: ({ className }) => (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-    ),
-  },
-  {
-    id: 'marketing-automation',
-    title: 'Marketing automation',
-    description: 'Visual event-driven builders to nurture leads and re-engage lapsed customers.',
-    learnMoreUrl: '#marketing-automation',
-    icon: ({ className }) => (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    ),
-  },
-  {
-    id: 'team-inbox',
-    title: 'Shared team inbox',
-    description: 'Enable support and sales teams to collaborate seamlessly with zero message collisions.',
-    learnMoreUrl: '#team-inbox',
-    icon: ({ className }) => (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-      </svg>
-    ),
-  },
-  {
-    id: 'customer-segmentation',
-    title: 'Customer segmentation',
-    description: 'Slice audiences by purchasing frequency, country, and behavior with instant syncing.',
-    learnMoreUrl: '#customer-segmentation',
-    icon: ({ className }) => (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-      </svg>
-    ),
-  },
-  {
-    id: 'campaign-analytics',
-    title: 'Campaign analytics',
-    description: 'Audit open rates, link clicks, conversion ROI, and deliverability health at a glance.',
-    learnMoreUrl: '#campaign-analytics',
-    icon: ({ className }) => (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-      </svg>
-    ),
-  },
-];
-
-const AUTOPLAY_DURATION_MS = 6000;
+const DURATION_MS = 6000;
 
 /**
  * ============================================================================
- * ILLUSTRATION 1: MULTI-CHANNEL COMMUNICATION
+ * LUCIDE-STYLE VECTOR ICONS (No emojis, crisp 1.8-2px stroke)
  * ============================================================================
  */
-const MultiChannelIllustration: React.FC = () => {
-  const channels = [
-    { label: 'SMS', color: '#E8A33D', sub: '99.8% Open' },
-    { label: 'WhatsApp', color: '#25D366', sub: 'Verified Tier 3' },
-    { label: 'Email', color: '#60A5FA', sub: 'Zero Spam' },
-    { label: 'Voice', color: '#F472B6', sub: 'PSTN Direct' },
-  ];
+const CheckIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <polyline points="20 6 9 17 4 12" />
+  </svg>
+);
+
+const DoubleCheckIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M18 6L7 17l-5-5" />
+    <path d="M22 10l-7.5 7.5L13 16" />
+  </svg>
+);
+
+const SendIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <line x1="22" y1="2" x2="11" y2="13" />
+    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+  </svg>
+);
+
+const PhoneCallIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+  </svg>
+);
+
+const MailIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+    <polyline points="22,6 12,13 2,6" />
+  </svg>
+);
+
+const MessageSquareIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+  </svg>
+);
+
+const XIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
+
+const RefreshCwIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <polyline points="23 4 23 10 17 10" />
+    <polyline points="1 20 1 14 7 14" />
+    <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" />
+  </svg>
+);
+
+const ShoppingBagIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <path d="M16 10a4 4 0 01-8 0" />
+  </svg>
+);
+
+const ClockIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <circle cx="12" cy="12" r="10" />
+    <polyline points="12 6 12 12 16 14" />
+  </svg>
+);
+
+const FilterIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+  </svg>
+);
+
+const ZapIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+  </svg>
+);
+
+const UsersIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 00-3-3.87" />
+    <path d="M16 3.13a4 4 0 010 7.75" />
+  </svg>
+);
+
+const ArrowUpRightIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <line x1="7" y1="17" x2="17" y2="7" />
+    <polyline points="7 7 17 7 17 17" />
+  </svg>
+);
+
+/**
+ * ============================================================================
+ * RESULT CHIP (Every illustration holds this at the bottom)
+ * ============================================================================
+ */
+const ResultChip: React.FC<{ text: string }> = ({ text }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 8, scale: 0.96 }}
+    animate={{ opacity: 1, y: 0, scale: 1 }}
+    transition={{ duration: 0.35, delay: 0.4 }}
+    className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-[#E8A33D]/30 shadow-[0_0_20px_rgba(232,163,61,0.15)]"
+  >
+    <span className="w-2 h-2 rounded-full bg-[#E8A33D] animate-ping" />
+    <span className="text-sm sm:text-base font-semibold text-white/90 tracking-tight">
+      {text}
+    </span>
+  </motion.div>
+);
+
+/**
+ * ============================================================================
+ * 1. MULTI-CHANNEL COMMUNICATION
+ * Story: One message becomes four.
+ * ============================================================================
+ */
+export const MultiChannelIllustration: React.FC<{ active: boolean }> = ({ active }) => {
+  const prefersReduced = useReducedMotion();
+  const copy = ENGAGEMENT_COPY.tabs[0];
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center p-6 select-none overflow-hidden">
-      <div 
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)',
-          backgroundSize: '24px 24px',
-        }}
-      />
+    <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 select-none">
+      <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+        
+        {/* Left: Composer Card */}
+        <motion.div
+          key={`composer-${active}`}
+          initial={{ opacity: 0, x: -16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4 }}
+          className="md:col-span-5 p-5 rounded-2xl bg-[#171717] border border-white/[0.08] shadow-2xl flex flex-col gap-4"
+        >
+          <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
+            <span className="text-xs font-semibold text-white/50 uppercase tracking-wider">
+              {copy.composer.title}
+            </span>
+            <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-[#E8A33D]/10 text-[#E8A33D]">
+              All channels
+            </span>
+          </div>
 
-      {/* Central API Origin Node */}
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className="z-10 px-5 py-2.5 rounded-xl bg-[#1A1A1A] border border-[#E8A33D]/40 shadow-[0_0_25px_rgba(232,163,61,0.2)] flex items-center gap-3 mb-10"
-      >
-        <span className="w-2.5 h-2.5 rounded-full bg-[#E8A33D] animate-ping" />
-        <div>
-          <span className="text-[11px] font-mono text-[#E8A33D] tracking-wider uppercase font-semibold block">Unified Gateway</span>
-          <span className="text-xs font-mono text-white/90 font-medium">POST /v1/messages/dispatch</span>
-        </div>
-      </motion.div>
+          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.05] min-h-[72px]">
+            <p className="text-sm sm:text-base text-white/90 font-medium leading-snug">
+              "{copy.composer.message}"
+            </p>
+          </div>
 
-      {/* Grid of channels */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-2xl z-10">
-        {channels.map((chan, idx) => (
           <motion.div
-            key={chan.label}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.15 + idx * 0.1 }}
-            className="group relative p-4 rounded-xl bg-[#171717]/90 border border-white/10 flex flex-col items-center text-center shadow-lg"
+            animate={active && !prefersReduced ? { scale: [1, 0.96, 1] } : {}}
+            transition={{ duration: 0.35, delay: 1.2 }}
+            className="w-full py-3 rounded-xl bg-[#E8A33D] text-[#111110] font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(232,163,61,0.3)]"
           >
-            <motion.div
-              animate={{
-                scale: [1, 1.35, 1],
-                opacity: [0.4, 1, 0.4],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                delay: idx * 0.5,
-              }}
-              style={{ backgroundColor: chan.color }}
-              className="w-8 h-8 rounded-full mb-3 flex items-center justify-center text-black font-bold text-xs shadow-[0_0_15px_currentColor]"
-            >
-              ●
-            </motion.div>
-            <span className="text-sm font-semibold text-white tracking-tight">{chan.label}</span>
-            <span className="text-[11px] text-white/50 mt-1">{chan.sub}</span>
-
-            {/* Simulated live payload packet */}
-            <motion.div
-              animate={{
-                y: [-30, 0],
-                opacity: [0, 1, 0],
-              }}
-              transition={{
-                duration: 1.8,
-                repeat: Infinity,
-                delay: idx * 0.45,
-                ease: 'easeInOut',
-              }}
-              className="absolute -top-3 w-2 h-2 rounded-full bg-[#E8A33D] shadow-[0_0_8px_#E8A33D]"
-            />
+            <SendIcon className="w-4 h-4" />
+            <span>{copy.composer.sendBtn}</span>
           </motion.div>
-        ))}
+        </motion.div>
+
+        {/* Right: 4 Channel Preview Cards */}
+        <div className="md:col-span-7 flex flex-col gap-2.5">
+          {/* WhatsApp Preview */}
+          <motion.div
+            key={`wa-${active}`}
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="p-3.5 rounded-xl bg-[#142319] border border-[#22C55E]/30 flex items-center justify-between gap-3 shadow-lg"
+          >
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-8 h-8 rounded-lg bg-[#22C55E] text-[#111] flex items-center justify-center font-bold text-xs flex-shrink-0">
+                WA
+              </div>
+              <div className="min-w-0">
+                <span className="text-xs font-semibold text-[#22C55E] block">{copy.channels.whatsapp.title}</span>
+                <p className="text-sm text-white/90 truncate font-medium">{copy.channels.whatsapp.preview}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1 text-[#22C55E] text-xs font-semibold flex-shrink-0">
+              <DoubleCheckIcon className="w-4 h-4" />
+              <span>{copy.channels.whatsapp.status}</span>
+            </div>
+          </motion.div>
+
+          {/* SMS Preview */}
+          <motion.div
+            key={`sms-${active}`}
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="p-3.5 rounded-xl bg-[#181818] border border-white/[0.08] flex items-center justify-between gap-3 shadow-lg"
+          >
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-8 h-8 rounded-lg bg-[#E8A33D] text-[#111] flex items-center justify-center font-bold text-xs flex-shrink-0">
+                SMS
+              </div>
+              <div className="min-w-0">
+                <span className="text-xs font-semibold text-[#E8A33D] block">{copy.channels.sms.title}</span>
+                <p className="text-sm text-white/90 truncate font-medium">{copy.channels.sms.preview}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1 text-emerald-400 text-xs font-semibold flex-shrink-0">
+              <CheckIcon className="w-4 h-4" />
+              <span>{copy.channels.sms.status}</span>
+            </div>
+          </motion.div>
+
+          {/* Email Preview */}
+          <motion.div
+            key={`email-${active}`}
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+            className="p-3.5 rounded-xl bg-[#181818] border border-white/[0.08] flex items-center justify-between gap-3 shadow-lg"
+          >
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-8 h-8 rounded-lg bg-sky-500 text-white flex items-center justify-center font-bold text-xs flex-shrink-0">
+                <MailIcon className="w-4 h-4" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-xs font-semibold text-sky-400 block">{copy.channels.email.title}</span>
+                <p className="text-sm text-white/90 truncate font-medium">{copy.channels.email.subject}</p>
+              </div>
+            </div>
+            <span className="text-xs text-white/50 font-medium">{copy.channels.email.status}</span>
+          </motion.div>
+
+          {/* Voice Preview */}
+          <motion.div
+            key={`voice-${active}`}
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+            className="p-3.5 rounded-xl bg-[#181818] border border-white/[0.08] flex items-center justify-between gap-3 shadow-lg"
+          >
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-8 h-8 rounded-lg bg-rose-500 text-white flex items-center justify-center font-bold text-xs flex-shrink-0">
+                <PhoneCallIcon className="w-4 h-4" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-xs font-semibold text-rose-400 block">{copy.channels.voice.title}</span>
+                <p className="text-sm text-white/90 truncate font-medium">{copy.channels.voice.caller}</p>
+              </div>
+            </div>
+            <span className="text-xs font-semibold text-[#E8A33D] animate-pulse">{copy.channels.voice.status}</span>
+          </motion.div>
+        </div>
+
       </div>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        className="mt-7 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-white/70 flex items-center gap-2"
-      >
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-        Zero orchestration overhead • 99.999% SLA
-      </motion.div>
+      <ResultChip text={copy.resultChip} />
     </div>
   );
 };
 
 /**
  * ============================================================================
- * ILLUSTRATION 2: REAL-TIME DELIVERY TRACKING
+ * 2. REAL-TIME DELIVERY TRACKING
+ * Story: You always know where a message is, and it fixes itself if it fails.
  * ============================================================================
  */
-const DeliveryTrackingIllustration: React.FC = () => {
-  const [latency, setLatency] = useState(240);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setLatency(prev => (prev >= 580 ? 240 : prev + 34));
-    }, 280);
-    return () => clearInterval(timer);
-  }, []);
-
-  const logs = [
-    { id: 'msg_9821', dest: '+234 803 *** 4410', status: 'Read', badge: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30', route: 'Primary Direct' },
-    { id: 'msg_9822', dest: '+1 (415) *** 8920', status: 'Delivered', badge: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30', route: 'Direct Route' },
-    { id: 'msg_9823', dest: '+44 7700 *** 0192', status: 'Rerouted (Auto-Failover)', badge: 'bg-[#E8A33D]/20 text-[#E8A33D] border-[#E8A33D]/40', route: 'Carrier Failover' },
-    { id: 'msg_9824', dest: '+254 712 *** 8831', status: 'Delivered', badge: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30', route: 'Safaricom Direct' },
-  ];
+export const DeliveryTrackingIllustration: React.FC<{ active: boolean }> = ({ active }) => {
+  const prefersReduced = useReducedMotion();
+  const copy = ENGAGEMENT_COPY.tabs[1];
 
   return (
-    <div className="relative w-full h-full flex flex-col justify-center items-center p-6 select-none">
-      <div className="w-full max-w-xl bg-[#141414] border border-white/10 rounded-xl overflow-hidden shadow-2xl">
-        <div className="px-5 py-3 border-b border-white/10 bg-white/[0.02] flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400" />
-            <span className="text-xs font-mono font-medium text-white/80">Live Telemetry & Ingestion</span>
+    <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 select-none">
+      <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+        
+        {/* Left: 2 Delivery Track Lanes */}
+        <div className="md:col-span-8 flex flex-col gap-4">
+          
+          {/* Lane 1: Chioma Okon (Success track) */}
+          <motion.div
+            key={`lane1-${active}`}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="p-4 sm:p-5 rounded-2xl bg-[#171717] border border-white/[0.08] shadow-xl"
+          >
+            <div className="flex items-center justify-between mb-3.5">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-purple-500/20 text-purple-300 font-bold text-xs flex items-center justify-center border border-purple-500/30">
+                  {copy.customers[0].initials}
+                </div>
+                <div>
+                  <h4 className="text-sm sm:text-base font-semibold text-white">{copy.customers[0].name}</h4>
+                  <span className="text-xs text-white/40">{copy.customers[0].phone}</span>
+                </div>
+              </div>
+              <span className="text-xs font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2.5 py-1 rounded-full border border-[#22C55E]/20">
+                Delivered
+              </span>
+            </div>
+
+            {/* Step rail */}
+            <div className="grid grid-cols-3 gap-2 text-center text-xs pt-2 border-t border-white/[0.05]">
+              <div className="flex items-center gap-1.5 justify-center text-emerald-400 font-medium">
+                <CheckIcon className="w-3.5 h-3.5" /> Sent
+              </div>
+              <div className="flex items-center gap-1.5 justify-center text-emerald-400 font-medium">
+                <CheckIcon className="w-3.5 h-3.5" /> Delivered
+              </div>
+              <div className="flex items-center gap-1.5 justify-center text-emerald-400 font-bold">
+                <DoubleCheckIcon className="w-4 h-4" /> Read
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Lane 2: Babatunde Adeleke (Auto-Failover track) */}
+          <motion.div
+            key={`lane2-${active}`}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.15 }}
+            className="p-4 sm:p-5 rounded-2xl bg-[#171717] border border-white/[0.08] shadow-xl"
+          >
+            <div className="flex items-center justify-between mb-3.5">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-teal-500/20 text-teal-300 font-bold text-xs flex items-center justify-center border border-teal-500/30">
+                  {copy.customers[1].initials}
+                </div>
+                <div>
+                  <h4 className="text-sm sm:text-base font-semibold text-white">{copy.customers[1].name}</h4>
+                  <span className="text-xs text-white/40">{copy.customers[1].phone}</span>
+                </div>
+              </div>
+              <span className="text-xs font-semibold text-[#E8A33D] bg-[#E8A33D]/10 px-2.5 py-1 rounded-full border border-[#E8A33D]/30">
+                Auto-switched to SMS
+              </span>
+            </div>
+
+            {/* Failover sequence */}
+            <div className="flex items-center justify-between gap-2 text-xs pt-2 border-t border-white/[0.05]">
+              <div className="flex items-center gap-1 text-rose-400 font-medium">
+                <XIcon className="w-3.5 h-3.5" /> WhatsApp Failed
+              </div>
+              <div className="flex items-center gap-1 text-[#E8A33D] font-medium">
+                <RefreshCwIcon className="w-3.5 h-3.5 animate-spin" /> Auto-reroute
+              </div>
+              <div className="flex items-center gap-1 text-emerald-400 font-bold">
+                <CheckIcon className="w-3.5 h-3.5" /> SMS Delivered
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
+
+        {/* Right: Big Metric Card */}
+        <motion.div
+          key={`stat-${active}`}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: 0.25 }}
+          className="md:col-span-4 p-6 rounded-2xl bg-[#171717] border border-white/[0.08] flex flex-col items-center justify-center text-center shadow-2xl h-full min-h-[160px]"
+        >
+          <span className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">
+            Delivery Health
+          </span>
+          <span className="text-4xl sm:text-5xl font-extrabold text-[#E8A33D] tracking-tight">
+            {copy.stat.value}
+          </span>
+          <span className="text-sm font-semibold text-emerald-400 mt-2 flex items-center gap-1">
+            <CheckIcon className="w-4 h-4" /> {copy.stat.label}
+          </span>
+        </motion.div>
+
+      </div>
+
+      <ResultChip text={copy.resultChip} />
+    </div>
+  );
+};
+
+/**
+ * ============================================================================
+ * 3. MARKETING AUTOMATION
+ * Story: Recover a lost sale without lifting a finger.
+ * ============================================================================
+ */
+export const MarketingAutomationIllustration: React.FC<{ active: boolean }> = ({ active }) => {
+  const copy = ENGAGEMENT_COPY.tabs[2];
+  const icons = [ShoppingBagIcon, ClockIcon, FilterIcon, MessageSquareIcon];
+
+  return (
+    <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 select-none">
+      <div className="w-full max-w-3xl flex flex-col gap-6">
+        
+        {/* 4 Large Connected Nodes */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 relative">
+          {copy.steps.map((step, idx) => {
+            const Icon = icons[idx];
+            const isLast = idx === 3;
+
+            return (
+              <motion.div
+                key={`node-${idx}-${active}`}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: idx * 0.12 }}
+                className={`p-4 rounded-2xl border flex flex-col items-center text-center transition-all ${
+                  isLast 
+                    ? 'bg-[#18261C] border-[#22C55E]/40 shadow-[0_0_25px_rgba(34,197,94,0.15)]' 
+                    : 'bg-[#171717] border-white/[0.08]'
+                }`}
+              >
+                <div className={`w-10 h-10 rounded-xl mb-3 flex items-center justify-center ${
+                  isLast ? 'bg-[#22C55E] text-[#111]' : 'bg-white/5 text-white/80'
+                }`}>
+                  <Icon className="w-5 h-5" />
+                </div>
+                <h4 className="text-sm font-bold text-white tracking-tight leading-tight">
+                  {step.label}
+                </h4>
+                <span className="text-xs text-white/50 mt-1">{step.sub}</span>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* WhatsApp Message & Money Recovered Counter */}
+        <motion.div
+          key={`pop-${active}`}
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: 0.4 }}
+          className="p-4 sm:p-5 rounded-2xl bg-[#142319] border border-[#22C55E]/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-[#22C55E] text-black font-extrabold flex items-center justify-center flex-shrink-0">
+              WA
+            </div>
+            <div>
+              <span className="text-xs font-semibold text-[#22C55E]">Automated WhatsApp Message</span>
+              <p className="text-sm sm:text-base font-semibold text-white">
+                "{copy.whatsappMsg}"
+              </p>
+            </div>
           </div>
-          <div className="flex items-center gap-2 font-mono text-[11px] text-[#E8A33D]">
-            <span>Dispatch Latency:</span>
-            <span className="font-semibold text-white bg-white/10 px-1.5 py-0.5 rounded">{latency}ms</span>
+
+          <div className="flex-shrink-0 px-4 py-2 rounded-xl bg-[#22C55E] text-[#111] font-bold text-sm sm:text-base flex items-center gap-1.5 shadow-[0_0_20px_rgba(34,197,94,0.3)]">
+            <ArrowUpRightIcon className="w-4 h-4" />
+            <span>{copy.recoveredValue}</span>
+          </div>
+        </motion.div>
+
+      </div>
+
+      <ResultChip text={copy.resultChip} />
+    </div>
+  );
+};
+
+/**
+ * ============================================================================
+ * 4. SHARED TEAM INBOX
+ * Story: Two teammates, no double replies.
+ * ============================================================================
+ */
+export const SharedInboxIllustration: React.FC<{ active: boolean }> = ({ active }) => {
+  const copy = ENGAGEMENT_COPY.tabs[3];
+
+  return (
+    <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 select-none">
+      <div className="w-full max-w-2xl bg-[#171717] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-2xl flex flex-col gap-4">
+        
+        {/* Top bar with team status */}
+        <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
+          <div className="flex items-center gap-2">
+            <UsersIcon className="w-4 h-4 text-[#E8A33D]" />
+            <span className="text-sm font-semibold text-white">Customer Support Team</span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-white/50">Online:</span>
+            <div className="flex items-center -space-x-1.5">
+              <div className="w-7 h-7 rounded-full bg-[#E8A33D] text-[#111] text-xs font-bold flex items-center justify-center border-2 border-[#171717]">
+                {copy.agents.ada.initials}
+              </div>
+              <div className="w-7 h-7 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center border-2 border-[#171717]">
+                {copy.agents.tunde.initials}
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="divide-y divide-white/[0.06]">
-          {logs.map((row, i) => (
-            <motion.div
-              key={row.id}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="px-5 py-3 flex items-center justify-between text-xs hover:bg-white/[0.02] transition-colors"
+        {/* Customer Incoming Query */}
+        <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.05] flex items-start gap-3">
+          <div className="w-8 h-8 rounded-full bg-pink-500/20 text-pink-300 font-bold text-xs flex items-center justify-center flex-shrink-0">
+            {copy.customer.initials}
+          </div>
+          <div>
+            <span className="text-xs font-semibold text-white/80">{copy.customer.name}</span>
+            <p className="text-sm sm:text-base font-medium text-white/95 mt-0.5">
+              "{copy.customer.message}"
+            </p>
+          </div>
+        </div>
+
+        {/* Ada Claiming & Typing */}
+        <motion.div
+          key={`ada-${active}`}
+          initial={{ opacity: 0, x: -8 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.35, delay: 0.2 }}
+          className="p-3.5 rounded-xl bg-[#E8A33D]/10 border border-[#E8A33D]/30 flex items-center justify-between"
+        >
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-full bg-[#E8A33D] text-[#111] text-xs font-bold flex items-center justify-center">
+              {copy.agents.ada.initials}
+            </div>
+            <span className="text-sm font-semibold text-[#E8A33D]">
+              {copy.agents.ada.name} is replying...
+            </span>
+          </div>
+          <span className="text-xs font-bold text-[#E8A33D] bg-black/40 px-2 py-0.5 rounded">
+            🔒 Thread Locked
+          </span>
+        </motion.div>
+
+        {/* Tunde Blocked Warning Toast */}
+        <motion.div
+          key={`tunde-${active}`}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.35, delay: 0.4 }}
+          className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-between text-xs sm:text-sm font-semibold text-rose-300"
+        >
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-full bg-blue-500 text-white text-[11px] font-bold flex items-center justify-center">
+              {copy.agents.tunde.initials}
+            </div>
+            <span>{copy.agents.tunde.name} opened ticket</span>
+          </div>
+          <span className="text-xs font-bold bg-rose-500/20 px-2 py-0.5 rounded text-rose-300">
+            {copy.agents.tunde.blockedNotice}
+          </span>
+        </motion.div>
+
+        {/* Ada Sent Reply */}
+        <motion.div
+          key={`reply-${active}`}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, delay: 0.6 }}
+          className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between"
+        >
+          <p className="text-sm font-medium text-emerald-300">
+            "{copy.agents.ada.replyText}"
+          </p>
+          <DoubleCheckIcon className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+        </motion.div>
+
+      </div>
+
+      <ResultChip text={copy.resultChip} />
+    </div>
+  );
+};
+
+/**
+ * ============================================================================
+ * 5. CUSTOMER SEGMENTATION
+ * Story: From a crowd to the right audience.
+ * ============================================================================
+ */
+export const CustomerSegmentationIllustration: React.FC<{ active: boolean }> = ({ active }) => {
+  const copy = ENGAGEMENT_COPY.tabs[4];
+  const [filterStep, setFilterStep] = useState(0);
+
+  useEffect(() => {
+    if (!active) return;
+    const t1 = setTimeout(() => setFilterStep(1), 800);
+    const t2 = setTimeout(() => setFilterStep(2), 1800);
+    const t3 = setTimeout(() => setFilterStep(3), 2800);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, [active]);
+
+  const initialsList = [
+    "AO", "BE", "CH", "DA", "EK", "FA", "GB", "HA",
+    "IB", "JO", "KA", "LU", "MO", "NE", "OK", "PA",
+    "RA", "SE", "TI", "UM", "VI", "WA", "YA", "ZA"
+  ];
+
+  return (
+    <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 select-none">
+      <div className="w-full max-w-2xl flex flex-col gap-5 items-center">
+        
+        {/* 3 Interactive Filter Chips */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5">
+          {copy.filters.map((f, i) => {
+            const isSelected = filterStep >= i + 1;
+            return (
+              <span
+                key={f.id}
+                className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all border ${
+                  isSelected
+                    ? 'bg-[#E8A33D] text-[#111110] border-[#E8A33D] shadow-[0_0_15px_rgba(232,163,61,0.3)]'
+                    : 'bg-white/5 text-white/50 border-white/10'
+                }`}
+              >
+                {isSelected ? '✓ ' : ''}{f.label}
+              </span>
+            );
+          })}
+        </div>
+
+        {/* Dynamic Avatar Cloud & Target Box */}
+        <div className="w-full p-6 rounded-2xl bg-[#171717] border border-white/[0.08] flex flex-col items-center justify-center shadow-2xl">
+          <div className="grid grid-cols-8 sm:grid-cols-12 gap-2 sm:gap-2.5 mb-5">
+            {initialsList.map((initials, idx) => {
+              const isMatch = idx % 3 === 0;
+              const isDimmed = filterStep > 0 && !isMatch;
+
+              return (
+                <motion.div
+                  key={idx}
+                  animate={{
+                    scale: isDimmed ? 0.75 : isMatch && filterStep === 3 ? 1.15 : 1,
+                    opacity: isDimmed ? 0.15 : 1
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold transition-colors ${
+                    isMatch && filterStep === 3
+                      ? 'bg-[#E8A33D] text-[#111] shadow-[0_0_12px_#E8A33D]'
+                      : 'bg-white/10 text-white/70'
+                  }`}
+                >
+                  {initials}
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Group audience outcome card */}
+          <motion.div
+            key={`match-${active}`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+            className="w-full p-4 rounded-xl bg-white/[0.02] border border-white/[0.08] flex items-center justify-between"
+          >
+            <div>
+              <span className="text-xs font-semibold text-white/40 block">{copy.groupName}</span>
+              <strong className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                {copy.matchedCount}
+              </strong>
+            </div>
+
+            <button
+              type="button"
+              className="px-4 py-2 rounded-xl bg-[#E8A33D] text-[#111] font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(232,163,61,0.25)]"
             >
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-[11px] text-white/40">{row.id}</span>
-                <span className="font-mono text-white/90">{row.dest}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="hidden sm:inline text-[11px] text-white/40">{row.route}</span>
-                <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium border ${row.badge}`}>
-                  ✓ {row.status}
+              {copy.sendBtn}
+            </button>
+          </motion.div>
+        </div>
+
+      </div>
+
+      <ResultChip text={copy.resultChip} />
+    </div>
+  );
+};
+
+/**
+ * ============================================================================
+ * 6. CAMPAIGN ANALYTICS
+ * Story: See what works at a glance.
+ * ============================================================================
+ */
+export const CampaignAnalyticsIllustration: React.FC<{ active: boolean }> = ({ active }) => {
+  const copy = ENGAGEMENT_COPY.tabs[5];
+  const barHeights = [45, 62, 58, 76, 98, 60, 52];
+
+  return (
+    <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 select-none">
+      <div className="w-full max-w-2xl bg-[#171717] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-2xl flex flex-col gap-6">
+        
+        {/* 3 KPI Tiles */}
+        <div className="grid grid-cols-3 gap-3 pb-5 border-b border-white/[0.06] text-center">
+          {copy.kpis.map((kpi, i) => (
+            <motion.div
+              key={kpi.label}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: i * 0.1 }}
+            >
+              <span className="text-xs font-semibold text-white/50 block mb-1">{kpi.label}</span>
+              <div className="flex items-center justify-center gap-1.5 flex-wrap">
+                <span className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">{kpi.value}</span>
+                <span className="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">
+                  {kpi.change}
                 </span>
               </div>
             </motion.div>
           ))}
         </div>
-      </div>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.5 }}
-        className="mt-5 flex items-center gap-3 px-4 py-2 rounded-lg bg-[#E8A33D]/10 border border-[#E8A33D]/30 text-xs text-[#E8A33D]"
-      >
-        <span className="w-1.5 h-1.5 rounded-full bg-[#E8A33D] animate-ping" />
-        Dynamic carrier self-healing triggered in 12ms (Zero dropped packets)
-      </motion.div>
-    </div>
-  );
-};
-
-/**
- * ============================================================================
- * ILLUSTRATION 3: MARKETING AUTOMATION
- * ============================================================================
- */
-const MarketingAutomationIllustration: React.FC = () => {
-  const nodes = [
-    { title: 'Trigger', desc: 'Cart Abandoned ($140)', icon: '⚡' },
-    { title: 'Wait', desc: 'Delay 45 Minutes', icon: '⏳' },
-    { title: 'Decision', desc: 'High Value Cart?', icon: '⚖️' },
-    { title: 'Action', desc: 'Send WhatsApp + 10%', icon: '🚀' },
-  ];
-
-  return (
-    <div className="relative w-full h-full flex flex-col justify-center items-center p-6 select-none overflow-hidden">
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-2 w-full max-w-2xl relative">
-        <div className="hidden sm:block absolute top-1/2 left-8 right-8 h-0.5 bg-white/10 -translate-y-1/2 z-0">
+        {/* Weekly Bar Chart with Friday Tooltip */}
+        <div className="relative pt-6">
+          {/* Tooltip positioned directly above Friday (index 4) */}
           <motion.div
-            animate={{
-              left: ['0%', '100%'],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            className="absolute top-1/2 -translate-y-1/2 w-8 h-1 bg-[#E8A33D] rounded-full shadow-[0_0_12px_#E8A33D]"
-          />
-        </div>
-
-        {nodes.map((node, i) => (
-          <motion.div
-            key={node.title}
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.15 }}
-            className={`z-10 w-full sm:w-36 p-3.5 rounded-xl border bg-[#161616] transition-all text-center flex flex-col items-center ${
-              i === 3 
-                ? 'border-[#E8A33D]/60 shadow-[0_0_20px_rgba(232,163,61,0.2)]' 
-                : 'border-white/10 hover:border-white/20'
-            }`}
-          >
-            <div className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center text-sm mb-2">
-              {node.icon}
-            </div>
-            <span className="text-xs font-semibold text-white">{node.title}</span>
-            <span className="text-[10px] text-white/50 mt-1 leading-tight">{node.desc}</span>
-          </motion.div>
-        ))}
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7 }}
-        className="mt-8 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/10 text-xs text-white/60 font-mono"
-      >
-        <span>Conversion Uplift:</span>
-        <span className="text-emerald-400 font-bold">+28.4% recovered revenue</span>
-      </motion.div>
-    </div>
-  );
-};
-
-/**
- * ============================================================================
- * ILLUSTRATION 4: SHARED TEAM INBOX
- * ============================================================================
- */
-const SharedInboxIllustration: React.FC = () => {
-  return (
-    <div className="relative w-full h-full flex flex-col justify-center items-center p-6 select-none">
-      <div className="w-full max-w-lg bg-[#151515] border border-white/10 rounded-xl overflow-hidden shadow-2xl">
-        <div className="px-4 py-3 border-b border-white/10 bg-white/[0.02] flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#E8A33D]" />
-            <span className="text-xs font-semibold text-white">VIP Support Queue</span>
-          </div>
-          <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-            Collision Protection Active
-          </span>
-        </div>
-
-        <div className="p-4 space-y-3">
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            key={`tooltip-${active}`}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-3 rounded-lg bg-white/[0.03] border border-white/[0.06] flex items-start gap-3"
+            transition={{ duration: 0.35, delay: 0.45 }}
+            className="absolute top-0 left-[62%] -translate-x-1/2 px-3 py-1 rounded-lg bg-[#E8A33D] text-[#111110] font-bold text-xs tracking-tight shadow-[0_0_15px_rgba(232,163,61,0.4)] whitespace-nowrap"
           >
-            <div className="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-300 font-bold flex items-center justify-center text-xs flex-shrink-0">
-              EK
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-white/90">Emeka Kalu</span>
-                <span className="text-[10px] text-white/40 font-mono">1m ago</span>
-              </div>
-              <p className="text-xs text-white/60 mt-1 line-clamp-1">
-                "Hi, our enterprise team is looking to activate the Voice fallback SIP trunk."
-              </p>
-            </div>
+            <span>{copy.chart.bestDayTooltip}</span>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="p-3 rounded-lg bg-[#E8A33D]/10 border border-[#E8A33D]/30 flex items-center justify-between"
-          >
-            <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-[#E8A33D] text-black text-[11px] font-bold flex items-center justify-center">
-                A
-              </span>
-              <span className="text-xs text-[#E8A33D] font-medium">Adaeze is drafting a response...</span>
-            </div>
-            <span className="flex items-center gap-1 text-[10px] font-mono text-[#E8A33D] bg-black/40 px-2 py-0.5 rounded">
-              🔒 Thread Locked
-            </span>
-          </motion.div>
+          <div className="flex items-end justify-between gap-3 h-28 sm:h-32 px-2">
+            {copy.chart.days.map((day, idx) => {
+              const isFriday = idx === 4;
+              const height = barHeights[idx];
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="px-3 py-2 rounded-lg bg-white/[0.02] border border-white/[0.04] flex items-center justify-between text-[11px] text-white/40"
-          >
-            <span>Agent Tunde attempted access</span>
-            <span className="text-rose-400 font-mono text-[10px]">Access Blocked (Collision Prevented)</span>
-          </motion.div>
+              return (
+                <div key={day} className="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                  <motion.div
+                    initial={{ height: 0 }}
+                    animate={{ height: `${height}%` }}
+                    transition={{ duration: 0.5, delay: idx * 0.06 }}
+                    className={`w-full rounded-t-lg transition-all ${
+                      isFriday
+                        ? 'bg-[#E8A33D] shadow-[0_0_20px_rgba(232,163,61,0.45)]'
+                        : 'bg-white/10 hover:bg-white/20'
+                    }`}
+                  />
+                  <span className={`text-xs font-mono ${isFriday ? 'text-[#E8A33D] font-bold' : 'text-white/40'}`}>
+                    {day}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
+
       </div>
+
+      <ResultChip text={copy.resultChip} />
     </div>
   );
 };
 
 /**
- * ============================================================================
- * ILLUSTRATION 5: CUSTOMER SEGMENTATION
- * ============================================================================
+ * Stage illustration router for the 6 tabs
  */
-const CustomerSegmentationIllustration: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState<'all' | 'freq' | 'ng'>('all');
-
-  useEffect(() => {
-    const cycle = setInterval(() => {
-      setActiveFilter(prev => (prev === 'all' ? 'freq' : prev === 'freq' ? 'ng' : 'all'));
-    }, 2000);
-    return () => clearInterval(cycle);
-  }, []);
-
-  return (
-    <div className="relative w-full h-full flex flex-col justify-center items-center p-6 select-none">
-      <div className="flex items-center gap-2 mb-6 z-10 flex-wrap justify-center">
-        {[
-          { key: 'all', label: 'All Users (14,200)' },
-          { key: 'freq', label: 'Frequent Buyers (>3 orders)' },
-          { key: 'ng', label: 'Lagos & Abuja High LTV' },
-        ].map(filter => (
-          <button
-            key={filter.key}
-            type="button"
-            className={`px-3 py-1 rounded-full text-xs transition-all font-medium border ${
-              activeFilter === filter.key
-                ? 'bg-[#E8A33D] text-[#0E0E0E] border-[#E8A33D] font-semibold shadow-[0_0_15px_rgba(232,163,61,0.3)]'
-                : 'bg-white/5 text-white/60 border-white/10'
-            }`}
-          >
-            {filter.label}
-          </button>
-        ))}
-      </div>
-
-      <div className="relative w-full max-w-md h-36 bg-[#141414] border border-white/10 rounded-xl overflow-hidden flex items-center justify-center p-4">
-        <div className="grid grid-cols-8 gap-3 sm:gap-4">
-          {Array.from({ length: 32 }).map((_, i) => {
-            const isHighlighted =
-              activeFilter === 'all'
-                ? i % 3 === 0
-                : activeFilter === 'freq'
-                ? i % 2 === 0
-                : i < 16;
-
-            return (
-              <motion.div
-                key={i}
-                animate={{
-                  scale: isHighlighted ? [1, 1.3, 1] : 0.8,
-                  opacity: isHighlighted ? 1 : 0.2,
-                }}
-                transition={{ duration: 0.8, ease: 'easeInOut' }}
-                className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                  isHighlighted 
-                    ? 'bg-[#E8A33D] shadow-[0_0_8px_#E8A33D]' 
-                    : 'bg-white/20'
-                }`}
-              />
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="mt-5 text-xs text-white/60 font-mono flex items-center gap-2">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-        Synced to Meta CAPI, Braze, and BigQuery instantly
-      </div>
-    </div>
-  );
-};
-
-/**
- * ============================================================================
- * ILLUSTRATION 6: CAMPAIGN ANALYTICS
- * ============================================================================
- */
-const CampaignAnalyticsIllustration: React.FC = () => {
-  const bars = [42, 68, 55, 92, 78, 64, 88];
-
-  return (
-    <div className="relative w-full h-full flex flex-col justify-center items-center p-6 select-none">
-      <div className="w-full max-w-lg bg-[#141414] border border-white/10 rounded-xl p-5 shadow-2xl">
-        <div className="grid grid-cols-3 gap-3 pb-5 border-b border-white/10 text-center">
-          <div>
-            <span className="text-[11px] text-white/40 block">Open Rate</span>
-            <span className="text-base sm:text-lg font-bold text-white tracking-tight">64.8%</span>
-          </div>
-          <div>
-            <span className="text-[11px] text-white/40 block">Click-Through</span>
-            <span className="text-base sm:text-lg font-bold text-[#E8A33D] tracking-tight">28.4%</span>
-          </div>
-          <div>
-            <span className="text-[11px] text-white/40 block">ROI Lift</span>
-            <span className="text-base sm:text-lg font-bold text-emerald-400 tracking-tight">4.8x</span>
-          </div>
-        </div>
-
-        <div className="pt-5 flex items-end justify-between gap-3 h-28 px-2">
-          {bars.map((val, idx) => {
-            const isHighlight = idx === 3;
-            return (
-              <div key={idx} className="flex-1 flex flex-col items-center gap-2 h-full justify-end">
-                <motion.div
-                  initial={{ height: 0 }}
-                  animate={{ height: `${val}%` }}
-                  transition={{ duration: 0.6, delay: idx * 0.08 }}
-                  className={`w-full rounded-t-md transition-all ${
-                    isHighlight
-                      ? 'bg-[#E8A33D] shadow-[0_0_15px_rgba(232,163,61,0.4)]'
-                      : 'bg-white/10 hover:bg-white/20'
-                  }`}
-                />
-                <span className="text-[10px] font-mono text-white/40">
-                  {['M', 'T', 'W', 'T', 'F', 'S', 'S'][idx]}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="mt-4 text-[11px] font-mono text-white/50">
-        Aggregated across 2.4M customer events • Verified Deliverability 99.94%
-      </div>
-    </div>
-  );
-};
-
-const ActiveIllustration: React.FC<{ tabId: string }> = ({ tabId }) => {
+const ActiveIllustrationRouter: React.FC<{ tabId: string; active: boolean }> = ({ tabId, active }) => {
   switch (tabId) {
     case 'multichannel':
-      return <MultiChannelIllustration />;
+      return <MultiChannelIllustration active={active} />;
     case 'delivery-tracking':
-      return <DeliveryTrackingIllustration />;
+      return <DeliveryTrackingIllustration active={active} />;
     case 'marketing-automation':
-      return <MarketingAutomationIllustration />;
+      return <MarketingAutomationIllustration active={active} />;
     case 'team-inbox':
-      return <SharedInboxIllustration />;
+      return <SharedInboxIllustration active={active} />;
     case 'customer-segmentation':
-      return <CustomerSegmentationIllustration />;
+      return <CustomerSegmentationIllustration active={active} />;
     case 'campaign-analytics':
-      return <CampaignAnalyticsIllustration />;
+      return <CampaignAnalyticsIllustration active={active} />;
     default:
       return null;
   }
@@ -549,7 +896,7 @@ const ActiveIllustration: React.FC<{ tabId: string }> = ({ tabId }) => {
 
 /**
  * ============================================================================
- * MAIN EXPORT
+ * MAIN COMPONENT: BUILT FOR MODERN CUSTOMER ENGAGEMENT
  * ============================================================================
  */
 export const ModernCustomerEngagement: React.FC = () => {
@@ -563,7 +910,7 @@ export const ModernCustomerEngagement: React.FC = () => {
   const prefersReducedMotion = useReducedMotion();
   const isInView = useInView(sectionRef, { margin: '-10% 0px -10% 0px' });
 
-  const activeTab = useMemo(() => TABS[activeIndex], [activeIndex]);
+  const activeTab = useMemo(() => ENGAGEMENT_COPY.tabs[activeIndex], [activeIndex]);
 
   const handleSelectTab = useCallback((index: number) => {
     setActiveIndex(index);
@@ -581,12 +928,12 @@ export const ModernCustomerEngagement: React.FC = () => {
   const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       e.preventDefault();
-      const next = (index + 1) % TABS.length;
+      const next = (index + 1) % ENGAGEMENT_COPY.tabs.length;
       handleSelectTab(next);
       tabButtonRefs.current[next]?.focus();
     } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
       e.preventDefault();
-      const prev = (index - 1 + TABS.length) % TABS.length;
+      const prev = (index - 1 + ENGAGEMENT_COPY.tabs.length) % ENGAGEMENT_COPY.tabs.length;
       handleSelectTab(prev);
       tabButtonRefs.current[prev]?.focus();
     } else if (e.key === 'Home') {
@@ -595,8 +942,8 @@ export const ModernCustomerEngagement: React.FC = () => {
       tabButtonRefs.current[0]?.focus();
     } else if (e.key === 'End') {
       e.preventDefault();
-      handleSelectTab(TABS.length - 1);
-      tabButtonRefs.current[TABS.length - 1]?.focus();
+      handleSelectTab(ENGAGEMENT_COPY.tabs.length - 1);
+      tabButtonRefs.current[ENGAGEMENT_COPY.tabs.length - 1]?.focus();
     }
   };
 
@@ -606,12 +953,12 @@ export const ModernCustomerEngagement: React.FC = () => {
     }
 
     const intervalMs = 50;
-    const step = (intervalMs / AUTOPLAY_DURATION_MS) * 100;
+    const step = (intervalMs / DURATION_MS) * 100;
 
     const timer = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
-          handleSelectTab((activeIndex + 1) % TABS.length);
+          handleSelectTab((activeIndex + 1) % ENGAGEMENT_COPY.tabs.length);
           return 0;
         }
         return prev + step;
@@ -625,7 +972,7 @@ export const ModernCustomerEngagement: React.FC = () => {
     <section
       ref={sectionRef}
       id="engagement-platform"
-      aria-label="Built For Modern Customer Engagement"
+      aria-label={ENGAGEMENT_COPY.header.title}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
@@ -638,30 +985,30 @@ export const ModernCustomerEngagement: React.FC = () => {
       />
 
       <div className="max-w-6xl mx-auto flex flex-col gap-12">
+        
+        {/* Header & CTA */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-medium text-[#E8A33D] mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-semibold text-[#E8A33D] mb-4 uppercase tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8A33D]" />
-              Built different
+              {ENGAGEMENT_COPY.header.pill}
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.12]">
-              Built For Modern <br className="hidden sm:inline" />
-              Customer Engagement
+              {ENGAGEMENT_COPY.header.title}
             </h2>
 
             <p className="mt-4 text-base sm:text-lg text-white/60 leading-relaxed font-normal">
-              Ditch fragmented point tools. Klayed provides a unified engine designed for speed, 
-              resilience, and actionable business insights.
+              {ENGAGEMENT_COPY.header.subtext}
             </p>
           </div>
 
           <div className="flex-shrink-0">
             <a
-              href="../Klayed dashboard/index.html"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#E8A33D] hover:bg-[#d8932e] text-[#111110] font-semibold text-sm transition-all duration-200 shadow-[0_0_30px_rgba(232,163,61,0.25)] hover:shadow-[0_0_40px_rgba(232,163,61,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0E0E0E] focus-visible:ring-[#E8A33D]"
+              href="#explore"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#E8A33D] hover:bg-[#d8932e] text-[#111110] font-bold text-sm sm:text-base transition-all duration-200 shadow-[0_0_30px_rgba(232,163,61,0.25)] hover:shadow-[0_0_40px_rgba(232,163,61,0.4)]"
             >
-              <span>Explore The Platform</span>
+              <span>{ENGAGEMENT_COPY.header.cta}</span>
               <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
@@ -669,13 +1016,14 @@ export const ModernCustomerEngagement: React.FC = () => {
           </div>
         </div>
 
+        {/* Big Illustration Stage Card */}
         <div 
           role="tabpanel"
-          id={`engagement-panel-${activeTab.id}`}
-          aria-labelledby={`engagement-tab-${activeTab.id}`}
-          className="relative w-full h-[360px] sm:h-[420px] rounded-[20px] bg-[#141414] border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden flex items-center justify-center"
+          id={`panel-${activeTab.id}`}
+          aria-labelledby={`tab-${activeTab.id}`}
+          className="relative w-full h-[400px] sm:h-[460px] rounded-[24px] bg-[#141414] border border-white/[0.08] shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden flex items-center justify-center"
         >
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E8A33D]/30 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E8A33D]/35 to-transparent" />
 
           <AnimatePresence mode="wait">
             <motion.div
@@ -686,18 +1034,19 @@ export const ModernCustomerEngagement: React.FC = () => {
               transition={{ duration: 0.35, ease: 'easeOut' }}
               className="w-full h-full"
             >
-              <ActiveIllustration tabId={activeTab.id} />
+              <ActiveIllustrationRouter tabId={activeTab.id} active={true} />
             </motion.div>
           </AnimatePresence>
         </div>
 
+        {/* 6 Tabs Grid with Vertical Loader Line */}
         <div
           role="tablist"
           aria-label="Features of modern engagement"
           aria-orientation="horizontal"
           className="grid grid-flow-col auto-cols-[82%] sm:auto-cols-auto sm:grid-flow-row sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 overflow-x-auto sm:overflow-visible pb-4 sm:pb-0 snap-x snap-mandatory scrollbar-none"
         >
-          {TABS.map((tab, index) => {
+          {ENGAGEMENT_COPY.tabs.map((tab, index) => {
             const isActive = index === activeIndex;
 
             return (
@@ -705,9 +1054,9 @@ export const ModernCustomerEngagement: React.FC = () => {
                 key={tab.id}
                 ref={el => (tabButtonRefs.current[index] = el)}
                 role="tab"
-                id={`engagement-tab-${tab.id}`}
+                id={`tab-${tab.id}`}
                 aria-selected={isActive}
-                aria-controls={`engagement-panel-${tab.id}`}
+                aria-controls={`panel-${tab.id}`}
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => handleSelectTab(index)}
                 onKeyDown={e => handleKeyDown(e, index)}
@@ -732,9 +1081,9 @@ export const ModernCustomerEngagement: React.FC = () => {
 
                 <div className="flex items-center gap-2.5 mb-2">
                   <div className={`transition-colors duration-200 ${isActive ? 'text-[#E8A33D]' : 'text-white/60'}`}>
-                    <tab.icon className="w-4 h-4" active={isActive} />
+                    <ZapIcon className="w-4 h-4" />
                   </div>
-                  <h3 className="text-sm sm:text-base font-semibold text-white tracking-tight">
+                  <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
                     {tab.title}
                   </h3>
                 </div>
@@ -762,6 +1111,7 @@ export const ModernCustomerEngagement: React.FC = () => {
             );
           })}
         </div>
+
       </div>
     </section>
   );

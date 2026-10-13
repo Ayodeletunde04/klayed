@@ -1415,305 +1415,903 @@
           <div class="kij-eng-stage-glow" aria-hidden="true"></div>
           <div class="kij-eng-stage-card" id="kij-eng-stage-card" role="tabpanel" aria-live="polite">
 
-            <!-- Panel 0: Multi-channel communication -->
+                        <!-- Panel 0: Multi-channel communication -->
             <div class="kij-eng-panel is-active" id="kij-eng-panel-0" role="tabpanel" aria-labelledby="kij-eng-tab-0">
               <div class="kij-merchant-stage-inner">
-                <div style="width: 100%; max-width: 760px; display: flex; flex-direction: column; align-items: center;">
-                  <!-- Top: Gateway Card -->
-                  <div class="kij-mc-gateway-card">
-                    <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06);">
-                      <span style="font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px;">
-                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E8A33D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                        New Announcement
-                      </span>
-                      <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: rgba(232,163,61,0.15); color: #E8A33D; border: 1px solid rgba(232,163,61,0.3);">All 4 Channels</span>
+            <!-- Supporting Tiles Field (Radial Gradient Masked) -->
+            <div class="kij-tile-field-container" aria-hidden="true">
+              <div class="kij-tile-field-grid">
+              <div class="kij-supp-tile band-green kij-tile-ring-mid is-bright-green">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">WhatsApp</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Delivered</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">RCS Business</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Verified Sender</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">WhatsApp Bot</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Interactive Flow</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">RCS Carousel</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Rich Media Card</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-amber kij-tile-ring-mid is-bright-amber">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E8A33D" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">SMS Priority</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">DND Bypass Active</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-amber kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E8A33D" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">SMS OTP</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">99.98% Gateway SLA</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-amber kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E8A33D" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Flash SMS</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Direct Screen Pop</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-amber kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E8A33D" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Shortcode</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Two-Way Messaging</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-mid is-bright-blue">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Email</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Inbox Placed</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Transactional</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">DKIM / SPF Verified</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Newsletter</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Dedicated Warm IP</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Email Batch</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">100k / sec Throughput</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-rose kij-tile-ring-mid is-bright-rose">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#F472B6" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Voice Alert</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Text-to-Speech Call</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-rose kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#F472B6" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Voice IVR</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Interactive DTMF Menu</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-violet kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A78BFA" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Push Mobile</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">APNs & FCM Broadcast</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-violet kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A78BFA" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">In-App Web</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Realtime Socket Notice</span>
+                </div>
+              </div>
+              </div>
+            </div>
+
+                <!-- Bright Focal Card in Centre: Composer -->
+                <div class="kij-focal-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                    <span style="font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px;">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E8A33D" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                      Multi-Channel Composer
+                    </span>
+                    <span style="font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px; background: rgba(232,163,61,0.15); color: #E8A33D; border: 1px solid rgba(232,163,61,0.3); display: flex; align-items: center; gap: 6px;">
+                      <span style="width: 6px; height: 6px; border-radius: 50%; background: #E8A33D; box-shadow: 0 0 6px #E8A33D;"></span>
+                      All 4 Channels Active
+                    </span>
+                  </div>
+
+                  <div style="padding: 16px 18px; border-radius: 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
+                    <p style="margin: 0; font-size: 15px; font-weight: 500; color: #FFFFFF; line-height: 1.45;">
+                      "Your order has shipped. Track your delivery live in real-time."
+                    </p>
+                  </div>
+
+                  <!-- 4 Main Channels Status Grid -->
+                  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+                    <div style="padding: 8px; border-radius: 10px; text-align: center; background: rgba(52,211,153,0.15); border: 1px solid rgba(52,211,153,0.4); color: #34D399;">
+                      <span style="font-size: 11px; font-weight: 700; display: block;">WhatsApp</span>
+                      <span style="font-size: 10px; font-family: monospace;">✓ Delivered</span>
                     </div>
-                    <div style="padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
-                      <p style="margin: 0; font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.95); line-height: 1.4;">
-                        "Your order #1042 has shipped. Track your delivery live."
-                      </p>
+                    <div style="padding: 8px; border-radius: 10px; text-align: center; background: rgba(232,163,61,0.15); border: 1px solid rgba(232,163,61,0.4); color: #E8A33D;">
+                      <span style="font-size: 11px; font-weight: 700; display: block;">SMS</span>
+                      <span style="font-size: 10px; font-family: monospace;">✓ Delivered</span>
                     </div>
-                    <div style="width: 100%; padding: 11px; border-radius: 12px; background: #E8A33D; color: #111110; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 0 20px rgba(232,163,61,0.35);">
-                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                      <span>Send to all</span>
+                    <div style="padding: 8px; border-radius: 10px; text-align: center; background: rgba(96,165,250,0.15); border: 1px solid rgba(96,165,250,0.4); color: #60A5FA;">
+                      <span style="font-size: 11px; font-weight: 700; display: block;">Email</span>
+                      <span style="font-size: 10px; font-family: monospace;">✓ Delivered</span>
+                    </div>
+                    <div style="padding: 8px; border-radius: 10px; text-align: center; background: rgba(244,114,182,0.15); border: 1px solid rgba(244,114,182,0.4); color: #F472B6;">
+                      <span style="font-size: 11px; font-weight: 700; display: block;">Voice</span>
+                      <span style="font-size: 10px; font-family: monospace;">✓ Delivered</span>
                     </div>
                   </div>
 
-                  <!-- 56px Connector Lines (Desktop) -->
-                  <svg viewBox="0 0 760 56" fill="none" class="kij-mc-connector-svg">
-                    <path d="M 380 0 C 380 28, 86 28, 86 56" stroke="rgba(232,163,61,0.35)" stroke-width="2" />
-                    <path d="M 380 0 C 380 28, 282 28, 282 56" stroke="rgba(232,163,61,0.35)" stroke-width="2" />
-                    <path d="M 380 0 C 380 28, 478 28, 478 56" stroke="rgba(232,163,61,0.35)" stroke-width="2" />
-                    <path d="M 380 0 C 380 28, 674 28, 674 56" stroke="rgba(232,163,61,0.35)" stroke-width="2" />
-                  </svg>
-
-                  <!-- 4 Channel Cards in One Row (200px tall) -->
-                  <div class="kij-mc-channel-row">
-                    <div class="kij-mc-channel-card whatsapp">
-                      <div>
-                        <div class="kij-mc-badge" style="background: #22C55E; color: #111;">WA</div>
-                        <strong style="font-size: 13px; color: #22C55E; display: block; text-transform: uppercase;">WhatsApp</strong>
-                        <p style="margin: 4px 0 0; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; line-height: 1.3;">Your order #1042 has shipped. Track it here.</p>
-                      </div>
-                      <div style="padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px; font-weight: 700; color: #22C55E;">
-                        ✓✓ Delivered
-                      </div>
-                    </div>
-
-                    <div class="kij-mc-channel-card">
-                      <div>
-                        <div class="kij-mc-badge" style="background: #E8A33D; color: #111;">SMS</div>
-                        <strong style="font-size: 13px; color: #E8A33D; display: block; text-transform: uppercase;">SMS</strong>
-                        <p style="margin: 4px 0 0; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; line-height: 1.3;">Klayed Store: Your order #1042 has shipped.</p>
-                      </div>
-                      <div style="padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px; font-weight: 700; color: #10B981;">
-                        ✓ Delivered
-                      </div>
-                    </div>
-
-                    <div class="kij-mc-channel-card">
-                      <div>
-                        <div class="kij-mc-badge" style="background: #38BDF8; color: #111;">EM</div>
-                        <strong style="font-size: 13px; color: #38BDF8; display: block; text-transform: uppercase;">Email</strong>
-                        <p style="margin: 4px 0 0; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; line-height: 1.3;">Subject: Order #1042 has shipped!</p>
-                      </div>
-                      <div style="padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.6);">
-                        Opened
-                      </div>
-                    </div>
-
-                    <div class="kij-mc-channel-card">
-                      <div>
-                        <div class="kij-mc-badge" style="background: #F43F5E; color: #fff;">
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-                        </div>
-                        <strong style="font-size: 13px; color: #F43F5E; display: block; text-transform: uppercase;">Voice</strong>
-                        <p style="margin: 4px 0 0; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; line-height: 1.3;">Klayed Dispatch Calling...</p>
-                      </div>
-                      <div style="padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px; font-weight: 700; color: #E8A33D;">
-                        Ringing...
-                      </div>
-                    </div>
-                  </div>
+                  <button type="button" style="width: 100%; padding: 13px; border-radius: 12px; background: #E8A33D; color: #111110; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; border: none; cursor: pointer; box-shadow: 0 0 24px rgba(232,163,61,0.35);">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    <span>Send to all channels</span>
+                  </button>
                 </div>
 
                 <div class="kij-result-chip-wrap">
                   <div class="kij-result-chip-dot"></div>
-                  <span class="kij-result-chip-text">Write once. Reach customers on every channel.</span>
+                  <span class="kij-result-chip-text">1 API call → 4 channels delivered simultaneously</span>
                 </div>
               </div>
             </div>
 
-            <!-- Panel 1: Real-time delivery tracking -->
+                        <!-- Panel 1: Real-time delivery tracking -->
             <div class="kij-eng-panel" id="kij-eng-panel-1" role="tabpanel" aria-labelledby="kij-eng-tab-1">
               <div class="kij-merchant-stage-inner">
-                <div class="kij-dt-table-card">
-                  <!-- Header -->
-                  <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <!-- Supporting Tiles Field (Radial Gradient Masked) -->
+            <div class="kij-tile-field-container" aria-hidden="true">
+              <div class="kij-tile-field-grid">
+              <div class="kij-supp-tile band-green kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Fatima A.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 802 • Delivered</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2.5"><polyline points="18 6 9 17 4 12"/><polyline points="22 10 13 21 8 16"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Chidi O.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 814 • Read</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Emeka K.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 901 • Delivered</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2.5"><polyline points="18 6 9 17 4 12"/><polyline points="22 10 13 21 8 16"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Kemi B.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 805 • Read</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Aisha M.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 809 • Sent</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Babatunde E.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 703 • Sent</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Ngozi U.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 818 • Sent</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Dapo T.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 806 • Sent</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-mid is-bright-green">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Kolawole A.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 705 • Airtel Delivered</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Halima R.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 816 • Delivered</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Zainab L.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 902 • Delivered</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2.5"><polyline points="18 6 9 17 4 12"/><polyline points="22 10 13 21 8 16"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Kunle P.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 808 • Read</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-amber kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E8A33D" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Segun A.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 812 • Re-routed</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Blessing O.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 903 • Delivered</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Yusuf I.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 708 • Delivered</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2.5"><polyline points="18 6 9 17 4 12"/><polyline points="22 10 13 21 8 16"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Mary J.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+234 807 • Read</span>
+                </div>
+              </div>
+              </div>
+            </div>
+
+                <!-- Bright Focal Card in Centre: Stepper & 98.4% Delivered -->
+                <div class="kij-focal-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08);">
                     <div style="display: flex; align-items: center; gap: 8px;">
-                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#E8A33D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                      <strong style="font-size: 15px; color: #fff;">Live Delivery Telemetry</strong>
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#E8A33D" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                      <strong style="font-size: 15px; color: #fff;">Live Delivery Tracker</strong>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                      <span style="font-size: 12px; font-family: monospace; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.1);">● 18ms latency</span>
-                      <span style="font-size: 12px; font-weight: 700; color: #22C55E; background: rgba(34,197,94,0.15); padding: 3px 10px; border-radius: 9999px; border: 1px solid rgba(34,197,94,0.3);">98.4% on time</span>
-                    </div>
-                  </div>
-
-                  <!-- Row 1: Chioma -->
-                  <div class="kij-dt-row">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                      <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(168,85,247,0.2); color: #d8b4fe; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(168,85,247,0.3);">CO</div>
-                      <div>
-                        <strong style="font-size: 15px; color: #fff; display: block;">Chioma Okon</strong>
-                        <span style="font-size: 13px; font-family: monospace; color: rgba(255,255,255,0.5);">0803 214 9811</span>
-                      </div>
-                    </div>
-                    <span style="padding: 4px 12px; border-radius: 9999px; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #22C55E; font-size: 13px; font-weight: 700;">✓✓ Read</span>
-                  </div>
-
-                  <!-- Row 2: Emeka -->
-                  <div class="kij-dt-row">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                      <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(59,130,246,0.2); color: #93c5fd; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(59,130,246,0.3);">EO</div>
-                      <div>
-                        <strong style="font-size: 15px; color: #fff; display: block;">Emeka Obi</strong>
-                        <span style="font-size: 13px; font-family: monospace; color: rgba(255,255,255,0.5);">0802 881 2045</span>
-                      </div>
-                    </div>
-                    <span style="padding: 4px 12px; border-radius: 9999px; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #22C55E; font-size: 13px; font-weight: 700;">✓ Delivered</span>
-                  </div>
-
-                  <!-- Row 3: Babatunde (Failover) -->
-                  <div class="kij-dt-row failover-active">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                      <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(20,184,166,0.2); color: #5eead4; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(20,184,166,0.3);">BA</div>
-                      <div>
-                        <strong style="font-size: 15px; color: #fff; display: block;">Babatunde Adeleke</strong>
-                        <span style="font-size: 13px; font-family: monospace; color: rgba(255,255,255,0.5);">0812 559 4022</span>
-                      </div>
-                    </div>
-                    <span style="padding: 4px 12px; border-radius: 9999px; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #22C55E; font-size: 13px; font-weight: 700; box-shadow: 0 0 12px rgba(34,197,94,0.25);">✓ SMS Delivered (Auto-Rerouted)</span>
-                  </div>
-
-                  <!-- Row 4: Amina -->
-                  <div class="kij-dt-row">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                      <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(244,63,94,0.2); color: #fda4af; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(244,63,94,0.3);">AB</div>
-                      <div>
-                        <strong style="font-size: 15px; color: #fff; display: block;">Amina Bello</strong>
-                        <span style="font-size: 13px; font-family: monospace; color: rgba(255,255,255,0.5);">0813 902 4411</span>
-                      </div>
-                    </div>
-                    <span style="padding: 4px 12px; border-radius: 9999px; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); color: #38bdf8; font-size: 13px; font-weight: 700;">Opened</span>
-                  </div>
-
-                  <!-- Banner -->
-                  <div style="padding: 10px 14px; border-radius: 12px; background: rgba(232,163,61,0.1); border: 1px solid rgba(232,163,61,0.3); display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #E8A33D; font-weight: 600;">
                     <div style="display: flex; align-items: center; gap: 8px;">
-                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-                      <span>Auto-failover: Switched failed WhatsApp to MTN SMS in 340ms</span>
+                      <span style="font-size: 12px; font-family: monospace; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.1);">● 42ms latency</span>
+                      <span style="font-size: 12px; font-weight: 700; color: #E8A33D; background: rgba(232,163,61,0.15); border: 1px solid rgba(232,163,61,0.3); padding: 3px 10px; border-radius: 9999px; box-shadow: 0 0 12px rgba(232,163,61,0.25);">98.4% delivered</span>
                     </div>
-                    <span style="font-size: 11px; font-weight: 700; background: rgba(0,0,0,0.4); padding: 3px 8px; border-radius: 4px; color: #fff;">Auto-Resolved</span>
+                  </div>
+
+                  <!-- Customer Message Row -->
+                  <div style="padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(20,184,166,0.2); border: 1px solid rgba(20,184,166,0.4); color: #5eead4; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center;">TO</div>
+                      <div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                          <strong style="font-size: 14px; color: #fff;">Tunde O.</strong>
+                          <span style="font-size: 12px; font-family: monospace; color: rgba(255,255,255,0.5);">+234 803 219 8834</span>
+                        </div>
+                        <span style="font-size: 12px; color: rgba(255,255,255,0.6); display: block; margin-top: 2px;">WhatsApp • MTN Nigeria</span>
+                      </div>
+                    </div>
+                    <span style="font-size: 12px; font-family: monospace; color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 6px;">10:42 AM</span>
+                  </div>
+
+                  <!-- Sent -> Delivered -> Read Stepper Track -->
+                  <div style="padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 8px;">Live Stepper Track</span>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center;">
+                      <div style="padding: 10px; border-radius: 10px; background: rgba(52,211,153,0.15); border: 1px solid #34D399; color: #34D399;">
+                        <span style="font-size: 12px; font-weight: 700; display: block;">✓ Sent</span>
+                        <span style="font-size: 10px; font-family: monospace; opacity: 0.8;">10:42:01</span>
+                      </div>
+                      <div style="padding: 10px; border-radius: 10px; background: rgba(52,211,153,0.15); border: 1px solid #34D399; color: #34D399;">
+                        <span style="font-size: 12px; font-weight: 700; display: block;">✓ Delivered</span>
+                        <span style="font-size: 10px; font-family: monospace; opacity: 0.8;">10:42:03</span>
+                      </div>
+                      <div style="padding: 10px; border-radius: 10px; background: rgba(52,211,153,0.2); border: 1px solid #34D399; color: #34D399; box-shadow: 0 0 15px rgba(52,211,153,0.3);">
+                        <span style="font-size: 12px; font-weight: 700; display: block;">✓✓ Read</span>
+                        <span style="font-size: 10px; font-family: monospace; opacity: 0.8;">10:43:15</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Self-healing failover notice -->
+                  <div style="padding: 12px 16px; border-radius: 12px; background: rgba(232,163,61,0.1); border: 1px solid rgba(232,163,61,0.25); display: flex; align-items: center; justify-content: space-between; font-size: 12px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #E8A33D;">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+                      <span style="font-weight: 600;">Automatic Route Failover Active</span>
+                    </div>
+                    <span style="font-family: monospace; color: #E8A33D; font-weight: 700;">&lt; 1.8s switch</span>
                   </div>
                 </div>
 
                 <div class="kij-result-chip-wrap">
                   <div class="kij-result-chip-dot"></div>
-                  <span class="kij-result-chip-text">Failed messages are re-sent automatically.</span>
+                  <span class="kij-result-chip-text">Zero lost messages. Auto-reroutes in &lt; 2 seconds.</span>
                 </div>
               </div>
             </div>
 
-            <!-- Panel 2: Marketing automation -->
+                        <!-- Panel 2: Marketing automation -->
             <div class="kij-eng-panel" id="kij-eng-panel-2" role="tabpanel" aria-labelledby="kij-eng-tab-2">
               <div class="kij-merchant-stage-inner">
-                <div class="kij-ma-flow-group">
-                  <!-- 4 Large Nodes (240px tall, 40px icons) -->
-                  <div class="kij-ma-nodes-grid">
-                    <div class="kij-ma-node">
-                      <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 9999px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4);">Trigger</span>
-                      <div style="display: flex; flex-direction: column; align-items: center;">
-                        <div class="kij-ma-node-icon" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.9);">
-                          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                        </div>
-                        <strong style="font-size: 15px; color: #fff; line-height: 1.25;">Customer leaves cart</strong>
-                      </div>
-                      <span style="font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600;">₦38,500 in bag</span>
-                    </div>
+            <!-- Supporting Tiles Field (Radial Gradient Masked) -->
+            <div class="kij-tile-field-container" aria-hidden="true">
+              <div class="kij-tile-field-grid">
+              <div class="kij-supp-tile band-rose kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#F472B6" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Birthday Offer</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Automated SMS Flow</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-rose kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#F472B6" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Win-back 30d</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Discount Nudge</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-rose kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#F472B6" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">VIP Welcome</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tier 1 Exclusive Gift</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-rose kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#F472B6" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Review Request</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Post-delivery Check</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-amber kij-tile-ring-mid is-bright-amber">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E8A33D" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Customer leaves cart</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Trigger: Exit checkout</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-center is-bright-blue">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Wait 45 minutes</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Delay window timer</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-violet kij-tile-ring-center is-bright-violet">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A78BFA" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Cart > ₦20,000?</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Condition: High value</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-green kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34D399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Order shipped</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Fulfillment webhook</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Price drop alert</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Wishlist notification</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Lead score > 80</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">HubSpot CRM sync</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Subscription renewal</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">7-day reminder notice</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Cross-sell flow</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Matching accessories</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-violet kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A78BFA" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">NPS Survey</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">30 days post-sale</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-violet kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A78BFA" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Browse dropoff</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Viewed 3+ times</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-violet kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A78BFA" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Replenishment</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Monthly restock flow</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-violet kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A78BFA" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Refer a friend</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Give ₦5k, get ₦5k</span>
+                </div>
+              </div>
+              </div>
+            </div>
 
-                    <div class="kij-ma-node">
-                      <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 9999px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4);">Delay</span>
-                      <div style="display: flex; flex-direction: column; align-items: center;">
-                        <div class="kij-ma-node-icon" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.9);">
-                          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        </div>
-                        <strong style="font-size: 15px; color: #fff; line-height: 1.25;">Wait 45 minutes</strong>
+                <!-- Bright Focal Card in Centre: WhatsApp Offer Node + Preview + +₦45k Pill -->
+                <div class="kij-focal-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                      <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(52,211,153,0.2); border: 1px solid rgba(52,211,153,0.4); display: flex; align-items: center; justify-content: center;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#34D399" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
                       </div>
-                      <span style="font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600;">Auto countdown</span>
+                      <div>
+                        <span style="font-size: 11px; font-weight: 700; color: #34D399; text-transform: uppercase; letter-spacing: 0.05em; display: block;">ACTION NODE 03 • INSTANT SEND</span>
+                        <h3 style="font-size: 15px; font-weight: 700; color: #fff; margin: 0;">Personalized WhatsApp Offer</h3>
+                      </div>
                     </div>
+                    <span style="font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px; background: rgba(232,163,61,0.15); color: #E8A33D; border: 1px solid rgba(232,163,61,0.3); display: flex; align-items: center; gap: 6px;">
+                      <span style="width: 6px; height: 6px; border-radius: 50%; background: #E8A33D; box-shadow: 0 0 6px #E8A33D;"></span>
+                      Live Flow
+                    </span>
+                  </div>
 
-                    <div class="kij-ma-node">
-                      <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 9999px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4);">Condition</span>
-                      <div style="display: flex; flex-direction: column; align-items: center;">
-                        <div class="kij-ma-node-icon" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.9);">
-                          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-                        </div>
-                        <strong style="font-size: 15px; color: #fff; line-height: 1.25;">Cart over ₦20,000?</strong>
-                      </div>
-                      <span style="font-size: 12px; color: #22C55E; font-weight: 600;">Yes, VIP cart</span>
+                  <!-- Phone-Style Preview Bubble -->
+                  <div style="padding: 16px; border-radius: 14px; background: rgba(20,35,25,0.4); border: 1px solid rgba(34,197,94,0.3); display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 600; color: #34D399;">
+                      <span>WhatsApp Preview</span>
+                      <span style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.5);">Delivered just now</span>
                     </div>
-
-                    <div class="kij-ma-node active-success">
-                      <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 9999px; background: rgba(232,163,61,0.2); color: #E8A33D;">Action</span>
-                      <div style="display: flex; flex-direction: column; align-items: center;">
-                        <div class="kij-ma-node-icon" style="background: #E8A33D; color: #111; box-shadow: 0 0 20px rgba(232,163,61,0.4);">
-                          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-                        </div>
-                        <strong style="font-size: 15px; color: #fff; line-height: 1.25;">Send WhatsApp offer</strong>
-                      </div>
-                      <span style="font-size: 12px; color: #22C55E; font-weight: 600;">10% off coupon</span>
+                    <div style="padding: 14px; border-radius: 10px; background: #142319; border: 1px solid rgba(34,197,94,0.3); color: rgba(255,255,255,0.95); font-size: 13px; line-height: 1.45;">
+                      "Hey Tunde! You left 2 items in your cart. Use code <strong style="color: #E8A33D;">KLAYED10</strong> for 10% off before they sell out! 🛍️ klayed.co/cart"
                     </div>
                   </div>
 
-                  <!-- Uplift Chip -->
-                  <div class="kij-ma-popout">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                      <div style="width: 38px; height: 38px; border-radius: 12px; background: #22C55E; color: #111; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 15px rgba(34,197,94,0.3);">WA</div>
-                      <div>
-                        <span style="font-size: 11px; font-weight: 700; color: #22C55E; text-transform: uppercase; letter-spacing: 0.05em; display: block;">Direct WhatsApp Offer</span>
-                        <strong style="font-size: 14px; color: #fff;">"You forgot your items! Here is 10% off your order."</strong>
-                      </div>
+                  <!-- +₦45,000 Recovered Badge -->
+                  <div style="padding: 14px 18px; border-radius: 14px; background: rgba(232,163,61,0.15); border: 1px solid #E8A33D; box-shadow: 0 0 24px rgba(232,163,61,0.25); display: flex; align-items: center; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#E8A33D" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                      <span style="font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.95);">Recovered Cart Revenue</span>
                     </div>
-                    <div style="padding: 8px 16px; border-radius: 12px; background: #22C55E; color: #111; font-weight: 800; font-size: 14px; flex-shrink: 0; box-shadow: 0 0 20px rgba(34,197,94,0.35);">
-                      +₦45,000 recovered automatically
-                    </div>
+                    <strong style="font-size: 17px; font-weight: 800; color: #E8A33D; letter-spacing: -0.01em;">+₦45,000 recovered</strong>
                   </div>
                 </div>
 
                 <div class="kij-result-chip-wrap">
                   <div class="kij-result-chip-dot"></div>
-                  <span class="kij-result-chip-text">Set it once. It runs 24/7.</span>
+                  <span class="kij-result-chip-text">Recover lost carts on autopilot while you sleep</span>
                 </div>
               </div>
             </div>
 
-            <!-- Panel 3: Shared team inbox (Reference) -->
+                        <!-- Panel 3: Shared team inbox -->
             <div class="kij-eng-panel" id="kij-eng-panel-3" role="tabpanel" aria-labelledby="kij-eng-tab-3">
               <div class="kij-merchant-stage-inner">
-                <div class="kij-si-wrapper">
-                  <!-- Header -->
-                  <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.06);">
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#E8A33D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-                      <strong style="font-size: 15px; color: #fff;">Customer Support Team</strong>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                      <span style="font-size: 12px; color: rgba(255,255,255,0.5);">Online:</span>
-                      <div style="display: flex; align-items: center; margin-left: -4px;">
-                        <div style="width: 28px; height: 28px; border-radius: 50%; background: #E8A33D; color: #111; font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; border: 2px solid #171717;">AD</div>
-                        <div style="width: 28px; height: 28px; border-radius: 50%; background: #3B82F6; color: #fff; font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; border: 2px solid #171717; margin-left: -6px;">TU</div>
+            <!-- Supporting Tiles Field (Radial Gradient Masked) -->
+            <div class="kij-tile-field-container" aria-hidden="true">
+              <div class="kij-tile-field-grid">
+              <div class="kij-supp-tile band-blue kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tunde B.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Invoice request #883</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Amina S.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Refund processed</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Kemi O.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Address updated</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Chidi N.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Payment receipt</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-violet kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A78BFA" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Emeka O.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Delivery ETA inquiry</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-violet kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A78BFA" stroke-width="2.5"><polyline points="18 6 9 17 4 12"/><polyline points="22 10 13 21 8 16"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Folake A.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Thanks for quick reply!</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-violet kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A78BFA" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Dayo L.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Order status check</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-violet kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A78BFA" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Ibrahim K.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tracking code issue</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-rose kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#F472B6" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Kolawole M.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Can I change color?</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-rose kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#F472B6" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Zainab K.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Received my parcel 🎉</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-rose kij-tile-ring-center ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#F472B6" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Bola T.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Discount code query</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-rose kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#F472B6" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Uche E.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Bank transfer check</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Bayo D.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Enterprise plan inquiry</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-violet kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A78BFA" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Ngozi J.</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Confirmed receipt</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-blue kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60A5FA" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Segun P.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Urgent support needed</span>
+                </div>
+              </div>
+              <div class="kij-supp-tile band-violet kij-tile-ring-mid ">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A78BFA" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                    <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Fatima H.</span>
+                    
+                  </div>
+                  <span style="font-size: 11px; opacity: 0.6; display: block; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Delivery scheduled 4PM</span>
+                </div>
+              </div>
+              </div>
+            </div>
+
+                <!-- Floating Teammate Tunde drifting toward focal card with Ada collision toast -->
+                <div style="position: absolute; top: 18px; left: 50%; transform: translateX(-50%); z-index: 20; padding: 6px 16px; border-radius: 9999px; background: #1A1A1A; border: 1px solid #E8A33D; box-shadow: 0 0 25px rgba(232,163,61,0.3); display: flex; align-items: center; gap: 8px;">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E8A33D" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                  <span style="font-size: 13px; font-weight: 700; color: #E8A33D;">Ada is already on this</span>
+                </div>
+
+                <!-- Bright Focal Card in Centre: Active Conversation with Ada replying -->
+                <div class="kij-focal-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+                  <!-- Header with Lock Badge -->
+                  <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.4); color: #d8b4fe; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center;">CE</div>
+                      <div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                          <strong style="font-size: 14px; color: #fff;">Chioma Eze</strong>
+                          <span style="font-size: 12px; font-family: monospace; color: rgba(255,255,255,0.5);">+234 802 441 9021</span>
+                        </div>
+                        <span style="font-size: 12px; color: rgba(255,255,255,0.6); display: block; margin-top: 2px;">Order #8821 Confirmation</span>
                       </div>
+                    </div>
+
+                    <div style="padding: 4px 12px; border-radius: 9999px; background: rgba(232,163,61,0.15); border: 1px solid rgba(232,163,61,0.4); color: #E8A33D; font-weight: 700; font-size: 12px; display: flex; align-items: center; gap: 6px; box-shadow: 0 0 15px rgba(232,163,61,0.25);">
+                      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                      <span>Thread Locked</span>
                     </div>
                   </div>
 
                   <!-- Customer Message -->
-                  <div style="padding: 14px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; gap: 12px; align-items: flex-start;">
-                    <div style="width: 34px; height: 34px; border-radius: 50%; background: rgba(236,72,153,0.2); color: #f472b6; font-weight: 700; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">FL</div>
-                    <div>
-                      <strong style="font-size: 13px; color: rgba(255,255,255,0.9); display: block;">Folake (Lagos)</strong>
-                      <p style="margin: 3px 0 0; font-size: 15px; color: #fff; font-weight: 500;">"How much is delivery to Ikeja?"</p>
+                  <div style="padding: 14px 16px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; gap: 4px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,0.5);">
+                      <span>Chioma Eze</span>
+                      <span style="font-family: monospace; font-size: 11px;">2m ago</span>
                     </div>
+                    <p style="margin: 0; font-size: 13.5px; color: rgba(255,255,255,0.9); line-height: 1.4;">
+                      "Hi, I paid for order #8821 via bank transfer 20 mins ago, when will it be confirmed?"
+                    </p>
                   </div>
 
-                  <!-- Ada Replying -->
-                  <div style="padding: 12px 14px; border-radius: 12px; background: rgba(232,163,61,0.1); border: 1px solid rgba(232,163,61,0.3); display: flex; align-items: center; justify-content: space-between;">
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                      <div style="width: 26px; height: 26px; border-radius: 50%; background: #E8A33D; color: #111; font-weight: 800; font-size: 10px; display: flex; align-items: center; justify-content: center;">AD</div>
-                      <span style="font-size: 14px; font-weight: 600; color: #E8A33D;">Ada is replying now...</span>
+                  <!-- Ada Reply Bubble with Double Checkmarks -->
+                  <div style="padding: 14px 16px; border-radius: 12px; background: rgba(6,78,59,0.25); border: 1px solid rgba(16,185,129,0.3); display: flex; flex-direction: column; gap: 6px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 600; color: #34d399;">
+                      <div style="display: flex; align-items: center; gap: 6px;">
+                        <span style="width: 7px; height: 7px; border-radius: 50%; background: #34d399; box-shadow: 0 0 6px #34d399;"></span>
+                        <span>Ada (Replying now)</span>
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 4px;">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#34d399" stroke-width="2.5"><polyline points="18 6 9 17 4 12"/><polyline points="22 10 13 21 8 16"/></svg>
+                        <span style="font-size: 11px; font-family: monospace;">Sent</span>
+                      </div>
                     </div>
-                    <span style="font-size: 11px; font-weight: 700; color: #E8A33D; background: rgba(0,0,0,0.4); padding: 3px 8px; border-radius: 4px;">🔒 Thread Locked</span>
-                  </div>
-
-                  <!-- Collision Warning -->
-                  <div style="padding: 12px 14px; border-radius: 12px; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #fca5a5;">
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                      <div style="width: 24px; height: 24px; border-radius: 50%; background: #3B82F6; color: #fff; font-weight: 800; font-size: 10px; display: flex; align-items: center; justify-content: center;">TU</div>
-                      <span>Tunde opened ticket</span>
-                    </div>
-                    <strong style="font-size: 12px; background: rgba(248,113,113,0.2); padding: 3px 8px; border-radius: 4px;">Ada is already on this</strong>
-                  </div>
-
-                  <!-- Reply Sent -->
-                  <div style="padding: 12px 14px; border-radius: 12px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); display: flex; align-items: center; justify-content: space-between;">
-                    <span style="font-size: 14px; color: #86efac; font-weight: 500;">"Delivery to Ikeja is ₦2,500. Same-day delivery!"</span>
-                    <span style="font-size: 14px; color: #22C55E; font-weight: 800;">✓✓</span>
+                    <p style="margin: 0; font-size: 13.5px; color: #a7f3d0; font-weight: 500; line-height: 1.4;">
+                      "Hi Chioma! Payment verified and your order has been dispatched. Here's your tracking link."
+                    </p>
                   </div>
                 </div>
 
                 <div class="kij-result-chip-wrap">
                   <div class="kij-result-chip-dot"></div>
-                  <span class="kij-result-chip-text">Never answer the same customer twice.</span>
+                  <span class="kij-result-chip-text">Zero collision. Two agents never reply to the same customer.</span>
                 </div>
               </div>
             </div>

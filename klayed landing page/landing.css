@@ -17921,25 +17921,18 @@ body.dark-preview .insight-chip,
   z-index: 1;
   width: 100%;
   min-height: 520px;
-  background: #141414;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0E0E0E;
+  border: none;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .kij-eng-stage-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(232, 163, 61, 0.35), transparent);
-  pointer-events: none;
+  display: none;
 }
 
 @media (max-width: 900px) {
@@ -18744,4 +18737,182 @@ body.dark-preview .insight-chip,
   gap: 16px;
   position: relative;
   padding-top: 36px;
+}
+
+/* ==========================================================================
+   SUBTLE LAYERED DARK-MODE TREATMENT (Shared tokens for all 5 + reference)
+   Stage: #0E0E0E with no border/shadow
+   Supporting tiles: 16px radius, rgba(255,255,255,0.03) fill, faint colour wash
+   Radial mask: dissolve tile field toward outer boundaries
+   Focal card: #1A1A1A, 20px radius, amber glow + 25% amber ring, full white text
+   ========================================================================== */
+
+.kij-tile-field-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 80%);
+  mask-image: radial-gradient(ellipse at center, black 35%, transparent 80%);
+  z-index: 1;
+}
+
+.kij-tile-field-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  width: 100%;
+  max-width: 860px;
+  padding: 20px;
+  animation: tileFieldWave 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (max-width: 640px) {
+  .kij-tile-field-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}
+
+.kij-supp-tile {
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Color Bands */
+.kij-supp-tile.band-green {
+  background: rgba(52, 211, 153, 0.05);
+  border-color: rgba(52, 211, 153, 0.25);
+  color: rgba(52, 211, 153, 0.7);
+}
+
+.kij-supp-tile.band-amber {
+  background: rgba(232, 163, 61, 0.05);
+  border-color: rgba(232, 163, 61, 0.25);
+  color: rgba(232, 163, 61, 0.7);
+}
+
+.kij-supp-tile.band-blue {
+  background: rgba(96, 165, 250, 0.05);
+  border-color: rgba(96, 165, 250, 0.25);
+  color: rgba(96, 165, 250, 0.7);
+}
+
+.kij-supp-tile.band-rose {
+  background: rgba(244, 114, 182, 0.05);
+  border-color: rgba(244, 114, 182, 0.25);
+  color: rgba(244, 114, 182, 0.7);
+}
+
+.kij-supp-tile.band-violet {
+  background: rgba(167, 139, 250, 0.05);
+  border-color: rgba(167, 139, 250, 0.25);
+  color: rgba(167, 139, 250, 0.7);
+}
+
+/* Story Highlights */
+.kij-supp-tile.is-bright-green {
+  background: rgba(52, 211, 153, 0.16) !important;
+  border-color: #34D399 !important;
+  color: #34D399 !important;
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.35) !important;
+  transform: scale(1.04);
+}
+
+.kij-supp-tile.is-bright-amber {
+  background: rgba(232, 163, 61, 0.18) !important;
+  border-color: #E8A33D !important;
+  color: #E8A33D !important;
+  box-shadow: 0 0 25px rgba(232, 163, 61, 0.4) !important;
+  transform: scale(1.04);
+}
+
+.kij-supp-tile.is-bright-blue {
+  background: rgba(96, 165, 250, 0.18) !important;
+  border-color: #60A5FA !important;
+  color: #60A5FA !important;
+  box-shadow: 0 0 25px rgba(96, 165, 250, 0.4) !important;
+  transform: scale(1.04);
+}
+
+.kij-supp-tile.is-bright-rose {
+  background: rgba(244, 114, 182, 0.18) !important;
+  border-color: #F472B6 !important;
+  color: #F472B6 !important;
+  box-shadow: 0 0 25px rgba(244, 114, 182, 0.4) !important;
+  transform: scale(1.04);
+}
+
+/* Falloff distance tiers */
+.kij-tile-ring-center { opacity: 0.95; }
+.kij-tile-ring-mid { opacity: 0.60; }
+.kij-tile-ring-outer { opacity: 0.22; }
+
+/* Focal Card Component */
+.kij-focal-card {
+  position: relative;
+  z-index: 10;
+  background: #1A1A1A;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 0 80px rgba(232, 163, 61, 0.18), inset 0 0 0 1px rgba(232, 163, 61, 0.25);
+  color: #FFFFFF;
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  animation: focalCardEntrance 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 640px) {
+  .kij-focal-card {
+    max-width: 90%;
+  }
+}
+
+@keyframes focalCardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tileFieldWave {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kij-tile-field-grid {
+    animation: none;
+    opacity: 1;
+  }
+  .kij-focal-card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }

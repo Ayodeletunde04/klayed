@@ -19,23 +19,40 @@ export const STAGE_CONFIG = {
   heightMobile: 400,  // Mobile min-height (px)
   paddingDesktop: 40, // 40px padding on desktop
   paddingMobile: 24,  // 24px padding on mobile
+  stageBg: "#0E0E0E", // Stage background: #0E0E0E (no outer container border or box)
 
-  // 2. Scale & Container Widths
-  maxCardWidth: 760,         // ~85% stage width (max-w-[760px])
-  marketingFlowMaxWidth: 880,// Flow row spans full usable width up to 880px
+  // 2. Focal Card & Supporting Tiles Style Tokens
+  focalCard: {
+    bg: "#1A1A1A",
+    border: "1px solid rgba(255, 255, 255, 0.12)",
+    radius: "20px",
+    glow: "0 0 80px rgba(232, 163, 61, 0.18)",
+    ring: "0 0 0 1px rgba(232, 163, 61, 0.25)",
+    maxWidth: 580,
+    mobileMaxWidthPercentage: "90%",
+  },
+  supportingTile: {
+    radius: "16px",
+    bg: "rgba(255, 255, 255, 0.03)",
+    border: "1px solid rgba(255, 255, 255, 0.06)",
+    bands: {
+      green: { wash: "rgba(52, 211, 153, 0.05)", border: "rgba(52, 211, 153, 0.25)", color: "#34D399" },
+      amber: { wash: "rgba(232, 163, 61, 0.05)", border: "rgba(232, 163, 61, 0.25)", color: "#E8A33D" },
+      blue: { wash: "rgba(96, 165, 250, 0.05)", border: "rgba(96, 165, 250, 0.25)", color: "#60A5FA" },
+      rose: { wash: "rgba(244, 114, 182, 0.05)", border: "rgba(244, 114, 182, 0.25)", color: "#F472B6" },
+      violet: { wash: "rgba(167, 139, 250, 0.05)", border: "rgba(167, 139, 250, 0.25)", color: "#A78BFA" },
+    },
+  },
+  depthMask: "radial-gradient(ellipse at center, black 35%, transparent 80%)",
+  maxCardWidth: 760,         // Stage max card width
   captionBottomMargin: 24,   // Pinned caption chip 24px bottom margin
 
   // 3. Shared Entrance & Exit Transitions
   easeEntrance: [0.22, 1, 0.36, 1], // Custom cubic-bezier(0.22, 1, 0.36, 1)
-  cardEntranceDuration: 0.7,        // Main card entrance: 0.7s
-  cardEntranceY: 32,                // translateY 32px
-  cardEntranceScale: 0.96,          // scale 0.96 -> 1
-  cardEntranceBlur: "6px",          // blur 6px -> 0
-  
-  innerEntranceDuration: 0.5,       // Inner elements entrance: 0.5s
-  innerEntranceY: 20,               // translateY 20px
-  innerStartDelay: 0.25,            // Starts 0.25s after card starts
-  innerStaggerDelay: 0.12,          // Stagger between inner elements: 0.12s
+  tileFieldDuration: 0.8,           // Tile field fades in first: 0.8s
+  tileWaveStagger: 0.02,            // Wave stagger from center outward: 0.02s per tile
+  focalEntranceDuration: 0.6,       // Focal card enters: 0.6s
+  focalEntranceY: 24,               // translateY 24px -> 0
   
   captionEntranceDuration: 0.5,     // Caption chip duration: 0.5s
   captionEntranceY: 12,             // Caption translateY 12px -> 0
@@ -43,37 +60,6 @@ export const STAGE_CONFIG = {
 
   exitDuration: 0.25,               // Exit duration: 0.25s ease-in
   exitY: -12,                       // Exit moves up 12px
-  
-  // 4. Per-Illustration Timings & Scale Settings
-  // Multi-Channel (Tab 1)
-  multiChannelGapY: 56,             // 56px vertical space between gateway & channels
-  multiChannelConnectorDuration: 0.4,// Connector line draw down: 0.4s
-  multiChannelChannelStagger: 0.12,  // Channel cards stagger: 0.12s
-  multiChannelCardHeight: 200,      // Channel cards height: 200px
-  
-  // Real-time Delivery Tracking (Tab 2)
-  deliveryRowHeight: 64,            // Row height increased from 48px to 64px
-  deliveryRowStagger: 0.1,          // Row slide-up stagger: 0.1s
-  deliveryChipPopDelay: 0.15,       // Status chips pop in 0.15s after row
-  
-  // Marketing Automation (Tab 3)
-  marketingNodeHeight: 240,         // 240px tall nodes
-  marketingConnectorDuration: 0.3,  // Connector draws in between nodes: 0.3s
-  marketingNodeStagger: 0.32,       // Node stagger
-  
-  // Customer Segmentation (Tab 4)
-  segmentationFilterChipHeight: 44, // Filter chips 44px tall
-  segmentationDotSize: 36,          // Dot avatars enlarged to 36px
-  segmentationWaveStagger: 0.03,    // Wave stagger per dot from top-left: 0.03s
-  
-  // Campaign Analytics (Tab 5)
-  analyticsCardMinHeight: 400,      // Card at least 400px tall
-  analyticsKpiNumberSize: 40,       // KPI numbers ~40px font size
-  analyticsKpiCountDuration: 0.8,   // KPI numbers count up over 0.8s
-  analyticsChartHeight: 220,        // Bar chart area: 220px tall
-  analyticsDividerDuration: 0.4,    // Divider line draw: 0.4s
-  analyticsBarStagger: 0.08,        // Bars grow upward stagger: 0.08s
-  analyticsBarGrowDuration: 0.6,    // Bar grow duration: 0.6s
   
   // Auto-advance loop
   autoAdvanceTotalMs: 6000,         // Total 6s loop
@@ -299,6 +285,103 @@ const ArrowUpRightIcon = ({ className = "w-4 h-4" }: { className?: string }) => 
   </svg>
 );
 
+const LockIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+    <path d="M7 11V7a5 5 0 0110 0v4" />
+  </svg>
+);
+
+const BarChartIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <line x1="18" y1="20" x2="18" y2="10" />
+    <line x1="12" y1="20" x2="12" y2="4" />
+    <line x1="6" y1="20" x2="6" y2="14" />
+  </svg>
+);
+
+export interface TileItem {
+  id: string;
+  label: string;
+  subLabel?: string;
+  icon?: React.ReactNode;
+  band: 'green' | 'amber' | 'blue' | 'rose' | 'violet';
+  col: number;
+  row: number;
+  highlight?: 'green' | 'amber' | 'blue' | 'rose' | null;
+  tick?: boolean;
+}
+
+const BAND_CLASSES = {
+  green: "bg-[#34D399]/[0.05] border-[#34D399]/25 text-[#34D399]/70",
+  amber: "bg-[#E8A33D]/[0.05] border-[#E8A33D]/25 text-[#E8A33D]/70",
+  blue: "bg-[#60A5FA]/[0.05] border-[#60A5FA]/25 text-[#60A5FA]/70",
+  rose: "bg-[#F472B6]/[0.05] border-[#F472B6]/25 text-[#F472B6]/70",
+  violet: "bg-[#A78BFA]/[0.05] border-[#A78BFA]/25 text-[#A78BFA]/70",
+};
+
+const HIGHLIGHT_CLASSES = {
+  green: "bg-[#34D399]/20 !border-[#34D399] !text-[#34D399] shadow-[0_0_20px_rgba(52,211,153,0.35)] scale-[1.04]",
+  amber: "bg-[#E8A33D]/25 !border-[#E8A33D] !text-[#E8A33D] shadow-[0_0_25px_rgba(232,163,61,0.45)] scale-[1.04]",
+  blue: "bg-[#60A5FA]/25 !border-[#60A5FA] !text-[#60A5FA] shadow-[0_0_25px_rgba(96,165,250,0.45)] scale-[1.04]",
+  rose: "bg-[#F472B6]/25 !border-[#F472B6] !text-[#F472B6] shadow-[0_0_25px_rgba(244,114,182,0.45)] scale-[1.04]",
+};
+
+export const TileField: React.FC<{ tiles: TileItem[] }> = ({ tiles }) => {
+  const prefersReduced = useReducedMotion();
+
+  return (
+    <div 
+      className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden select-none z-0"
+      style={{
+        maskImage: 'radial-gradient(ellipse at center, black 35%, transparent 80%)',
+        WebkitMaskImage: 'radial-gradient(ellipse at center, black 35%, transparent 80%)'
+      }}
+    >
+      <div className="grid grid-cols-3 sm:grid-cols-4 gap-2.5 sm:gap-3.5 w-full max-w-[860px] p-4 sm:p-6">
+        {tiles.map((tile) => {
+          const dist = Math.hypot(tile.col - 1.5, tile.row - 1.5);
+          const falloff = dist < 1.0 ? 0.95 : dist < 1.8 ? 0.58 : 0.22;
+          const isHighlighted = !!tile.highlight;
+          const highlightClass = tile.highlight ? HIGHLIGHT_CLASSES[tile.highlight] : '';
+
+          return (
+            <motion.div
+              key={tile.id}
+              initial={prefersReduced ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
+              animate={{
+                opacity: isHighlighted ? 1 : falloff,
+                scale: isHighlighted ? 1.04 : 1
+              }}
+              transition={{
+                duration: 0.5,
+                delay: prefersReduced ? 0 : dist * STAGE_CONFIG.tileWaveStagger,
+                ease: STAGE_CONFIG.easeEntrance
+              }}
+              className={`h-[72px] sm:h-[80px] px-3.5 py-2.5 rounded-2xl border backdrop-blur-sm flex items-center gap-2.5 transition-all duration-500 ${BAND_CLASSES[tile.band]} ${highlightClass}`}
+            >
+              {tile.icon && <div className="flex-shrink-0">{tile.icon}</div>}
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-1">
+                  <span className="text-xs sm:text-[13px] font-semibold truncate block text-white/80">
+                    {tile.label}
+                  </span>
+                  {tile.tick && <CheckIcon className="w-3.5 h-3.5 text-[#34D399] flex-shrink-0" />}
+                </div>
+                {tile.subLabel && (
+                  <span className="text-[10px] sm:text-xs opacity-60 truncate block font-mono">
+                    {tile.subLabel}
+                  </span>
+                )}
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
 /**
  * ============================================================================
  * PINNED RESULT CHIP (Holds at bottom of the stage with 24px margin)
@@ -316,7 +399,7 @@ export const ResultChip: React.FC<{ text: string }> = ({ text }) => {
         delay: prefersReduced ? 0 : STAGE_CONFIG.captionStartDelay,
         ease: STAGE_CONFIG.easeEntrance
       }}
-      className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-[#171717]/95 backdrop-blur-md border border-[#E8A33D]/35 shadow-[0_0_24px_rgba(232,163,61,0.22)] whitespace-nowrap"
+      className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-[#1A1A1A]/95 backdrop-blur-md border border-[#E8A33D]/35 shadow-[0_0_24px_rgba(232,163,61,0.22)] whitespace-nowrap"
     >
       <span className="w-2.5 h-2.5 rounded-full bg-[#E8A33D] shadow-[0_0_8px_#E8A33D]" />
       <span className="text-sm sm:text-base font-semibold text-white/95 tracking-tight">
@@ -337,237 +420,114 @@ export const MultiChannelIllustration: React.FC<{ active: boolean }> = ({ active
   const prefersReduced = useReducedMotion();
   const copy = ENGAGEMENT_COPY.tabs[0];
   const [pulseSend, setPulseSend] = useState(false);
-  const [channelsLanded, setChannelsLanded] = useState(false);
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
     if (!active) {
       setPulseSend(false);
-      setChannelsLanded(false);
+      setStep(0);
       return;
     }
-    const t1 = setTimeout(() => setPulseSend(true), 1200);
-    const t2 = setTimeout(() => setChannelsLanded(true), 1800);
+    const t0 = setTimeout(() => setPulseSend(true), 1100);
+    const t1 = setTimeout(() => setStep(1), 1400); // WhatsApp green tick
+    const t2 = setTimeout(() => setStep(2), 1750); // SMS green tick
+    const t3 = setTimeout(() => setStep(3), 2100); // Email green tick
+    const t4 = setTimeout(() => setStep(4), 2450); // Voice green tick
     return () => {
+      clearTimeout(t0);
       clearTimeout(t1);
       clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
     };
   }, [active]);
 
+  // Supporting tiles: Staggered grid around focal card with row color bands
+  // Row 0: WhatsApp green, Row 1: SMS amber, Row 2: Email blue, Row 3: Voice rose, outer: violet
+  const tiles: TileItem[] = [
+    // Row 0: Green Band (WhatsApp / RCS)
+    { id: 'mc-wa', label: 'WhatsApp', subLabel: 'Meta API', icon: <PhoneCallIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 0, row: 0, highlight: step >= 1 ? 'green' : null, tick: step >= 1 },
+    { id: 'mc-rcs', label: 'RCS', subLabel: 'Verified Sender', icon: <MessageSquareIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 1, row: 0 },
+    { id: 'mc-wa2', label: 'WhatsApp Bot', subLabel: 'Interactive', icon: <PhoneCallIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 2, row: 0 },
+    { id: 'mc-rcs2', label: 'RCS Carousel', subLabel: 'Rich Card', icon: <MessageSquareIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 3, row: 0 },
+
+    // Row 1: Amber Band (SMS)
+    { id: 'mc-sms', label: 'SMS', subLabel: 'DND Bypass', icon: <MessageSquareIcon className="w-3.5 h-3.5 text-[#E8A33D]" />, band: 'amber', col: 0, row: 1, highlight: step >= 2 ? 'green' : null, tick: step >= 2 },
+    { id: 'mc-otp', label: 'SMS OTP', subLabel: '99.98% SLA', icon: <ZapIcon className="w-3.5 h-3.5 text-[#E8A33D]" />, band: 'amber', col: 1, row: 1 },
+    { id: 'mc-flash', label: 'Flash SMS', subLabel: 'Direct Screen', icon: <MessageSquareIcon className="w-3.5 h-3.5 text-[#E8A33D]" />, band: 'amber', col: 2, row: 1 },
+    { id: 'mc-short', label: 'Shortcode', subLabel: 'Two-Way', icon: <MessageSquareIcon className="w-3.5 h-3.5 text-[#E8A33D]" />, band: 'amber', col: 3, row: 1 },
+
+    // Row 2: Blue Band (Email)
+    { id: 'mc-email', label: 'Email', subLabel: 'Inbox Placed', icon: <MailIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 0, row: 2, highlight: step >= 3 ? 'green' : null, tick: step >= 3 },
+    { id: 'mc-trans', label: 'Transactional', subLabel: 'DKIM Verified', icon: <MailIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 1, row: 2 },
+    { id: 'mc-news', label: 'Newsletter', subLabel: 'Dedicated IP', icon: <MailIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 2, row: 2 },
+    { id: 'mc-batch', label: 'Email Batch', subLabel: 'High Speed', icon: <MailIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 3, row: 2 },
+
+    // Row 3: Rose Band (Voice) & Violet (Push / Telegram / In-app)
+    { id: 'mc-voice', label: 'Voice', subLabel: 'Dispatched', icon: <PhoneCallIcon className="w-3.5 h-3.5 text-[#F472B6]" />, band: 'rose', col: 0, row: 3, highlight: step >= 4 ? 'green' : null, tick: step >= 4 },
+    { id: 'mc-ivr', label: 'Voice IVR', subLabel: 'Interactive', icon: <PhoneCallIcon className="w-3.5 h-3.5 text-[#F472B6]" />, band: 'rose', col: 1, row: 3 },
+    { id: 'mc-push', label: 'Push', subLabel: 'APNs / FCM', icon: <ZapIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 2, row: 3 },
+    { id: 'mc-inapp', label: 'In-app', subLabel: 'Realtime Web', icon: <ShoppingBagIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 3, row: 3 },
+  ];
+
   return (
     <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none overflow-hidden">
-      
-      {/* Main Group (Scales to 85% width: max-w-[760px]) */}
+      {/* Background Supporting Tiles Field */}
+      <TileField tiles={tiles} />
+
+      {/* Bright Focal Card in Centre */}
       <motion.div
-        key={`mc-group-${active}`}
-        initial={prefersReduced ? { opacity: 0 } : { 
-          opacity: 0, 
-          y: STAGE_CONFIG.cardEntranceY, 
-          scale: STAGE_CONFIG.cardEntranceScale, 
-          filter: `blur(${STAGE_CONFIG.cardEntranceBlur})` 
-        }}
-        animate={prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        key={`mc-focal-${active}`}
+        initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.cardEntranceY }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: prefersReduced ? 0.2 : STAGE_CONFIG.cardEntranceDuration, ease: STAGE_CONFIG.easeEntrance }}
-        className="w-full max-w-[760px] flex flex-col items-center"
+        className="w-full max-w-[540px] p-5 sm:p-6 rounded-[20px] bg-[#1A1A1A] border border-white/[0.12] shadow-[0_0_80px_rgba(232,163,61,0.18)] ring-1 ring-[#E8A33D]/25 relative z-10 flex flex-col gap-4 text-white"
       >
-        {/* Top: Gateway Card (~60% width) */}
-        <div className="w-full sm:w-[62%] max-w-[480px] p-4 sm:p-5 rounded-2xl bg-[#171717] border border-white/[0.08] shadow-2xl flex flex-col gap-3.5 z-10">
-          <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.06]">
-            <span className="text-xs font-semibold text-white/50 uppercase tracking-wider flex items-center gap-1.5">
-              <ZapIcon className="w-3.5 h-3.5 text-[#E8A33D]" />
-              {copy.composer.title}
-            </span>
-            <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#E8A33D]/15 text-[#E8A33D] border border-[#E8A33D]/30">
-              All 4 Channels
-            </span>
+        <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+          <span className="text-xs font-semibold text-white/50 uppercase tracking-wider flex items-center gap-1.5">
+            <ZapIcon className="w-3.5 h-3.5 text-[#E8A33D]" />
+            {copy.composer.title}
+          </span>
+          <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#E8A33D]/15 text-[#E8A33D] border border-[#E8A33D]/30 flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E8A33D] animate-pulse" />
+            All 4 Channels Active
+          </span>
+        </div>
+
+        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] min-h-[64px] flex items-center">
+          <p className="text-sm sm:text-base text-white font-medium leading-snug">
+            "{copy.composer.message}"
+          </p>
+        </div>
+
+        {/* 4 Main Channels Status Pills */}
+        <div className="grid grid-cols-4 gap-2 py-1">
+          <div className={`p-2 rounded-lg text-center transition-all duration-300 ${step >= 1 ? 'bg-[#34D399]/15 border border-[#34D399]/40 text-[#34D399]' : 'bg-white/[0.02] border border-white/[0.06] text-white/40'}`}>
+            <span className="text-[11px] font-bold block">WhatsApp</span>
+            <span className="text-[10px] font-mono">{step >= 1 ? '✓ Delivered' : 'Queued'}</span>
           </div>
-
-          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.05] min-h-[58px] flex items-center">
-            <p className="text-sm sm:text-base text-white/95 font-medium leading-snug">
-              "{copy.composer.message}"
-            </p>
+          <div className={`p-2 rounded-lg text-center transition-all duration-300 ${step >= 2 ? 'bg-[#34D399]/15 border border-[#34D399]/40 text-[#34D399]' : 'bg-white/[0.02] border border-white/[0.06] text-white/40'}`}>
+            <span className="text-[11px] font-bold block">SMS</span>
+            <span className="text-[10px] font-mono">{step >= 2 ? '✓ Delivered' : 'Queued'}</span>
           </div>
-
-          <motion.div
-            animate={pulseSend && !prefersReduced ? { scale: [1, 0.96, 1] } : {}}
-            transition={{ duration: 0.3 }}
-            className="w-full py-2.5 sm:py-3 rounded-xl bg-[#E8A33D] text-[#111110] font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(232,163,61,0.35)]"
-          >
-            <SendIcon className="w-4 h-4" />
-            <span>{copy.composer.sendBtn}</span>
-          </motion.div>
+          <div className={`p-2 rounded-lg text-center transition-all duration-300 ${step >= 3 ? 'bg-[#34D399]/15 border border-[#34D399]/40 text-[#34D399]' : 'bg-white/[0.02] border border-white/[0.06] text-white/40'}`}>
+            <span className="text-[11px] font-bold block">Email</span>
+            <span className="text-[10px] font-mono">{step >= 3 ? '✓ Delivered' : 'Queued'}</span>
+          </div>
+          <div className={`p-2 rounded-lg text-center transition-all duration-300 ${step >= 4 ? 'bg-[#34D399]/15 border border-[#34D399]/40 text-[#34D399]' : 'bg-white/[0.02] border border-white/[0.06] text-white/40'}`}>
+            <span className="text-[11px] font-bold block">Voice</span>
+            <span className="text-[10px] font-mono">{step >= 4 ? '✓ Delivered' : 'Queued'}</span>
+          </div>
         </div>
 
-        {/* 56px Vertical Connector Lines (Desktop only) */}
-        <div className="hidden sm:block relative w-full h-[56px] my-0 pointer-events-none">
-          <svg viewBox="0 0 760 56" fill="none" className="w-full h-full">
-            {/* Guide tracks */}
-            <path d="M 380 0 C 380 28, 86 28, 86 56" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" />
-            <path d="M 380 0 C 380 28, 282 28, 282 56" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" />
-            <path d="M 380 0 C 380 28, 478 28, 478 56" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" />
-            <path d="M 380 0 C 380 28, 674 28, 674 56" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" />
-
-            {/* Animated drawing lines */}
-            <motion.path
-              d="M 380 0 C 380 28, 86 28, 86 56"
-              stroke="#E8A33D"
-              strokeWidth="2"
-              strokeDasharray="400"
-              initial={{ strokeDashoffset: 400 }}
-              animate={{ strokeDashoffset: 0 }}
-              transition={{ duration: STAGE_CONFIG.multiChannelConnectorDuration, delay: 0.65, ease: "easeOut" }}
-            />
-            <motion.path
-              d="M 380 0 C 380 28, 282 28, 282 56"
-              stroke="#E8A33D"
-              strokeWidth="2"
-              strokeDasharray="400"
-              initial={{ strokeDashoffset: 400 }}
-              animate={{ strokeDashoffset: 0 }}
-              transition={{ duration: STAGE_CONFIG.multiChannelConnectorDuration, delay: 0.65, ease: "easeOut" }}
-            />
-            <motion.path
-              d="M 380 0 C 380 28, 478 28, 478 56"
-              stroke="#E8A33D"
-              strokeWidth="2"
-              strokeDasharray="400"
-              initial={{ strokeDashoffset: 400 }}
-              animate={{ strokeDashoffset: 0 }}
-              transition={{ duration: STAGE_CONFIG.multiChannelConnectorDuration, delay: 0.65, ease: "easeOut" }}
-            />
-            <motion.path
-              d="M 380 0 C 380 28, 674 28, 674 56"
-              stroke="#E8A33D"
-              strokeWidth="2"
-              strokeDasharray="400"
-              initial={{ strokeDashoffset: 400 }}
-              animate={{ strokeDashoffset: 0 }}
-              transition={{ duration: STAGE_CONFIG.multiChannelConnectorDuration, delay: 0.65, ease: "easeOut" }}
-            />
-          </svg>
-
-          {/* Travelling dots along connector */}
-          {pulseSend && !prefersReduced && (
-            <>
-              <motion.div
-                initial={{ top: 0, left: "50%", opacity: 1 }}
-                animate={{ top: 54, left: "11.3%", opacity: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="absolute w-2.5 h-2.5 rounded-full bg-[#E8A33D] shadow-[0_0_10px_#E8A33D] -translate-x-1/2 -translate-y-1/2"
-              />
-              <motion.div
-                initial={{ top: 0, left: "50%", opacity: 1 }}
-                animate={{ top: 54, left: "37.1%", opacity: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="absolute w-2.5 h-2.5 rounded-full bg-[#E8A33D] shadow-[0_0_10px_#E8A33D] -translate-x-1/2 -translate-y-1/2"
-              />
-              <motion.div
-                initial={{ top: 0, left: "50%", opacity: 1 }}
-                animate={{ top: 54, left: "62.9%", opacity: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="absolute w-2.5 h-2.5 rounded-full bg-[#E8A33D] shadow-[0_0_10px_#E8A33D] -translate-x-1/2 -translate-y-1/2"
-              />
-              <motion.div
-                initial={{ top: 0, left: "50%", opacity: 1 }}
-                animate={{ top: 54, left: "88.7%", opacity: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="absolute w-2.5 h-2.5 rounded-full bg-[#E8A33D] shadow-[0_0_10px_#E8A33D] -translate-x-1/2 -translate-y-1/2"
-              />
-            </>
-          )}
-        </div>
-
-        {/* Bottom: 4 Channel Cards in One Row (2x2 on mobile, 4 columns on desktop) */}
-        <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-3 sm:mt-0">
-          
-          {/* Card 1: WhatsApp */}
-          <motion.div
-            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: 0.85, ease: STAGE_CONFIG.easeEntrance }}
-            className="h-[190px] sm:h-[200px] p-4 rounded-2xl bg-[#142319] border border-[#22C55E]/30 flex flex-col justify-between shadow-xl"
-          >
-            <div>
-              <div className="w-10 h-10 rounded-full bg-[#22C55E] text-[#111] flex items-center justify-center font-bold text-xs mb-3 shadow-[0_0_15px_rgba(34,197,94,0.3)]">
-                WA
-              </div>
-              <span className="text-xs font-bold text-[#22C55E] block uppercase tracking-wider">{copy.channels.whatsapp.title}</span>
-              <p className="text-xs sm:text-sm text-white/90 font-medium line-clamp-2 mt-1 leading-snug">
-                {copy.channels.whatsapp.preview}
-              </p>
-            </div>
-            <div className="pt-2 border-t border-white/[0.06] flex items-center gap-1.5 text-[#22C55E] text-xs font-bold">
-              <DoubleCheckIcon className="w-4 h-4" />
-              <span>{channelsLanded ? copy.channels.whatsapp.status : "Sending..."}</span>
-            </div>
-          </motion.div>
-
-          {/* Card 2: SMS */}
-          <motion.div
-            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: 0.85 + STAGE_CONFIG.multiChannelChannelStagger, ease: STAGE_CONFIG.easeEntrance }}
-            className="h-[190px] sm:h-[200px] p-4 rounded-2xl bg-[#171717] border border-white/[0.08] flex flex-col justify-between shadow-xl"
-          >
-            <div>
-              <div className="w-10 h-10 rounded-full bg-[#E8A33D] text-[#111] flex items-center justify-center font-bold text-xs mb-3 shadow-[0_0_15px_rgba(232,163,61,0.3)]">
-                SMS
-              </div>
-              <span className="text-xs font-bold text-[#E8A33D] block uppercase tracking-wider">{copy.channels.sms.title}</span>
-              <p className="text-xs sm:text-sm text-white/90 font-medium line-clamp-2 mt-1 leading-snug">
-                {copy.channels.sms.preview}
-              </p>
-            </div>
-            <div className="pt-2 border-t border-white/[0.06] flex items-center gap-1.5 text-emerald-400 text-xs font-bold">
-              <CheckIcon className="w-4 h-4" />
-              <span>{channelsLanded ? copy.channels.sms.status : "Sending..."}</span>
-            </div>
-          </motion.div>
-
-          {/* Card 3: Email */}
-          <motion.div
-            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: 0.85 + STAGE_CONFIG.multiChannelChannelStagger * 2, ease: STAGE_CONFIG.easeEntrance }}
-            className="h-[190px] sm:h-[200px] p-4 rounded-2xl bg-[#171717] border border-white/[0.08] flex flex-col justify-between shadow-xl"
-          >
-            <div>
-              <div className="w-10 h-10 rounded-full bg-sky-500 text-white flex items-center justify-center font-bold text-xs mb-3 shadow-[0_0_15px_rgba(14,165,233,0.3)]">
-                <MailIcon className="w-5 h-5" />
-              </div>
-              <span className="text-xs font-bold text-sky-400 block uppercase tracking-wider">{copy.channels.email.title}</span>
-              <p className="text-xs sm:text-sm text-white/90 font-medium line-clamp-2 mt-1 leading-snug">
-                {copy.channels.email.subject}
-              </p>
-            </div>
-            <div className="pt-2 border-t border-white/[0.06] flex items-center gap-1.5 text-white/60 text-xs font-semibold">
-              <span className="w-2 h-2 rounded-full bg-sky-400" />
-              <span>{channelsLanded ? copy.channels.email.status : "Queued"}</span>
-            </div>
-          </motion.div>
-
-          {/* Card 4: Voice */}
-          <motion.div
-            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: 0.85 + STAGE_CONFIG.multiChannelChannelStagger * 3, ease: STAGE_CONFIG.easeEntrance }}
-            className="h-[190px] sm:h-[200px] p-4 rounded-2xl bg-[#171717] border border-white/[0.08] flex flex-col justify-between shadow-xl"
-          >
-            <div>
-              <div className="w-10 h-10 rounded-full bg-rose-500 text-white flex items-center justify-center font-bold text-xs mb-3 shadow-[0_0_15px_rgba(244,63,94,0.3)]">
-                <PhoneCallIcon className="w-5 h-5" />
-              </div>
-              <span className="text-xs font-bold text-rose-400 block uppercase tracking-wider">{copy.channels.voice.title}</span>
-              <p className="text-xs sm:text-sm text-white/90 font-medium line-clamp-2 mt-1 leading-snug">
-                {copy.channels.voice.caller}
-              </p>
-            </div>
-            <div className="pt-2 border-t border-white/[0.06] flex items-center gap-1.5 text-[#E8A33D] text-xs font-bold">
-              <span className="w-2 h-2 rounded-full bg-[#E8A33D] animate-ping" />
-              <span>{copy.channels.voice.status}</span>
-            </div>
-          </motion.div>
-
-        </div>
+        <motion.div
+          animate={pulseSend && !prefersReduced ? { scale: [1, 0.97, 1] } : {}}
+          transition={{ duration: 0.3 }}
+          className="w-full py-2.5 sm:py-3 rounded-xl bg-[#E8A33D] text-[#111110] font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(232,163,61,0.35)]"
+        >
+          <SendIcon className="w-4 h-4" />
+          <span>{copy.composer.sendBtn}</span>
+        </motion.div>
       </motion.div>
 
       {/* Pinned Result Chip */}
@@ -586,163 +546,166 @@ export const MultiChannelIllustration: React.FC<{ active: boolean }> = ({ active
 export const DeliveryTrackingIllustration: React.FC<{ active: boolean }> = ({ active }) => {
   const prefersReduced = useReducedMotion();
   const copy = ENGAGEMENT_COPY.tabs[1];
-  const [rerouted, setRerouted] = useState(false);
+  const [trackStep, setTrackStep] = useState(0);
+  const [reroutedState, setReroutedState] = useState<'failed' | 'rerouting' | 'delivered'>('failed');
 
   useEffect(() => {
     if (!active) {
-      setRerouted(false);
+      setTrackStep(0);
+      setReroutedState('failed');
       return;
     }
-    const timer = setTimeout(() => setRerouted(true), 2400);
-    return () => clearTimeout(timer);
+    // Track stepper on focal card lights up
+    const t1 = setTimeout(() => setTrackStep(1), 800);  // Sent
+    const t2 = setTimeout(() => setTrackStep(2), 1500); // Delivered
+    const t3 = setTimeout(() => setTrackStep(3), 2200); // Read
+
+    // Nearby rose tile fails, then reroutes amber, then delivers green
+    const tr1 = setTimeout(() => setReroutedState('rerouting'), 2400);
+    const tr2 = setTimeout(() => setReroutedState('delivered'), 3200);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(tr1);
+      clearTimeout(tr2);
+    };
   }, [active]);
 
-  const avatarColorMap: Record<string, { bg: string; text: string; border: string }> = {
-    purple: { bg: "bg-purple-500/20", text: "text-purple-300", border: "border-purple-500/30" },
-    blue: { bg: "bg-blue-500/20", text: "text-blue-300", border: "border-blue-500/30" },
-    teal: { bg: "bg-teal-500/20", text: "text-teal-300", border: "border-teal-500/30" },
-    rose: { bg: "bg-rose-500/20", text: "text-rose-300", border: "border-rose-500/30" }
-  };
+  // Background customer status tiles (Green success, Rose failed -> turns Amber -> Green, Blue sent)
+  const tiles: TileItem[] = [
+    // Row 0: Green Band (Success - Delivered / Read)
+    { id: 'dt-1', label: 'Fatima A.', subLabel: '+234 802 • Delivered', icon: <CheckIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 0, row: 0, tick: true },
+    { id: 'dt-2', label: 'Chidi O.', subLabel: '+234 814 • Read', icon: <DoubleCheckIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 1, row: 0, tick: true },
+    { id: 'dt-3', label: 'Emeka K.', subLabel: '+234 901 • Delivered', icon: <CheckIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 2, row: 0, tick: true },
+    { id: 'dt-4', label: 'Kemi B.', subLabel: '+234 805 • Read', icon: <DoubleCheckIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 3, row: 0, tick: true },
+
+    // Row 1: Blue Band (Sent / Processing)
+    { id: 'dt-5', label: 'Aisha M.', subLabel: '+234 809 • Sent', icon: <ClockIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 0, row: 1 },
+    { id: 'dt-6', label: 'Babatunde E.', subLabel: '+234 703 • Sent', icon: <ClockIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 1, row: 1 },
+    { id: 'dt-7', label: 'Ngozi U.', subLabel: '+234 818 • Sent', icon: <ClockIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 2, row: 1 },
+    { id: 'dt-8', label: 'Dapo T.', subLabel: '+234 806 • Sent', icon: <ClockIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 3, row: 1 },
+
+    // Row 2: Rose Band -> Dynamic Re-routing story tile!
+    { 
+      id: 'dt-reroute', 
+      label: 'Kolawole A.', 
+      subLabel: reroutedState === 'delivered' ? '+234 705 • Airtel Delivered' : reroutedState === 'rerouting' ? '+234 705 • Re-routing Airtel' : '+234 705 • MTN Failed',
+      icon: reroutedState === 'delivered' ? <CheckIcon className="w-3.5 h-3.5 text-[#34D399]" /> : reroutedState === 'rerouting' ? <RefreshCwIcon className="w-3.5 h-3.5 text-[#E8A33D] animate-spin" /> : <XIcon className="w-3.5 h-3.5 text-[#F472B6]" />,
+      band: reroutedState === 'delivered' ? 'green' : reroutedState === 'rerouting' ? 'amber' : 'rose', 
+      col: 0, 
+      row: 2, 
+      highlight: reroutedState === 'delivered' ? 'green' : reroutedState === 'rerouting' ? 'amber' : 'rose',
+      tick: reroutedState === 'delivered'
+    },
+    { id: 'dt-10', label: 'Halima R.', subLabel: '+234 816 • Delivered', icon: <CheckIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 1, row: 2, tick: true },
+    { id: 'dt-11', label: 'Zainab L.', subLabel: '+234 902 • Delivered', icon: <CheckIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 2, row: 2, tick: true },
+    { id: 'dt-12', label: 'Kunle P.', subLabel: '+234 808 • Read', icon: <DoubleCheckIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 3, row: 2, tick: true },
+
+    // Row 3: Amber / Green Band (Re-routed & Delivered)
+    { id: 'dt-13', label: 'Segun A.', subLabel: '+234 812 • Re-routed', icon: <CheckIcon className="w-3.5 h-3.5 text-[#E8A33D]" />, band: 'amber', col: 0, row: 3, tick: true },
+    { id: 'dt-14', label: 'Blessing O.', subLabel: '+234 903 • Delivered', icon: <CheckIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 1, row: 3, tick: true },
+    { id: 'dt-15', label: 'Yusuf I.', subLabel: '+234 708 • Delivered', icon: <CheckIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 2, row: 3, tick: true },
+    { id: 'dt-16', label: 'Mary J.', subLabel: '+234 807 • Read', icon: <DoubleCheckIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 3, row: 3, tick: true },
+  ];
 
   return (
-    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none">
-      
-      {/* Table Card (85% width: max-w-[760px]) */}
+    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none overflow-hidden">
+      {/* Background Supporting Tiles Field */}
+      <TileField tiles={tiles} />
+
+      {/* Bright Focal Card in Centre */}
       <motion.div
-        key={`dt-card-${active}`}
-        initial={prefersReduced ? { opacity: 0 } : { 
-          opacity: 0, 
-          y: STAGE_CONFIG.cardEntranceY, 
-          scale: STAGE_CONFIG.cardEntranceScale, 
-          filter: `blur(${STAGE_CONFIG.cardEntranceBlur})` 
-        }}
-        animate={prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        key={`dt-focal-${active}`}
+        initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.cardEntranceY }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: prefersReduced ? 0.2 : STAGE_CONFIG.cardEntranceDuration, ease: STAGE_CONFIG.easeEntrance }}
-        className="w-full max-w-[760px] bg-[#171717] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-2xl flex flex-col gap-3.5"
+        className="w-full max-w-[560px] p-5 sm:p-6 rounded-[20px] bg-[#1A1A1A] border border-white/[0.12] shadow-[0_0_80px_rgba(232,163,61,0.18)] ring-1 ring-[#E8A33D]/25 relative z-10 flex flex-col gap-4 text-white"
       >
-        {/* Header: Title + Latency chip */}
-        <motion.div
-          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: STAGE_CONFIG.innerStartDelay, ease: STAGE_CONFIG.easeEntrance }}
-          className="flex items-center justify-between pb-3 border-b border-white/[0.06]"
-        >
-          <div className="flex items-center gap-2.5">
+        <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+          <div className="flex items-center gap-2">
             <ActivityIcon className="w-4 h-4 text-[#E8A33D]" />
             <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
               {copy.header.title}
             </h3>
           </div>
-
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-white/5 border border-white/10 text-white/60">
               ● {copy.header.latency}
             </span>
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E] flex items-center gap-1">
-              <CheckIcon className="w-3.5 h-3.5" />
-              {copy.header.health}
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#E8A33D]/15 border border-[#E8A33D]/30 text-[#E8A33D] shadow-[0_0_12px_rgba(232,163,61,0.25)]">
+              98.4% delivered
             </span>
           </div>
-        </motion.div>
-
-        {/* 4 Rows (64px row height) */}
-        <div className="flex flex-col gap-2.5">
-          {copy.rows.map((row, idx) => {
-            const colors = avatarColorMap[row.color] || avatarColorMap.purple;
-            const isRow3 = row.failover;
-
-            return (
-              <motion.div
-                key={row.phone}
-                initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: STAGE_CONFIG.innerEntranceDuration, 
-                  delay: STAGE_CONFIG.innerStartDelay + (idx + 1) * STAGE_CONFIG.deliveryRowStagger, 
-                  ease: STAGE_CONFIG.easeEntrance 
-                }}
-                className={`h-[64px] min-h-[64px] px-4 rounded-xl border flex items-center justify-between transition-all ${
-                  isRow3 && rerouted
-                    ? 'bg-emerald-500/10 border-emerald-500/30'
-                    : isRow3
-                    ? 'bg-rose-500/5 border-rose-500/20'
-                    : 'bg-white/[0.02] border-white/[0.05]'
-                }`}
-              >
-                {/* Left: Avatar + Name + Phone */}
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className={`w-9 h-9 rounded-full ${colors.bg} ${colors.text} ${colors.border} border font-bold text-xs flex items-center justify-center flex-shrink-0`}>
-                    {row.initials}
-                  </div>
-                  <div className="min-w-0">
-                    <h4 className="text-sm sm:text-[15px] font-semibold text-white tracking-tight truncate">
-                      {row.name}
-                    </h4>
-                    <span className="text-xs sm:text-[13px] font-mono text-white/50 block">
-                      {row.phone}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Right: Channel badge & Status chip popping in */}
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-semibold text-white/40 hidden sm:inline-block">
-                    {isRow3 && rerouted ? "SMS" : row.channel}
-                  </span>
-
-                  <motion.div
-                    initial={prefersReduced ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ 
-                      duration: 0.35, 
-                      delay: STAGE_CONFIG.innerStartDelay + (idx + 1) * STAGE_CONFIG.deliveryRowStagger + STAGE_CONFIG.deliveryChipPopDelay 
-                    }}
-                  >
-                    {isRow3 ? (
-                      rerouted ? (
-                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E] flex items-center gap-1.5 shadow-[0_0_12px_rgba(34,197,94,0.25)]">
-                          <CheckIcon className="w-3.5 h-3.5" /> SMS Delivered
-                        </span>
-                      ) : (
-                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 border border-rose-500/30 text-rose-400 flex items-center gap-1.5">
-                          <XIcon className="w-3.5 h-3.5" /> WhatsApp Failed
-                        </span>
-                      )
-                    ) : row.status === "Read" ? (
-                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E] flex items-center gap-1.5">
-                        <DoubleCheckIcon className="w-3.5 h-3.5" /> Read
-                      </span>
-                    ) : row.status === "Delivered" ? (
-                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E] flex items-center gap-1.5">
-                        <CheckIcon className="w-3.5 h-3.5" /> Delivered
-                      </span>
-                    ) : (
-                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-sky-500/15 border border-sky-500/30 text-sky-400">
-                        {row.status}
-                      </span>
-                    )}
-                  </motion.div>
-                </div>
-              </motion.div>
-            );
-          })}
         </div>
 
-        {/* Self-Healing Banner (Slides up from bottom last) */}
-        <motion.div
-          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.8, ease: STAGE_CONFIG.easeEntrance }}
-          className="p-3 rounded-xl bg-[#E8A33D]/10 border border-[#E8A33D]/30 flex items-center justify-between gap-3 text-xs sm:text-sm font-semibold text-[#E8A33D]"
-        >
-          <div className="flex items-center gap-2">
-            <RefreshCwIcon className={`w-4 h-4 ${!rerouted ? 'animate-spin' : ''}`} />
-            <span>{copy.failoverBanner}</span>
+        {/* Customer Message Row */}
+        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-teal-500/20 border border-teal-500/40 text-teal-300 font-bold flex items-center justify-center text-xs">
+              TO
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-bold text-white">Tunde O.</span>
+                <span className="text-[11px] font-mono text-white/50">+234 803 219 8834</span>
+              </div>
+              <span className="text-xs text-white/60 flex items-center gap-1 mt-0.5">
+                WhatsApp • MTN Nigeria
+              </span>
+            </div>
           </div>
-          <span className="text-[11px] font-bold bg-black/40 px-2.5 py-0.5 rounded text-white/90">
-            Auto-Resolved
+          <span className="px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 text-white/60">
+            10:42 AM
           </span>
-        </motion.div>
+        </div>
+
+        {/* Sent -> Delivered -> Read Stepper Track */}
+        <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05] flex flex-col gap-2">
+          <span className="text-xs font-semibold text-white/40 uppercase tracking-wider">
+            Live Delivery Track
+          </span>
+          <div className="grid grid-cols-3 gap-2 text-center pt-1">
+            {/* Step 1: Sent */}
+            <div className={`p-2.5 rounded-xl border transition-all duration-500 ${trackStep >= 1 ? 'bg-[#34D399]/15 border-[#34D399] text-[#34D399]' : 'bg-white/[0.02] border-white/10 text-white/30'}`}>
+              <div className="flex items-center justify-center gap-1 mb-1">
+                <CheckIcon className="w-3.5 h-3.5" />
+                <span className="text-xs font-bold">Sent</span>
+              </div>
+              <span className="text-[10px] font-mono opacity-80 block">10:42:01</span>
+            </div>
+
+            {/* Step 2: Delivered */}
+            <div className={`p-2.5 rounded-xl border transition-all duration-500 ${trackStep >= 2 ? 'bg-[#34D399]/15 border-[#34D399] text-[#34D399]' : 'bg-white/[0.02] border-white/10 text-white/30'}`}>
+              <div className="flex items-center justify-center gap-1 mb-1">
+                <CheckIcon className="w-3.5 h-3.5" />
+                <span className="text-xs font-bold">Delivered</span>
+              </div>
+              <span className="text-[10px] font-mono opacity-80 block">10:42:03</span>
+            </div>
+
+            {/* Step 3: Read */}
+            <div className={`p-2.5 rounded-xl border transition-all duration-500 ${trackStep >= 3 ? 'bg-[#34D399]/15 border-[#34D399] text-[#34D399] shadow-[0_0_15px_rgba(52,211,153,0.3)]' : 'bg-white/[0.02] border-white/10 text-white/30'}`}>
+              <div className="flex items-center justify-center gap-1 mb-1">
+                <DoubleCheckIcon className="w-3.5 h-3.5" />
+                <span className="text-xs font-bold">Read</span>
+              </div>
+              <span className="text-[10px] font-mono opacity-80 block">10:43:15</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Self-healing Failover Banner */}
+        <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between text-xs">
+          <div className="flex items-center gap-2 text-amber-300">
+            <RefreshCwIcon className="w-3.5 h-3.5 animate-spin" />
+            <span>Automatic Route Failover Active</span>
+          </div>
+          <span className="font-mono text-amber-400 font-bold">
+            &lt; 1.8s switch
+          </span>
+        </div>
       </motion.div>
 
       {/* Pinned Result Chip */}
@@ -762,109 +725,147 @@ export const DeliveryTrackingIllustration: React.FC<{ active: boolean }> = ({ ac
 export const MarketingAutomationIllustration: React.FC<{ active: boolean }> = ({ active }) => {
   const prefersReduced = useReducedMotion();
   const copy = ENGAGEMENT_COPY.tabs[2];
-  const icons = [ShoppingBagIcon, ClockIcon, FilterIcon, MessageSquareIcon];
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    if (!active) {
+      setActiveStep(0);
+      return;
+    }
+    const t1 = setTimeout(() => setActiveStep(1), 900);  // Node 1: Cart left
+    const t2 = setTimeout(() => setActiveStep(2), 1600); // Node 2: Wait 45m
+    const t3 = setTimeout(() => setActiveStep(3), 2300); // Node 3: Over 20k
+    const t4 = setTimeout(() => setActiveStep(4), 3000); // Focal node opens recovered!
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
+    };
+  }, [active]);
+
+  // Background automation nodes and ideas connected to focal card
+  const tiles: TileItem[] = [
+    // Row 0: Rose Band (Flow Ideas)
+    { id: 'ma-bday', label: 'Birthday Offer', subLabel: 'Automated SMS', icon: <ZapIcon className="w-3.5 h-3.5 text-[#F472B6]" />, band: 'rose', col: 0, row: 0 },
+    { id: 'ma-win', label: 'Win-back 30d', subLabel: 'Discount flow', icon: <ShoppingBagIcon className="w-3.5 h-3.5 text-[#F472B6]" />, band: 'rose', col: 1, row: 0 },
+    { id: 'ma-vip', label: 'VIP Welcome', subLabel: 'Tier 1 Gift', icon: <ZapIcon className="w-3.5 h-3.5 text-[#F472B6]" />, band: 'rose', col: 2, row: 0 },
+    { id: 'ma-rev', label: 'Review Request', subLabel: 'Post-delivery', icon: <MessageSquareIcon className="w-3.5 h-3.5 text-[#F472B6]" />, band: 'rose', col: 3, row: 0 },
+
+    // Row 1: Flow Sequence Nodes (Light up in order!)
+    { 
+      id: 'ma-node1', 
+      label: 'Customer leaves cart', 
+      subLabel: 'Trigger: Checkout exit', 
+      icon: <ShoppingBagIcon className="w-3.5 h-3.5 text-[#E8A33D]" />, 
+      band: 'amber', 
+      col: 0, 
+      row: 1, 
+      highlight: activeStep >= 1 ? 'amber' : null,
+      tick: activeStep >= 1
+    },
+    { 
+      id: 'ma-node2', 
+      label: 'Wait 45 minutes', 
+      subLabel: 'Delay window', 
+      icon: <ClockIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, 
+      band: 'blue', 
+      col: 1, 
+      row: 1, 
+      highlight: activeStep >= 2 ? 'blue' : null,
+      tick: activeStep >= 2
+    },
+    { 
+      id: 'ma-node3', 
+      label: 'Cart > ₦20,000?', 
+      subLabel: 'Condition: High value', 
+      icon: <FilterIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, 
+      band: 'violet', 
+      col: 2, 
+      row: 1, 
+      highlight: activeStep >= 3 ? 'violet' : null,
+      tick: activeStep >= 3
+    },
+    { id: 'ma-ship', label: 'Order shipped', subLabel: 'Fulfillment webhook', icon: <CheckIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 3, row: 1 },
+
+    // Row 2: Blue Band
+    { id: 'ma-price', label: 'Price drop alert', subLabel: 'Wishlist trigger', icon: <ZapIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 0, row: 2 },
+    { id: 'ma-lead', label: 'Lead score > 80', subLabel: 'CRM webhook', icon: <FilterIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 1, row: 2 },
+    { id: 'ma-sub', label: 'Subscription renewal', subLabel: '7-day reminder', icon: <ClockIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 2, row: 2 },
+    { id: 'ma-cross', label: 'Cross-sell', subLabel: 'Matching sneakers', icon: <ShoppingBagIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 3, row: 2 },
+
+    // Row 3: Violet Band
+    { id: 'ma-survey', label: 'NPS Survey', subLabel: '30 days after buy', icon: <MessageSquareIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 0, row: 3 },
+    { id: 'ma-browse', label: 'Browse dropoff', subLabel: 'Viewed 3+ times', icon: <ClockIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 1, row: 3 },
+    { id: 'ma-reorder', label: 'Replenishment', subLabel: 'Monthly restock', icon: <RefreshCwIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 2, row: 3 },
+    { id: 'ma-refer', label: 'Refer a friend', subLabel: 'Give ₦5k, get ₦5k', icon: <ZapIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 3, row: 3 },
+  ];
 
   return (
-    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none">
-      
-      {/* Vertically Centered Group (Flow row + Uplift chip) */}
+    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none overflow-hidden">
+      {/* Background Supporting Tiles Field */}
+      <TileField tiles={tiles} />
+
+      {/* Bright Focal Card in Centre: The Active WhatsApp Offer Node with Phone-Style Preview */}
       <motion.div
-        key={`ma-group-${active}`}
-        initial={prefersReduced ? { opacity: 0 } : { 
-          opacity: 0, 
-          y: STAGE_CONFIG.cardEntranceY, 
-          scale: STAGE_CONFIG.cardEntranceScale, 
-          filter: `blur(${STAGE_CONFIG.cardEntranceBlur})` 
-        }}
-        animate={prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        key={`ma-focal-${active}`}
+        initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.cardEntranceY }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: prefersReduced ? 0.2 : STAGE_CONFIG.cardEntranceDuration, ease: STAGE_CONFIG.easeEntrance }}
-        className="w-full max-w-[880px] flex flex-col items-center gap-6"
+        className="w-full max-w-[540px] p-5 sm:p-6 rounded-[20px] bg-[#1A1A1A] border border-white/[0.12] shadow-[0_0_80px_rgba(232,163,61,0.18)] ring-1 ring-[#E8A33D]/25 relative z-10 flex flex-col gap-4 text-white"
       >
-        {/* Desktop Single Row of 4 Nodes + Horizontal Connectors */}
-        <div className="w-full grid grid-cols-1 sm:grid-cols-4 gap-4 sm:gap-3 items-center relative">
-          {copy.steps.map((step, idx) => {
-            const Icon = icons[idx];
-            const isLast = idx === 3;
-            const nodeDelay = STAGE_CONFIG.innerStartDelay + idx * STAGE_CONFIG.marketingNodeStagger;
+        <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+          <div className="flex items-center gap-2">
+            <span className="w-7 h-7 rounded-lg bg-[#34D399]/20 border border-[#34D399]/40 flex items-center justify-center">
+              <PhoneCallIcon className="w-3.5 h-3.5 text-[#34D399]" />
+            </span>
+            <div>
+              <span className="text-[11px] font-bold text-[#34D399] uppercase tracking-wider block">
+                ACTIVE NODE • INSTANT SEND
+              </span>
+              <h3 className="text-sm font-bold text-white">
+                Personalized WhatsApp Offer
+              </h3>
+            </div>
+          </div>
 
-            return (
-              <React.Fragment key={step.label}>
-                {/* Node Box (240px tall) */}
-                <motion.div
-                  initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
-                  animate={
-                    isLast && !prefersReduced
-                      ? { 
-                          opacity: 1, 
-                          y: 0,
-                          boxShadow: [
-                            "0 0 0px rgba(232,163,61,0)",
-                            "0 0 30px rgba(232,163,61,0.45)",
-                            "0 0 15px rgba(232,163,61,0.2)"
-                          ]
-                        }
-                      : { opacity: 1, y: 0 }
-                  }
-                  transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: nodeDelay, ease: STAGE_CONFIG.easeEntrance }}
-                  className={`h-[220px] sm:h-[240px] p-5 rounded-2xl border flex flex-col items-center justify-between text-center relative shadow-xl ${
-                    isLast
-                      ? 'bg-[#18261C] border-[#E8A33D] shadow-[0_0_20px_rgba(232,163,61,0.25)]'
-                      : 'bg-[#171717] border-white/[0.08]'
-                  }`}
-                >
-                  <span className={`text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full ${
-                    isLast ? 'bg-[#E8A33D]/20 text-[#E8A33D]' : 'bg-white/5 text-white/40'
-                  }`}>
-                    {step.badge}
-                  </span>
-
-                  <div className="flex flex-col items-center">
-                    {/* 40px Icon */}
-                    <div className={`w-14 h-14 rounded-2xl mb-3 flex items-center justify-center ${
-                      isLast 
-                        ? 'bg-[#E8A33D] text-[#111] shadow-[0_0_20px_rgba(232,163,61,0.4)]' 
-                        : 'bg-white/5 text-white/80 border border-white/10'
-                    }`}>
-                      <Icon className="w-7 h-7" />
-                    </div>
-
-                    <h4 className="text-sm sm:text-base font-bold text-white tracking-tight leading-tight">
-                      {step.label}
-                    </h4>
-                  </div>
-
-                  <span className={`text-xs font-semibold ${isLast ? 'text-emerald-400' : 'text-white/50'}`}>
-                    {step.sub}
-                  </span>
-                </motion.div>
-              </React.Fragment>
-            );
-          })}
+          <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#E8A33D]/15 text-[#E8A33D] border border-[#E8A33D]/30 flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E8A33D] animate-ping" />
+            Live Flow
+          </span>
         </div>
 
-        {/* Uplift Chip Fading in Underneath */}
-        <motion.div
-          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 1.25, ease: STAGE_CONFIG.easeEntrance }}
-          className="w-full max-w-lg p-3.5 sm:p-4 rounded-2xl bg-[#142319] border border-[#22C55E]/30 flex items-center justify-between gap-4 shadow-xl"
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#22C55E] text-[#111] font-extrabold text-xs flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_rgba(34,197,94,0.3)]">
-              WA
-            </div>
-            <div>
-              <span className="text-[11px] font-bold text-[#22C55E] block uppercase tracking-wider">Direct WhatsApp Offer</span>
-              <p className="text-xs sm:text-sm font-semibold text-white">
-                "{copy.whatsappMsg}"
-              </p>
-            </div>
+        {/* Phone-Style Preview of the message */}
+        <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/20 flex flex-col gap-2">
+          <div className="flex items-center justify-between text-xs text-emerald-400 font-semibold">
+            <span>WhatsApp Preview</span>
+            <span className="font-mono text-[11px] text-white/50">Delivered just now</span>
           </div>
+          <div className="p-3.5 rounded-lg bg-[#142319] border border-[#22C55E]/30 text-white/95 text-xs sm:text-sm leading-relaxed">
+            "Hey Tunde! You left 2 items in your cart. Use code <span className="font-bold text-[#E8A33D]">KLAYED10</span> for 10% off before they sell out! 🛍️ klayed.co/cart"
+          </div>
+        </div>
 
-          <div className="flex-shrink-0 px-3.5 py-1.5 rounded-xl bg-[#22C55E] text-[#111] font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow-[0_0_20px_rgba(34,197,94,0.35)]">
-            <ArrowUpRightIcon className="w-4 h-4" />
-            <span>{copy.recoveredValue}</span>
+        {/* Recovered Value Badge */}
+        <motion.div
+          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
+          animate={{ opacity: activeStep >= 4 ? 1 : 0.6, scale: activeStep >= 4 ? 1 : 0.98 }}
+          transition={{ duration: 0.4 }}
+          className={`p-3 sm:p-3.5 rounded-xl border flex items-center justify-between transition-all duration-500 ${
+            activeStep >= 4 
+              ? 'bg-[#E8A33D]/15 border-[#E8A33D] shadow-[0_0_24px_rgba(232,163,61,0.25)]' 
+              : 'bg-white/[0.02] border-white/10'
+          }`}
+        >
+          <div className="flex items-center gap-2">
+            <ZapIcon className="w-4 h-4 text-[#E8A33D]" />
+            <span className="text-xs sm:text-sm font-semibold text-white/90">
+              Recovered Revenue Pill
+            </span>
           </div>
+          <strong className="text-sm sm:text-base font-extrabold text-[#E8A33D] tracking-tight">
+            +₦45,000 recovered
+          </strong>
         </motion.div>
       </motion.div>
 
@@ -883,111 +884,161 @@ export const MarketingAutomationIllustration: React.FC<{ active: boolean }> = ({
 export const SharedInboxIllustration: React.FC<{ active: boolean }> = ({ active }) => {
   const prefersReduced = useReducedMotion();
   const copy = ENGAGEMENT_COPY.tabs[3];
+  const [tundeState, setTundeState] = useState<'idle' | 'approaching' | 'blocked'>('idle');
+  const [showToast, setShowToast] = useState(false);
+  const [adaSent, setAdaSent] = useState(false);
+
+  useEffect(() => {
+    if (!active) {
+      setTundeState('idle');
+      setShowToast(false);
+      setAdaSent(false);
+      return;
+    }
+    // Tunde moves toward focal card
+    const t1 = setTimeout(() => setTundeState('approaching'), 1000);
+    // Collision detection triggers toast
+    const t2 = setTimeout(() => {
+      setShowToast(true);
+      setTundeState('blocked');
+    }, 1800);
+    // Tunde drifts back & Ada sends reply
+    const t3 = setTimeout(() => {
+      setTundeState('idle');
+      setAdaSent(true);
+    }, 2700);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, [active]);
+
+  // Background conversation tiles in blue, violet and rose bands fading to edges
+  const tiles: TileItem[] = [
+    // Row 0: Blue Band
+    { id: 'si-1', label: 'Tunde B.', subLabel: 'Invoice request #883', icon: <MailIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 0, row: 0 },
+    { id: 'si-2', label: 'Amina S.', subLabel: 'Refund processed', icon: <CheckIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 1, row: 0, tick: true },
+    { id: 'si-3', label: 'Kemi O.', subLabel: 'Address updated', icon: <MessageSquareIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 2, row: 0 },
+    { id: 'si-4', label: 'Chidi N.', subLabel: 'Payment receipt', icon: <CheckIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 3, row: 0, tick: true },
+
+    // Row 1: Violet Band
+    { id: 'si-5', label: 'Emeka O.', subLabel: 'Delivery ETA question', icon: <ClockIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 0, row: 1 },
+    { id: 'si-6', label: 'Folake A.', subLabel: 'Thanks for the quick reply!', icon: <DoubleCheckIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 1, row: 1 },
+    { id: 'si-7', label: 'Dayo L.', subLabel: 'Order status check', icon: <MessageSquareIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 2, row: 1 },
+    { id: 'si-8', label: 'Ibrahim K.', subLabel: 'Tracking code issue', icon: <ZapIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 3, row: 1 },
+
+    // Row 2: Rose Band
+    { id: 'si-9', label: 'Kolawole M.', subLabel: 'Can I change color?', icon: <MessageSquareIcon className="w-3.5 h-3.5 text-[#F472B6]" />, band: 'rose', col: 0, row: 2 },
+    { id: 'si-10', label: 'Zainab K.', subLabel: 'Received my parcel 🎉', icon: <CheckIcon className="w-3.5 h-3.5 text-[#F472B6]" />, band: 'rose', col: 1, row: 2, tick: true },
+    { id: 'si-11', label: 'Bola T.', subLabel: 'Discount code query', icon: <ZapIcon className="w-3.5 h-3.5 text-[#F472B6]" />, band: 'rose', col: 2, row: 2 },
+    { id: 'si-12', label: 'Uche E.', subLabel: 'Bank transfer query', icon: <ClockIcon className="w-3.5 h-3.5 text-[#F472B6]" />, band: 'rose', col: 3, row: 2 },
+
+    // Row 3: Blue / Violet Band
+    { id: 'si-13', label: 'Bayo D.', subLabel: 'Inquiry on enterprise plan', icon: <MailIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 0, row: 3 },
+    { id: 'si-14', label: 'Ngozi J.', subLabel: 'Confirmed receipt', icon: <CheckIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 1, row: 3, tick: true },
+    { id: 'si-15', label: 'Segun P.', subLabel: 'Urgent assistance needed', icon: <ZapIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 2, row: 3 },
+    { id: 'si-16', label: 'Fatima H.', subLabel: 'Delivery scheduled for 4PM', icon: <ClockIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 3, row: 3 },
+  ];
 
   return (
-    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none">
-      
-      {/* Main Card (85% width: max-w-[760px]) */}
+    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none overflow-hidden">
+      {/* Background Supporting Tiles Field */}
+      <TileField tiles={tiles} />
+
+      {/* Floating Teammate Tunde drifting toward focal card */}
       <motion.div
-        key={`si-card-${active}`}
-        initial={prefersReduced ? { opacity: 0 } : { 
-          opacity: 0, 
-          y: STAGE_CONFIG.cardEntranceY, 
-          scale: STAGE_CONFIG.cardEntranceScale, 
-          filter: `blur(${STAGE_CONFIG.cardEntranceBlur})` 
-        }}
-        animate={prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-        transition={{ duration: prefersReduced ? 0.2 : STAGE_CONFIG.cardEntranceDuration, ease: STAGE_CONFIG.easeEntrance }}
-        className="w-full max-w-[760px] bg-[#171717] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-2xl flex flex-col gap-3.5"
+        animate={
+          prefersReduced
+            ? {}
+            : tundeState === 'approaching'
+            ? { x: 20, y: -10, opacity: 1, scale: 1.05 }
+            : tundeState === 'blocked'
+            ? { x: -10, y: 0, opacity: 0.8, scale: 0.95 }
+            : { x: -60, y: 20, opacity: 0.5, scale: 0.9 }
+        }
+        transition={{ duration: 0.6, ease: STAGE_CONFIG.easeEntrance }}
+        className="absolute top-12 left-8 sm:left-24 z-20 hidden sm:flex items-center gap-2 p-2 px-3 rounded-full bg-[#1A1A1A] border border-white/20 shadow-xl"
       >
-        {/* Top bar with team status */}
-        <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
-          <div className="flex items-center gap-2">
-            <UsersIcon className="w-4 h-4 text-[#E8A33D]" />
-            <span className="text-sm sm:text-base font-bold text-white">Customer Support Team</span>
+        <div className="w-7 h-7 rounded-full bg-blue-500/20 text-blue-300 font-bold text-xs flex items-center justify-center border border-blue-500/40">
+          TU
+        </div>
+        <span className="text-xs font-semibold text-white/80">Tunde</span>
+      </motion.div>
+
+      {/* Collision Toast */}
+      {showToast && (
+        <motion.div
+          initial={{ opacity: 0, y: -10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="absolute top-8 left-1/2 -translate-x-1/2 z-30 px-4 py-2 rounded-full bg-[#1A1A1A] border border-[#E8A33D]/60 shadow-[0_0_30px_rgba(232,163,61,0.35)] flex items-center gap-2"
+        >
+          <LockIcon className="w-3.5 h-3.5 text-[#E8A33D]" />
+          <span className="text-xs sm:text-sm font-bold text-[#E8A33D]">
+            Ada is already on this
+          </span>
+        </motion.div>
+      )}
+
+      {/* Bright Focal Card in Centre: Active Conversation with Ada replying */}
+      <motion.div
+        key={`si-focal-${active}`}
+        initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.cardEntranceY }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: prefersReduced ? 0.2 : STAGE_CONFIG.cardEntranceDuration, ease: STAGE_CONFIG.easeEntrance }}
+        className="w-full max-w-[560px] p-5 sm:p-6 rounded-[20px] bg-[#1A1A1A] border border-white/[0.12] shadow-[0_0_80px_rgba(232,163,61,0.18)] ring-1 ring-[#E8A33D]/25 relative z-10 flex flex-col gap-4 text-white"
+      >
+        {/* Header with Lock Badge */}
+        <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 font-bold flex items-center justify-center text-xs">
+              CE
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-bold text-white">Chioma Eze</span>
+                <span className="text-[11px] font-mono text-white/50">+234 802 441 9021</span>
+              </div>
+              <span className="text-xs text-white/60">Order #8821 Confirmation</span>
+            </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-white/50">Online:</span>
-            <div className="flex items-center -space-x-1.5">
-              <div className="w-7 h-7 rounded-full bg-[#E8A33D] text-[#111] text-xs font-bold flex items-center justify-center border-2 border-[#171717]">
-                {copy.agents.ada.initials}
-              </div>
-              <div className="w-7 h-7 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center border-2 border-[#171717]">
-                {copy.agents.tunde.initials}
-              </div>
-            </div>
+          <div className="px-3 py-1 rounded-full bg-[#E8A33D]/15 border border-[#E8A33D]/40 text-[#E8A33D] font-bold text-xs flex items-center gap-1.5 shadow-[0_0_15px_rgba(232,163,61,0.25)]">
+            <LockIcon className="w-3.5 h-3.5" />
+            <span>Thread Locked</span>
           </div>
         </div>
 
-        {/* Customer Incoming Query */}
-        <motion.div
-          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: STAGE_CONFIG.innerStartDelay, ease: STAGE_CONFIG.easeEntrance }}
-          className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.05] flex items-start gap-3"
-        >
-          <div className="w-8 h-8 rounded-full bg-pink-500/20 text-pink-300 font-bold text-xs flex items-center justify-center flex-shrink-0">
-            {copy.customer.initials}
+        {/* Incoming Customer Message */}
+        <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] flex flex-col gap-1">
+          <div className="flex items-center justify-between text-xs text-white/50">
+            <span>Chioma Eze</span>
+            <span className="font-mono text-[11px]">2m ago</span>
           </div>
-          <div>
-            <span className="text-xs font-semibold text-white/80">{copy.customer.name}</span>
-            <p className="text-sm sm:text-base font-medium text-white/95 mt-0.5">
-              "{copy.customer.message}"
-            </p>
-          </div>
-        </motion.div>
+          <p className="text-xs sm:text-sm text-white/90 leading-snug">
+            "{copy.customer.message}"
+          </p>
+        </div>
 
-        {/* Ada Claiming & Typing */}
-        <motion.div
-          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: STAGE_CONFIG.innerStartDelay + STAGE_CONFIG.innerStaggerDelay, ease: STAGE_CONFIG.easeEntrance }}
-          className="p-3.5 rounded-xl bg-[#E8A33D]/10 border border-[#E8A33D]/30 flex items-center justify-between"
-        >
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-full bg-[#E8A33D] text-[#111] text-xs font-bold flex items-center justify-center">
-              {copy.agents.ada.initials}
+        {/* Ada's Reply with Double Checks */}
+        <div className="p-3.5 rounded-xl bg-emerald-950/20 border border-emerald-500/20 flex flex-col gap-1.5">
+          <div className="flex items-center justify-between text-xs text-emerald-400 font-semibold">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Ada (Replying now)</span>
             </div>
-            <span className="text-sm font-semibold text-[#E8A33D]">
-              {copy.agents.ada.status}
-            </span>
-          </div>
-          <span className="text-xs font-bold text-[#E8A33D] bg-black/40 px-2 py-0.5 rounded">
-            🔒 Thread Locked
-          </span>
-        </motion.div>
-
-        {/* Tunde Blocked Warning Toast */}
-        <motion.div
-          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: STAGE_CONFIG.innerStartDelay + STAGE_CONFIG.innerStaggerDelay * 2, ease: STAGE_CONFIG.easeEntrance }}
-          className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-between text-xs sm:text-sm font-semibold text-rose-300"
-        >
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-blue-500 text-white text-[11px] font-bold flex items-center justify-center">
-              {copy.agents.tunde.initials}
+            <div className="flex items-center gap-1">
+              <DoubleCheckIcon className="w-4 h-4 text-emerald-400" />
+              <span className="text-[11px] font-mono">{adaSent ? 'Sent' : 'Drafting'}</span>
             </div>
-            <span>{copy.agents.tunde.name} opened ticket</span>
           </div>
-          <span className="text-xs font-bold bg-rose-500/20 px-2.5 py-0.5 rounded text-rose-300">
-            {copy.agents.tunde.blockedNotice}
-          </span>
-        </motion.div>
-
-        {/* Ada Sent Reply */}
-        <motion.div
-          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: STAGE_CONFIG.innerStartDelay + STAGE_CONFIG.innerStaggerDelay * 3, ease: STAGE_CONFIG.easeEntrance }}
-          className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between"
-        >
-          <p className="text-sm sm:text-base font-medium text-emerald-300">
+          <p className="text-xs sm:text-sm text-emerald-200/95 font-medium leading-snug">
             "{copy.agents.ada.replyText}"
           </p>
-          <DoubleCheckIcon className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Pinned Result Chip */}
@@ -1148,12 +1199,13 @@ export const CampaignAnalyticsIllustration: React.FC<{ active: boolean }> = ({ a
   const prefersReduced = useReducedMotion();
   const copy = ENGAGEMENT_COPY.tabs[5];
   const barHeights = [42, 60, 55, 74, 98, 58, 48];
-
   const [counterProgress, setCounterProgress] = useState(0);
+  const [highlightFridayTile, setHighlightFridayTile] = useState(false);
 
   useEffect(() => {
     if (!active) {
       setCounterProgress(0);
+      setHighlightFridayTile(false);
       return;
     }
 
@@ -1176,92 +1228,112 @@ export const CampaignAnalyticsIllustration: React.FC<{ active: boolean }> = ({ a
       animId = requestAnimationFrame(step);
     }, STAGE_CONFIG.innerStartDelay * 1000);
 
+    const fridayTimer = setTimeout(() => {
+      setHighlightFridayTile(true);
+    }, 1400);
+
     return () => {
       clearTimeout(delayTimer);
+      clearTimeout(fridayTimer);
       cancelAnimationFrame(animId);
     };
   }, [active]);
 
+  // Background mini-metric tiles in green, blue and violet bands
+  const tiles: TileItem[] = [
+    // Row 0: Green Band
+    { id: 'ca-1', label: 'Delivered', subLabel: '99.94% SLA', icon: <CheckIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 0, row: 0, tick: true },
+    { id: 'ca-2', label: 'Revenue', subLabel: '+₦1.2M lift', icon: <ArrowUpRightIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 1, row: 0 },
+    { id: 'ca-3', label: 'Active Contacts', subLabel: '14,820 Lagos', icon: <UsersIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 2, row: 0 },
+    { id: 'ca-4', label: 'Delivery Rate', subLabel: '99.8% MTN/Airtel', icon: <CheckIcon className="w-3.5 h-3.5 text-[#34D399]" />, band: 'green', col: 3, row: 0, tick: true },
+
+    // Row 1: Amber Band -> Best day: Friday matches focal card!
+    { 
+      id: 'ca-bestday', 
+      label: 'Best day: Friday', 
+      subLabel: '98% peak conversion', 
+      icon: <BarChartIcon className="w-3.5 h-3.5 text-[#E8A33D]" />, 
+      band: 'amber', 
+      col: 0, 
+      row: 1, 
+      highlight: highlightFridayTile ? 'amber' : null,
+      tick: highlightFridayTile
+    },
+    { id: 'ca-6', label: 'Peak Hour', subLabel: '7:00 PM West Africa', icon: <ClockIcon className="w-3.5 h-3.5 text-[#E8A33D]" />, band: 'amber', col: 1, row: 1 },
+    { id: 'ca-7', label: 'Flash Sale', subLabel: '4.8x ROI average', icon: <ZapIcon className="w-3.5 h-3.5 text-[#E8A33D]" />, band: 'amber', col: 2, row: 1 },
+    { id: 'ca-8', label: 'Avg Order Value', subLabel: '+38% WhatsApp', icon: <ShoppingBagIcon className="w-3.5 h-3.5 text-[#E8A33D]" />, band: 'amber', col: 3, row: 1 },
+
+    // Row 2: Blue Band
+    { id: 'ca-9', label: 'Top Channel', subLabel: 'WhatsApp (74%)', icon: <PhoneCallIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 0, row: 2 },
+    { id: 'ca-10', label: 'CTR Lift', subLabel: '+18.4% Rich Links', icon: <ArrowUpRightIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 1, row: 2 },
+    { id: 'ca-11', label: 'Read Rate', subLabel: '94% in 5 mins', icon: <DoubleCheckIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 2, row: 2 },
+    { id: 'ca-12', label: 'Customer Reps', subLabel: '3.2k automated', icon: <ActivityIcon className="w-3.5 h-3.5 text-[#60A5FA]" />, band: 'blue', col: 3, row: 2 },
+
+    // Row 3: Violet Band
+    { id: 'ca-13', label: 'Unsubscribes', subLabel: '0.4% (Industry low)', icon: <FilterIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 0, row: 3 },
+    { id: 'ca-14', label: 'Bounce Rate', subLabel: '0.06% clean list', icon: <CheckIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 1, row: 3 },
+    { id: 'ca-15', label: 'Cost Per Msg', subLabel: '₦3.20 lowest', icon: <ZapIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 2, row: 3 },
+    { id: 'ca-16', label: 'Verified Opt-in', subLabel: '92% consent', icon: <DoubleCheckIcon className="w-3.5 h-3.5 text-[#A78BFA]" />, band: 'violet', col: 3, row: 3 },
+  ];
+
   return (
-    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none">
-      
-      {/* Main Card (85% width: max-w-[760px], min-height >= 400px) */}
+    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none overflow-hidden">
+      {/* Background Supporting Tiles Field */}
+      <TileField tiles={tiles} />
+
+      {/* Bright Focal Card in Centre: KPI Tiles + Mon to Sun Bar Chart with Friday in Amber */}
       <motion.div
-        key={`ca-card-${active}`}
-        initial={prefersReduced ? { opacity: 0 } : { 
-          opacity: 0, 
-          y: STAGE_CONFIG.cardEntranceY, 
-          scale: STAGE_CONFIG.cardEntranceScale, 
-          filter: `blur(${STAGE_CONFIG.cardEntranceBlur})` 
-        }}
-        animate={prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        key={`ca-focal-${active}`}
+        initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.cardEntranceY }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: prefersReduced ? 0.2 : STAGE_CONFIG.cardEntranceDuration, ease: STAGE_CONFIG.easeEntrance }}
-        className="w-full max-w-[760px] min-h-[400px] bg-[#171717] border border-white/[0.08] rounded-2xl p-6 sm:p-7 shadow-2xl flex flex-col justify-between gap-6"
+        className="w-full max-w-[580px] p-5 sm:p-6 rounded-[20px] bg-[#1A1A1A] border border-white/[0.12] shadow-[0_0_80px_rgba(232,163,61,0.18)] ring-1 ring-[#E8A33D]/25 relative z-10 flex flex-col gap-5 text-white"
       >
-        {/* Top: 3 KPI Tiles (Enters first, numbers count up from 0) */}
-        <div className="grid grid-cols-3 gap-3 text-center">
-          {copy.kpis.map((kpi, i) => {
+        {/* Top: 3 KPI Tiles Counting Up */}
+        <div className="grid grid-cols-3 gap-2.5 text-center">
+          {copy.kpis.map((kpi) => {
             const currentNumeric = (kpi.numeric * counterProgress).toFixed(1);
             const displayVal = counterProgress === 1 ? kpi.value : `${currentNumeric}${kpi.suffix}`;
 
             return (
-              <motion.div
-                key={kpi.label}
-                initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: STAGE_CONFIG.innerEntranceDuration, 
-                  delay: STAGE_CONFIG.innerStartDelay + i * STAGE_CONFIG.innerStaggerDelay, 
-                  ease: STAGE_CONFIG.easeEntrance 
-                }}
-              >
-                <span className="text-xs font-semibold text-white/50 block mb-1 uppercase tracking-wider">
+              <div key={kpi.label} className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                <span className="text-[11px] font-semibold text-white/50 block mb-1 uppercase tracking-wider">
                   {kpi.label}
                 </span>
-                <div className="flex items-center justify-center gap-1.5 flex-wrap">
-                  <span className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold text-white tracking-tight leading-none">
+                <div className="flex items-center justify-center gap-1 flex-wrap">
+                  <span className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-none">
                     {displayVal}
                   </span>
-                  <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                  <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">
                     {kpi.change}
                   </span>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
-        {/* Divider line drawing left to right */}
-        <motion.div
-          initial={prefersReduced ? { opacity: 0 } : { scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: STAGE_CONFIG.analyticsDividerDuration, delay: 0.6, ease: "easeOut" }}
-          style={{ originX: 0 }}
-          className="w-full h-px bg-white/[0.08]"
-        />
-
-        {/* Bar Chart Area (220px tall area, wider bars, 16px gaps) */}
-        <div className="relative h-[220px] w-full flex flex-col justify-end pt-8">
-          
+        {/* Mon to Sun Bar Chart with Friday in Amber */}
+        <div className="relative h-[160px] w-full flex flex-col justify-end pt-6 px-2">
           {/* Tooltip positioned directly above Friday (index 4) */}
           <motion.div
-            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 6 }}
+            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, delay: 1.15 }}
-            className="absolute top-0 left-[64%] -translate-x-1/2 px-3 py-1 rounded-lg bg-[#E8A33D] text-[#111110] font-bold text-xs tracking-tight shadow-[0_0_15px_rgba(232,163,61,0.4)] whitespace-nowrap z-10"
+            transition={{ duration: 0.35, delay: 0.9 }}
+            className="absolute top-0 left-[64%] -translate-x-1/2 px-2.5 py-0.5 rounded-lg bg-[#E8A33D] text-[#111110] font-bold text-[11px] tracking-tight shadow-[0_0_15px_rgba(232,163,61,0.4)] whitespace-nowrap z-10"
           >
             <span>{copy.chart.bestDayTooltip}</span>
           </motion.div>
 
-          {/* 7 Bars (Mon - Sun) */}
-          <div className="flex items-end justify-between gap-3 sm:gap-4 h-[160px] px-2">
+          {/* 7 Bars */}
+          <div className="flex items-end justify-between gap-3 h-[120px] px-2">
             {copy.chart.days.map((day, idx) => {
               const isFriday = idx === 4;
               const height = barHeights[idx];
-              const barDelay = 0.7 + idx * STAGE_CONFIG.analyticsBarStagger;
+              const barDelay = 0.5 + idx * STAGE_CONFIG.analyticsBarStagger;
 
               return (
-                <div key={day} className="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                <div key={day} className="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
                   <motion.div
                     initial={prefersReduced ? { opacity: 0 } : { scaleY: 0 }}
                     animate={{ scaleY: 1 }}
@@ -1280,7 +1352,7 @@ export const CampaignAnalyticsIllustration: React.FC<{ active: boolean }> = ({ a
                         : 'bg-white/10 hover:bg-white/20'
                     }`}
                   />
-                  <span className={`text-xs font-mono ${isFriday ? 'text-[#E8A33D] font-bold' : 'text-white/40'}`}>
+                  <span className={`text-[11px] font-mono ${isFriday ? 'text-[#E8A33D] font-bold' : 'text-white/40'}`}>
                     {day}
                   </span>
                 </div>
@@ -1289,15 +1361,10 @@ export const CampaignAnalyticsIllustration: React.FC<{ active: boolean }> = ({ a
           </div>
         </div>
 
-        {/* Footer line fading in at the end */}
-        <motion.div
-          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 1.25 }}
-          className="text-center text-xs font-semibold text-white/50 pt-2 border-t border-white/[0.04]"
-        >
+        {/* Footer info line */}
+        <div className="text-center text-[11px] font-semibold text-white/50 pt-2 border-t border-white/[0.06]">
           {copy.chart.footer}
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Pinned Result Chip */}
@@ -1461,9 +1528,8 @@ export const ModernCustomerEngagement: React.FC = () => {
           role="tabpanel"
           id={`panel-${activeTab.id}`}
           aria-labelledby={`tab-${activeTab.id}`}
-          className="relative w-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] rounded-[24px] bg-[#141414] border border-white/[0.08] shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden flex items-center justify-center"
+          className="relative w-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] rounded-[24px] bg-[#0E0E0E] overflow-hidden flex items-center justify-center"
         >
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E8A33D]/35 to-transparent z-10 pointer-events-none" />
 
           <AnimatePresence mode="wait">
             <motion.div

@@ -8,6 +8,80 @@ import {
 
 /**
  * ============================================================================
+ * STAGE & ANIMATION CONFIGURATION CONSTANTS
+ * Named constants to easily tweak stage heights, scale values, and motion timings.
+ * ============================================================================
+ */
+export const STAGE_CONFIG = {
+  // 1. Stage Heights across responsive breakpoints
+  heightDesktop: 520, // Desktop min-height (px)
+  heightTablet: 460,  // Tablet min-height (px)
+  heightMobile: 400,  // Mobile min-height (px)
+  paddingDesktop: 40, // 40px padding on desktop
+  paddingMobile: 24,  // 24px padding on mobile
+
+  // 2. Scale & Container Widths
+  maxCardWidth: 760,         // ~85% stage width (max-w-[760px])
+  marketingFlowMaxWidth: 880,// Flow row spans full usable width up to 880px
+  captionBottomMargin: 24,   // Pinned caption chip 24px bottom margin
+
+  // 3. Shared Entrance & Exit Transitions
+  easeEntrance: [0.22, 1, 0.36, 1], // Custom cubic-bezier(0.22, 1, 0.36, 1)
+  cardEntranceDuration: 0.7,        // Main card entrance: 0.7s
+  cardEntranceY: 32,                // translateY 32px
+  cardEntranceScale: 0.96,          // scale 0.96 -> 1
+  cardEntranceBlur: "6px",          // blur 6px -> 0
+  
+  innerEntranceDuration: 0.5,       // Inner elements entrance: 0.5s
+  innerEntranceY: 20,               // translateY 20px
+  innerStartDelay: 0.25,            // Starts 0.25s after card starts
+  innerStaggerDelay: 0.12,          // Stagger between inner elements: 0.12s
+  
+  captionEntranceDuration: 0.5,     // Caption chip duration: 0.5s
+  captionEntranceY: 12,             // Caption translateY 12px -> 0
+  captionStartDelay: 0.75,          // Caption fades in last
+
+  exitDuration: 0.25,               // Exit duration: 0.25s ease-in
+  exitY: -12,                       // Exit moves up 12px
+  
+  // 4. Per-Illustration Timings & Scale Settings
+  // Multi-Channel (Tab 1)
+  multiChannelGapY: 56,             // 56px vertical space between gateway & channels
+  multiChannelConnectorDuration: 0.4,// Connector line draw down: 0.4s
+  multiChannelChannelStagger: 0.12,  // Channel cards stagger: 0.12s
+  multiChannelCardHeight: 200,      // Channel cards height: 200px
+  
+  // Real-time Delivery Tracking (Tab 2)
+  deliveryRowHeight: 64,            // Row height increased from 48px to 64px
+  deliveryRowStagger: 0.1,          // Row slide-up stagger: 0.1s
+  deliveryChipPopDelay: 0.15,       // Status chips pop in 0.15s after row
+  
+  // Marketing Automation (Tab 3)
+  marketingNodeHeight: 240,         // 240px tall nodes
+  marketingConnectorDuration: 0.3,  // Connector draws in between nodes: 0.3s
+  marketingNodeStagger: 0.32,       // Node stagger
+  
+  // Customer Segmentation (Tab 4)
+  segmentationFilterChipHeight: 44, // Filter chips 44px tall
+  segmentationDotSize: 36,          // Dot avatars enlarged to 36px
+  segmentationWaveStagger: 0.03,    // Wave stagger per dot from top-left: 0.03s
+  
+  // Campaign Analytics (Tab 5)
+  analyticsCardMinHeight: 400,      // Card at least 400px tall
+  analyticsKpiNumberSize: 40,       // KPI numbers ~40px font size
+  analyticsKpiCountDuration: 0.8,   // KPI numbers count up over 0.8s
+  analyticsChartHeight: 220,        // Bar chart area: 220px tall
+  analyticsDividerDuration: 0.4,    // Divider line draw: 0.4s
+  analyticsBarStagger: 0.08,        // Bars grow upward stagger: 0.08s
+  analyticsBarGrowDuration: 0.6,    // Bar grow duration: 0.6s
+  
+  // Auto-advance loop
+  autoAdvanceTotalMs: 6000,         // Total 6s loop
+  autoAdvanceDelayMs: 1250,         // Progress line fills only after entrance lands
+};
+
+/**
+ * ============================================================================
  * COPY & CONTENT DICTIONARY
  * Single centralized object for copy editing (No jargon, 100% merchant-friendly).
  * ============================================================================
@@ -42,14 +116,18 @@ export const ENGAGEMENT_COPY = {
       title: "Real-time delivery tracking",
       description: "Sub-second carrier delivery receipts, bounce analysis, and dynamic route switching.",
       resultChip: "Failed messages are re-sent automatically.",
-      customers: [
-        { name: "Chioma Okon", initials: "CO", phone: "0803 214 9811" },
-        { name: "Babatunde Adeleke", initials: "BA", phone: "0812 559 4022" }
+      header: {
+        title: "Live Delivery Telemetry",
+        latency: "18ms latency",
+        health: "98.4% on time"
+      },
+      rows: [
+        { name: "Chioma Okon", initials: "CO", phone: "0803 214 9811", channel: "WhatsApp", status: "Read", color: "purple" },
+        { name: "Emeka Obi", initials: "EO", phone: "0802 881 2045", channel: "SMS", status: "Delivered", color: "blue" },
+        { name: "Babatunde Adeleke", initials: "BA", phone: "0812 559 4022", channel: "WhatsApp", status: "Auto-switched to SMS", color: "teal", failover: true },
+        { name: "Amina Bello", initials: "AB", phone: "0813 902 4411", channel: "Email", status: "Opened", color: "rose" }
       ],
-      stat: {
-        value: "98.4%",
-        label: "Delivered on time"
-      }
+      failoverBanner: "Auto-failover: Switched failed WhatsApp to MTN SMS in 340ms"
     },
     {
       id: "marketing-automation",
@@ -57,13 +135,13 @@ export const ENGAGEMENT_COPY = {
       description: "Visual event-driven builders to nurture leads and re-engage lapsed customers.",
       resultChip: "Set it once. It runs 24/7.",
       steps: [
-        { label: "Customer leaves cart", sub: "₦38,500 in bag" },
-        { label: "Wait 45 minutes", sub: "Auto countdown" },
-        { label: "Cart over ₦20,000?", sub: "Yes, VIP cart" },
-        { label: "Send WhatsApp offer", sub: "10% off coupon" }
+        { label: "Customer leaves cart", sub: "₦38,500 in bag", badge: "Trigger" },
+        { label: "Wait 45 minutes", sub: "Auto countdown", badge: "Delay" },
+        { label: "Cart over ₦20,000?", sub: "Yes, VIP cart", badge: "Condition" },
+        { label: "Send WhatsApp offer", sub: "10% off coupon", badge: "Action" }
       ],
       whatsappMsg: "You forgot your items! Here is 10% off your order.",
-      recoveredValue: "+₦45,000 recovered"
+      recoveredValue: "+₦45,000 recovered automatically"
     },
     {
       id: "team-inbox",
@@ -76,7 +154,7 @@ export const ENGAGEMENT_COPY = {
         message: "How much is delivery to Ikeja?"
       },
       agents: {
-        ada: { name: "Ada", initials: "AD", status: "Replying now...", replyText: "Delivery to Ikeja is ₦2,500. Same-day delivery!" },
+        ada: { name: "Ada", initials: "AD", status: "Ada is replying now...", replyText: "Delivery to Ikeja is ₦2,500. Same-day delivery!" },
         tunde: { name: "Tunde", initials: "TU", blockedNotice: "Ada is already on this" }
       }
     },
@@ -91,7 +169,7 @@ export const ENGAGEMENT_COPY = {
         { id: "cart", label: "Abandoned cart" }
       ],
       groupName: "VIP Campaign Audience",
-      matchedCount: "2,480 customers",
+      matchedCount: "2,480 customers matched",
       sendBtn: "Send campaign"
     },
     {
@@ -100,19 +178,18 @@ export const ENGAGEMENT_COPY = {
       description: "Audit open rates, link clicks, conversion ROI, and deliverability health at a glance.",
       resultChip: "Know what works, then do more of it.",
       kpis: [
-        { label: "Open rate", value: "64.8%", change: "+12%" },
-        { label: "Link clicks", value: "28.4%", change: "+8%" },
-        { label: "Return on spend", value: "4.8x", change: "+18%" }
+        { label: "Open rate", value: "64.8%", numeric: 64.8, suffix: "%", change: "+12%" },
+        { label: "Link clicks", value: "28.4%", numeric: 28.4, suffix: "%", change: "+8%" },
+        { label: "Return on spend", value: "4.8x", numeric: 4.8, suffix: "x", change: "+18%" }
       ],
       chart: {
         days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-        bestDayTooltip: "Friday: your best day to send"
+        bestDayTooltip: "Friday: your best day to send",
+        footer: "Highest converting window: Friday 6:00 PM – 9:00 PM (WAT) • 4.8x ROI"
       }
     }
   ]
 };
-
-const DURATION_MS = 6000;
 
 /**
  * ============================================================================
@@ -209,6 +286,12 @@ const UsersIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
   </svg>
 );
 
+const ActivityIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+  </svg>
+);
+
 const ArrowUpRightIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <line x1="7" y1="17" x2="17" y2="7" />
@@ -218,161 +301,276 @@ const ArrowUpRightIcon = ({ className = "w-4 h-4" }: { className?: string }) => 
 
 /**
  * ============================================================================
- * RESULT CHIP (Every illustration holds this at the bottom)
+ * PINNED RESULT CHIP (Holds at bottom of the stage with 24px margin)
  * ============================================================================
  */
-const ResultChip: React.FC<{ text: string }> = ({ text }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 8, scale: 0.96 }}
-    animate={{ opacity: 1, y: 0, scale: 1 }}
-    transition={{ duration: 0.35, delay: 0.4 }}
-    className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-[#E8A33D]/30 shadow-[0_0_20px_rgba(232,163,61,0.15)]"
-  >
-    <span className="w-2 h-2 rounded-full bg-[#E8A33D] animate-ping" />
-    <span className="text-sm sm:text-base font-semibold text-white/90 tracking-tight">
-      {text}
-    </span>
-  </motion.div>
-);
+export const ResultChip: React.FC<{ text: string }> = ({ text }) => {
+  const prefersReduced = useReducedMotion();
+
+  return (
+    <motion.div
+      initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.captionEntranceY }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: prefersReduced ? 0.2 : STAGE_CONFIG.captionEntranceDuration,
+        delay: prefersReduced ? 0 : STAGE_CONFIG.captionStartDelay,
+        ease: STAGE_CONFIG.easeEntrance
+      }}
+      className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-[#171717]/95 backdrop-blur-md border border-[#E8A33D]/35 shadow-[0_0_24px_rgba(232,163,61,0.22)] whitespace-nowrap"
+    >
+      <span className="w-2.5 h-2.5 rounded-full bg-[#E8A33D] shadow-[0_0_8px_#E8A33D]" />
+      <span className="text-sm sm:text-base font-semibold text-white/95 tracking-tight">
+        {text}
+      </span>
+    </motion.div>
+  );
+};
 
 /**
  * ============================================================================
  * 1. MULTI-CHANNEL COMMUNICATION
- * Story: One message becomes four.
+ * Layout: Gateway card on top (~60% width), 56px vertical connector gap,
+ * 4 tall channel cards (~20% width each, 200px tall) in one row beneath.
  * ============================================================================
  */
 export const MultiChannelIllustration: React.FC<{ active: boolean }> = ({ active }) => {
   const prefersReduced = useReducedMotion();
   const copy = ENGAGEMENT_COPY.tabs[0];
+  const [pulseSend, setPulseSend] = useState(false);
+  const [channelsLanded, setChannelsLanded] = useState(false);
+
+  useEffect(() => {
+    if (!active) {
+      setPulseSend(false);
+      setChannelsLanded(false);
+      return;
+    }
+    const t1 = setTimeout(() => setPulseSend(true), 1200);
+    const t2 = setTimeout(() => setChannelsLanded(true), 1800);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [active]);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 select-none">
-      <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
-        
-        {/* Left: Composer Card */}
-        <motion.div
-          key={`composer-${active}`}
-          initial={{ opacity: 0, x: -16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-          className="md:col-span-5 p-5 rounded-2xl bg-[#171717] border border-white/[0.08] shadow-2xl flex flex-col gap-4"
-        >
-          <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
-            <span className="text-xs font-semibold text-white/50 uppercase tracking-wider">
+    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none overflow-hidden">
+      
+      {/* Main Group (Scales to 85% width: max-w-[760px]) */}
+      <motion.div
+        key={`mc-group-${active}`}
+        initial={prefersReduced ? { opacity: 0 } : { 
+          opacity: 0, 
+          y: STAGE_CONFIG.cardEntranceY, 
+          scale: STAGE_CONFIG.cardEntranceScale, 
+          filter: `blur(${STAGE_CONFIG.cardEntranceBlur})` 
+        }}
+        animate={prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        transition={{ duration: prefersReduced ? 0.2 : STAGE_CONFIG.cardEntranceDuration, ease: STAGE_CONFIG.easeEntrance }}
+        className="w-full max-w-[760px] flex flex-col items-center"
+      >
+        {/* Top: Gateway Card (~60% width) */}
+        <div className="w-full sm:w-[62%] max-w-[480px] p-4 sm:p-5 rounded-2xl bg-[#171717] border border-white/[0.08] shadow-2xl flex flex-col gap-3.5 z-10">
+          <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.06]">
+            <span className="text-xs font-semibold text-white/50 uppercase tracking-wider flex items-center gap-1.5">
+              <ZapIcon className="w-3.5 h-3.5 text-[#E8A33D]" />
               {copy.composer.title}
             </span>
-            <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-[#E8A33D]/10 text-[#E8A33D]">
-              All channels
+            <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#E8A33D]/15 text-[#E8A33D] border border-[#E8A33D]/30">
+              All 4 Channels
             </span>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.05] min-h-[72px]">
-            <p className="text-sm sm:text-base text-white/90 font-medium leading-snug">
+          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.05] min-h-[58px] flex items-center">
+            <p className="text-sm sm:text-base text-white/95 font-medium leading-snug">
               "{copy.composer.message}"
             </p>
           </div>
 
           <motion.div
-            animate={active && !prefersReduced ? { scale: [1, 0.96, 1] } : {}}
-            transition={{ duration: 0.35, delay: 1.2 }}
-            className="w-full py-3 rounded-xl bg-[#E8A33D] text-[#111110] font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(232,163,61,0.3)]"
+            animate={pulseSend && !prefersReduced ? { scale: [1, 0.96, 1] } : {}}
+            transition={{ duration: 0.3 }}
+            className="w-full py-2.5 sm:py-3 rounded-xl bg-[#E8A33D] text-[#111110] font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(232,163,61,0.35)]"
           >
             <SendIcon className="w-4 h-4" />
             <span>{copy.composer.sendBtn}</span>
           </motion.div>
-        </motion.div>
-
-        {/* Right: 4 Channel Preview Cards */}
-        <div className="md:col-span-7 flex flex-col gap-2.5">
-          {/* WhatsApp Preview */}
-          <motion.div
-            key={`wa-${active}`}
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="p-3.5 rounded-xl bg-[#142319] border border-[#22C55E]/30 flex items-center justify-between gap-3 shadow-lg"
-          >
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="w-8 h-8 rounded-lg bg-[#22C55E] text-[#111] flex items-center justify-center font-bold text-xs flex-shrink-0">
-                WA
-              </div>
-              <div className="min-w-0">
-                <span className="text-xs font-semibold text-[#22C55E] block">{copy.channels.whatsapp.title}</span>
-                <p className="text-sm text-white/90 truncate font-medium">{copy.channels.whatsapp.preview}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-1 text-[#22C55E] text-xs font-semibold flex-shrink-0">
-              <DoubleCheckIcon className="w-4 h-4" />
-              <span>{copy.channels.whatsapp.status}</span>
-            </div>
-          </motion.div>
-
-          {/* SMS Preview */}
-          <motion.div
-            key={`sms-${active}`}
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            className="p-3.5 rounded-xl bg-[#181818] border border-white/[0.08] flex items-center justify-between gap-3 shadow-lg"
-          >
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="w-8 h-8 rounded-lg bg-[#E8A33D] text-[#111] flex items-center justify-center font-bold text-xs flex-shrink-0">
-                SMS
-              </div>
-              <div className="min-w-0">
-                <span className="text-xs font-semibold text-[#E8A33D] block">{copy.channels.sms.title}</span>
-                <p className="text-sm text-white/90 truncate font-medium">{copy.channels.sms.preview}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-1 text-emerald-400 text-xs font-semibold flex-shrink-0">
-              <CheckIcon className="w-4 h-4" />
-              <span>{copy.channels.sms.status}</span>
-            </div>
-          </motion.div>
-
-          {/* Email Preview */}
-          <motion.div
-            key={`email-${active}`}
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
-            className="p-3.5 rounded-xl bg-[#181818] border border-white/[0.08] flex items-center justify-between gap-3 shadow-lg"
-          >
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="w-8 h-8 rounded-lg bg-sky-500 text-white flex items-center justify-center font-bold text-xs flex-shrink-0">
-                <MailIcon className="w-4 h-4" />
-              </div>
-              <div className="min-w-0">
-                <span className="text-xs font-semibold text-sky-400 block">{copy.channels.email.title}</span>
-                <p className="text-sm text-white/90 truncate font-medium">{copy.channels.email.subject}</p>
-              </div>
-            </div>
-            <span className="text-xs text-white/50 font-medium">{copy.channels.email.status}</span>
-          </motion.div>
-
-          {/* Voice Preview */}
-          <motion.div
-            key={`voice-${active}`}
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.5 }}
-            className="p-3.5 rounded-xl bg-[#181818] border border-white/[0.08] flex items-center justify-between gap-3 shadow-lg"
-          >
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="w-8 h-8 rounded-lg bg-rose-500 text-white flex items-center justify-center font-bold text-xs flex-shrink-0">
-                <PhoneCallIcon className="w-4 h-4" />
-              </div>
-              <div className="min-w-0">
-                <span className="text-xs font-semibold text-rose-400 block">{copy.channels.voice.title}</span>
-                <p className="text-sm text-white/90 truncate font-medium">{copy.channels.voice.caller}</p>
-              </div>
-            </div>
-            <span className="text-xs font-semibold text-[#E8A33D] animate-pulse">{copy.channels.voice.status}</span>
-          </motion.div>
         </div>
 
-      </div>
+        {/* 56px Vertical Connector Lines (Desktop only) */}
+        <div className="hidden sm:block relative w-full h-[56px] my-0 pointer-events-none">
+          <svg viewBox="0 0 760 56" fill="none" className="w-full h-full">
+            {/* Guide tracks */}
+            <path d="M 380 0 C 380 28, 86 28, 86 56" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" />
+            <path d="M 380 0 C 380 28, 282 28, 282 56" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" />
+            <path d="M 380 0 C 380 28, 478 28, 478 56" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" />
+            <path d="M 380 0 C 380 28, 674 28, 674 56" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" />
 
+            {/* Animated drawing lines */}
+            <motion.path
+              d="M 380 0 C 380 28, 86 28, 86 56"
+              stroke="#E8A33D"
+              strokeWidth="2"
+              strokeDasharray="400"
+              initial={{ strokeDashoffset: 400 }}
+              animate={{ strokeDashoffset: 0 }}
+              transition={{ duration: STAGE_CONFIG.multiChannelConnectorDuration, delay: 0.65, ease: "easeOut" }}
+            />
+            <motion.path
+              d="M 380 0 C 380 28, 282 28, 282 56"
+              stroke="#E8A33D"
+              strokeWidth="2"
+              strokeDasharray="400"
+              initial={{ strokeDashoffset: 400 }}
+              animate={{ strokeDashoffset: 0 }}
+              transition={{ duration: STAGE_CONFIG.multiChannelConnectorDuration, delay: 0.65, ease: "easeOut" }}
+            />
+            <motion.path
+              d="M 380 0 C 380 28, 478 28, 478 56"
+              stroke="#E8A33D"
+              strokeWidth="2"
+              strokeDasharray="400"
+              initial={{ strokeDashoffset: 400 }}
+              animate={{ strokeDashoffset: 0 }}
+              transition={{ duration: STAGE_CONFIG.multiChannelConnectorDuration, delay: 0.65, ease: "easeOut" }}
+            />
+            <motion.path
+              d="M 380 0 C 380 28, 674 28, 674 56"
+              stroke="#E8A33D"
+              strokeWidth="2"
+              strokeDasharray="400"
+              initial={{ strokeDashoffset: 400 }}
+              animate={{ strokeDashoffset: 0 }}
+              transition={{ duration: STAGE_CONFIG.multiChannelConnectorDuration, delay: 0.65, ease: "easeOut" }}
+            />
+          </svg>
+
+          {/* Travelling dots along connector */}
+          {pulseSend && !prefersReduced && (
+            <>
+              <motion.div
+                initial={{ top: 0, left: "50%", opacity: 1 }}
+                animate={{ top: 54, left: "11.3%", opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="absolute w-2.5 h-2.5 rounded-full bg-[#E8A33D] shadow-[0_0_10px_#E8A33D] -translate-x-1/2 -translate-y-1/2"
+              />
+              <motion.div
+                initial={{ top: 0, left: "50%", opacity: 1 }}
+                animate={{ top: 54, left: "37.1%", opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="absolute w-2.5 h-2.5 rounded-full bg-[#E8A33D] shadow-[0_0_10px_#E8A33D] -translate-x-1/2 -translate-y-1/2"
+              />
+              <motion.div
+                initial={{ top: 0, left: "50%", opacity: 1 }}
+                animate={{ top: 54, left: "62.9%", opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="absolute w-2.5 h-2.5 rounded-full bg-[#E8A33D] shadow-[0_0_10px_#E8A33D] -translate-x-1/2 -translate-y-1/2"
+              />
+              <motion.div
+                initial={{ top: 0, left: "50%", opacity: 1 }}
+                animate={{ top: 54, left: "88.7%", opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="absolute w-2.5 h-2.5 rounded-full bg-[#E8A33D] shadow-[0_0_10px_#E8A33D] -translate-x-1/2 -translate-y-1/2"
+              />
+            </>
+          )}
+        </div>
+
+        {/* Bottom: 4 Channel Cards in One Row (2x2 on mobile, 4 columns on desktop) */}
+        <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-3 sm:mt-0">
+          
+          {/* Card 1: WhatsApp */}
+          <motion.div
+            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: 0.85, ease: STAGE_CONFIG.easeEntrance }}
+            className="h-[190px] sm:h-[200px] p-4 rounded-2xl bg-[#142319] border border-[#22C55E]/30 flex flex-col justify-between shadow-xl"
+          >
+            <div>
+              <div className="w-10 h-10 rounded-full bg-[#22C55E] text-[#111] flex items-center justify-center font-bold text-xs mb-3 shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                WA
+              </div>
+              <span className="text-xs font-bold text-[#22C55E] block uppercase tracking-wider">{copy.channels.whatsapp.title}</span>
+              <p className="text-xs sm:text-sm text-white/90 font-medium line-clamp-2 mt-1 leading-snug">
+                {copy.channels.whatsapp.preview}
+              </p>
+            </div>
+            <div className="pt-2 border-t border-white/[0.06] flex items-center gap-1.5 text-[#22C55E] text-xs font-bold">
+              <DoubleCheckIcon className="w-4 h-4" />
+              <span>{channelsLanded ? copy.channels.whatsapp.status : "Sending..."}</span>
+            </div>
+          </motion.div>
+
+          {/* Card 2: SMS */}
+          <motion.div
+            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: 0.85 + STAGE_CONFIG.multiChannelChannelStagger, ease: STAGE_CONFIG.easeEntrance }}
+            className="h-[190px] sm:h-[200px] p-4 rounded-2xl bg-[#171717] border border-white/[0.08] flex flex-col justify-between shadow-xl"
+          >
+            <div>
+              <div className="w-10 h-10 rounded-full bg-[#E8A33D] text-[#111] flex items-center justify-center font-bold text-xs mb-3 shadow-[0_0_15px_rgba(232,163,61,0.3)]">
+                SMS
+              </div>
+              <span className="text-xs font-bold text-[#E8A33D] block uppercase tracking-wider">{copy.channels.sms.title}</span>
+              <p className="text-xs sm:text-sm text-white/90 font-medium line-clamp-2 mt-1 leading-snug">
+                {copy.channels.sms.preview}
+              </p>
+            </div>
+            <div className="pt-2 border-t border-white/[0.06] flex items-center gap-1.5 text-emerald-400 text-xs font-bold">
+              <CheckIcon className="w-4 h-4" />
+              <span>{channelsLanded ? copy.channels.sms.status : "Sending..."}</span>
+            </div>
+          </motion.div>
+
+          {/* Card 3: Email */}
+          <motion.div
+            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: 0.85 + STAGE_CONFIG.multiChannelChannelStagger * 2, ease: STAGE_CONFIG.easeEntrance }}
+            className="h-[190px] sm:h-[200px] p-4 rounded-2xl bg-[#171717] border border-white/[0.08] flex flex-col justify-between shadow-xl"
+          >
+            <div>
+              <div className="w-10 h-10 rounded-full bg-sky-500 text-white flex items-center justify-center font-bold text-xs mb-3 shadow-[0_0_15px_rgba(14,165,233,0.3)]">
+                <MailIcon className="w-5 h-5" />
+              </div>
+              <span className="text-xs font-bold text-sky-400 block uppercase tracking-wider">{copy.channels.email.title}</span>
+              <p className="text-xs sm:text-sm text-white/90 font-medium line-clamp-2 mt-1 leading-snug">
+                {copy.channels.email.subject}
+              </p>
+            </div>
+            <div className="pt-2 border-t border-white/[0.06] flex items-center gap-1.5 text-white/60 text-xs font-semibold">
+              <span className="w-2 h-2 rounded-full bg-sky-400" />
+              <span>{channelsLanded ? copy.channels.email.status : "Queued"}</span>
+            </div>
+          </motion.div>
+
+          {/* Card 4: Voice */}
+          <motion.div
+            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: 0.85 + STAGE_CONFIG.multiChannelChannelStagger * 3, ease: STAGE_CONFIG.easeEntrance }}
+            className="h-[190px] sm:h-[200px] p-4 rounded-2xl bg-[#171717] border border-white/[0.08] flex flex-col justify-between shadow-xl"
+          >
+            <div>
+              <div className="w-10 h-10 rounded-full bg-rose-500 text-white flex items-center justify-center font-bold text-xs mb-3 shadow-[0_0_15px_rgba(244,63,94,0.3)]">
+                <PhoneCallIcon className="w-5 h-5" />
+              </div>
+              <span className="text-xs font-bold text-rose-400 block uppercase tracking-wider">{copy.channels.voice.title}</span>
+              <p className="text-xs sm:text-sm text-white/90 font-medium line-clamp-2 mt-1 leading-snug">
+                {copy.channels.voice.caller}
+              </p>
+            </div>
+            <div className="pt-2 border-t border-white/[0.06] flex items-center gap-1.5 text-[#E8A33D] text-xs font-bold">
+              <span className="w-2 h-2 rounded-full bg-[#E8A33D] animate-ping" />
+              <span>{copy.channels.voice.status}</span>
+            </div>
+          </motion.div>
+
+        </div>
+      </motion.div>
+
+      {/* Pinned Result Chip */}
       <ResultChip text={copy.resultChip} />
     </div>
   );
@@ -381,117 +579,173 @@ export const MultiChannelIllustration: React.FC<{ active: boolean }> = ({ active
 /**
  * ============================================================================
  * 2. REAL-TIME DELIVERY TRACKING
- * Story: You always know where a message is, and it fixes itself if it fails.
+ * Layout: Table card at 85% width (max-w-[760px]), 4 rows with 64px row height,
+ * Header enters first, rows stagger, status chips pop in, self-healing banner slides in.
  * ============================================================================
  */
 export const DeliveryTrackingIllustration: React.FC<{ active: boolean }> = ({ active }) => {
   const prefersReduced = useReducedMotion();
   const copy = ENGAGEMENT_COPY.tabs[1];
+  const [rerouted, setRerouted] = useState(false);
+
+  useEffect(() => {
+    if (!active) {
+      setRerouted(false);
+      return;
+    }
+    const timer = setTimeout(() => setRerouted(true), 2400);
+    return () => clearTimeout(timer);
+  }, [active]);
+
+  const avatarColorMap: Record<string, { bg: string; text: string; border: string }> = {
+    purple: { bg: "bg-purple-500/20", text: "text-purple-300", border: "border-purple-500/30" },
+    blue: { bg: "bg-blue-500/20", text: "text-blue-300", border: "border-blue-500/30" },
+    teal: { bg: "bg-teal-500/20", text: "text-teal-300", border: "border-teal-500/30" },
+    rose: { bg: "bg-rose-500/20", text: "text-rose-300", border: "border-rose-500/30" }
+  };
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 select-none">
-      <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
-        
-        {/* Left: 2 Delivery Track Lanes */}
-        <div className="md:col-span-8 flex flex-col gap-4">
-          
-          {/* Lane 1: Chioma Okon (Success track) */}
-          <motion.div
-            key={`lane1-${active}`}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="p-4 sm:p-5 rounded-2xl bg-[#171717] border border-white/[0.08] shadow-xl"
-          >
-            <div className="flex items-center justify-between mb-3.5">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-purple-500/20 text-purple-300 font-bold text-xs flex items-center justify-center border border-purple-500/30">
-                  {copy.customers[0].initials}
-                </div>
-                <div>
-                  <h4 className="text-sm sm:text-base font-semibold text-white">{copy.customers[0].name}</h4>
-                  <span className="text-xs text-white/40">{copy.customers[0].phone}</span>
-                </div>
-              </div>
-              <span className="text-xs font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2.5 py-1 rounded-full border border-[#22C55E]/20">
-                Delivered
-              </span>
-            </div>
-
-            {/* Step rail */}
-            <div className="grid grid-cols-3 gap-2 text-center text-xs pt-2 border-t border-white/[0.05]">
-              <div className="flex items-center gap-1.5 justify-center text-emerald-400 font-medium">
-                <CheckIcon className="w-3.5 h-3.5" /> Sent
-              </div>
-              <div className="flex items-center gap-1.5 justify-center text-emerald-400 font-medium">
-                <CheckIcon className="w-3.5 h-3.5" /> Delivered
-              </div>
-              <div className="flex items-center gap-1.5 justify-center text-emerald-400 font-bold">
-                <DoubleCheckIcon className="w-4 h-4" /> Read
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Lane 2: Babatunde Adeleke (Auto-Failover track) */}
-          <motion.div
-            key={`lane2-${active}`}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.15 }}
-            className="p-4 sm:p-5 rounded-2xl bg-[#171717] border border-white/[0.08] shadow-xl"
-          >
-            <div className="flex items-center justify-between mb-3.5">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-teal-500/20 text-teal-300 font-bold text-xs flex items-center justify-center border border-teal-500/30">
-                  {copy.customers[1].initials}
-                </div>
-                <div>
-                  <h4 className="text-sm sm:text-base font-semibold text-white">{copy.customers[1].name}</h4>
-                  <span className="text-xs text-white/40">{copy.customers[1].phone}</span>
-                </div>
-              </div>
-              <span className="text-xs font-semibold text-[#E8A33D] bg-[#E8A33D]/10 px-2.5 py-1 rounded-full border border-[#E8A33D]/30">
-                Auto-switched to SMS
-              </span>
-            </div>
-
-            {/* Failover sequence */}
-            <div className="flex items-center justify-between gap-2 text-xs pt-2 border-t border-white/[0.05]">
-              <div className="flex items-center gap-1 text-rose-400 font-medium">
-                <XIcon className="w-3.5 h-3.5" /> WhatsApp Failed
-              </div>
-              <div className="flex items-center gap-1 text-[#E8A33D] font-medium">
-                <RefreshCwIcon className="w-3.5 h-3.5 animate-spin" /> Auto-reroute
-              </div>
-              <div className="flex items-center gap-1 text-emerald-400 font-bold">
-                <CheckIcon className="w-3.5 h-3.5" /> SMS Delivered
-              </div>
-            </div>
-          </motion.div>
-
-        </div>
-
-        {/* Right: Big Metric Card */}
+    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none">
+      
+      {/* Table Card (85% width: max-w-[760px]) */}
+      <motion.div
+        key={`dt-card-${active}`}
+        initial={prefersReduced ? { opacity: 0 } : { 
+          opacity: 0, 
+          y: STAGE_CONFIG.cardEntranceY, 
+          scale: STAGE_CONFIG.cardEntranceScale, 
+          filter: `blur(${STAGE_CONFIG.cardEntranceBlur})` 
+        }}
+        animate={prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        transition={{ duration: prefersReduced ? 0.2 : STAGE_CONFIG.cardEntranceDuration, ease: STAGE_CONFIG.easeEntrance }}
+        className="w-full max-w-[760px] bg-[#171717] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-2xl flex flex-col gap-3.5"
+      >
+        {/* Header: Title + Latency chip */}
         <motion.div
-          key={`stat-${active}`}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.25 }}
-          className="md:col-span-4 p-6 rounded-2xl bg-[#171717] border border-white/[0.08] flex flex-col items-center justify-center text-center shadow-2xl h-full min-h-[160px]"
+          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: STAGE_CONFIG.innerStartDelay, ease: STAGE_CONFIG.easeEntrance }}
+          className="flex items-center justify-between pb-3 border-b border-white/[0.06]"
         >
-          <span className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">
-            Delivery Health
-          </span>
-          <span className="text-4xl sm:text-5xl font-extrabold text-[#E8A33D] tracking-tight">
-            {copy.stat.value}
-          </span>
-          <span className="text-sm font-semibold text-emerald-400 mt-2 flex items-center gap-1">
-            <CheckIcon className="w-4 h-4" /> {copy.stat.label}
-          </span>
+          <div className="flex items-center gap-2.5">
+            <ActivityIcon className="w-4 h-4 text-[#E8A33D]" />
+            <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
+              {copy.header.title}
+            </h3>
+          </div>
+
+          <div className="flex items-center gap-2.5">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-white/5 border border-white/10 text-white/60">
+              ● {copy.header.latency}
+            </span>
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E] flex items-center gap-1">
+              <CheckIcon className="w-3.5 h-3.5" />
+              {copy.header.health}
+            </span>
+          </div>
         </motion.div>
 
-      </div>
+        {/* 4 Rows (64px row height) */}
+        <div className="flex flex-col gap-2.5">
+          {copy.rows.map((row, idx) => {
+            const colors = avatarColorMap[row.color] || avatarColorMap.purple;
+            const isRow3 = row.failover;
 
+            return (
+              <motion.div
+                key={row.phone}
+                initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: STAGE_CONFIG.innerEntranceDuration, 
+                  delay: STAGE_CONFIG.innerStartDelay + (idx + 1) * STAGE_CONFIG.deliveryRowStagger, 
+                  ease: STAGE_CONFIG.easeEntrance 
+                }}
+                className={`h-[64px] min-h-[64px] px-4 rounded-xl border flex items-center justify-between transition-all ${
+                  isRow3 && rerouted
+                    ? 'bg-emerald-500/10 border-emerald-500/30'
+                    : isRow3
+                    ? 'bg-rose-500/5 border-rose-500/20'
+                    : 'bg-white/[0.02] border-white/[0.05]'
+                }`}
+              >
+                {/* Left: Avatar + Name + Phone */}
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className={`w-9 h-9 rounded-full ${colors.bg} ${colors.text} ${colors.border} border font-bold text-xs flex items-center justify-center flex-shrink-0`}>
+                    {row.initials}
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="text-sm sm:text-[15px] font-semibold text-white tracking-tight truncate">
+                      {row.name}
+                    </h4>
+                    <span className="text-xs sm:text-[13px] font-mono text-white/50 block">
+                      {row.phone}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Right: Channel badge & Status chip popping in */}
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-semibold text-white/40 hidden sm:inline-block">
+                    {isRow3 && rerouted ? "SMS" : row.channel}
+                  </span>
+
+                  <motion.div
+                    initial={prefersReduced ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ 
+                      duration: 0.35, 
+                      delay: STAGE_CONFIG.innerStartDelay + (idx + 1) * STAGE_CONFIG.deliveryRowStagger + STAGE_CONFIG.deliveryChipPopDelay 
+                    }}
+                  >
+                    {isRow3 ? (
+                      rerouted ? (
+                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E] flex items-center gap-1.5 shadow-[0_0_12px_rgba(34,197,94,0.25)]">
+                          <CheckIcon className="w-3.5 h-3.5" /> SMS Delivered
+                        </span>
+                      ) : (
+                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 border border-rose-500/30 text-rose-400 flex items-center gap-1.5">
+                          <XIcon className="w-3.5 h-3.5" /> WhatsApp Failed
+                        </span>
+                      )
+                    ) : row.status === "Read" ? (
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E] flex items-center gap-1.5">
+                        <DoubleCheckIcon className="w-3.5 h-3.5" /> Read
+                      </span>
+                    ) : row.status === "Delivered" ? (
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E] flex items-center gap-1.5">
+                        <CheckIcon className="w-3.5 h-3.5" /> Delivered
+                      </span>
+                    ) : (
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-sky-500/15 border border-sky-500/30 text-sky-400">
+                        {row.status}
+                      </span>
+                    )}
+                  </motion.div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Self-Healing Banner (Slides up from bottom last) */}
+        <motion.div
+          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.8, ease: STAGE_CONFIG.easeEntrance }}
+          className="p-3 rounded-xl bg-[#E8A33D]/10 border border-[#E8A33D]/30 flex items-center justify-between gap-3 text-xs sm:text-sm font-semibold text-[#E8A33D]"
+        >
+          <div className="flex items-center gap-2">
+            <RefreshCwIcon className={`w-4 h-4 ${!rerouted ? 'animate-spin' : ''}`} />
+            <span>{copy.failoverBanner}</span>
+          </div>
+          <span className="text-[11px] font-bold bg-black/40 px-2.5 py-0.5 rounded text-white/90">
+            Auto-Resolved
+          </span>
+        </motion.div>
+      </motion.div>
+
+      {/* Pinned Result Chip */}
       <ResultChip text={copy.resultChip} />
     </div>
   );
@@ -500,77 +754,121 @@ export const DeliveryTrackingIllustration: React.FC<{ active: boolean }> = ({ ac
 /**
  * ============================================================================
  * 3. MARKETING AUTOMATION
- * Story: Recover a lost sale without lifting a finger.
+ * Layout: Full usable width up to 880px, single row of 4 nodes (240px tall, ~22% width),
+ * 40px icons, connector lines draw between nodes (0.3s), last node glow pulse,
+ * uplift chip underneath, vertically centered as one group.
  * ============================================================================
  */
 export const MarketingAutomationIllustration: React.FC<{ active: boolean }> = ({ active }) => {
+  const prefersReduced = useReducedMotion();
   const copy = ENGAGEMENT_COPY.tabs[2];
   const icons = [ShoppingBagIcon, ClockIcon, FilterIcon, MessageSquareIcon];
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 select-none">
-      <div className="w-full max-w-3xl flex flex-col gap-6">
-        
-        {/* 4 Large Connected Nodes */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 relative">
+    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none">
+      
+      {/* Vertically Centered Group (Flow row + Uplift chip) */}
+      <motion.div
+        key={`ma-group-${active}`}
+        initial={prefersReduced ? { opacity: 0 } : { 
+          opacity: 0, 
+          y: STAGE_CONFIG.cardEntranceY, 
+          scale: STAGE_CONFIG.cardEntranceScale, 
+          filter: `blur(${STAGE_CONFIG.cardEntranceBlur})` 
+        }}
+        animate={prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        transition={{ duration: prefersReduced ? 0.2 : STAGE_CONFIG.cardEntranceDuration, ease: STAGE_CONFIG.easeEntrance }}
+        className="w-full max-w-[880px] flex flex-col items-center gap-6"
+      >
+        {/* Desktop Single Row of 4 Nodes + Horizontal Connectors */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-4 gap-4 sm:gap-3 items-center relative">
           {copy.steps.map((step, idx) => {
             const Icon = icons[idx];
             const isLast = idx === 3;
+            const nodeDelay = STAGE_CONFIG.innerStartDelay + idx * STAGE_CONFIG.marketingNodeStagger;
 
             return (
-              <motion.div
-                key={`node-${idx}-${active}`}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: idx * 0.12 }}
-                className={`p-4 rounded-2xl border flex flex-col items-center text-center transition-all ${
-                  isLast 
-                    ? 'bg-[#18261C] border-[#22C55E]/40 shadow-[0_0_25px_rgba(34,197,94,0.15)]' 
-                    : 'bg-[#171717] border-white/[0.08]'
-                }`}
-              >
-                <div className={`w-10 h-10 rounded-xl mb-3 flex items-center justify-center ${
-                  isLast ? 'bg-[#22C55E] text-[#111]' : 'bg-white/5 text-white/80'
-                }`}>
-                  <Icon className="w-5 h-5" />
-                </div>
-                <h4 className="text-sm font-bold text-white tracking-tight leading-tight">
-                  {step.label}
-                </h4>
-                <span className="text-xs text-white/50 mt-1">{step.sub}</span>
-              </motion.div>
+              <React.Fragment key={step.label}>
+                {/* Node Box (240px tall) */}
+                <motion.div
+                  initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
+                  animate={
+                    isLast && !prefersReduced
+                      ? { 
+                          opacity: 1, 
+                          y: 0,
+                          boxShadow: [
+                            "0 0 0px rgba(232,163,61,0)",
+                            "0 0 30px rgba(232,163,61,0.45)",
+                            "0 0 15px rgba(232,163,61,0.2)"
+                          ]
+                        }
+                      : { opacity: 1, y: 0 }
+                  }
+                  transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: nodeDelay, ease: STAGE_CONFIG.easeEntrance }}
+                  className={`h-[220px] sm:h-[240px] p-5 rounded-2xl border flex flex-col items-center justify-between text-center relative shadow-xl ${
+                    isLast
+                      ? 'bg-[#18261C] border-[#E8A33D] shadow-[0_0_20px_rgba(232,163,61,0.25)]'
+                      : 'bg-[#171717] border-white/[0.08]'
+                  }`}
+                >
+                  <span className={`text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full ${
+                    isLast ? 'bg-[#E8A33D]/20 text-[#E8A33D]' : 'bg-white/5 text-white/40'
+                  }`}>
+                    {step.badge}
+                  </span>
+
+                  <div className="flex flex-col items-center">
+                    {/* 40px Icon */}
+                    <div className={`w-14 h-14 rounded-2xl mb-3 flex items-center justify-center ${
+                      isLast 
+                        ? 'bg-[#E8A33D] text-[#111] shadow-[0_0_20px_rgba(232,163,61,0.4)]' 
+                        : 'bg-white/5 text-white/80 border border-white/10'
+                    }`}>
+                      <Icon className="w-7 h-7" />
+                    </div>
+
+                    <h4 className="text-sm sm:text-base font-bold text-white tracking-tight leading-tight">
+                      {step.label}
+                    </h4>
+                  </div>
+
+                  <span className={`text-xs font-semibold ${isLast ? 'text-emerald-400' : 'text-white/50'}`}>
+                    {step.sub}
+                  </span>
+                </motion.div>
+              </React.Fragment>
             );
           })}
         </div>
 
-        {/* WhatsApp Message & Money Recovered Counter */}
+        {/* Uplift Chip Fading in Underneath */}
         <motion.div
-          key={`pop-${active}`}
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.4 }}
-          className="p-4 sm:p-5 rounded-2xl bg-[#142319] border border-[#22C55E]/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl"
+          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 1.25, ease: STAGE_CONFIG.easeEntrance }}
+          className="w-full max-w-lg p-3.5 sm:p-4 rounded-2xl bg-[#142319] border border-[#22C55E]/30 flex items-center justify-between gap-4 shadow-xl"
         >
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#22C55E] text-black font-extrabold flex items-center justify-center flex-shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-[#22C55E] text-[#111] font-extrabold text-xs flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_rgba(34,197,94,0.3)]">
               WA
             </div>
             <div>
-              <span className="text-xs font-semibold text-[#22C55E]">Automated WhatsApp Message</span>
-              <p className="text-sm sm:text-base font-semibold text-white">
+              <span className="text-[11px] font-bold text-[#22C55E] block uppercase tracking-wider">Direct WhatsApp Offer</span>
+              <p className="text-xs sm:text-sm font-semibold text-white">
                 "{copy.whatsappMsg}"
               </p>
             </div>
           </div>
 
-          <div className="flex-shrink-0 px-4 py-2 rounded-xl bg-[#22C55E] text-[#111] font-bold text-sm sm:text-base flex items-center gap-1.5 shadow-[0_0_20px_rgba(34,197,94,0.3)]">
+          <div className="flex-shrink-0 px-3.5 py-1.5 rounded-xl bg-[#22C55E] text-[#111] font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow-[0_0_20px_rgba(34,197,94,0.35)]">
             <ArrowUpRightIcon className="w-4 h-4" />
             <span>{copy.recoveredValue}</span>
           </div>
         </motion.div>
+      </motion.div>
 
-      </div>
-
+      {/* Pinned Result Chip */}
       <ResultChip text={copy.resultChip} />
     </div>
   );
@@ -578,22 +876,35 @@ export const MarketingAutomationIllustration: React.FC<{ active: boolean }> = ({
 
 /**
  * ============================================================================
- * 4. SHARED TEAM INBOX
- * Story: Two teammates, no double replies.
+ * 4. SHARED TEAM INBOX (Reference Illustration)
+ * Two teammates, no double replies.
  * ============================================================================
  */
 export const SharedInboxIllustration: React.FC<{ active: boolean }> = ({ active }) => {
+  const prefersReduced = useReducedMotion();
   const copy = ENGAGEMENT_COPY.tabs[3];
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 select-none">
-      <div className="w-full max-w-2xl bg-[#171717] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-2xl flex flex-col gap-4">
-        
+    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none">
+      
+      {/* Main Card (85% width: max-w-[760px]) */}
+      <motion.div
+        key={`si-card-${active}`}
+        initial={prefersReduced ? { opacity: 0 } : { 
+          opacity: 0, 
+          y: STAGE_CONFIG.cardEntranceY, 
+          scale: STAGE_CONFIG.cardEntranceScale, 
+          filter: `blur(${STAGE_CONFIG.cardEntranceBlur})` 
+        }}
+        animate={prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        transition={{ duration: prefersReduced ? 0.2 : STAGE_CONFIG.cardEntranceDuration, ease: STAGE_CONFIG.easeEntrance }}
+        className="w-full max-w-[760px] bg-[#171717] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-2xl flex flex-col gap-3.5"
+      >
         {/* Top bar with team status */}
         <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
           <div className="flex items-center gap-2">
             <UsersIcon className="w-4 h-4 text-[#E8A33D]" />
-            <span className="text-sm font-semibold text-white">Customer Support Team</span>
+            <span className="text-sm sm:text-base font-bold text-white">Customer Support Team</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -610,7 +921,12 @@ export const SharedInboxIllustration: React.FC<{ active: boolean }> = ({ active 
         </div>
 
         {/* Customer Incoming Query */}
-        <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.05] flex items-start gap-3">
+        <motion.div
+          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: STAGE_CONFIG.innerStartDelay, ease: STAGE_CONFIG.easeEntrance }}
+          className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.05] flex items-start gap-3"
+        >
           <div className="w-8 h-8 rounded-full bg-pink-500/20 text-pink-300 font-bold text-xs flex items-center justify-center flex-shrink-0">
             {copy.customer.initials}
           </div>
@@ -620,14 +936,13 @@ export const SharedInboxIllustration: React.FC<{ active: boolean }> = ({ active 
               "{copy.customer.message}"
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Ada Claiming & Typing */}
         <motion.div
-          key={`ada-${active}`}
-          initial={{ opacity: 0, x: -8 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.35, delay: 0.2 }}
+          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: STAGE_CONFIG.innerStartDelay + STAGE_CONFIG.innerStaggerDelay, ease: STAGE_CONFIG.easeEntrance }}
           className="p-3.5 rounded-xl bg-[#E8A33D]/10 border border-[#E8A33D]/30 flex items-center justify-between"
         >
           <div className="flex items-center gap-2.5">
@@ -635,7 +950,7 @@ export const SharedInboxIllustration: React.FC<{ active: boolean }> = ({ active 
               {copy.agents.ada.initials}
             </div>
             <span className="text-sm font-semibold text-[#E8A33D]">
-              {copy.agents.ada.name} is replying...
+              {copy.agents.ada.status}
             </span>
           </div>
           <span className="text-xs font-bold text-[#E8A33D] bg-black/40 px-2 py-0.5 rounded">
@@ -645,10 +960,9 @@ export const SharedInboxIllustration: React.FC<{ active: boolean }> = ({ active 
 
         {/* Tunde Blocked Warning Toast */}
         <motion.div
-          key={`tunde-${active}`}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.35, delay: 0.4 }}
+          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: STAGE_CONFIG.innerStartDelay + STAGE_CONFIG.innerStaggerDelay * 2, ease: STAGE_CONFIG.easeEntrance }}
           className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-between text-xs sm:text-sm font-semibold text-rose-300"
         >
           <div className="flex items-center gap-2">
@@ -657,27 +971,26 @@ export const SharedInboxIllustration: React.FC<{ active: boolean }> = ({ active 
             </div>
             <span>{copy.agents.tunde.name} opened ticket</span>
           </div>
-          <span className="text-xs font-bold bg-rose-500/20 px-2 py-0.5 rounded text-rose-300">
+          <span className="text-xs font-bold bg-rose-500/20 px-2.5 py-0.5 rounded text-rose-300">
             {copy.agents.tunde.blockedNotice}
           </span>
         </motion.div>
 
         {/* Ada Sent Reply */}
         <motion.div
-          key={`reply-${active}`}
-          initial={{ opacity: 0, y: 8 }}
+          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, delay: 0.6 }}
+          transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: STAGE_CONFIG.innerStartDelay + STAGE_CONFIG.innerStaggerDelay * 3, ease: STAGE_CONFIG.easeEntrance }}
           className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between"
         >
-          <p className="text-sm font-medium text-emerald-300">
+          <p className="text-sm sm:text-base font-medium text-emerald-300">
             "{copy.agents.ada.replyText}"
           </p>
           <DoubleCheckIcon className="w-4 h-4 text-emerald-400 flex-shrink-0" />
         </motion.div>
+      </motion.div>
 
-      </div>
-
+      {/* Pinned Result Chip */}
       <ResultChip text={copy.resultChip} />
     </div>
   );
@@ -686,17 +999,23 @@ export const SharedInboxIllustration: React.FC<{ active: boolean }> = ({ active 
 /**
  * ============================================================================
  * 5. CUSTOMER SEGMENTATION
- * Story: From a crowd to the right audience.
+ * Layout: 44px tall filter chips enter first. Dot grid card at 85% width (36px dots,
+ * 8 cols x 4 rows) enters with wave stagger from top-left. Matching dots highlight,
+ * matched-count line enters last.
  * ============================================================================
  */
 export const CustomerSegmentationIllustration: React.FC<{ active: boolean }> = ({ active }) => {
+  const prefersReduced = useReducedMotion();
   const copy = ENGAGEMENT_COPY.tabs[4];
   const [filterStep, setFilterStep] = useState(0);
 
   useEffect(() => {
-    if (!active) return;
-    const t1 = setTimeout(() => setFilterStep(1), 800);
-    const t2 = setTimeout(() => setFilterStep(2), 1800);
+    if (!active) {
+      setFilterStep(0);
+      return;
+    }
+    const t1 = setTimeout(() => setFilterStep(1), 1200);
+    const t2 = setTimeout(() => setFilterStep(2), 2000);
     const t3 = setTimeout(() => setFilterStep(3), 2800);
     return () => {
       clearTimeout(t1);
@@ -708,23 +1027,41 @@ export const CustomerSegmentationIllustration: React.FC<{ active: boolean }> = (
   const initialsList = [
     "AO", "BE", "CH", "DA", "EK", "FA", "GB", "HA",
     "IB", "JO", "KA", "LU", "MO", "NE", "OK", "PA",
-    "RA", "SE", "TI", "UM", "VI", "WA", "YA", "ZA"
+    "RA", "SE", "TI", "UM", "VI", "WA", "YA", "ZA",
+    "AD", "TU", "FL", "CO", "BA", "EO", "AB", "KD"
   ];
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 select-none">
-      <div className="w-full max-w-2xl flex flex-col gap-5 items-center">
-        
-        {/* 3 Interactive Filter Chips */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5">
+    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none">
+      
+      {/* Main Group (85% width: max-w-[760px]) */}
+      <motion.div
+        key={`cs-group-${active}`}
+        initial={prefersReduced ? { opacity: 0 } : { 
+          opacity: 0, 
+          y: STAGE_CONFIG.cardEntranceY, 
+          scale: STAGE_CONFIG.cardEntranceScale, 
+          filter: `blur(${STAGE_CONFIG.cardEntranceBlur})` 
+        }}
+        animate={prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        transition={{ duration: prefersReduced ? 0.2 : STAGE_CONFIG.cardEntranceDuration, ease: STAGE_CONFIG.easeEntrance }}
+        className="w-full max-w-[760px] flex flex-col items-center gap-4"
+      >
+        {/* Filter Chips (44px tall, enter first) */}
+        <motion.div
+          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: STAGE_CONFIG.innerEntranceDuration, delay: STAGE_CONFIG.innerStartDelay, ease: STAGE_CONFIG.easeEntrance }}
+          className="flex flex-wrap items-center justify-center gap-3"
+        >
           {copy.filters.map((f, i) => {
             const isSelected = filterStep >= i + 1;
             return (
               <span
                 key={f.id}
-                className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all border ${
+                className={`h-[44px] px-5 rounded-full text-xs sm:text-sm font-semibold flex items-center transition-all border ${
                   isSelected
-                    ? 'bg-[#E8A33D] text-[#111110] border-[#E8A33D] shadow-[0_0_15px_rgba(232,163,61,0.3)]'
+                    ? 'bg-[#E8A33D] text-[#111110] border-[#E8A33D] shadow-[0_0_20px_rgba(232,163,61,0.35)]'
                     : 'bg-white/5 text-white/50 border-white/10'
                 }`}
               >
@@ -732,27 +1069,35 @@ export const CustomerSegmentationIllustration: React.FC<{ active: boolean }> = (
               </span>
             );
           })}
-        </div>
+        </motion.div>
 
-        {/* Dynamic Avatar Cloud & Target Box */}
-        <div className="w-full p-6 rounded-2xl bg-[#171717] border border-white/[0.08] flex flex-col items-center justify-center shadow-2xl">
-          <div className="grid grid-cols-8 sm:grid-cols-12 gap-2 sm:gap-2.5 mb-5">
+        {/* Dot Grid Card (~85% width, enlarged 36px dots, 8x4 grid) */}
+        <div className="w-full p-5 sm:p-6 rounded-2xl bg-[#171717] border border-white/[0.08] shadow-2xl flex flex-col items-center">
+          <div className="grid grid-cols-8 gap-2.5 sm:gap-3 mb-4">
             {initialsList.map((initials, idx) => {
+              const col = idx % 8;
+              const row = Math.floor(idx / 8);
+              const waveDelay = STAGE_CONFIG.innerStartDelay + 0.1 + (col + row) * STAGE_CONFIG.segmentationWaveStagger;
+
               const isMatch = idx % 3 === 0;
               const isDimmed = filterStep > 0 && !isMatch;
 
               return (
                 <motion.div
                   key={idx}
+                  initial={prefersReduced ? { opacity: 0 } : { opacity: 0, scale: 0.5 }}
                   animate={{
-                    scale: isDimmed ? 0.75 : isMatch && filterStep === 3 ? 1.15 : 1,
-                    opacity: isDimmed ? 0.15 : 1
+                    opacity: isDimmed ? 0.15 : 1,
+                    scale: isDimmed ? 0.75 : isMatch && filterStep === 3 ? 1.15 : 1
                   }}
-                  transition={{ duration: 0.3 }}
-                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold transition-colors ${
+                  transition={{ 
+                    duration: 0.35,
+                    delay: prefersReduced ? 0 : waveDelay 
+                  }}
+                  className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold transition-all ${
                     isMatch && filterStep === 3
-                      ? 'bg-[#E8A33D] text-[#111] shadow-[0_0_12px_#E8A33D]'
-                      : 'bg-white/10 text-white/70'
+                      ? 'bg-[#E8A33D] text-[#111] shadow-[0_0_15px_#E8A33D]'
+                      : 'bg-white/10 text-white/75'
                   }`}
                 >
                   {initials}
@@ -761,32 +1106,31 @@ export const CustomerSegmentationIllustration: React.FC<{ active: boolean }> = (
             })}
           </div>
 
-          {/* Group audience outcome card */}
+          {/* Matched Count Line (Enters last, sits under the grid) */}
           <motion.div
-            key={`match-${active}`}
-            initial={{ opacity: 0, y: 8 }}
+            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
-            className="w-full p-4 rounded-xl bg-white/[0.02] border border-white/[0.08] flex items-center justify-between"
+            transition={{ duration: 0.45, delay: 0.85, ease: STAGE_CONFIG.easeEntrance }}
+            className="w-full p-3.5 sm:p-4 rounded-xl bg-white/[0.02] border border-white/[0.08] flex items-center justify-between"
           >
             <div>
-              <span className="text-xs font-semibold text-white/40 block">{copy.groupName}</span>
-              <strong className="text-lg sm:text-xl font-bold text-white tracking-tight">
+              <span className="text-xs font-semibold text-white/40 block uppercase tracking-wider">{copy.groupName}</span>
+              <strong className="text-base sm:text-lg font-bold text-white tracking-tight">
                 {copy.matchedCount}
               </strong>
             </div>
 
             <button
               type="button"
-              className="px-4 py-2 rounded-xl bg-[#E8A33D] text-[#111] font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(232,163,61,0.25)]"
+              className="px-4 py-2 rounded-xl bg-[#E8A33D] text-[#111] font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(232,163,61,0.3)] hover:brightness-105 transition-all"
             >
               {copy.sendBtn}
             </button>
           </motion.div>
         </div>
+      </motion.div>
 
-      </div>
-
+      {/* Pinned Result Chip */}
       <ResultChip text={copy.resultChip} />
     </div>
   );
@@ -795,64 +1139,144 @@ export const CustomerSegmentationIllustration: React.FC<{ active: boolean }> = (
 /**
  * ============================================================================
  * 6. CAMPAIGN ANALYTICS
- * Story: See what works at a glance.
+ * Layout: Card at 85% width (max-w-[760px], at least 400px tall).
+ * Big KPI numbers (~40px) count up over 0.8s, divider draws left to right,
+ * 220px tall bar chart grows from baseline, Friday turns amber & pulses once.
  * ============================================================================
  */
 export const CampaignAnalyticsIllustration: React.FC<{ active: boolean }> = ({ active }) => {
+  const prefersReduced = useReducedMotion();
   const copy = ENGAGEMENT_COPY.tabs[5];
-  const barHeights = [45, 62, 58, 76, 98, 60, 52];
+  const barHeights = [42, 60, 55, 74, 98, 58, 48];
+
+  const [counterProgress, setCounterProgress] = useState(0);
+
+  useEffect(() => {
+    if (!active) {
+      setCounterProgress(0);
+      return;
+    }
+
+    let start: number | null = null;
+    let animId: number;
+    const duration = STAGE_CONFIG.analyticsKpiCountDuration * 1000;
+
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+      const pct = Math.min(elapsed / duration, 1);
+      setCounterProgress(pct);
+
+      if (pct < 1) {
+        animId = requestAnimationFrame(step);
+      }
+    };
+
+    const delayTimer = setTimeout(() => {
+      animId = requestAnimationFrame(step);
+    }, STAGE_CONFIG.innerStartDelay * 1000);
+
+    return () => {
+      clearTimeout(delayTimer);
+      cancelAnimationFrame(animId);
+    };
+  }, [active]);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 select-none">
-      <div className="w-full max-w-2xl bg-[#171717] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-2xl flex flex-col gap-6">
-        
-        {/* 3 KPI Tiles */}
-        <div className="grid grid-cols-3 gap-3 pb-5 border-b border-white/[0.06] text-center">
-          {copy.kpis.map((kpi, i) => (
-            <motion.div
-              key={kpi.label}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, delay: i * 0.1 }}
-            >
-              <span className="text-xs font-semibold text-white/50 block mb-1">{kpi.label}</span>
-              <div className="flex items-center justify-center gap-1.5 flex-wrap">
-                <span className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">{kpi.value}</span>
-                <span className="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">
-                  {kpi.change}
+    <div className="relative w-full h-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] p-6 lg:p-10 flex flex-col items-center justify-center pb-20 select-none">
+      
+      {/* Main Card (85% width: max-w-[760px], min-height >= 400px) */}
+      <motion.div
+        key={`ca-card-${active}`}
+        initial={prefersReduced ? { opacity: 0 } : { 
+          opacity: 0, 
+          y: STAGE_CONFIG.cardEntranceY, 
+          scale: STAGE_CONFIG.cardEntranceScale, 
+          filter: `blur(${STAGE_CONFIG.cardEntranceBlur})` 
+        }}
+        animate={prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        transition={{ duration: prefersReduced ? 0.2 : STAGE_CONFIG.cardEntranceDuration, ease: STAGE_CONFIG.easeEntrance }}
+        className="w-full max-w-[760px] min-h-[400px] bg-[#171717] border border-white/[0.08] rounded-2xl p-6 sm:p-7 shadow-2xl flex flex-col justify-between gap-6"
+      >
+        {/* Top: 3 KPI Tiles (Enters first, numbers count up from 0) */}
+        <div className="grid grid-cols-3 gap-3 text-center">
+          {copy.kpis.map((kpi, i) => {
+            const currentNumeric = (kpi.numeric * counterProgress).toFixed(1);
+            const displayVal = counterProgress === 1 ? kpi.value : `${currentNumeric}${kpi.suffix}`;
+
+            return (
+              <motion.div
+                key={kpi.label}
+                initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.innerEntranceY }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: STAGE_CONFIG.innerEntranceDuration, 
+                  delay: STAGE_CONFIG.innerStartDelay + i * STAGE_CONFIG.innerStaggerDelay, 
+                  ease: STAGE_CONFIG.easeEntrance 
+                }}
+              >
+                <span className="text-xs font-semibold text-white/50 block mb-1 uppercase tracking-wider">
+                  {kpi.label}
                 </span>
-              </div>
-            </motion.div>
-          ))}
+                <div className="flex items-center justify-center gap-1.5 flex-wrap">
+                  <span className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold text-white tracking-tight leading-none">
+                    {displayVal}
+                  </span>
+                  <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                    {kpi.change}
+                  </span>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Weekly Bar Chart with Friday Tooltip */}
-        <div className="relative pt-6">
+        {/* Divider line drawing left to right */}
+        <motion.div
+          initial={prefersReduced ? { opacity: 0 } : { scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: STAGE_CONFIG.analyticsDividerDuration, delay: 0.6, ease: "easeOut" }}
+          style={{ originX: 0 }}
+          className="w-full h-px bg-white/[0.08]"
+        />
+
+        {/* Bar Chart Area (220px tall area, wider bars, 16px gaps) */}
+        <div className="relative h-[220px] w-full flex flex-col justify-end pt-8">
+          
           {/* Tooltip positioned directly above Friday (index 4) */}
           <motion.div
-            key={`tooltip-${active}`}
-            initial={{ opacity: 0, y: 6 }}
+            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, delay: 0.45 }}
-            className="absolute top-0 left-[62%] -translate-x-1/2 px-3 py-1 rounded-lg bg-[#E8A33D] text-[#111110] font-bold text-xs tracking-tight shadow-[0_0_15px_rgba(232,163,61,0.4)] whitespace-nowrap"
+            transition={{ duration: 0.35, delay: 1.15 }}
+            className="absolute top-0 left-[64%] -translate-x-1/2 px-3 py-1 rounded-lg bg-[#E8A33D] text-[#111110] font-bold text-xs tracking-tight shadow-[0_0_15px_rgba(232,163,61,0.4)] whitespace-nowrap z-10"
           >
             <span>{copy.chart.bestDayTooltip}</span>
           </motion.div>
 
-          <div className="flex items-end justify-between gap-3 h-28 sm:h-32 px-2">
+          {/* 7 Bars (Mon - Sun) */}
+          <div className="flex items-end justify-between gap-3 sm:gap-4 h-[160px] px-2">
             {copy.chart.days.map((day, idx) => {
               const isFriday = idx === 4;
               const height = barHeights[idx];
+              const barDelay = 0.7 + idx * STAGE_CONFIG.analyticsBarStagger;
 
               return (
                 <div key={day} className="flex-1 flex flex-col items-center gap-2 h-full justify-end">
                   <motion.div
-                    initial={{ height: 0 }}
-                    animate={{ height: `${height}%` }}
-                    transition={{ duration: 0.5, delay: idx * 0.06 }}
+                    initial={prefersReduced ? { opacity: 0 } : { scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
+                    transition={{ 
+                      duration: STAGE_CONFIG.analyticsBarGrowDuration, 
+                      delay: barDelay, 
+                      ease: STAGE_CONFIG.easeEntrance 
+                    }}
+                    style={{ 
+                      height: `${height}%`, 
+                      transformOrigin: "bottom" 
+                    }}
                     className={`w-full rounded-t-lg transition-all ${
                       isFriday
-                        ? 'bg-[#E8A33D] shadow-[0_0_20px_rgba(232,163,61,0.45)]'
+                        ? 'bg-[#E8A33D] shadow-[0_0_24px_rgba(232,163,61,0.5)]'
                         : 'bg-white/10 hover:bg-white/20'
                     }`}
                   />
@@ -865,8 +1289,18 @@ export const CampaignAnalyticsIllustration: React.FC<{ active: boolean }> = ({ a
           </div>
         </div>
 
-      </div>
+        {/* Footer line fading in at the end */}
+        <motion.div
+          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 1.25 }}
+          className="text-center text-xs font-semibold text-white/50 pt-2 border-t border-white/[0.04]"
+        >
+          {copy.chart.footer}
+        </motion.div>
+      </motion.div>
 
+      {/* Pinned Result Chip */}
       <ResultChip text={copy.resultChip} />
     </div>
   );
@@ -947,25 +1381,31 @@ export const ModernCustomerEngagement: React.FC = () => {
     }
   };
 
+  // Auto-advance loop: Progress line starts filling only after entrance finishes
   useEffect(() => {
     if (prefersReducedMotion || !isInView || isPaused) {
       return;
     }
 
-    const intervalMs = 50;
-    const step = (intervalMs / DURATION_MS) * 100;
+    const entranceTimer = setTimeout(() => {
+      const intervalMs = 50;
+      const remainingMs = STAGE_CONFIG.autoAdvanceTotalMs - STAGE_CONFIG.autoAdvanceDelayMs;
+      const step = (intervalMs / remainingMs) * 100;
 
-    const timer = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          handleSelectTab((activeIndex + 1) % ENGAGEMENT_COPY.tabs.length);
-          return 0;
-        }
-        return prev + step;
-      });
-    }, intervalMs);
+      const timer = setInterval(() => {
+        setProgress(prev => {
+          if (prev >= 100) {
+            handleSelectTab((activeIndex + 1) % ENGAGEMENT_COPY.tabs.length);
+            return 0;
+          }
+          return prev + step;
+        });
+      }, intervalMs);
 
-    return () => clearInterval(timer);
+      return () => clearInterval(timer);
+    }, STAGE_CONFIG.autoAdvanceDelayMs);
+
+    return () => clearTimeout(entranceTimer);
   }, [activeIndex, isInView, isPaused, prefersReducedMotion, handleSelectTab]);
 
   return (
@@ -1016,23 +1456,23 @@ export const ModernCustomerEngagement: React.FC = () => {
           </div>
         </div>
 
-        {/* Big Illustration Stage Card */}
+        {/* Fixed Height Illustration Stage Card (Min 520px desktop, 460px tablet, 400px mobile) */}
         <div 
           role="tabpanel"
           id={`panel-${activeTab.id}`}
           aria-labelledby={`tab-${activeTab.id}`}
-          className="relative w-full h-[400px] sm:h-[460px] rounded-[24px] bg-[#141414] border border-white/[0.08] shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden flex items-center justify-center"
+          className="relative w-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] rounded-[24px] bg-[#141414] border border-white/[0.08] shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden flex items-center justify-center"
         >
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E8A33D]/35 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E8A33D]/35 to-transparent z-10 pointer-events-none" />
 
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab.id}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-              className="w-full h-full"
+              initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: STAGE_CONFIG.exitY }}
+              transition={{ duration: prefersReducedMotion ? 0.2 : STAGE_CONFIG.exitDuration, ease: "easeIn" }}
+              className="w-full h-full flex items-center justify-center"
             >
               <ActiveIllustrationRouter tabId={activeTab.id} active={true} />
             </motion.div>
@@ -1060,52 +1500,45 @@ export const ModernCustomerEngagement: React.FC = () => {
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => handleSelectTab(index)}
                 onKeyDown={e => handleKeyDown(e, index)}
-                className={`group relative text-left pl-5 py-2 flex flex-col justify-start transition-opacity duration-300 snap-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A33D] rounded-lg ${
-                  isActive ? 'opacity-100' : 'opacity-40 hover:opacity-75'
+                className={`group relative text-left p-6 rounded-2xl transition-all duration-300 snap-center outline-none focus-visible:ring-2 focus-visible:ring-[#E8A33D] ${
+                  isActive
+                    ? 'bg-white/[0.035] border border-white/[0.09] shadow-[0_10px_30px_rgba(0,0,0,0.4)]'
+                    : 'bg-transparent border border-transparent hover:bg-white/[0.015]'
                 }`}
               >
-                <div 
-                  className="absolute left-0 top-0 bottom-0 w-[2px] bg-white/[0.08] rounded-full overflow-hidden"
-                  aria-hidden="true"
-                >
+                {/* 3px Left Vertical Loader Progress Line */}
+                <div className="absolute left-0 top-3 bottom-3 w-[3px] rounded-full bg-white/10 overflow-hidden">
                   {isActive && (
                     <motion.div
-                      className="w-full bg-[#E8A33D] origin-top"
-                      style={{
-                        height: prefersReducedMotion ? '100%' : `${progress}%`,
-                      }}
-                      transition={{ ease: 'linear' }}
+                      className="w-full bg-[#E8A33D] rounded-full"
+                      style={{ height: `${progress}%` }}
+                      transition={{ duration: 0.05, ease: 'linear' }}
                     />
                   )}
                 </div>
 
-                <div className="flex items-center gap-2.5 mb-2">
-                  <div className={`transition-colors duration-200 ${isActive ? 'text-[#E8A33D]' : 'text-white/60'}`}>
-                    <ZapIcon className="w-4 h-4" />
+                <div className="pl-3 flex flex-col gap-2">
+                  <div className="flex items-center gap-3">
+                    <span className={`w-2 h-2 rounded-full transition-colors ${
+                      isActive ? 'bg-[#E8A33D] shadow-[0_0_8px_#E8A33D]' : 'bg-white/20 group-hover:bg-white/40'
+                    }`} />
+                    <h3 className={`text-base sm:text-lg font-bold tracking-tight transition-colors ${
+                      isActive ? 'text-white' : 'text-white/70 group-hover:text-white'
+                    }`}>
+                      {tab.title}
+                    </h3>
                   </div>
-                  <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
-                    {tab.title}
-                  </h3>
-                </div>
 
-                <p className="text-xs sm:text-[13px] text-white/60 leading-relaxed font-normal">
-                  {tab.description}
-                </p>
+                  <p className="text-xs sm:text-sm text-white/50 leading-relaxed font-normal">
+                    {tab.description}
+                  </p>
 
-                <div className="min-h-[22px] mt-2.5 flex items-center">
-                  {isActive && (
-                    <motion.span
-                      initial={{ opacity: 0, x: -4 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-[#E8A33D] hover:underline"
-                    >
-                      <span>Learn more</span>
-                      <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </motion.span>
-                  )}
+                  <div className={`mt-2 inline-flex items-center gap-1.5 text-xs font-bold transition-all duration-200 ${
+                    isActive ? 'text-[#E8A33D] opacity-100 translate-x-0' : 'opacity-0 -translate-x-2 pointer-events-none'
+                  }`}>
+                    <span>Learn more</span>
+                    <span>&gt;</span>
+                  </div>
                 </div>
               </button>
             );

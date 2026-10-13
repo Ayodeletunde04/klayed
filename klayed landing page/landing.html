@@ -1418,70 +1418,81 @@
             <!-- Panel 0: Multi-channel communication -->
             <div class="kij-eng-panel is-active" id="kij-eng-panel-0" role="tabpanel" aria-labelledby="kij-eng-tab-0">
               <div class="kij-merchant-stage-inner">
-                <div class="kij-mc-grid">
-                  <!-- Composer Card -->
-                  <div class="kij-mc-composer">
+                <div style="width: 100%; max-width: 760px; display: flex; flex-direction: column; align-items: center;">
+                  <!-- Top: Gateway Card -->
+                  <div class="kij-mc-gateway-card">
                     <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06);">
-                      <span style="font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em;">New Announcement</span>
-                      <span style="font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: rgba(232,163,61,0.1); color: #E8A33D;">All channels</span>
+                      <span style="font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px;">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E8A33D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        New Announcement
+                      </span>
+                      <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: rgba(232,163,61,0.15); color: #E8A33D; border: 1px solid rgba(232,163,61,0.3);">All 4 Channels</span>
                     </div>
-                    <div style="padding: 14px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
+                    <div style="padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
                       <p style="margin: 0; font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.95); line-height: 1.4;">
                         "Your order #1042 has shipped. Track your delivery live."
                       </p>
                     </div>
-                    <div style="width: 100%; padding: 12px; border-radius: 12px; background: #E8A33D; color: #111110; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 0 20px rgba(232,163,61,0.3);">
+                    <div style="width: 100%; padding: 11px; border-radius: 12px; background: #E8A33D; color: #111110; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 0 20px rgba(232,163,61,0.35);">
                       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                       <span>Send to all</span>
                     </div>
                   </div>
 
-                  <!-- 4 Channel Previews -->
-                  <div class="kij-mc-channels-col">
-                    <div class="kij-mc-chan-item whatsapp">
-                      <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
-                        <div style="width: 32px; height: 32px; border-radius: 8px; background: #22C55E; color: #111; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">WA</div>
-                        <div style="min-width: 0;">
-                          <strong style="font-size: 12px; color: #22C55E; display: block;">WhatsApp</strong>
-                          <span style="font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">Your order #1042 has shipped. Track it here.</span>
-                        </div>
+                  <!-- 56px Connector Lines (Desktop) -->
+                  <svg viewBox="0 0 760 56" fill="none" class="kij-mc-connector-svg">
+                    <path d="M 380 0 C 380 28, 86 28, 86 56" stroke="rgba(232,163,61,0.35)" stroke-width="2" />
+                    <path d="M 380 0 C 380 28, 282 28, 282 56" stroke="rgba(232,163,61,0.35)" stroke-width="2" />
+                    <path d="M 380 0 C 380 28, 478 28, 478 56" stroke="rgba(232,163,61,0.35)" stroke-width="2" />
+                    <path d="M 380 0 C 380 28, 674 28, 674 56" stroke="rgba(232,163,61,0.35)" stroke-width="2" />
+                  </svg>
+
+                  <!-- 4 Channel Cards in One Row (200px tall) -->
+                  <div class="kij-mc-channel-row">
+                    <div class="kij-mc-channel-card whatsapp">
+                      <div>
+                        <div class="kij-mc-badge" style="background: #22C55E; color: #111;">WA</div>
+                        <strong style="font-size: 13px; color: #22C55E; display: block; text-transform: uppercase;">WhatsApp</strong>
+                        <p style="margin: 4px 0 0; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; line-height: 1.3;">Your order #1042 has shipped. Track it here.</p>
                       </div>
-                      <span style="color: #22C55E; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 4px; flex-shrink: 0;">✓✓ Delivered</span>
+                      <div style="padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px; font-weight: 700; color: #22C55E;">
+                        ✓✓ Delivered
+                      </div>
                     </div>
 
-                    <div class="kij-mc-chan-item">
-                      <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
-                        <div style="width: 32px; height: 32px; border-radius: 8px; background: #E8A33D; color: #111; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">SMS</div>
-                        <div style="min-width: 0;">
-                          <strong style="font-size: 12px; color: #E8A33D; display: block;">SMS</strong>
-                          <span style="font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">Klayed Store: Your order #1042 has shipped.</span>
-                        </div>
+                    <div class="kij-mc-channel-card">
+                      <div>
+                        <div class="kij-mc-badge" style="background: #E8A33D; color: #111;">SMS</div>
+                        <strong style="font-size: 13px; color: #E8A33D; display: block; text-transform: uppercase;">SMS</strong>
+                        <p style="margin: 4px 0 0; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; line-height: 1.3;">Klayed Store: Your order #1042 has shipped.</p>
                       </div>
-                      <span style="color: #10B981; font-size: 12px; font-weight: 700; flex-shrink: 0;">✓ Delivered</span>
+                      <div style="padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px; font-weight: 700; color: #10B981;">
+                        ✓ Delivered
+                      </div>
                     </div>
 
-                    <div class="kij-mc-chan-item">
-                      <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
-                        <div style="width: 32px; height: 32px; border-radius: 8px; background: #38BDF8; color: #111; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">EM</div>
-                        <div style="min-width: 0;">
-                          <strong style="font-size: 12px; color: #38BDF8; display: block;">Email</strong>
-                          <span style="font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">Subject: Order #1042 has shipped!</span>
-                        </div>
+                    <div class="kij-mc-channel-card">
+                      <div>
+                        <div class="kij-mc-badge" style="background: #38BDF8; color: #111;">EM</div>
+                        <strong style="font-size: 13px; color: #38BDF8; display: block; text-transform: uppercase;">Email</strong>
+                        <p style="margin: 4px 0 0; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; line-height: 1.3;">Subject: Order #1042 has shipped!</p>
                       </div>
-                      <span style="color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 600; flex-shrink: 0;">Opened</span>
+                      <div style="padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.6);">
+                        Opened
+                      </div>
                     </div>
 
-                    <div class="kij-mc-chan-item">
-                      <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
-                        <div style="width: 32px; height: 32px; border-radius: 8px; background: #F43F5E; color: #fff; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    <div class="kij-mc-channel-card">
+                      <div>
+                        <div class="kij-mc-badge" style="background: #F43F5E; color: #fff;">
+                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
                         </div>
-                        <div style="min-width: 0;">
-                          <strong style="font-size: 12px; color: #F43F5E; display: block;">Voice Call</strong>
-                          <span style="font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">Klayed Dispatch Calling...</span>
-                        </div>
+                        <strong style="font-size: 13px; color: #F43F5E; display: block; text-transform: uppercase;">Voice</strong>
+                        <p style="margin: 4px 0 0; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; line-height: 1.3;">Klayed Dispatch Calling...</p>
                       </div>
-                      <span style="color: #E8A33D; font-size: 12px; font-weight: 700; flex-shrink: 0;">Ringing...</span>
+                      <div style="padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px; font-weight: 700; color: #E8A33D;">
+                        Ringing...
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1496,55 +1507,74 @@
             <!-- Panel 1: Real-time delivery tracking -->
             <div class="kij-eng-panel" id="kij-eng-panel-1" role="tabpanel" aria-labelledby="kij-eng-tab-1">
               <div class="kij-merchant-stage-inner">
-                <div class="kij-dt-grid">
-                  <!-- Lanes -->
-                  <div style="display: flex; flex-direction: column; gap: 14px;">
-                    <!-- Chioma Lane -->
-                    <div class="kij-dt-card">
-                      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                          <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(168,85,247,0.2); color: #d8b4fe; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(168,85,247,0.3);">CO</div>
-                          <div>
-                            <strong style="font-size: 15px; color: #fff; display: block;">Chioma Okon</strong>
-                            <span style="font-size: 12px; color: rgba(255,255,255,0.4);">0803 214 9811</span>
-                          </div>
-                        </div>
-                        <span style="padding: 3px 10px; border-radius: 9999px; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #22C55E; font-size: 12px; font-weight: 700;">Delivered</span>
-                      </div>
-                      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; font-size: 12px;">
-                        <span style="color: #22C55E; font-weight: 600;">✓ Sent</span>
-                        <span style="color: #22C55E; font-weight: 600;">✓ Delivered</span>
-                        <span style="color: #22C55E; font-weight: 700;">✓✓ Read</span>
-                      </div>
+                <div class="kij-dt-table-card">
+                  <!-- Header -->
+                  <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#E8A33D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                      <strong style="font-size: 15px; color: #fff;">Live Delivery Telemetry</strong>
                     </div>
-
-                    <!-- Babatunde Lane -->
-                    <div class="kij-dt-card">
-                      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                          <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(20,184,166,0.2); color: #5eead4; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(20,184,166,0.3);">BA</div>
-                          <div>
-                            <strong style="font-size: 15px; color: #fff; display: block;">Babatunde Adeleke</strong>
-                            <span style="font-size: 12px; color: rgba(255,255,255,0.4);">0812 559 4022</span>
-                          </div>
-                        </div>
-                        <span style="padding: 3px 10px; border-radius: 9999px; background: rgba(232,163,61,0.15); border: 1px solid rgba(232,163,61,0.3); color: #E8A33D; font-size: 12px; font-weight: 700;">Auto-switched to SMS</span>
-                      </div>
-                      <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px;">
-                        <span style="color: #F87171; font-weight: 600;">✕ WhatsApp Failed</span>
-                        <span style="color: #E8A33D; font-weight: 600;">↻ Auto-rerouted</span>
-                        <span style="color: #22C55E; font-weight: 700;">✓ SMS Delivered</span>
-                      </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                      <span style="font-size: 12px; font-family: monospace; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.1);">● 18ms latency</span>
+                      <span style="font-size: 12px; font-weight: 700; color: #22C55E; background: rgba(34,197,94,0.15); padding: 3px 10px; border-radius: 9999px; border: 1px solid rgba(34,197,94,0.3);">98.4% on time</span>
                     </div>
                   </div>
 
-                  <!-- Right Stat Card -->
-                  <div class="kij-dt-stat-box">
-                    <span style="font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Delivery Health</span>
-                    <strong style="font-size: 48px; font-weight: 800; color: #E8A33D; line-height: 1; letter-spacing: -0.03em;">98.4%</strong>
-                    <span style="font-size: 14px; font-weight: 600; color: #22C55E; margin-top: 12px; display: flex; align-items: center; gap: 6px;">
-                      ✓ Delivered on time
-                    </span>
+                  <!-- Row 1: Chioma -->
+                  <div class="kij-dt-row">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(168,85,247,0.2); color: #d8b4fe; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(168,85,247,0.3);">CO</div>
+                      <div>
+                        <strong style="font-size: 15px; color: #fff; display: block;">Chioma Okon</strong>
+                        <span style="font-size: 13px; font-family: monospace; color: rgba(255,255,255,0.5);">0803 214 9811</span>
+                      </div>
+                    </div>
+                    <span style="padding: 4px 12px; border-radius: 9999px; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #22C55E; font-size: 13px; font-weight: 700;">✓✓ Read</span>
+                  </div>
+
+                  <!-- Row 2: Emeka -->
+                  <div class="kij-dt-row">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(59,130,246,0.2); color: #93c5fd; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(59,130,246,0.3);">EO</div>
+                      <div>
+                        <strong style="font-size: 15px; color: #fff; display: block;">Emeka Obi</strong>
+                        <span style="font-size: 13px; font-family: monospace; color: rgba(255,255,255,0.5);">0802 881 2045</span>
+                      </div>
+                    </div>
+                    <span style="padding: 4px 12px; border-radius: 9999px; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #22C55E; font-size: 13px; font-weight: 700;">✓ Delivered</span>
+                  </div>
+
+                  <!-- Row 3: Babatunde (Failover) -->
+                  <div class="kij-dt-row failover-active">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(20,184,166,0.2); color: #5eead4; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(20,184,166,0.3);">BA</div>
+                      <div>
+                        <strong style="font-size: 15px; color: #fff; display: block;">Babatunde Adeleke</strong>
+                        <span style="font-size: 13px; font-family: monospace; color: rgba(255,255,255,0.5);">0812 559 4022</span>
+                      </div>
+                    </div>
+                    <span style="padding: 4px 12px; border-radius: 9999px; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #22C55E; font-size: 13px; font-weight: 700; box-shadow: 0 0 12px rgba(34,197,94,0.25);">✓ SMS Delivered (Auto-Rerouted)</span>
+                  </div>
+
+                  <!-- Row 4: Amina -->
+                  <div class="kij-dt-row">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(244,63,94,0.2); color: #fda4af; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(244,63,94,0.3);">AB</div>
+                      <div>
+                        <strong style="font-size: 15px; color: #fff; display: block;">Amina Bello</strong>
+                        <span style="font-size: 13px; font-family: monospace; color: rgba(255,255,255,0.5);">0813 902 4411</span>
+                      </div>
+                    </div>
+                    <span style="padding: 4px 12px; border-radius: 9999px; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); color: #38bdf8; font-size: 13px; font-weight: 700;">Opened</span>
+                  </div>
+
+                  <!-- Banner -->
+                  <div style="padding: 10px 14px; border-radius: 12px; background: rgba(232,163,61,0.1); border: 1px solid rgba(232,163,61,0.3); display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #E8A33D; font-weight: 600;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+                      <span>Auto-failover: Switched failed WhatsApp to MTN SMS in 340ms</span>
+                    </div>
+                    <span style="font-size: 11px; font-weight: 700; background: rgba(0,0,0,0.4); padding: 3px 8px; border-radius: 4px; color: #fff;">Auto-Resolved</span>
                   </div>
                 </div>
 
@@ -1558,52 +1588,66 @@
             <!-- Panel 2: Marketing automation -->
             <div class="kij-eng-panel" id="kij-eng-panel-2" role="tabpanel" aria-labelledby="kij-eng-tab-2">
               <div class="kij-merchant-stage-inner">
-                <!-- 4 Steps Flow -->
-                <div class="kij-ma-nodes-grid">
-                  <div class="kij-ma-node">
-                    <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.05); color: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <div class="kij-ma-flow-group">
+                  <!-- 4 Large Nodes (240px tall, 40px icons) -->
+                  <div class="kij-ma-nodes-grid">
+                    <div class="kij-ma-node">
+                      <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 9999px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4);">Trigger</span>
+                      <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="kij-ma-node-icon" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.9);">
+                          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                        </div>
+                        <strong style="font-size: 15px; color: #fff; line-height: 1.25;">Customer leaves cart</strong>
+                      </div>
+                      <span style="font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600;">₦38,500 in bag</span>
                     </div>
-                    <strong style="font-size: 14px; color: #fff; line-height: 1.2;">Customer leaves cart</strong>
-                    <span style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px;">₦38,500 in bag</span>
+
+                    <div class="kij-ma-node">
+                      <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 9999px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4);">Delay</span>
+                      <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="kij-ma-node-icon" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.9);">
+                          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <strong style="font-size: 15px; color: #fff; line-height: 1.25;">Wait 45 minutes</strong>
+                      </div>
+                      <span style="font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600;">Auto countdown</span>
+                    </div>
+
+                    <div class="kij-ma-node">
+                      <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 9999px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4);">Condition</span>
+                      <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="kij-ma-node-icon" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.9);">
+                          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                        </div>
+                        <strong style="font-size: 15px; color: #fff; line-height: 1.25;">Cart over ₦20,000?</strong>
+                      </div>
+                      <span style="font-size: 12px; color: #22C55E; font-weight: 600;">Yes, VIP cart</span>
+                    </div>
+
+                    <div class="kij-ma-node active-success">
+                      <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 9999px; background: rgba(232,163,61,0.2); color: #E8A33D;">Action</span>
+                      <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="kij-ma-node-icon" style="background: #E8A33D; color: #111; box-shadow: 0 0 20px rgba(232,163,61,0.4);">
+                          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                        </div>
+                        <strong style="font-size: 15px; color: #fff; line-height: 1.25;">Send WhatsApp offer</strong>
+                      </div>
+                      <span style="font-size: 12px; color: #22C55E; font-weight: 600;">10% off coupon</span>
+                    </div>
                   </div>
 
-                  <div class="kij-ma-node">
-                    <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.05); color: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <!-- Uplift Chip -->
+                  <div class="kij-ma-popout">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <div style="width: 38px; height: 38px; border-radius: 12px; background: #22C55E; color: #111; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 15px rgba(34,197,94,0.3);">WA</div>
+                      <div>
+                        <span style="font-size: 11px; font-weight: 700; color: #22C55E; text-transform: uppercase; letter-spacing: 0.05em; display: block;">Direct WhatsApp Offer</span>
+                        <strong style="font-size: 14px; color: #fff;">"You forgot your items! Here is 10% off your order."</strong>
+                      </div>
                     </div>
-                    <strong style="font-size: 14px; color: #fff; line-height: 1.2;">Wait 45 minutes</strong>
-                    <span style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px;">Auto countdown</span>
-                  </div>
-
-                  <div class="kij-ma-node">
-                    <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.05); color: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                    <div style="padding: 8px 16px; border-radius: 12px; background: #22C55E; color: #111; font-weight: 800; font-size: 14px; flex-shrink: 0; box-shadow: 0 0 20px rgba(34,197,94,0.35);">
+                      +₦45,000 recovered automatically
                     </div>
-                    <strong style="font-size: 14px; color: #fff; line-height: 1.2;">Cart over ₦20,000?</strong>
-                    <span style="font-size: 11px; color: #22C55E; margin-top: 4px; font-weight: 600;">Yes, VIP cart</span>
-                  </div>
-
-                  <div class="kij-ma-node active-success">
-                    <div style="width: 38px; height: 38px; border-radius: 10px; background: #22C55E; color: #111; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-                    </div>
-                    <strong style="font-size: 14px; color: #22C55E; line-height: 1.2;">Send WhatsApp offer</strong>
-                    <span style="font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 4px;">10% off coupon</span>
-                  </div>
-                </div>
-
-                <!-- Bottom Recovery Notification -->
-                <div class="kij-ma-popout">
-                  <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 36px; height: 36px; border-radius: 10px; background: #22C55E; color: #111; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">WA</div>
-                    <div>
-                      <span style="font-size: 11px; font-weight: 700; color: #22C55E; display: block;">Automated WhatsApp Message</span>
-                      <strong style="font-size: 14px; color: #fff;">"You forgot your items! Here is 10% off your order."</strong>
-                    </div>
-                  </div>
-                  <div style="padding: 6px 14px; border-radius: 10px; background: #22C55E; color: #111; font-weight: 800; font-size: 14px; flex-shrink: 0; box-shadow: 0 0 20px rgba(34,197,94,0.3);">
-                    +₦45,000 recovered
                   </div>
                 </div>
 
@@ -1614,7 +1658,7 @@
               </div>
             </div>
 
-            <!-- Panel 3: Shared team inbox -->
+            <!-- Panel 3: Shared team inbox (Reference) -->
             <div class="kij-eng-panel" id="kij-eng-panel-3" role="tabpanel" aria-labelledby="kij-eng-tab-3">
               <div class="kij-merchant-stage-inner">
                 <div class="kij-si-wrapper">
@@ -1622,48 +1666,48 @@
                   <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.06);">
                     <div style="display: flex; align-items: center; gap: 8px;">
                       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#E8A33D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-                      <strong style="font-size: 14px; color: #fff;">Customer Support Team</strong>
+                      <strong style="font-size: 15px; color: #fff;">Customer Support Team</strong>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
                       <span style="font-size: 12px; color: rgba(255,255,255,0.5);">Online:</span>
                       <div style="display: flex; align-items: center; margin-left: -4px;">
-                        <div style="width: 26px; height: 26px; border-radius: 50%; background: #E8A33D; color: #111; font-weight: 800; font-size: 10px; display: flex; align-items: center; justify-content: center; border: 2px solid #171717;">AD</div>
-                        <div style="width: 26px; height: 26px; border-radius: 50%; background: #3B82F6; color: #fff; font-weight: 800; font-size: 10px; display: flex; align-items: center; justify-content: center; border: 2px solid #171717; margin-left: -6px;">TU</div>
+                        <div style="width: 28px; height: 28px; border-radius: 50%; background: #E8A33D; color: #111; font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; border: 2px solid #171717;">AD</div>
+                        <div style="width: 28px; height: 28px; border-radius: 50%; background: #3B82F6; color: #fff; font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; border: 2px solid #171717; margin-left: -6px;">TU</div>
                       </div>
                     </div>
                   </div>
 
                   <!-- Customer Message -->
-                  <div style="padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; gap: 12px; align-items: flex-start;">
-                    <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(236,72,153,0.2); color: #f472b6; font-weight: 700; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">FL</div>
+                  <div style="padding: 14px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; gap: 12px; align-items: flex-start;">
+                    <div style="width: 34px; height: 34px; border-radius: 50%; background: rgba(236,72,153,0.2); color: #f472b6; font-weight: 700; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">FL</div>
                     <div>
                       <strong style="font-size: 13px; color: rgba(255,255,255,0.9); display: block;">Folake (Lagos)</strong>
-                      <p style="margin: 3px 0 0; font-size: 14px; color: #fff; font-weight: 500;">"How much is delivery to Ikeja?"</p>
+                      <p style="margin: 3px 0 0; font-size: 15px; color: #fff; font-weight: 500;">"How much is delivery to Ikeja?"</p>
                     </div>
                   </div>
 
                   <!-- Ada Replying -->
-                  <div style="padding: 10px 14px; border-radius: 12px; background: rgba(232,163,61,0.1); border: 1px solid rgba(232,163,61,0.3); display: flex; align-items: center; justify-content: space-between;">
+                  <div style="padding: 12px 14px; border-radius: 12px; background: rgba(232,163,61,0.1); border: 1px solid rgba(232,163,61,0.3); display: flex; align-items: center; justify-content: space-between;">
                     <div style="display: flex; align-items: center; gap: 8px;">
-                      <div style="width: 24px; height: 24px; border-radius: 50%; background: #E8A33D; color: #111; font-weight: 800; font-size: 10px; display: flex; align-items: center; justify-content: center;">AD</div>
-                      <span style="font-size: 13px; font-weight: 600; color: #E8A33D;">Ada is replying now...</span>
+                      <div style="width: 26px; height: 26px; border-radius: 50%; background: #E8A33D; color: #111; font-weight: 800; font-size: 10px; display: flex; align-items: center; justify-content: center;">AD</div>
+                      <span style="font-size: 14px; font-weight: 600; color: #E8A33D;">Ada is replying now...</span>
                     </div>
                     <span style="font-size: 11px; font-weight: 700; color: #E8A33D; background: rgba(0,0,0,0.4); padding: 3px 8px; border-radius: 4px;">🔒 Thread Locked</span>
                   </div>
 
                   <!-- Collision Warning -->
-                  <div style="padding: 10px 14px; border-radius: 12px; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #fca5a5;">
+                  <div style="padding: 12px 14px; border-radius: 12px; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #fca5a5;">
                     <div style="display: flex; align-items: center; gap: 8px;">
-                      <div style="width: 22px; height: 22px; border-radius: 50%; background: #3B82F6; color: #fff; font-weight: 800; font-size: 10px; display: flex; align-items: center; justify-content: center;">TU</div>
+                      <div style="width: 24px; height: 24px; border-radius: 50%; background: #3B82F6; color: #fff; font-weight: 800; font-size: 10px; display: flex; align-items: center; justify-content: center;">TU</div>
                       <span>Tunde opened ticket</span>
                     </div>
                     <strong style="font-size: 12px; background: rgba(248,113,113,0.2); padding: 3px 8px; border-radius: 4px;">Ada is already on this</strong>
                   </div>
 
                   <!-- Reply Sent -->
-                  <div style="padding: 10px 14px; border-radius: 12px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); display: flex; align-items: center; justify-content: space-between;">
-                    <span style="font-size: 13px; color: #86efac; font-weight: 500;">"Delivery to Ikeja is ₦2,500. Same-day delivery!"</span>
-                    <span style="font-size: 13px; color: #22C55E; font-weight: 800;">✓✓</span>
+                  <div style="padding: 12px 14px; border-radius: 12px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); display: flex; align-items: center; justify-content: space-between;">
+                    <span style="font-size: 14px; color: #86efac; font-weight: 500;">"Delivery to Ikeja is ₦2,500. Same-day delivery!"</span>
+                    <span style="font-size: 14px; color: #22C55E; font-weight: 800;">✓✓</span>
                   </div>
                 </div>
 
@@ -1678,42 +1722,56 @@
             <div class="kij-eng-panel" id="kij-eng-panel-4" role="tabpanel" aria-labelledby="kij-eng-tab-4">
               <div class="kij-merchant-stage-inner">
                 <div class="kij-cs-wrapper">
-                  <!-- 3 Filter Pills -->
-                  <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-                    <span style="padding: 6px 14px; border-radius: 9999px; font-size: 13px; font-weight: 700; background: #E8A33D; color: #111110; box-shadow: 0 0 16px rgba(232,163,61,0.35);">
-                      ✓ Frequent buyers
-                    </span>
-                    <span style="padding: 6px 14px; border-radius: 9999px; font-size: 13px; font-weight: 700; background: #E8A33D; color: #111110; box-shadow: 0 0 16px rgba(232,163,61,0.35);">
-                      ✓ Lagos customers
-                    </span>
-                    <span style="padding: 6px 14px; border-radius: 9999px; font-size: 13px; font-weight: 700; background: #E8A33D; color: #111110; box-shadow: 0 0 16px rgba(232,163,61,0.35);">
-                      ✓ Abandoned cart
-                    </span>
+                  <!-- 3 Filter Pills (44px tall) -->
+                  <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+                    <span class="kij-cs-filter-chip active">✓ Frequent buyers</span>
+                    <span class="kij-cs-filter-chip active">✓ Lagos customers</span>
+                    <span class="kij-cs-filter-chip active">✓ Abandoned cart</span>
                   </div>
 
-                  <!-- Avatar Box & Outcome -->
+                  <!-- 8x4 Dot Grid (36px dots) + Matched Count -->
                   <div class="kij-cs-avatar-box">
-                    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 10px; margin-bottom: 20px;">
-                      <div class="kij-ill-cust-dot highlight" style="width: 28px; height: 28px; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: #111;">AO</div>
-                      <div class="kij-ill-cust-dot" style="width: 28px; height: 28px; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4);">BE</div>
-                      <div class="kij-ill-cust-dot highlight" style="width: 28px; height: 28px; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: #111;">CH</div>
-                      <div class="kij-ill-cust-dot" style="width: 28px; height: 28px; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4);">DA</div>
-                      <div class="kij-ill-cust-dot highlight" style="width: 28px; height: 28px; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: #111;">EK</div>
-                      <div class="kij-ill-cust-dot" style="width: 28px; height: 28px; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4);">FA</div>
-                      <div class="kij-ill-cust-dot highlight" style="width: 28px; height: 28px; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: #111;">GB</div>
-                      <div class="kij-ill-cust-dot" style="width: 28px; height: 28px; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4);">HA</div>
-                      <div class="kij-ill-cust-dot highlight" style="width: 28px; height: 28px; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: #111;">IB</div>
-                      <div class="kij-ill-cust-dot" style="width: 28px; height: 28px; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4);">JO</div>
-                      <div class="kij-ill-cust-dot highlight" style="width: 28px; height: 28px; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: #111;">KA</div>
-                      <div class="kij-ill-cust-dot" style="width: 28px; height: 28px; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4);">LU</div>
+                    <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; margin-bottom: 20px;">
+                      <div class="kij-cs-dot highlight">AO</div>
+                      <div class="kij-cs-dot dimmed">BE</div>
+                      <div class="kij-cs-dot highlight">CH</div>
+                      <div class="kij-cs-dot dimmed">DA</div>
+                      <div class="kij-cs-dot highlight">EK</div>
+                      <div class="kij-cs-dot dimmed">FA</div>
+                      <div class="kij-cs-dot highlight">GB</div>
+                      <div class="kij-cs-dot dimmed">HA</div>
+                      <div class="kij-cs-dot highlight">IB</div>
+                      <div class="kij-cs-dot dimmed">JO</div>
+                      <div class="kij-cs-dot highlight">KA</div>
+                      <div class="kij-cs-dot dimmed">LU</div>
+                      <div class="kij-cs-dot highlight">MO</div>
+                      <div class="kij-cs-dot dimmed">NE</div>
+                      <div class="kij-cs-dot highlight">OK</div>
+                      <div class="kij-cs-dot dimmed">PA</div>
+                      <div class="kij-cs-dot highlight">RA</div>
+                      <div class="kij-cs-dot dimmed">SE</div>
+                      <div class="kij-cs-dot highlight">TI</div>
+                      <div class="kij-cs-dot dimmed">UM</div>
+                      <div class="kij-cs-dot highlight">VI</div>
+                      <div class="kij-cs-dot dimmed">WA</div>
+                      <div class="kij-cs-dot highlight">YA</div>
+                      <div class="kij-cs-dot dimmed">ZA</div>
+                      <div class="kij-cs-dot highlight">AD</div>
+                      <div class="kij-cs-dot dimmed">TU</div>
+                      <div class="kij-cs-dot highlight">FL</div>
+                      <div class="kij-cs-dot dimmed">CO</div>
+                      <div class="kij-cs-dot highlight">BA</div>
+                      <div class="kij-cs-dot dimmed">EO</div>
+                      <div class="kij-cs-dot highlight">AB</div>
+                      <div class="kij-cs-dot dimmed">KD</div>
                     </div>
 
                     <div style="width: 100%; padding: 14px 20px; border-radius: 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between;">
                       <div>
-                        <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.4); display: block;">VIP Campaign Audience</span>
-                        <strong style="font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.02em;">2,480 customers</strong>
+                        <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; display: block;">VIP Campaign Audience</span>
+                        <strong style="font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.02em;">2,480 customers matched</strong>
                       </div>
-                      <button type="button" style="padding: 10px 20px; border-radius: 12px; background: #E8A33D; color: #111110; font-weight: 700; font-size: 14px; border: none; cursor: pointer; box-shadow: 0 0 20px rgba(232,163,61,0.25);">
+                      <button type="button" style="padding: 10px 22px; border-radius: 12px; background: #E8A33D; color: #111110; font-weight: 700; font-size: 14px; border: none; cursor: pointer; box-shadow: 0 0 20px rgba(232,163,61,0.3);">
                         Send campaign
                       </button>
                     </div>
@@ -1731,61 +1789,69 @@
             <div class="kij-eng-panel" id="kij-eng-panel-5" role="tabpanel" aria-labelledby="kij-eng-tab-5">
               <div class="kij-merchant-stage-inner">
                 <div class="kij-ca-wrapper">
-                  <!-- 3 KPIs -->
+                  <!-- 3 KPIs (Numbers ~40px) -->
                   <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: center;">
                     <div>
-                      <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); display: block; margin-bottom: 4px;">Open rate</span>
-                      <strong style="font-size: 24px; font-weight: 800; color: #fff; letter-spacing: -0.02em;">64.8%</strong>
-                      <span style="font-size: 11px; font-weight: 700; color: #22C55E; margin-left: 6px;">+12%</span>
+                      <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Open rate</span>
+                      <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <strong class="kij-ca-kpi-val">64.8%</strong>
+                        <span style="font-size: 12px; font-weight: 700; color: #22C55E; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); padding: 2px 8px; border-radius: 9999px;">+12%</span>
+                      </div>
                     </div>
                     <div>
-                      <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); display: block; margin-bottom: 4px;">Link clicks</span>
-                      <strong style="font-size: 24px; font-weight: 800; color: #E8A33D; letter-spacing: -0.02em;">28.4%</strong>
-                      <span style="font-size: 11px; font-weight: 700; color: #22C55E; margin-left: 6px;">+8%</span>
+                      <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Link clicks</span>
+                      <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <strong class="kij-ca-kpi-val">28.4%</strong>
+                        <span style="font-size: 12px; font-weight: 700; color: #22C55E; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); padding: 2px 8px; border-radius: 9999px;">+8%</span>
+                      </div>
                     </div>
                     <div>
-                      <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); display: block; margin-bottom: 4px;">Return on spend</span>
-                      <strong style="font-size: 24px; font-weight: 800; color: #22C55E; letter-spacing: -0.02em;">4.8x</strong>
-                      <span style="font-size: 11px; font-weight: 700; color: #22C55E; margin-left: 6px;">+18%</span>
+                      <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Return on spend</span>
+                      <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <strong class="kij-ca-kpi-val">4.8x</strong>
+                        <span style="font-size: 12px; font-weight: 700; color: #22C55E; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); padding: 2px 8px; border-radius: 9999px;">+18%</span>
+                      </div>
                     </div>
                   </div>
 
-                  <!-- Bar chart with Friday tooltip -->
-                  <div style="position: relative; padding-top: 26px;">
-                    <div style="position: absolute; top: 0; left: 63%; transform: translateX(-50%); padding: 4px 10px; border-radius: 6px; background: #E8A33D; color: #111110; font-size: 11px; font-weight: 800; white-space: nowrap; box-shadow: 0 0 15px rgba(232,163,61,0.4);">
+                  <!-- 220px Bar chart with Friday tooltip -->
+                  <div class="kij-ca-chart-area">
+                    <div style="position: absolute; top: 0; left: 64%; transform: translateX(-50%); padding: 5px 12px; border-radius: 8px; background: #E8A33D; color: #111110; font-size: 12px; font-weight: 800; white-space: nowrap; box-shadow: 0 0 15px rgba(232,163,61,0.4); z-index: 10;">
                       Friday: your best day to send
                     </div>
 
-                    <div class="kij-ill-bars-container">
-                      <div class="kij-ill-bar-col">
-                        <div class="kij-ill-bar" style="height: 48%;"></div>
-                        <span style="font-size: 11px; font-family: monospace; color: rgba(255,255,255,0.4);">Mon</span>
-                      </div>
-                      <div class="kij-ill-bar-col">
-                        <div class="kij-ill-bar" style="height: 64%;"></div>
-                        <span style="font-size: 11px; font-family: monospace; color: rgba(255,255,255,0.4);">Tue</span>
-                      </div>
-                      <div class="kij-ill-bar-col">
-                        <div class="kij-ill-bar" style="height: 58%;"></div>
-                        <span style="font-size: 11px; font-family: monospace; color: rgba(255,255,255,0.4);">Wed</span>
-                      </div>
-                      <div class="kij-ill-bar-col">
-                        <div class="kij-ill-bar" style="height: 76%;"></div>
-                        <span style="font-size: 11px; font-family: monospace; color: rgba(255,255,255,0.4);">Thu</span>
-                      </div>
-                      <div class="kij-ill-bar-col">
-                        <div class="kij-ill-bar highlight" style="height: 98%;"></div>
-                        <span style="font-size: 11px; font-family: monospace; color: #E8A33D; font-weight: 800;">Fri</span>
-                      </div>
-                      <div class="kij-ill-bar-col">
-                        <div class="kij-ill-bar" style="height: 62%;"></div>
-                        <span style="font-size: 11px; font-family: monospace; color: rgba(255,255,255,0.4);">Sat</span>
-                      </div>
-                      <div class="kij-ill-bar-col">
-                        <div class="kij-ill-bar" style="height: 54%;"></div>
-                        <span style="font-size: 11px; font-family: monospace; color: rgba(255,255,255,0.4);">Sun</span>
-                      </div>
+                    <div style="flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 8px;">
+                      <div style="width: 100%; height: 42%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.1);"></div>
+                      <span style="font-size: 12px; font-family: monospace; color: rgba(255,255,255,0.4);">Mon</span>
                     </div>
+                    <div style="flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 8px;">
+                      <div style="width: 100%; height: 60%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.1);"></div>
+                      <span style="font-size: 12px; font-family: monospace; color: rgba(255,255,255,0.4);">Tue</span>
+                    </div>
+                    <div style="flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 8px;">
+                      <div style="width: 100%; height: 55%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.1);"></div>
+                      <span style="font-size: 12px; font-family: monospace; color: rgba(255,255,255,0.4);">Wed</span>
+                    </div>
+                    <div style="flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 8px;">
+                      <div style="width: 100%; height: 74%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.1);"></div>
+                      <span style="font-size: 12px; font-family: monospace; color: rgba(255,255,255,0.4);">Thu</span>
+                    </div>
+                    <div style="flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 8px;">
+                      <div style="width: 100%; height: 98%; border-radius: 8px 8px 0 0; background: #E8A33D; box-shadow: 0 0 24px rgba(232,163,61,0.5);"></div>
+                      <span style="font-size: 12px; font-family: monospace; color: #E8A33D; font-weight: 800;">Fri</span>
+                    </div>
+                    <div style="flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 8px;">
+                      <div style="width: 100%; height: 58%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.1);"></div>
+                      <span style="font-size: 12px; font-family: monospace; color: rgba(255,255,255,0.4);">Sat</span>
+                    </div>
+                    <div style="flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 8px;">
+                      <div style="width: 100%; height: 48%; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.1);"></div>
+                      <span style="font-size: 12px; font-family: monospace; color: rgba(255,255,255,0.4);">Sun</span>
+                    </div>
+                  </div>
+
+                  <div style="text-align: center; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05);">
+                    Highest converting window: Friday 6:00 PM – 9:00 PM (WAT) • 4.8x ROI
                   </div>
                 </div>
 

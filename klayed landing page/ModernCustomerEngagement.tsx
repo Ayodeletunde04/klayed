@@ -1484,7 +1484,7 @@ export const ModernCustomerEngagement: React.FC = () => {
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
       onBlur={() => setIsPaused(false)}
-      className="relative w-full bg-[#0E0E0E] text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden select-none"
+      className="relative w-full bg-white dark:bg-[#0E0E0E] text-slate-900 dark:text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden select-none transition-colors duration-300"
     >
       <div 
         className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#E8A33D]/[0.035] blur-[140px] rounded-full"
@@ -1496,16 +1496,16 @@ export const ModernCustomerEngagement: React.FC = () => {
         {/* Header & CTA */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-semibold text-[#E8A33D] mb-4 uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8A33D]/10 border border-[#E8A33D]/25 text-xs font-semibold text-[#B45309] dark:text-[#E8A33D] mb-4 uppercase tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8A33D]" />
               {ENGAGEMENT_COPY.header.pill}
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.12]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]">
               {ENGAGEMENT_COPY.header.title}
             </h2>
 
-            <p className="mt-4 text-base sm:text-lg text-white/60 leading-relaxed font-normal">
+            <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-white/60 leading-relaxed font-normal">
               {ENGAGEMENT_COPY.header.subtext}
             </p>
           </div>
@@ -1528,7 +1528,7 @@ export const ModernCustomerEngagement: React.FC = () => {
           role="tabpanel"
           id={`panel-${activeTab.id}`}
           aria-labelledby={`tab-${activeTab.id}`}
-          className="relative w-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] rounded-[24px] bg-[#0E0E0E] overflow-hidden flex items-center justify-center"
+          className="relative w-full min-h-[400px] md:min-h-[460px] lg:min-h-[520px] rounded-[24px] bg-white dark:bg-[#0E0E0E] overflow-hidden flex items-center justify-center transition-colors duration-300"
         >
 
           <AnimatePresence mode="wait">

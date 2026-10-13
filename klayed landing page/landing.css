@@ -17986,6 +17986,7 @@ html.dark-preview .kij-eng-stage-card {
   inset: 0;
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transform: translateY(12px);
   transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
   display: flex;
@@ -17994,6 +17995,13 @@ html.dark-preview .kij-eng-stage-card {
   justify-content: center;
   padding: 40px;
   padding-bottom: 76px;
+}
+
+.kij-eng-panel.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 @media (max-width: 640px) {
@@ -18447,7 +18455,7 @@ html.dark-preview .kij-eng-tab-learn {
    ========================================================================== */
 .kij-merchant-stage-inner {
   width: 100%;
-  max-width: 760px;
+  max-width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -18480,8 +18488,14 @@ html.dark-preview .kij-eng-tab-learn {
   }
 }
 
-.kij-eng-panel.is-active .kij-merchant-stage-inner > div:first-child {
-  animation: cardEntrance 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.kij-eng-panel.is-active .kij-focal-card,
+.kij-eng-panel.is-active .kij-ca-wrapper,
+.kij-eng-panel.is-active .kij-cs-wrapper {
+  animation: focalCardEntrance 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+.kij-eng-panel.is-active .kij-tile-field-grid {
+  animation: tileFieldWave 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .kij-result-chip-wrap {
@@ -19366,4 +19380,81 @@ html.dark-preview .kij-supp-tile-title {
 body.dark-preview .kij-supp-tile-sub,
 html.dark-preview .kij-supp-tile-sub {
   color: rgba(255, 255, 255, 0.5);
+}
+
+/* In-Card Pills & Chips */
+.kij-fc-pill {
+  font-size: 12px;
+  font-family: monospace;
+  color: #475569;
+  background: #F1F5F9;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+body.dark-preview .kij-fc-pill,
+html.dark-preview .kij-fc-pill {
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Collision Toast in Light vs Dark */
+.kij-collision-toast {
+  background: #FFFFFF;
+  border: 1px solid #E8A33D;
+  box-shadow: 0 4px 20px rgba(232, 163, 61, 0.25);
+  color: #B45309;
+}
+body.dark-preview .kij-collision-toast,
+html.dark-preview .kij-collision-toast {
+  background: #1A1A1A;
+  border-color: #E8A33D;
+  box-shadow: 0 0 25px rgba(232, 163, 61, 0.3);
+  color: #E8A33D;
+}
+
+/* Panel 2: Marketing Automation Bubble */
+.kij-ma-preview-box {
+  background: #F0FDF4;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+body.dark-preview .kij-ma-preview-box,
+html.dark-preview .kij-ma-preview-box {
+  background: rgba(20, 35, 25, 0.4);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.kij-ma-preview-inner {
+  background: #FFFFFF;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  color: #1E293B;
+}
+body.dark-preview .kij-ma-preview-inner,
+html.dark-preview .kij-ma-preview-inner {
+  background: #142319;
+  border-color: rgba(34, 197, 94, 0.3);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Panel 3: Ada Reply Bubble */
+.kij-ada-reply-bubble {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+body.dark-preview .kij-ada-reply-bubble,
+html.dark-preview .kij-ada-reply-bubble {
+  background: rgba(6, 78, 59, 0.25);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.kij-ada-reply-text {
+  color: #065F46;
+}
+body.dark-preview .kij-ada-reply-text,
+html.dark-preview .kij-ada-reply-text {
+  color: #a7f3d0;
 }

@@ -3315,3 +3315,133 @@ Content-Type: application/json
     data: DEV_DATA
   };
 }
+
+/**
+ * ============================================================================
+ * Modern Customer Engagement Section Controller ("Built different")
+ * ============================================================================
+ */
+function initModernCustomerEngagement() {
+  const section = document.getElementById('why-klayed');
+  if (!section) return;
+
+  const tabButtons = Array.from(section.querySelectorAll('.kij-eng-tab-item'));
+  const panels = Array.from(section.querySelectorAll('.kij-eng-panel'));
+  if (!tabButtons.length || !panels.length) return;
+
+  let activeIndex = 0;
+  let isPaused = false;
+  let progress = 0;
+  let animFrameId = null;
+  let lastTimestamp = null;
+  const DURATION_MS = 6000;
+
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setActiveTab(newIndex) {
+    if (newIndex < 0 || newIndex >= tabButtons.length) return;
+    activeIndex = newIndex;
+    progress = 0;
+
+    tabButtons.forEach((btn, idx) => {
+      const isCurrent = idx === activeIndex;
+      btn.classList.toggle('is-active', isCurrent);
+      btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+      btn.setAttribute('tabindex', isCurrent ? '0' : '-1');
+
+      const progressBar = btn.querySelector('.kij-eng-tab-line-progress');
+      if (progressBar) {
+        progressBar.style.height = isCurrent ? '0%' : '0%';
+      }
+    });
+
+    panels.forEach((pnl, idx) => {
+      const isCurrent = idx === activeIndex;
+      pnl.classList.toggle('is-active', isCurrent);
+      pnl.setAttribute('aria-hidden', isCurrent ? 'false' : 'true');
+    });
+
+    // Mobile scroll into view
+    const currentBtn = tabButtons[activeIndex];
+    if (currentBtn && window.innerWidth < 640) {
+      currentBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  }
+
+  function loop(timestamp) {
+    if (!lastTimestamp) lastTimestamp = timestamp;
+    const delta = timestamp - lastTimestamp;
+    lastTimestamp = timestamp;
+
+    if (!isPaused && !prefersReduced) {
+      progress += (delta / DURATION_MS) * 100;
+      if (progress >= 100) {
+        progress = 0;
+        const nextIndex = (activeIndex + 1) % tabButtons.length;
+        setActiveTab(nextIndex);
+      } else {
+        const currentBtn = tabButtons[activeIndex];
+        const bar = currentBtn ? currentBtn.querySelector('.kij-eng-tab-line-progress') : null;
+        if (bar) {
+          bar.style.height = progress + '%';
+        }
+      }
+    }
+
+    animFrameId = requestAnimationFrame(loop);
+  }
+
+  tabButtons.forEach((btn, idx) => {
+    btn.addEventListener('click', () => {
+      setActiveTab(idx);
+    });
+
+    btn.addEventListener('keydown', (e) => {
+      let targetIdx = -1;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        targetIdx = (idx + 1) % tabButtons.length;
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        targetIdx = (idx - 1 + tabButtons.length) % tabButtons.length;
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        targetIdx = 0;
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        targetIdx = tabButtons.length - 1;
+      }
+
+      if (targetIdx !== -1) {
+        setActiveTab(targetIdx);
+        tabButtons[targetIdx].focus();
+      }
+    });
+  });
+
+  section.addEventListener('mouseenter', () => { isPaused = true; });
+  section.addEventListener('mouseleave', () => { isPaused = false; });
+  section.addEventListener('focusin', () => { isPaused = true; });
+  section.addEventListener('focusout', () => { isPaused = false; });
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isPaused = !entry.isIntersecting;
+      });
+    }, { threshold: 0.1 });
+    observer.observe(section);
+  }
+
+  setActiveTab(0);
+  if (!prefersReduced) {
+    animFrameId = requestAnimationFrame(loop);
+  }
+}
+
+// Auto-initialize Modern Customer Engagement
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => initModernCustomerEngagement());
+} else {
+  initModernCustomerEngagement();
+}
